@@ -1,0 +1,9 @@
+Ejercicio 4.1: Mostrar en pantalla la versión actual de Python instalada en el sistema.
+
+Ejercicio 4.2: Mostrar en pantalla la fecha y hora actuales del sistema.
+
+Ejercicio 4.3: Solicitar al usuario el radio de un círculo y calcular su área.
+
+Ejercicio 4.4: Pedir el nombre al usuario y obtener su representación en orden inverso.
+
+Ejercicio 4.5: Calcular el área de un triángulo dadas la base y la altura.
