@@ -18,3 +18,13 @@ print('Valor de x antes de la adición: %i' % x)
 x += 10 # x = x + 10
 print('Valor de x después de la adición: %i' % x)
 print('Tipo de dato de la variable `x`: %s' % type(x))
+
+print()
+
+print('Uso de la clase int() para crear números enteros:')
+
+edad = int(input('Escriba su edad: '))
+print('Tipo de dato de la variable edad: %s' % type(edad))
+
+total_dias = edad * 365
+print('Total de días vividos hasta el momento: %i' % total_dias)
