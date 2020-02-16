@@ -26,3 +26,11 @@ print()
 
 print('El tipo de dato para la variable pi: ', type(pi))
 print('El tipo de dato para la variable total: ', type(total))
+
+print()
+
+print('Creación de un número real (punto flotante) a partir de una cadena de caracteres:')
+
+precio_computador = float(input('Digite el precio del computador: '))
+print('El tipo de dato de la variable precio_computador es %s' % type(precio_computador))
+print('El computador cuesta: $%.2f' % precio_computador)
