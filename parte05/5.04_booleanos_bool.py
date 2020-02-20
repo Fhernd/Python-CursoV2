@@ -31,3 +31,31 @@ print(a and b)
 print(a and not b)
 print(b or a)
 print(b or not a)
+
+print()
+
+if a and b:
+    print('Sí hay agua')
+else:
+    print('No hay agua')
+
+print()
+
+if a and not b:
+    print('Sí hay agua')
+else:
+    print('No hay agua')
+
+print()
+
+if a or b:
+    print('Sí hay agua')
+else:
+    print('No hay agua')
+
+print()
+
+if not a or b:
+    print('Sí hay agua')
+else:
+    print('No hay agua')
