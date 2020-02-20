@@ -23,39 +23,39 @@ else:
 print()
 
 # Operaciones con variables o valores booleanos (lógicos):
-a = True
-b = False
+llave_1 = True
+llave_2 = False
 
 # Operadores lógicos: and (conjunción - y), or (disyunción - o)
-print(a and b)
-print(a and not b)
-print(b or a)
-print(b or not a)
+print(llave_1 and llave_2)
+print(llave_1 and not llave_2)
+print(llave_2 or llave_1)
+print(llave_2 or not llave_1)
 
 print()
 
-if a and b:
+if llave_1 and llave_2:
     print('Sí hay agua')
 else:
     print('No hay agua')
 
 print()
 
-if a and not b:
+if llave_1 and not llave_2:
     print('Sí hay agua')
 else:
     print('No hay agua')
 
 print()
 
-if a or b:
+if llave_1 or llave_2:
     print('Sí hay agua')
 else:
     print('No hay agua')
 
 print()
 
-if not a or b:
+if not llave_1 or llave_2:
     print('Sí hay agua')
 else:
     print('No hay agua')
