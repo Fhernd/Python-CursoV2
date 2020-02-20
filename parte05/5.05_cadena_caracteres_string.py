@@ -43,5 +43,14 @@ print(lenguaje[5])
 
 print()
 
+# lenguaje[0] = 'p' # TypeError
+
 lenguaje = 'p' + lenguaje[1:]
+print(lenguaje)
+
+# Inmutables... se dicen que son estáticos
+
+print(id('python') == id('python'))
+
+lenguaje = 'Python'.lower()
 print(lenguaje)
