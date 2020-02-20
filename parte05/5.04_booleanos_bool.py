@@ -59,3 +59,48 @@ if not llave_1 or llave_2:
     print('Sí hay agua')
 else:
     print('No hay agua')
+
+print()
+
+print('Uso de la clase bool():')
+x = bool(1)
+print(type(x))
+print(x)
+
+print()
+
+x = bool(123)
+print(type(x))
+print(x)
+
+print()
+
+x = bool(-123)
+print(type(x))
+print(x)
+
+print()
+
+x = bool(0)
+print(type(x))
+print(x)
+
+print()
+
+x = bool('False')
+print(type(x))
+print(x)
+
+x = bool('True')
+print(type(x))
+print(x)
+
+print()
+
+x = bool(123 < 124)
+print(type(x))
+print(x)
+
+x = 123 > 124
+print(type(x))
+print(x)
