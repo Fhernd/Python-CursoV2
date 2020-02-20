@@ -54,3 +54,22 @@ print(id('python') == id('python'))
 
 lenguaje = 'Python'.lower()
 print(lenguaje)
+
+print()
+
+# Uso del método str.split()
+valores = '2,3,5,7,11'
+numeros = valores.split(',')
+print(len(numeros))
+print(numeros)
+print(type(numeros[0]))
+
+print()
+
+# Uso del método str.find()
+indice = valores.find('2')
+print('El índice del elemento "2" es igual a', indice)
+indice = valores.find('1')
+print('El índice del elemento "1" es igual a', indice)
+indice = valores.find('8')
+print('El índice del elemento "8" es igual a', indice)
