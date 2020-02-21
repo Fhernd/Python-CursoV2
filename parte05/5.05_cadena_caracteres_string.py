@@ -73,3 +73,21 @@ indice = valores.find('1')
 print('El índice del elemento "1" es igual a', indice)
 indice = valores.find('8')
 print('El índice del elemento "8" es igual a', indice)
+
+print()
+
+# Creación de una función (proceso) personalizado para buscar una cadena dentro de otra:
+
+def encontrar(cadena, caracter):
+    indice = -1
+    for i in range(0, len(cadena)):
+        if caracter == cadena[i]:
+            indice = i
+            break
+    
+    return indice
+
+indice = encontrar(valores, '2')
+print('El índice del elemento "2" es igual a', indice)
+indice = encontrar(valores, '8')
+print('El índice del elemento "8" es igual a', indice)
