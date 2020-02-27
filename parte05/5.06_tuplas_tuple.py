@@ -68,3 +68,10 @@ print()
 print('Iteración con un ciclo for mejorado:')
 for p in numeros_primos:
     print('Valor:', p)
+
+print()
+
+# Iteración de una tupla por medio de la función enumerate():
+print('Iteración de la tupla numeros_primos con la función enumerate:')
+for i, v in enumerate(numeros_primos):
+    print(f'El valor del elemento en el índice {i} es igual a {v}.')
