@@ -50,6 +50,21 @@ print('Cantidad elementos de la tupla numeros_primos:', len(numeros_primos))
 
 # Iteración con un ciclo while:
 i = 0
+print('Iteración con un ciclo while:')
 while i < len(numeros_primos):
     print(f'El valor del elemento en el índice {i} es igual a {numeros_primos[i]}.')
     i = i + 1
+
+print()
+
+# Iteración con un ciclo for:
+print('Iteración con un ciclo for:')
+for i in range(len(numeros_primos)):
+    print(f'El valor del elemento en el índice {i} es igual a {numeros_primos[i]}.')
+
+print()
+
+# Iteración un ciclo for mejorado:
+print('Iteración con un ciclo for mejorado:')
+for p in numeros_primos:
+    print('Valor:', p)
