@@ -24,3 +24,18 @@ subseccion = numeros[1:4]
 print('Tipo de dato de la variable subseccion:', type(subseccion))
 print('Cantidad de elementos:', len(subseccion))
 print('Contenido:', subseccion)
+
+print()
+
+# Acceso con desempaquetamiento:
+print('Acceso a datos de una lista con desempaquetamiento:')
+cuatro, seis, ocho = subseccion
+print(cuatro, seis, ocho)
+
+print()
+
+# 2. Modificación de una lista:
+print('2. Modificación de elementos de una lista:')
+print('El primer elemento (índice 0) de la lista es:', numeros[0])
+numeros[0] = 1
+print('El primer elemento (índice 0) de la lista es:', numeros[0])
