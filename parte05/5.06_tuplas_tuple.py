@@ -40,3 +40,16 @@ x = punto[0]
 y = punto[1]
 print('El valor en x es igual a:', x)
 print('El valor en y es igual a:', y)
+
+print()
+
+# Iteración de un objeto tipo tupla (tuple):
+numeros_primos = (2, 3, 5, 7, 11, 13, 17, 19)
+
+print('Cantidad elementos de la tupla numeros_primos:', len(numeros_primos))
+
+# Iteración con un ciclo while:
+i = 0
+while i < len(numeros_primos):
+    print(f'El valor del elemento en el índice {i} es igual a {numeros_primos[i]}.')
+    i = i + 1
