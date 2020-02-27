@@ -28,3 +28,15 @@ penultimo_elemento = punto[-2]
 ultimo_elemento = punto[-1]
 print('El valor en x es igual a:', penultimo_elemento)
 print('El valor en y es igual a:', ultimo_elemento)
+
+print()
+
+# Concepto de inmutabilidad en una tupla:
+# punto[0] = 3 # Generar error TypeError
+# punto[1] = 7 # Generar error TypeError
+
+punto = (3, 7)
+x = punto[0]
+y = punto[1]
+print('El valor en x es igual a:', x)
+print('El valor en y es igual a:', y)
