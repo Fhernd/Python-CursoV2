@@ -75,3 +75,27 @@ print()
 print('Iteración de la tupla numeros_primos con la función enumerate:')
 for i, v in enumerate(numeros_primos):
     print(f'El valor del elemento en el índice {i} es igual a {v}.')
+
+print()
+
+# Mecanismos alternativos para crear una tupla:
+# Modo A:
+numeros = 1, 2, 3
+print('Tipo de dato de la variable numeros:', type(numeros))
+print('Cantidad de elementos de la tupla:', len(numeros))
+print('Contenido:', numeros)
+
+print()
+
+numeros = (1,)
+print('Tipo de dato de la variable numeros:', type(numeros))
+print('Cantidad de elementos de la tupla:', len(numeros))
+print('Contenido:', numeros)
+
+print()
+
+# Modo B: uso de la clase tuple
+numeros = tuple([1, 2, 3])
+print('Tipo de dato de la variable numeros:', type(numeros))
+print('Cantidad de elementos de la tupla:', len(numeros))
+print('Contenido:', numeros)
