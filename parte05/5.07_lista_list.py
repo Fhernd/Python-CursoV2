@@ -34,8 +34,23 @@ print(cuatro, seis, ocho)
 
 print()
 
+# Acceso a un índice no existen:
+# Izquierda a derecha: 0 hasta n - 1
+# Derecha a izquierda: -1 hasta -n
+
+# valor = numeros[8] # Genera ValueError
+# valor = numeros[-6] # Genera ValueError
+
+print()
+
 # 2. Modificación de una lista:
 print('2. Modificación de elementos de una lista:')
 print('El primer elemento (índice 0) de la lista es:', numeros[0])
 numeros[0] = 1
 print('El primer elemento (índice 0) de la lista es:', numeros[0])
+
+print()
+
+print('El último elemento (índice -1) de la lista es:', numeros[-1])
+numeros[-1] = 12
+print('El último elemento (índice -1) de la lista es:', numeros[-1])
