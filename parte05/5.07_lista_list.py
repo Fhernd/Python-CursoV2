@@ -129,10 +129,32 @@ print('Contenido actual de la lista `numeros`:', numeros)
 
 print()
 
-print('Remoción de un elemento elemento con la función `remove()`:')
+print('Remoción de un elemento con la función `remove()`:')
 print('Cantidad actual de elementos en la lista `numeros`:', len(numeros))
 numeros.remove(1)
 print('Cantidad actual de elementos en la lista `numeros`:', len(numeros))
 print('Contenido actual de la lista `numeros`:', numeros)
 
 # numeros.remove(1) # Produce el error ValueError: debido a que no existe el valor en la lista.
+
+print()
+
+print('Remoción de elementos de una lista con el método `pop()`:')
+ultimo_elemento = numeros.pop()
+print(f'Se ha eliminado {ultimo_elemento} de la lista `numeros`.')
+
+print()
+
+ocho = numeros.pop(numeros.index(8))
+print(f'Se ha eliminado {ocho} de la lista `numeros`.')
+print('Contenido actual de la lista `numeros`:', numeros)
+
+print()
+
+ultimo_elemento = numeros.pop(-1)
+print(f'Se ha eliminado {ultimo_elemento} de la lista `numeros`.')
+print('Contenido actual de la lista `numeros`:', numeros)
+
+print()
+
+# numeros.pop(20) # Genera error IndexError.
