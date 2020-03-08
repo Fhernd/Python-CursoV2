@@ -126,3 +126,13 @@ print()
 
 numeros.insert(-1, 15)
 print('Contenido actual de la lista `numeros`:', numeros)
+
+print()
+
+print('Remoción de un elemento elemento con la función `remove()`:')
+print('Cantidad actual de elementos en la lista `numeros`:', len(numeros))
+numeros.remove(1)
+print('Cantidad actual de elementos en la lista `numeros`:', len(numeros))
+print('Contenido actual de la lista `numeros`:', numeros)
+
+# numeros.remove(1) # Produce el error ValueError: debido a que no existe el valor en la lista.
