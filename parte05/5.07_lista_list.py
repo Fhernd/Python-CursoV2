@@ -88,3 +88,10 @@ print('Iteración con índices de una lista con un ciclo for (último hacia el p
 
 for i in range(len(numeros) - 1, -1, -1):
     print('Índice: {} - Valor: {}'.format(i, numeros[i]))
+
+print()
+
+print('Iteración por elemento de una lista usando un ciclo for:')
+
+for n in numeros:
+    print('Valor: {}'.format(n))
