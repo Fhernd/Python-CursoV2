@@ -115,3 +115,14 @@ numeros.append(14)
 numeros.append(16)
 print('Cantidad actual de elementos en la lista `numeros`:', len(numeros))
 print('Contenido actual de la lista `numeros`:', numeros)
+
+print()
+
+print('Inserción de elementos en una lista por medio de `insert()`:')
+numeros.insert(1, 2)
+print('Contenido actual de la lista `numeros`:', numeros)
+
+print()
+
+numeros.insert(-1, 15)
+print('Contenido actual de la lista `numeros`:', numeros)
