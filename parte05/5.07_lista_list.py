@@ -54,3 +54,23 @@ print()
 print('El último elemento (índice -1) de la lista es:', numeros[-1])
 numeros[-1] = 12
 print('El último elemento (índice -1) de la lista es:', numeros[-1])
+
+print()
+
+# Iteración de listas:
+# Iteración de lista con ciclo while:
+print('Iteración de lista con ciclo while:')
+
+i = 0
+while i < len(numeros):
+    print('Índice: {} - Valor: {}'.format(i, numeros[i]))
+    i += 1
+
+print()
+
+print('Iteración de lista con ciclo while (del último elemento al primero):')
+
+i = len(numeros) - 1
+while i >= 0:
+    print('Índice: {} - Valor: {}'.format(i, numeros[i]))
+    i -= 1
