@@ -95,3 +95,10 @@ print('Iteración por elemento de una lista usando un ciclo for:')
 
 for n in numeros:
     print('Valor: {}'.format(n))
+
+print()
+
+print('Iteración de lista con la función `enumerate()`:')
+
+for i, v in enumerate(numeros):
+    print('Índice: {} - Valor: {}'.format(i, v))
