@@ -74,3 +74,17 @@ i = len(numeros) - 1
 while i >= 0:
     print('Índice: {} - Valor: {}'.format(i, numeros[i]))
     i -= 1
+
+print()
+
+print('Iteración con índices de una lista con un ciclo for:')
+
+for i in range(0, len(numeros)):
+    print('Índice: {} - Valor: {}'.format(i, numeros[i]))
+
+print()
+
+print('Iteración con índices de una lista con un ciclo for (último hacia el primer elemento):')
+
+for i in range(len(numeros) - 1, -1, -1):
+    print('Índice: {} - Valor: {}'.format(i, numeros[i]))
