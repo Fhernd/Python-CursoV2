@@ -102,3 +102,16 @@ print('Iteración de lista con la función `enumerate()`:')
 
 for i, v in enumerate(numeros):
     print('Índice: {} - Valor: {}'.format(i, v))
+
+print()
+
+# Operaciones sobre listas (clase `list`):
+
+# Inserción de elementos en una lista por medio de `append()`:
+print('Inserción de elementos en una lista por medio de `append()`:')
+
+print('Cantidad actual de elementos en la lista `numeros`:', len(numeros))
+numeros.append(14)
+numeros.append(16)
+print('Cantidad actual de elementos en la lista `numeros`:', len(numeros))
+print('Contenido actual de la lista `numeros`:', numeros)
