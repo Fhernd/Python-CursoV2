@@ -182,3 +182,11 @@ print('Inversión del contenido de una lista con la función `reverse()`:')
 print('Contenido actual de la lista `numeros`:', numeros)
 numeros.reverse()
 print('Contenido actual de la lista `numeros`:', numeros)
+
+print()
+
+print('Eliminación de todos los elementos de una lista con el método `clear()`:')
+print('Cantidad actual de elementos en la lista `numeros`:', len(numeros))
+# numeros.clear()
+del numeros[:]
+print('Cantidad actual de elementos en la lista `numeros`:', len(numeros))
