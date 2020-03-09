@@ -68,3 +68,11 @@ print('3.2 Iteración por los valores de un diccionario:')
 
 for v in computador.values():
     print(v)
+
+print()
+
+# 3.3 Iteración por las llaves y los valores de un diccionario:
+print('3.3 Iteración por las llaves y los valores de un diccionario:')
+
+for k, v in computador.items():
+    print(f'{k.upper()}: {v}')
