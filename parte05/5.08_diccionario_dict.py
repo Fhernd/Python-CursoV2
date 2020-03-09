@@ -29,8 +29,26 @@ print(f"Marca: {computador['marca']}")
 print(f"RAM: {computador['ram']}")
 print(f"CPU: {computador['cpu']}")
 print(f"Almacenamiento: {computador['almacenamiento']}")
+print('Cantidad de propiedades del diccionario `computador`:', len(computador))
 
 print()
 
 print(computador.get('Almacenamiento', '1'))
 print(computador.get('tarjeta_grafica', 'integrada'))
+
+print()
+
+# 3. Modificación del contenido de un diccionario:
+computador['marca'] = 'Alienware'
+computador['id'] = 2001
+computador['gpu'] = 'NVIDIA GeForce RTX 2080 8GB'
+
+print(f"ID: {computador['id']}")
+print(f"Marca: {computador['marca']}")
+print(f"RAM: {computador['ram']}")
+print(f"CPU: {computador['cpu']}")
+print(f"Almacenamiento: {computador['almacenamiento']}")
+print(f"GPU: {computador['gpu']}")
+print('Cantidad de propiedades del diccionario `computador`:', len(computador))
+
+print()
