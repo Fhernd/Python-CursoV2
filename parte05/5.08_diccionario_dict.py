@@ -52,3 +52,11 @@ print(f"GPU: {computador['gpu']}")
 print('Cantidad de propiedades del diccionario `computador`:', len(computador))
 
 print()
+
+# 3. Iteración de un diccionario:
+print('3. Iteración de un diccionario:')
+# 3.1 Iteración por las llaves de un diccionario:
+print('3.1 Iteración por las llaves de un diccionario:')
+
+for k in computador.keys():
+    print(f'{k.upper()}: {computador[k]}')
