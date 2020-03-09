@@ -174,3 +174,11 @@ print()
 ocurrencias = numeros.count(0)
 print('Cantidad de veces que se halla 0 en la lista `numeros`: %i' % ocurrencias)
 print('Contenido actual de la lista `numeros`:', numeros)
+
+print()
+
+print('Inversión del contenido de una lista con la función `reverse()`:')
+
+print('Contenido actual de la lista `numeros`:', numeros)
+numeros.reverse()
+print('Contenido actual de la lista `numeros`:', numeros)
