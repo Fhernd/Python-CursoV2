@@ -158,3 +158,19 @@ print('Contenido actual de la lista `numeros`:', numeros)
 print()
 
 # numeros.pop(20) # Genera error IndexError.
+
+print()
+
+print('Uso del método `count()` para contar las ocurrencias de un elemento en una lista:')
+numeros.append(14)
+numeros.append(14)
+numeros.append(14)
+ocurrencias = numeros.count(14)
+print('Cantidad de veces que se halla 14 en la lista `numeros`: %i' % ocurrencias)
+print('Contenido actual de la lista `numeros`:', numeros)
+
+print()
+
+ocurrencias = numeros.count(0)
+print('Cantidad de veces que se halla 0 en la lista `numeros`: %i' % ocurrencias)
+print('Contenido actual de la lista `numeros`:', numeros)
