@@ -12,3 +12,10 @@ print(type(diccionario_1))
 print()
 print(diccionario_2)
 print(type(diccionario_2))
+
+print()
+
+computador = {'id': 1001, 'marca': 'MSi', 'ram': 128, 'cpu': 'Intel Core i7 Extreme Edition', 'almacenamiento': 8}
+print(computador)
+print(f'La variable diccionario `computador` tiene {len(computador)} propiedades.')
+print('El tipo de dato de la variable `computador` es: %s' % type(computador).__name__)
