@@ -19,3 +19,18 @@ computador = {'id': 1001, 'marca': 'MSi', 'ram': 128, 'cpu': 'Intel Core i7 Extr
 print(computador)
 print(f'La variable diccionario `computador` tiene {len(computador)} propiedades.')
 print('El tipo de dato de la variable `computador` es: %s' % type(computador).__name__)
+
+print()
+
+# 2. Acceso a las propiedades y valores de un diccionario:
+print('Acceso a las propiedades y valores de un diccionario:')
+print(f"ID: {computador['id']}")
+print(f"Marca: {computador['marca']}")
+print(f"RAM: {computador['ram']}")
+print(f"CPU: {computador['cpu']}")
+print(f"Almacenamiento: {computador['almacenamiento']}")
+
+print()
+
+print(computador.get('Almacenamiento', '1'))
+print(computador.get('tarjeta_grafica', 'integrada'))
