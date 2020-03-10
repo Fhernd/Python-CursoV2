@@ -192,3 +192,19 @@ print('Operación de diferencia simétrica entre conjuntos:')
 
 diferencia_simetrica = arco_iris.symmetric_difference(colores)
 print('La diferencia simétrica entre los conjuntos `arco_iris` y `colores` es:', diferencia_simetrica)
+
+print()
+
+# 5. Otras operaciones
+# 5.1 Método remove():
+print('5.1 Método remove():')
+print('Contenido de la variable `colores`:', colores)
+print('Cantidad de elementos de la variable `colores`:', len(colores))
+
+# colores.remove('gris') # Genera error KeyError: el color 'gris' no existen en el conjunto `colores`
+colores.remove('Gris')
+
+print()
+
+print('Contenido de la variable `colores`:', colores)
+print('Cantidad de elementos de la variable `colores`:', len(colores))
