@@ -47,7 +47,26 @@ print()
 # 1.4 Creación del conjunto de colores del arcoiris:
 print('1.4 Creación del conjunto de colores del arcoiris:')
 
-arco_iris = {'Rojo', 'Naranja', 'Amarillo', 'Verde', 'Azul', 'Añil', 'Violeta'}
+arco_iris = {'Rojo', 'Naranja', 'Amarillo', 'Verde', 'Azul', 'Añil'}
 print('Contenido de la variable `arco_iris`:', arco_iris)
 print('Cantidad de elementos de la variable `arco_iris`:', len(arco_iris))
-print('Tipo de dato de la variable tupla `arco_iris`:', type(arco_iris))
+print('Tipo de dato de la variable `arco_iris`:', type(arco_iris))
+
+print()
+
+# 2. Agregación de elementos a un conjunto utilizando el método `add()`:
+print('2. Agregación de elementos a un conjunto utilizando el método `add()`:')
+
+arco_iris.add('Violenta')
+print('Contenido de la variable `arco_iris`:', arco_iris)
+print('Cantidad de elementos de la variable `arco_iris`:', len(arco_iris))
+print('Tipo de dato de la variable `arco_iris`:', type(arco_iris))
+
+print()
+
+arco_iris.add('Violenta')
+arco_iris.add('Violenta')
+
+print('Contenido de la variable `arco_iris`:', arco_iris)
+print('Cantidad de elementos de la variable `arco_iris`:', len(arco_iris))
+print('Tipo de dato de la variable `arco_iris`:', type(arco_iris))
