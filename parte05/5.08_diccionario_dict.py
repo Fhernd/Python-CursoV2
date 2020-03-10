@@ -136,3 +136,13 @@ print()
 
 for k in reversed(computador):
     print(f'{k.upper()}: {computador[k]}')
+
+print()
+
+# 3.4.6 clear(): remueve todos los elementos de un diccionario:
+print('# 3.4.6 clear(): remueve todos los elementos de un diccionario:')
+print('Cantidad actual de llaves en el diccionario `computador`:', len(computador))
+
+computador.clear()
+
+print('Cantidad actual de llaves en el diccionario `computador`:', len(computador))
