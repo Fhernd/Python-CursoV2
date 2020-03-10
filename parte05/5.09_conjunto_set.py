@@ -88,3 +88,24 @@ for i, c in enumerate(arco_iris):
     print(f'Índice: {i} - Color: {c}')
 
 # NOTA IMPORTANTE: En un conjunto no existe la noción o el concepto de orden.
+
+print()
+
+# 4. Operación de contención (o pertenencia) en un conjunto:
+print('4. Operación de contención (o pertenencia) en un conjunto:')
+
+color = 'Gris'
+resultado = color in arco_iris
+print('¿El color %s se encuentra dentro de los colores de un arcoíris?: %s' % (color, resultado))
+
+print()
+
+color = 'Azul'
+resultado = color in arco_iris
+print('¿El color %s se encuentra dentro de los colores de un arcoíris?: %s' % (color, resultado))
+
+print()
+
+color = 'violeta'
+resultado = color in arco_iris
+print('¿El color %s se encuentra dentro de los colores de un arcoíris?: %s' % (color, resultado))
