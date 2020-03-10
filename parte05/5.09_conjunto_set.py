@@ -78,3 +78,13 @@ print('3. Iteración de un conjunto:')
 
 for c in arco_iris:
     print(c)
+
+print()
+
+# 3.2 Iteración de un conjunto utilizando la función `enumerate()`:
+print('3.2 Iteración de un conjunto utilizando la función `enumerate()`')
+
+for i, c in enumerate(arco_iris):
+    print(f'Índice: {i} - Color: {c}')
+
+# NOTA IMPORTANTE: En un conjunto no existe la noción o el concepto de orden.
