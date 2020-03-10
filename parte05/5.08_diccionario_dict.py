@@ -76,3 +76,19 @@ print('3.3 Iteración por las llaves y los valores de un diccionario:')
 
 for k, v in computador.items():
     print(f'{k.upper()}: {v}')
+
+print()
+
+# 3.4 Métodos y operadores para variables de tipo diccionario:
+# 3.4.1 list(): para convertir las llaves de un diccionario en una lista:
+print('3.4.1 list(): para convertir las llaves de un diccionario en una lista:')
+atributos = list(computador)
+print(atributos)
+print('Cantidad de llaves (atributos) del diccionario `computador`:', len(atributos))
+
+print()
+
+# 3.4.2 in: para consultar si una llave se encuentra en un diccionario:
+print('3.4.2 in: para consultar si una llave se encuentra en un diccionario:')
+print('board' in computador)
+print('gpu' in computador)
