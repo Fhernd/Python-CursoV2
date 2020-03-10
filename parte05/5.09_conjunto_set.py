@@ -151,3 +151,18 @@ interseccion = colores.intersection(arco_iris)
 print('Contenido de la variable `interseccion`:', interseccion)
 print('Cantidad de elementos de la variable `interseccion`:', len(interseccion))
 print('Tipo de dato de la variable `interseccion`:', type(interseccion))
+
+print()
+
+# 4.4 Operación de superconjunto:
+print('4.4 Operación de superconjunto:')
+
+rgb = {'Rojo', 'Verde', 'Azul'}
+resultado = arco_iris.issuperset(rgb)
+print('¿El conjunto {} es superconjunto de {}?: {}'.format(arco_iris, rgb, resultado))
+
+print()
+
+rgb.add('Gris')
+resultado = arco_iris.issuperset(rgb)
+print('¿El conjunto {} es superconjunto de {}?: {}'.format(arco_iris, rgb, resultado))
