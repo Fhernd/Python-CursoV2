@@ -107,3 +107,15 @@ print()
 
 valor = computador.pop('gpu', 'Dispositivo no presente en el computador')
 print(valor)
+
+print()
+
+# 3.4.4 popitem(): extrae un elemento (llave, valor) del diccionario siguiendo un esquema LIFO:
+print('3.4.4 popitem(): extrae un elemento (llave, valor) del diccionario siguiendo un esquema LIFO')
+print(computador)
+
+atributo = computador.popitem()
+print(atributo)
+print(type(atributo))
+print('Llave: ', atributo[0])
+print('Valor: ', atributo[1])
