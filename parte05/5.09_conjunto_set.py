@@ -208,3 +208,20 @@ print()
 
 print('Contenido de la variable `colores`:', colores)
 print('Cantidad de elementos de la variable `colores`:', len(colores))
+
+print()
+
+# 5.2 Método pop():
+print('5.2 Método pop():')
+
+print('Contenido de la variable `colores`:', colores)
+print('Cantidad de elementos de la variable `colores`:', len(colores))
+
+color = colores.pop()
+
+print()
+
+print('El color que se removió del conjunto `colores`:', color)
+
+print('Contenido de la variable `colores`:', colores)
+print('Cantidad de elementos de la variable `colores`:', len(colores))
