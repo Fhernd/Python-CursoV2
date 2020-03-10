@@ -131,3 +131,23 @@ vacio = set([])
 print('Cantidad de elementos del conjunto `vacio`:', len(vacio))
 resultado = vacio.issubset(arco_iris)
 print('¿El conjunto {} es subconjunto de {}?: {}'.format(vacio, arco_iris, resultado))
+
+print()
+
+# 4.3 Operación de unión:
+print('4.3 Operación de unión:')
+mas_colores = arco_iris.union(colores)
+print()
+print('Contenido de la variable `mas_colores`:', mas_colores)
+print('Cantidad de elementos de la variable `mas_colores`:', len(mas_colores))
+print('Tipo de dato de la variable `mas_colores`:', type(mas_colores))
+
+print()
+
+# 4.3 Operación de intersección:
+print('4.3 Operación de intersección:')
+
+interseccion = colores.intersection(arco_iris)
+print('Contenido de la variable `interseccion`:', interseccion)
+print('Cantidad de elementos de la variable `interseccion`:', len(interseccion))
+print('Tipo de dato de la variable `interseccion`:', type(interseccion))
