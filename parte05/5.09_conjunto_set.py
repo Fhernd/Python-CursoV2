@@ -41,3 +41,13 @@ primos_unicos = set(primos)
 print('Contenido de la variable `primos_unicos`:', primos_unicos)
 print('Cantidad de elementos de la variable `primos_unicos`:', len(primos_unicos))
 print('Tipo de dato de la variable tupla `primos_unicos`:', type(primos_unicos))
+
+print()
+
+# 1.4 Creación del conjunto de colores del arcoiris:
+print('1.4 Creación del conjunto de colores del arcoiris:')
+
+arco_iris = {'Rojo', 'Naranja', 'Amarillo', 'Verde', 'Azul', 'Añil', 'Violeta'}
+print('Contenido de la variable `arco_iris`:', arco_iris)
+print('Cantidad de elementos de la variable `arco_iris`:', len(arco_iris))
+print('Tipo de dato de la variable tupla `arco_iris`:', type(arco_iris))
