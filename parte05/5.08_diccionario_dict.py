@@ -119,3 +119,20 @@ print(atributo)
 print(type(atributo))
 print('Llave: ', atributo[0])
 print('Valor: ', atributo[1])
+
+print()
+
+# 3.4.5 reversed(): invierte el orden de las llaves del diccionario:
+print('3.4.5 reversed(): invierte el orden de las llaves del diccionario:')
+print(list(computador))
+print(list(reversed(computador)))
+
+print()
+
+for k in computador:
+    print(f'{k.upper()}: {computador[k]}')
+
+print()
+
+for k in reversed(computador):
+    print(f'{k.upper()}: {computador[k]}')
