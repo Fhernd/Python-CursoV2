@@ -225,3 +225,19 @@ print('El color que se removió del conjunto `colores`:', color)
 
 print('Contenido de la variable `colores`:', colores)
 print('Cantidad de elementos de la variable `colores`:', len(colores))
+
+print()
+
+# 5.3 Método clear():
+print('5.3 Método clear():')
+
+print('Contenido de la variable `colores`:', colores)
+print('Cantidad de elementos de la variable `colores`:', len(colores))
+
+print()
+colores.clear()
+
+print('Contenido de la variable `colores`:', colores)
+print('Cantidad de elementos de la variable `colores`:', len(colores))
+
+# colores.pop() # Genera error KeyError: el conjunto está vacío.
