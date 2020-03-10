@@ -109,3 +109,25 @@ print()
 color = 'violeta'
 resultado = color in arco_iris
 print('¿El color %s se encuentra dentro de los colores de un arcoíris?: %s' % (color, resultado))
+
+print()
+
+# 4.2 Operación de subconjunto:
+print('4.2 Operación de subconjunto:')
+
+colores = {'Rojo', 'Verde', 'Azul'}
+resultado = colores.issubset(arco_iris)
+print('¿El conjunto {} es subconjunto de {}?: {}'.format(colores, arco_iris, resultado))
+
+print()
+
+colores.add('Gris')
+resultado = colores.issubset(arco_iris)
+print('¿El conjunto {} es subconjunto de {}?: {}'.format(colores, arco_iris, resultado))
+
+print()
+
+vacio = set([])
+print('Cantidad de elementos del conjunto `vacio`:', len(vacio))
+resultado = vacio.issubset(arco_iris)
+print('¿El conjunto {} es subconjunto de {}?: {}'.format(vacio, arco_iris, resultado))
