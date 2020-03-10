@@ -92,3 +92,18 @@ print()
 print('3.4.2 in: para consultar si una llave se encuentra en un diccionario:')
 print('board' in computador)
 print('gpu' in computador)
+
+print()
+
+# 3.4.3 pop(): extrae un elemento del diccionario:
+print('3.4.3 pop(): extrae un elemento del diccionario')
+# computador.pop('diskette') # Genera KeyError - La llave no existe en el diccionario
+valor = computador.pop('gpu')
+print('Se ha removido la llave `gpu` del diccionario computador.')
+print('El valor de la llave `gpu` era:', valor)
+print('gpu' in computador)
+
+print()
+
+valor = computador.pop('gpu', 'Dispositivo no presente en el computador')
+print(valor)
