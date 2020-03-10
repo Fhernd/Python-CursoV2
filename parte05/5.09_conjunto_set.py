@@ -166,3 +166,29 @@ print()
 rgb.add('Gris')
 resultado = arco_iris.issuperset(rgb)
 print('¿El conjunto {} es superconjunto de {}?: {}'.format(arco_iris, rgb, resultado))
+
+print()
+
+# 4.5 Operación de diferencia de conjuntos:
+print('4.5 Operación de diferencia de conjuntos:')
+
+# A = {1, 2, 3} 
+# B = {3, 4, 5}
+# C = A - B = {1, 2}
+# D = B - A = {4, 5}
+
+diferencia = colores - arco_iris
+print('La diferencia entre los conjuntos `colores` y `arco_iris` es:', diferencia)
+
+print()
+
+diferencia = arco_iris - colores
+print('La diferencia entre los conjuntos `arco_iris` y `colores` es:', diferencia)
+
+print()
+
+# 4.6 Operación de diferencia simétrica entre conjuntos:
+print('Operación de diferencia simétrica entre conjuntos:')
+
+diferencia_simetrica = arco_iris.symmetric_difference(colores)
+print('La diferencia simétrica entre los conjuntos `arco_iris` y `colores` es:', diferencia_simetrica)
