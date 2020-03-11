@@ -1,0 +1,42 @@
+EJERCICIOS
+
+Ejercicios Tuplas:
+
+Ejercicio 5.1: Convertir una lista en una tupla.
+
+Ejercicio 5.2: Invertir el contenido de una tupla.
+
+Ejercicio 5.3: Crear una sección de una tupla usando notación de slicing (rebanado).
+
+Ejercicio 5.4: Remover un elemento (valor) de una tupla.
+
+
+Ejercicios listas:
+
+Ejercicio 5.5: Remover los valores duplicados en una lista.
+
+Ejercicio 5.6: Encontrar las palabras de una lista que tienen al menos 5 caracteres de longitud.
+
+Ejercicio 5.7: Seleccionar de forma aleatoria un elemento de una lista.
+
+Ejercicio 5.8: Calcular la frecuencia (ocurrencias) de los elementos de una lista.
+
+
+Ejercicios diccionarios:
+
+Ejercicio 5.9: Sumar todos los valores de un diccionario.
+
+Ejercicio 5.10: Remover todos los elementos duplicados de un diccionario.
+
+Ejercicio 5.11: Encontrar los tres valores mayores en un diccionario.
+
+Ejercicio 5.12: Convertir un diccionario en su representación en el formato JSON.
+
+
+Ejercicio conjuntos:
+
+Ejercicio 5.13: Realizar operaciones de union, intersección y diferencia de conjuntos.
+
+Ejercicio 5.14: Calcular la diferencia entre dos dos conjuntos.
+
+Ejercicio 5.15: Calcular la diferencia simétrica entre dos conjuntos.
