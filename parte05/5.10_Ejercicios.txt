@@ -37,6 +37,6 @@ Ejercicios conjuntos:
 
 Ejercicio 5.13: Realizar operaciones de unión e intersección de conjuntos.
 
-Ejercicio 5.14: Calcular la diferencia entre dos dos conjuntos.
+Ejercicio 5.14: Calcular la diferencia entre dos conjuntos.
 
 Ejercicio 5.15: Calcular la diferencia simétrica entre dos conjuntos.
