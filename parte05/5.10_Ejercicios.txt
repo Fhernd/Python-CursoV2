@@ -33,9 +33,9 @@ Ejercicio 5.11: Encontrar los tres valores mayores en un diccionario.
 Ejercicio 5.12: Convertir un diccionario en su representación en el formato JSON.
 
 
-Ejercicio conjuntos:
+Ejercicios conjuntos:
 
-Ejercicio 5.13: Realizar operaciones de union, intersección y diferencia de conjuntos.
+Ejercicio 5.13: Realizar operaciones de unión e intersección de conjuntos.
 
 Ejercicio 5.14: Calcular la diferencia entre dos dos conjuntos.
 
