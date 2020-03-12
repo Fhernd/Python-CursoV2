@@ -223,3 +223,36 @@ print('Producto entre varios operandos:')
 producto = 1.1 * 2.2 * 3.3 * 4.4 * 5.5
 
 print('El resultado de la operación 1.1 * 2.2 * 3.3 * 4.4 * 5.5 es igual a', producto)
+
+print()
+
+# Operador de división (decimales): /
+print('Operador de división (decimales): /')
+
+numero_1 = 1
+numero_2 = 2
+
+division = numero_1 / numero_2
+print('La división de {} entre {} es igual a {}.'.format(numero_1, numero_2, division))
+
+print()
+
+print('División entre dos literales numéricas enteras:')
+
+division = 1 / 2
+print('La división de {} entre {} es igual a {}.'.format(1, 2, division))
+
+print()
+
+print('División entre una variable y una literal entera:')
+
+division = numero_1 / 2
+print('La división de {} entre {} es igual a {}.'.format(numero_1, 2, division))
+
+print()
+
+print('Expresión de división con múltiples operandos:')
+
+division = 8 / 4 / 3 / 2
+
+print('La expresión `8 / 4 / 3 / 2` es igual a', division)
