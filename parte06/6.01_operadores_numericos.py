@@ -65,3 +65,40 @@ suma = 1.1 + 2.2 + 3.3 + 4.4 + 5.5
 # 6.6 + 4.4 = 11.0
 # 11.0 + 5.5 = 16.5
 print('La suma de 1.1 + 2.2 + 3.3 + 4.4 + 5.5 es igual a', suma)
+
+print()
+
+# Operador resta: -
+print('Operador resta: -')
+numero_1 = 5
+numero_2 = 3
+
+resta = numero_1 - numero_2 # 5 - 3
+
+print(f'La resta de {numero_1} y {numero_2} es igual {resta}.')
+
+print()
+
+print('Resta de valores enteros literales:')
+
+resta = 5 - 3
+print(f'La resta de {5} y {3} es igual {resta}.')
+
+print()
+
+print('Resta de una variable y una literal:')
+
+resta = numero_1 - 3
+print(f'La resta de {numero_1} y {3} es igual {resta}.')
+
+print()
+
+print('Expresión de resta con múltiples valores:')
+
+resta = 5 - 3 - 2 - 4 - 1
+
+# 5 - 3 = 2
+# 2 - 2 = 0
+# 0 - 4 = -4
+# -4 - 1 = -5
+print('5 - 3 - 2 - 4 - 1 es igual a', resta)
