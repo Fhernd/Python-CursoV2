@@ -42,3 +42,27 @@ print(f"¿'{nombre_1}' es diferente de '{nombre_2}'?: {nombre_1 != nombre_2}")
 
 nombre_2 = 'Daniela'
 print(f"¿'{nombre_1}' es diferente de '{nombre_2}'?: {nombre_1 != nombre_2}")
+
+print()
+
+# Operador de comparación mayor que: >
+
+numero_1 = 5
+numero_2 = 3
+
+resultado = numero_1 > numero_2
+print('¿{} es mayor que {}?: {}'.format(numero_1, numero_2, resultado))
+
+numero_2 = 7
+resultado = numero_1 > numero_2
+print('¿{} es mayor que {}?: {}'.format(numero_1, numero_2, resultado))
+
+print()
+
+numero_1 = 1.1
+numero_2 = 1.11
+
+resultado = numero_1 > numero_2
+print('¿{} es mayor que {}?: {}'.format(numero_1, numero_2, resultado))
+resultado = numero_2 > numero_1
+print('¿{} es mayor que {}?: {}'.format(numero_2, numero_1, resultado))
