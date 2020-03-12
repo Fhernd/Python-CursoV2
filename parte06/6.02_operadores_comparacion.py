@@ -142,3 +142,31 @@ print(f'¿{numero_1} es menor o igual que {numero_2}?: {resultado}')
 numero_1 = 1.0
 resultado = numero_1 <= numero_2
 print(f'¿{numero_1} es menor o igual que {numero_2}?: {resultado}')
+
+print()
+
+# Operador de comparación mismo objeto: is
+print('Operador de comparación mismo objeto: is')
+
+numeros_1 = [1, 2, 3, 4, 5]
+numeros_2 = numeros_1
+numeros_3 = [1, 2, 3, 4, 5]
+numeros_4 = [1, 2, 3, 5, 4]
+
+print(numeros_1)
+print(numeros_2)
+print(numeros_3)
+print(numeros_4)
+
+print()
+
+print(numeros_1 == numeros_2)
+print(numeros_1 == numeros_3)
+print(numeros_2 == numeros_3)
+print(numeros_1 == numeros_4)
+
+print()
+
+print(numeros_1 is numeros_2)
+print(numeros_1 is numeros_3)
+print(numeros_2 is numeros_3)
