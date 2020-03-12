@@ -316,3 +316,28 @@ try:
     print('La división de {} y {} es igual a {}.'.format(numero_1, numero_2, division))
 except ZeroDivisionError as e:
     print('Error:', e)
+
+print()
+
+# Operador resto (residuo, módulo): %
+
+# 5 // 2 = 2
+# 5 % 2 = 1
+
+numero_1 = 5
+numero_2 = 2
+
+division = numero_1 // numero_2
+resto = numero_1 % numero_2
+
+print(f'La división entera de {numero_1} y {numero_2} es igual a {division}.')
+print(f'El resto de la división entera de {numero_1} y {numero_2} es igual a {resto}.')
+
+print()
+
+print('¿Es número par o impar?')
+
+if numero_1 % 2 == 0:
+    print('El valor {} es par.'.format(numero_1))
+else:
+    print('El valor {} es impar.'.format(numero_1))
