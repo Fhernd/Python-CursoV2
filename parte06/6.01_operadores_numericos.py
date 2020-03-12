@@ -102,3 +102,28 @@ resta = 5 - 3 - 2 - 4 - 1
 # 0 - 4 = -4
 # -4 - 1 = -5
 print('5 - 3 - 2 - 4 - 1 es igual a', resta)
+
+print()
+
+# Resta de valores numéricos reales (punto flotante):
+print('Resta de valores numéricos reales (punto flotante):')
+
+numero_1 = 3.1415
+numero_2 = 2.7172
+
+resta = numero_1 - numero_2
+print(f'La resta de {numero_1} y {numero_2} es igual {resta}.')
+
+print()
+
+print('Resta de valores numéricos reales como literales:')
+
+resta = 3.1415 - 2.7172
+print(f'La resta de {3.1415} y {2.7172} es igual {resta}.')
+
+print()
+
+print('Resta de una variable numérica real y una literal numérica real:')
+
+resta = numero_1 - 2.7172
+print(f'La resta de {numero_1} y {2.7172} es igual {resta}.')
