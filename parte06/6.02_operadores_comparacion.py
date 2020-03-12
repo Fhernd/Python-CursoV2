@@ -19,3 +19,26 @@ print("¿{} es igual a {}?: {}".format(numero_1, numero_2, numero_1 == numero_2)
 
 numero_3 = 1
 print("¿{} es igual a {}?: {}".format(numero_1, numero_3, numero_1 == numero_3))
+
+print()
+
+# Operador de comparación distinto: !=
+
+numero_1 = 5
+numero_2 = 7
+
+print(f'¿{numero_1} es diferente de {numero_2}?: {numero_1 != numero_2}.')
+
+numero_2 = 5
+
+print(f'¿{numero_1} es diferente de {numero_2}?: {numero_1 != numero_2}.')
+
+print()
+
+nombre_1 = 'Daniela'
+nombre_2 = 'daniela'
+
+print(f"¿'{nombre_1}' es diferente de '{nombre_2}'?: {nombre_1 != nombre_2}")
+
+nombre_2 = 'Daniela'
+print(f"¿'{nombre_1}' es diferente de '{nombre_2}'?: {nombre_1 != nombre_2}")
