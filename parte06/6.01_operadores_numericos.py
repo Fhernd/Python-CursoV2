@@ -289,3 +289,30 @@ print('Múltiples diviones en una expresión:')
 
 division = 0.5 / 1.73 / 4.5 / 7.0
 print('La operación `0.5 / 1.73 / 4.5 / 7.0` es igual a:', division)
+
+print()
+
+# División entre cero:
+print('División entre cero:')
+
+numero_1 = 5
+numero_2 = 0
+
+
+print('Solución #1:')
+
+if numero_2 != 0:
+    division = numero_1 / numero_2
+    print('La división de {} y {} es igual a {}.'.format(numero_1, numero_2, division))
+else:
+    print('MENSAJE: La división entre cero no está permitida.')
+
+print()
+
+print('Solución #2:')
+
+try:
+    division = numero_1 / numero_2
+    print('La división de {} y {} es igual a {}.'.format(numero_1, numero_2, division))
+except ZeroDivisionError as e:
+    print('Error:', e)
