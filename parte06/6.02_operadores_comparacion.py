@@ -115,3 +115,30 @@ print(f'¿{numero_1} es menor a {numero_2}?: {resultado}')
 numero_1 = 1.23
 resultado = numero_1 < numero_2
 print(f'¿{numero_1} es menor a {numero_2}?: {resultado}')
+
+print()
+
+# Operador de comparación menor o igual que: <=
+print('Operador de comparación menor o igual que: <=')
+
+numero_1 = 1
+numero_2 = 1
+
+resultado = numero_1 <= numero_2
+print(f'¿{numero_1} es menor o igual que {numero_2}?: {resultado}')
+
+numero_1 = 5
+resultado = numero_1 <= numero_2
+print(f'¿{numero_1} es menor o igual que {numero_2}?: {resultado}')
+
+print()
+
+numero_1 = 0.999
+numero_2 = 0.9999
+
+resultado = numero_1 <= numero_2
+print(f'¿{numero_1} es menor o igual que {numero_2}?: {resultado}')
+
+numero_1 = 1.0
+resultado = numero_1 <= numero_2
+print(f'¿{numero_1} es menor o igual que {numero_2}?: {resultado}')
