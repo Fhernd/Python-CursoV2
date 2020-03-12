@@ -357,3 +357,20 @@ print()
 
 division_entero = numero_1 // numero_2
 print(f'División entera entre {numero_1} y {numero_2} es igual a {division_entero}.')
+
+print()
+
+# Operador de potencia: **
+print('Operador de potencia: **')
+
+base = 2
+exponente = 3
+
+potencia = base ** exponente
+
+print(f'La potencia de {base}^{exponente} es igual a {potencia}.')
+
+print()
+
+potencia = pow(base, exponente)
+print(f'La potencia de {base}^{exponente} es igual a {potencia}.')
