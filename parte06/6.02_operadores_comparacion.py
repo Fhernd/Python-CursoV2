@@ -170,3 +170,30 @@ print()
 print(numeros_1 is numeros_2)
 print(numeros_1 is numeros_3)
 print(numeros_2 is numeros_3)
+
+print()
+
+# Operador de comparación distinto objeto: is not
+
+numeros_1 = [1, 2, 3, 4, 5]
+numeros_2 = numeros_1
+numeros_3 = [1, 2, 3, 4, 5]
+numeros_4 = [1, 2, 3, 5, 4]
+
+print(numeros_1)
+print(numeros_2)
+print(numeros_3)
+print(numeros_4)
+
+print()
+
+print(numeros_1 == numeros_2)
+print(numeros_1 == numeros_3)
+print(numeros_2 == numeros_3)
+print(numeros_1 == numeros_4)
+
+print()
+
+print(numeros_1 is not numeros_2)
+print(numeros_1 is not numeros_3)
+print(numeros_2 is not numeros_3)
