@@ -256,3 +256,36 @@ print('Expresión de división con múltiples operandos:')
 division = 8 / 4 / 3 / 2
 
 print('La expresión `8 / 4 / 3 / 2` es igual a', division)
+
+print()
+
+# División entre variables y literales numéricas reales (punto flotante):
+
+print('División entre variables y literales numéricas reales (punto flotante):')
+
+numero_1 = 0.5
+numero_2 = 1.73
+
+division = numero_1 / numero_2
+print('La división de {} y {} es igual a {}.'.format(numero_1, numero_2, division))
+
+print()
+
+print('División de una variable y literal de punto flotante:')
+
+division = numero_1 / 1.73
+print('La división de {} y {} es igual a {}.'.format(numero_1, 1.73, division))
+
+print()
+
+print('División de literales de punto flotante (reales):')
+
+division = 0.5 / 1.73
+print('La división de {} y {} es igual a {}.'.format(0.5, 1.73, division))
+
+print()
+
+print('Múltiples diviones en una expresión:')
+
+division = 0.5 / 1.73 / 4.5 / 7.0
+print('La operación `0.5 / 1.73 / 4.5 / 7.0` es igual a:', division)
