@@ -66,3 +66,25 @@ resultado = numero_1 > numero_2
 print('¿{} es mayor que {}?: {}'.format(numero_1, numero_2, resultado))
 resultado = numero_2 > numero_1
 print('¿{} es mayor que {}?: {}'.format(numero_2, numero_1, resultado))
+
+print()
+
+# Operador de comparación mayor o igual que: >=
+
+numero_1 = 5
+numero_2 = 5
+
+resultado = numero_1 >= numero_2
+print(f'¿{numero_1} es mayor o igual que {numero_2}?: {resultado}')
+
+numero_1 = 3
+resultado = numero_1 >= numero_2
+print(f'¿{numero_1} es mayor o igual que {numero_2}?: {resultado}')
+
+print()
+
+numero_1 = 1.11
+numero_2 = 1.1
+
+resultado = numero_1 >= numero_2
+print(f'¿{numero_1} es mayor o igual que {numero_2}?: {resultado}')
