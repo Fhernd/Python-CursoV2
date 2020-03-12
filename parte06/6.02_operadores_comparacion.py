@@ -88,3 +88,30 @@ numero_2 = 1.1
 
 resultado = numero_1 >= numero_2
 print(f'¿{numero_1} es mayor o igual que {numero_2}?: {resultado}')
+
+print()
+
+# Operador de comparación menor que: <
+print('Operador de comparación menor que: <')
+
+numero_1 = 5
+numero_2 = 7
+
+resultado = numero_1 < numero_2
+print(f'¿{numero_1} es menor a {numero_2}?: {resultado}')
+
+numero_1 = 11
+resultado = numero_1 < numero_2
+print(f'¿{numero_1} es menor a {numero_2}?: {resultado}')
+
+print()
+
+numero_1 = 1.13
+numero_2 = 1.17
+
+resultado = numero_1 < numero_2
+print(f'¿{numero_1} es menor a {numero_2}?: {resultado}')
+
+numero_1 = 1.23
+resultado = numero_1 < numero_2
+print(f'¿{numero_1} es menor a {numero_2}?: {resultado}')
