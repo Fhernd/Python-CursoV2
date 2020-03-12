@@ -39,3 +39,29 @@ numero_2 = 2.7172
 
 suma = numero_1 + numero_2
 print(f'La suma de {numero_1} y {numero_2} es igual {suma}.')
+
+print()
+
+print('Suma de números reales como literales:')
+
+suma = 3.1415 + 2.7172
+print(f'La suma de {3.1415} y {2.7172} es igual {suma}.')
+
+print()
+
+print('Suma de valores de punto flotante como variable y literal:')
+
+suma = numero_1 + 2.7172
+print(f'La suma de {numero_1} y {2.7172} es igual {suma}.')
+
+print()
+
+# Suma de múltiples valores de punto flotante en una única instrucción:
+print('Suma de múltiples valores de punto flotante en una única instrucción:')
+
+suma = 1.1 + 2.2 + 3.3 + 4.4 + 5.5
+# 1.1 + 2.2 = 3.3
+# 3.3 + 3.3 = 6.6
+# 6.6 + 4.4 = 11.0
+# 11.0 + 5.5 = 16.5
+print('La suma de 1.1 + 2.2 + 3.3 + 4.4 + 5.5 es igual a', suma)
