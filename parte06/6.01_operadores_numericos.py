@@ -1,3 +1,5 @@
+import math
+
 # Operadores numéricos:
 
 # Operador suma: +
@@ -127,3 +129,28 @@ print('Resta de una variable numérica real y una literal numérica real:')
 
 resta = numero_1 - 2.7172
 print(f'La resta de {numero_1} y {2.7172} es igual {resta}.')
+
+print()
+
+# Invertir el signo de una literal numérica (entera o real) con el operador de resta (-):
+print('Invertir el signo de una literal numérica (entera o real) con el operador de resta (-):')
+
+numero = 100
+
+print('El valor de la variable `numero` es igual a', numero)
+print('El valor de la variable `numero` es igual a', -numero)
+print('El valor de la variable `numero` es igual a', numero)
+
+print()
+
+numero = -100
+print('El valor de la variable `numero` es igual a', numero)
+print('El valor de la variable `numero` es igual a', -numero)
+print('El valor de la variable `numero` es igual a', numero)
+
+print()
+
+pi = math.pi
+
+print('El valor de la variable `pi` es igual a', pi)
+print('El valor de la variable `pi` es igual a', -pi)
