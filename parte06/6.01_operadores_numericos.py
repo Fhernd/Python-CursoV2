@@ -194,3 +194,32 @@ producto = 1 * 2 * 3 * 4 * 5
 # 5! = 120
 
 print('1 * 2 * 3 * 4 * 5 es igual a', producto)
+
+print()
+
+# Producto de variables o literales numéricas reales (punto flotante):
+print('Producto de variables o literales numéricas reales (punto flotante):')
+
+numero_1 = 1.1
+numero_2 = 3.5
+
+producto = numero_1 * numero_2
+print(f'El producto de {numero_1} y {numero_2} es igual a {producto}.')
+
+print()
+
+producto = 1.1 * 3.5
+print(f'El producto de {1.1} y {3.5} es igual a {producto}.')
+
+print()
+
+producto = numero_1 * 3.5
+print(f'El producto de {numero_1} y {3.5} es igual a {producto}.')
+
+print()
+
+print('Producto entre varios operandos:')
+
+producto = 1.1 * 2.2 * 3.3 * 4.4 * 5.5
+
+print('El resultado de la operación 1.1 * 2.2 * 3.3 * 4.4 * 5.5 es igual a', producto)
