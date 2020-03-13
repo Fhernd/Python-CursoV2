@@ -73,6 +73,7 @@ print('numero_1 ^ numero_2 =', resultado)
 print()
 
 # Operador a nivel de bits - desplazamiento a la derecha: >>
+print('Operador a nivel de bits - desplazamiento a la derecha: >>')
 
 numero = 10 # 1010
 
@@ -80,3 +81,17 @@ numero = 10 # 1010
 
 resultado = numero >> 1
 print('numero >> 1 =', resultado)
+
+print()
+
+# Operador a nivel de bits - desplazamiento a la izquierda: <<
+print('Operador a nivel de bits - desplazamiento a la izquierda: <<')
+
+numero = 10 # 1010
+
+# 1010 << 1 = 10100
+
+# 2 ^ 4 + 2 ^ 2 = 16 + 4 = 20
+
+resultado = numero << 1
+print('numero << 1 =', resultado)
