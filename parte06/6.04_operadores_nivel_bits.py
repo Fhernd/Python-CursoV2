@@ -32,3 +32,20 @@ numero_2 = 2 # 10
 resultado = numero_1 | numero_2
 
 print('numero_1 | numero_2 =', resultado)
+
+print()
+
+# Operador a nivel de bits not: ~
+
+numero = 5 # 101
+
+# 101 ~
+# ===
+# -(101 + 1)
+# -(110)
+# -(6)
+# -6
+
+resultado = ~numero
+
+print('~numero =', resultado)
