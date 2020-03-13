@@ -48,3 +48,33 @@ print('Operador de asignación con división entera: //=')
 
 numero = numero // 2
 print('Contenido de la variable `numero`:', numero)
+
+print()
+
+# Operador de asignación con resto (módulo): %=
+print('Operador de asignación con resto (módulo): %=')
+
+numero = 10
+
+numero %= 7
+print('Contenido de la variable `numero`:', numero)
+
+print()
+
+# Operador de asignación con and (bitwise): &=
+print('Operador de asignación con and (bitwise): &=')
+
+numero = 5
+
+numero &= 2
+print('Contenido de la variable `numero`:', numero)
+
+print()
+
+# Operador de asignación con or (bitwise): |=
+print('Operador de asignación con or (bitwise): |=')
+
+numero = 5
+
+numero |= 2
+print('Contenido de la variable `numero`:', numero)
