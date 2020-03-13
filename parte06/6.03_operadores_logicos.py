@@ -27,3 +27,25 @@ profesion = 'Ingeniero'
 
 califica = edad > 20 or profesion == 'Programador'
 print('¿La persona tiene más de 20 años o es programadora?:', califica)
+
+print()
+
+# Operador lógico de negación de verdad: not
+print('Operador lógico de negación de verdad: not')
+
+llueve = True
+
+print('Contenido de la variable `llueve`:', llueve)
+
+llueve = not llueve
+print('Contenido de la variable `llueve`:', llueve)
+
+print()
+
+edad = 17
+resultado = not edad < 18
+print('Resultado:', resultado)
+
+edad = 19
+resultado = not edad < 18
+print('Resultado:', resultado)
