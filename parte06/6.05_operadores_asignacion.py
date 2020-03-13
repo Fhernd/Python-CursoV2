@@ -78,3 +78,32 @@ numero = 5
 
 numero |= 2
 print('Contenido de la variable `numero`:', numero)
+
+print()
+# Operador de asignación con xor (bitwise): ^=
+print('Operador de asignación con xor (bitwise): ^=')
+
+numero = 5
+
+numero ^= 2
+print('Contenido de la variable `numero`:', numero)
+
+print()
+
+# Operador de asignación con desplazamiento a la derecha (bitwise): >>=
+print('Operador de asignación con desplazamiento a la derecha (bitwise): >>=')
+
+numero = 10
+
+numero >>= 1
+print('Contenido de la variable `numero`:', numero)
+
+print()
+
+# Operador de asignación con desplazamiento a la izquierda (bitwise): <<=
+print('Operador de asignación con desplazamiento a la izquierda (bitwise): <<=')
+
+numero = 10
+
+numero <<= 1
+print('Contenido de la variable `numero`:', numero)
