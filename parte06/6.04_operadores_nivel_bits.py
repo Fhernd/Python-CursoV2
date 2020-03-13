@@ -69,3 +69,14 @@ numero_2 = 2 # 10
 resultado = numero_1 ^ numero_2
 
 print('numero_1 ^ numero_2 =', resultado)
+
+print()
+
+# Operador a nivel de bits - desplazamiento a la derecha: >>
+
+numero = 10 # 1010
+
+# 1010 >> 1 = 0101
+
+resultado = numero >> 1
+print('numero >> 1 =', resultado)
