@@ -29,3 +29,14 @@ print()
 
 resultado = 25 ** (1 / 2)
 print('El contenido de la variable `resultado` es:', resultado)
+
+print()
+
+resultado = (13 + 3) ** (1 / 2)
+print('El contenido de la variable `resultado` es:', resultado)
+
+print()
+
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+resultado = sum(numeros[0:5])
+print('El contenido de la variable `resultado` es:', resultado)
