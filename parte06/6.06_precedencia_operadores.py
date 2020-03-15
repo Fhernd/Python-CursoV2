@@ -40,3 +40,22 @@ print()
 numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 resultado = sum(numeros[0:5])
 print('El contenido de la variable `resultado` es:', resultado)
+
+print()
+
+numero = -100
+
+resultado = -100 ** (1/2)
+print('El contenido de la variable `resultado` es:', resultado)
+
+print()
+
+resultado = -numero ** (1/2)
+print('El contenido de la variable `resultado` es:', resultado)
+print('Tipo de dato de la variable `resultado`:', type(resultado).__name__)
+
+print()
+
+resultado = (-numero) ** (1/2)
+print('El contenido de la variable `resultado` es:', resultado)
+print('Tipo de dato de la variable `resultado`:', type(resultado).__name__)
