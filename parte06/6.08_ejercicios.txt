@@ -1,0 +1,11 @@
+Ejercicio 1. Convertir grados a radianes.
+
+Ejercicio 2. Convertir radianes a grados.
+
+Ejercicio 3. Calcular área de un trapezoide.
+
+Ejercicio 4. Calcular el área superficial y el volumen de un cilindro.
+
+Ejercicio 5. Calcular el valor discriminante de una expresión cuadrática.
+
+Ejercicio 6. Convertir expresiones algebraicas a expresiones programáticas.
