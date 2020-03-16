@@ -1,3 +1,5 @@
+import math
+
 # Linealización de expresiones algebraicas a expresiones programáticas.
 
 # Ejemplo 1. Linealizar ecuación cuadrática.
@@ -28,4 +30,19 @@ print()
 # Ejemplo 3. 
 
 resultado = (x + y)/z + 3*x/5 + 4*y
+print('Resultado:', resultado)
+
+print()
+
+# Ejemplo 4.
+
+c = 5
+d = 3
+
+resultado = (4*x**2 - 2*x + 8) / (c - d)
+print('Resultado:', resultado)
+
+# Ejemplo 5.
+
+resultado = 4/3 * math.pi
 print('Resultado:', resultado)
