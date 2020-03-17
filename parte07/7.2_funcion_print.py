@@ -29,3 +29,8 @@ lenguajes = ('Python', 'JavaScript', 'C++', 'C#', 'Java')
 
 print(lenguajes)
 print(lenguajes[0], lenguajes[1], lenguajes[2], lenguajes[3], lenguajes[4], sep=' - ')
+
+print()
+
+# Expansión (desempaquetamiento) de una colección:
+print(*lenguajes, sep=' - ')
