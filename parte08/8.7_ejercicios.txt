@@ -6,9 +6,9 @@ Ejercicio 8.2. Pedir al usuario que adivine un número. Sólo un intento.
 
 Ejercicio 8.3. Comprobar el producto de mayor precio entre tres productos.
 
-Ejercicio 8.4. Da la la recta y = 6x + 10, comprobar si un punto dado pertenece a ella.
+Ejercicio 8.4. Dada la recta y = 6x + 10, comprobar si un punto dado pertenece a ella.
 
-Ejercicio 8.5. Dadas las rectas y = 2x - 2, y = x + 1 comprobar si un punto está en el área comprendida entre las rectas.
+Ejercicio 8.5. Dadas las rectas y = 2x - 2, y = x + 1, x = 10 comprobar si un punto está en el área comprendida entre las rectas.
 
 Ejercicio 8.6. Aplicar descuento según la cantidad de productos comprados. Cada producto cuesta $100.000.
 
