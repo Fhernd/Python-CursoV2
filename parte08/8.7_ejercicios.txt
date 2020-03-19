@@ -1,0 +1,33 @@
+Ejercicios Condicionales
+
+Ejercicio 1. Capturar la temperatura (sea en grados Celcius o Fahrenheit) y convertirla a la escala contraria.
+
+Ejercicio 2. Pedir al usuario que adivine un número. Sólo un intento.
+
+Ejercicio 3. Comprobar el producto de mayor precio entre tres productos.
+
+Ejercicio 4. Da la la recta y = 6x + 10, comprobar si un punto dado pertenece a ella.
+
+Ejercicio 5. Dadas las rectas y = 2x - 2, y = x + 1 comprobar si un punto está en el área comprendida entre las rectas.
+
+Ejercicio 6. Aplicar descuento según la cantidad de productos comprados. Cada producto cuesta $100.000.
+
+Ejercicio 7. Categorizar según la cantidad de puntos obtenidos por un jugador.
+
++----------+---------------+
+| Puntos   | Categoría     |
++----------+---------------+
+| 0-100    | Principiante  |
++----------+---------------+
+| 101-500  | Estándar      |
++----------+---------------+
+| 501-2000 | Experimentado |
++----------+---------------+
+| 2000>    | Máster        |
++----------+---------------+
+
+Ejercicio 8. Determinar si un número dado por el usuario es par o impar.
+
+Ejercicio 9. Comprobar si un número es capicúa.
+
+Ejercicio 10. Validar si tres valores numéricos pueden pertenecer al esquema de colores RGB.
