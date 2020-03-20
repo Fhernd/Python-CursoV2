@@ -125,3 +125,39 @@ print('Contenido de la variable `total`:', total)
 total = sum([numeros[i] for i in range(len(numeros))])
 
 print('El total de la suma de los números de 1 a 10 es igual a', total)
+
+print()
+
+# Suma pares e impares usando una lista de comprensión:
+print('Suma pares e impares usando una lista de comprensión:')
+
+pares = [numeros[i] for i in range(len(numeros)) if numeros[i] % 2 == 0]
+
+print('Contenido de la variable `pares`:', pares)
+print('Tipo de dato de la variable `pares`:', type(pares))
+
+suma_pares = sum(pares)
+
+print('La suma de los números pares es igual a:', suma_pares)
+
+print()
+
+# Suma pares e impares usando una lista de comprensión:
+print('Suma pares e impares usando una lista de comprensión:')
+
+impares = [numeros[i] for i in range(len(numeros)) if numeros[i] % 2 == 1]
+
+print('Contenido de la variable `impares`:', impares)
+print('Tipo de dato de la variable `impares`:', type(impares))
+
+suma_impares = sum(impares)
+
+print('La suma de los números impares es igual a:', suma_impares)
+
+print()
+
+# Uso de la función `enumerate()` para realizar una iteración por índice y valor:
+print('Uso de la función `enumerate()` para realizar una iteración por índice y valor:')
+
+for i, n in enumerate(numeros):
+    print('Índice: %i - Valor: %i' % (i, n))
