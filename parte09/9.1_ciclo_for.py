@@ -74,3 +74,16 @@ for i in range(len(numeros)):
         suma_impares += numeros[i]
 
 print('La suma de los números impares que hay en la lista `numeros` es igual a', suma_impares)
+
+print()
+
+# Iteración con un ciclo for mejorado - iteración por los elementos de una colección:
+print('Iteración con un ciclo for mejorado - iteración por los elementos de una colección:')
+
+total = 0
+
+for n in numeros:
+    print('El valor actual de `n` es', n)
+    total += n
+
+print('Total de la suma de los números de 1 a 10:', total)
