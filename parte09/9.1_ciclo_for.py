@@ -48,3 +48,15 @@ for i in range(0, len(numeros)):
     total += numeros[i]
 
 print('Total de la suma de los números de 1 a 10:', total)
+
+print()
+
+# Suma de los números pares que hay en la lista `numeros`:
+
+suma_pares = 0
+
+for i in range(len(numeros)):
+    if numeros[i] % 2 == 0:
+        suma_pares += numeros[i]
+
+print('La suma de los números pares que hay en la lista `numeros` es igual a', suma_pares)
