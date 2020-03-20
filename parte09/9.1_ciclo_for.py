@@ -100,3 +100,28 @@ for n in numeros:
         suma_pares += n
 
 print('La suma de los números pares que hay en la lista `numeros` es igual a', suma_pares)
+
+print()
+
+# Suma de los números impares de una lista utilizando un ciclo for mejorado:
+print('Suma de los números impares de una lista utilizando un ciclo for mejorado:')
+
+suma_impares = 0
+
+for n in numeros:
+    if n % 2 == 1:
+        suma_impares += n
+
+print('La suma de los números impares que hay en la lista `numeros` es igual a', suma_impares)
+
+print()
+
+# Uso de listas de comprensión para simplificar el proceso de suma de elementos de una lista:
+
+total = [numeros[i] for i in range(len(numeros))]
+
+print('Contenido de la variable `total`:', total)
+
+total = sum([numeros[i] for i in range(len(numeros))])
+
+print('El total de la suma de los números de 1 a 10 es igual a', total)
