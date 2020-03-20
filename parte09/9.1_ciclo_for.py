@@ -87,3 +87,16 @@ for n in numeros:
     total += n
 
 print('Total de la suma de los números de 1 a 10:', total)
+
+print()
+
+# Suma de los números pares de una lista utilizando un ciclo for mejorado:
+print('Suma de los números pares de una lista utilizando un ciclo for mejorado:')
+
+suma_pares = 0
+
+for n in numeros:
+    if n % 2 == 0:
+        suma_pares += n
+
+print('La suma de los números pares que hay en la lista `numeros` es igual a', suma_pares)
