@@ -65,3 +65,24 @@ while i < len(numeros):
     i += 1
 
 print('Suma de los valores impares en el rango 1 a 10:', suma_impares)
+
+print()
+
+# Terminación arbitraria de la ejecución de un ciclo while:
+print('Terminación arbitraria de la ejecución de un ciclo while:')
+
+total = 0
+
+while True:
+    numero = int(input('Escriba un número entero positivo (un número igual o menor a cero para terminar): '))
+
+    if numero <= 0:
+        break
+    
+    total += numero
+
+print('El acumulado en total es igual a', total)
+
+print()
+
+
