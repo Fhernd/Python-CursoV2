@@ -14,7 +14,7 @@ Ejercicio 9.1: Construir un patrón con el carácter asterisco.
 
 Ejercicio 9.2: Capturar una palabra o frase del usuario e invertirla.
 
-Ejericico 9.3: Generar los primeros 50 números de la serie Fibonacci.
+Ejercicio 9.3: Generar los primeros 50 números de la serie Fibonacci.
 
 Ejercicio 9.4: Calcular el factorial de un número dado por el usuario.
 
