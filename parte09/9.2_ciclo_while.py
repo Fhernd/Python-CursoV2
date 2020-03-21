@@ -49,3 +49,19 @@ while i < len(numeros):
     i += 1
 
 print('Suma de todos los valores pares que hay en el rango 1-10:', suma_pares)
+
+print()
+
+# Suma de los valores impares que hay en la lista `numeros`:
+
+suma_impares = 0
+i = 0
+
+while i < len(numeros):
+
+    if numeros[i] % 2 != 0:
+        suma_impares += numeros[i]
+
+    i += 1
+
+print('Suma de los valores impares en el rango 1 a 10:', suma_impares)
