@@ -52,6 +52,6 @@ Ejercicio 9.7: Construir un patrón con asteriscos que represente la letra E.
  *                                                                      
 *******
 
-Ejercicio 9.10: Realizar cálculos de estadísticos básicos: media, mediana, mínimo, máximo.
+Ejercicio 9.10: Realizar cálculos de estadísticos básicos: media, mínimo, máximo.
 
 Ejercicio 9.11: Solicitar al usuario una cantidad arbitria de valor numéricos y luego calcular su suma y productoria.
