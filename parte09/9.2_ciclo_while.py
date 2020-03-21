@@ -1,3 +1,5 @@
+import random
+
 # Ciclo while
 
 numeros = [1, 2, 3, 4, 5]
@@ -85,4 +87,23 @@ print('El acumulado en total es igual a', total)
 
 print()
 
+# Adivinar un número - Máximo tres intentos.
 
+numero_aleatorio = random.randint(1, 15)
+intentos_restantes = 3
+
+while intentos_restantes > 0:
+    numero = int(input('Adivine un número entre 1 y 15: '))
+
+    if numero == numero_aleatorio:
+        break
+    else:
+        print()
+        print('No has digitado el número correcto.')
+    
+    intentos_restantes -= 1
+
+if intentos_restantes != 0:
+    print('¡Génial! ¡Has ganado!')
+else:
+    print('¡Perdiste! ¡Sigue intentándolo!')
