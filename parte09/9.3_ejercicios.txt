@@ -1,0 +1,57 @@
+# Ejercicios Ciclos
+
+Ejercicio 9.1: Construir un patrón con el carácter asterisco.
+
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+* * * * 
+* * * 
+* * 
+*
+
+Ejercicio 9.2: Capturar una palabra o frase del usuario e invertirla.
+
+Ejericico 9.3: Generar los primeros 50 números de la serie Fibonacci.
+
+Ejercicio 9.4: Calcular el factorial de un número dado por el usuario.
+
+Ejercicio 9.5: Construir un patrón con asteriscos que represente la letra A.
+
+  ***                                                                   
+ *   *                                                                  
+ *   *                                                                  
+ *****                                                                  
+ *   *                                                                  
+ *   *                                                                  
+ *   *
+
+Ejercicio 9.6: Encontrar todos los números pares que hay en el rango 100 a 400.
+
+Ejercicio 9.7: Construir un patrón con asteriscos que represente la letra E.
+
+ *****                                                                  
+ *                                                                      
+ *                                                                      
+ ****                                                                   
+ *                                                                      
+ *                                                                      
+ *****
+
+ Ejercicio 9.8: Contar la cantidad de dígitos y letras que tiene un texto.
+
+ Ejercicio 9.9: Construir un patrón con asteriscos que represente la letra Z.
+
+ *******                                                                 
+     *                                                                  
+    *                                                                   
+   *                                                                    
+  *                                                                     
+ *                                                                      
+*******
+
+Ejercicio 9.10: Realizar cálculos de estadísticos básicos: media, mediana, mínimo, máximo.
+
+Ejercicio 9.11: Solicitar al usuario una cantidad arbitria de valor numéricos y luego calcular su suma y productoria.
