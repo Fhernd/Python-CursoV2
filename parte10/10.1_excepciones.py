@@ -10,3 +10,18 @@ except ValueError as e:
 
 print()
 print('El programa ha terminado')
+
+print()
+
+# Captura segura de un número entero:
+print('Captura segura de un número entero:')
+
+while True:
+    try:
+        edad = int(input('Escribe su edad: '))
+
+        break
+    except:
+        print('MENSAJE: No ha escrito un valor válido. Intente de nuevo.')
+
+print('Su edad es:', edad)
