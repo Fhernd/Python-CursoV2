@@ -20,8 +20,16 @@ while True:
     try:
         edad = int(input('Escribe su edad: '))
 
-        break
+        if edad > 0:
+            if edad <= 70:
+                break
+            else:
+                print('MENSAJE: La edad no debe superar los 70 años.')
+        else:
+            print('MENSAJE: El valor para la edad debe ser un número positivo.')
     except:
         print('MENSAJE: No ha escrito un valor válido. Intente de nuevo.')
+    
+    print()
 
-print('Su edad es:', edad)
+print('Su edad es:', edad, 'años.')
