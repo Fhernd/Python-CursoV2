@@ -27,3 +27,26 @@ class ValorMaximoError(Exception):
             return 'Se ha generado el error ValorMaximoError.'
 
 
+minimo = 10
+maximo = 20
+
+while True:
+    try:
+        numero = int(input('Escriba un número entre {} y {}: '.format(minimo, maximo)))
+
+        if numero < minimo:
+            raise ValorMinimoError('Ha escrito un valor menor a {}.'.format(minimo))
+        elif numero > maximo:
+            raise ValorMaximoError('Ha escrito un valor mayor a {}.'.format(maximo))
+        
+        print('Ha escrito un entre {} y {}.'.format(minimo, maximo))
+
+        break
+    except ValueError:
+        print('Debe escribir un valor entero válido.')
+    except ValorMinimoError as e:
+        print('ERROR:', e)
+    except ValorMaximoError as e:
+        print('ERROR:', e)
+    
+    print()
