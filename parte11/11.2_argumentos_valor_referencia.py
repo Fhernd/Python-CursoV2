@@ -14,3 +14,18 @@ print('El valor de la variable `x` antes de su duplicación:', x)
 duplicar(x)
 
 print('El valor de la variable `x` después de su duplicación:', x)
+
+print()
+
+# 2. Pasar argumentos por referencia:
+print('2. Pasar argumentos por referencia:')
+
+def agregar_elemento(lista):
+    lista.append(2)
+
+numeros = [1]
+print('Contenido de la variable `numeros` antes de invocar `agregar_elemento`:', numeros)
+
+agregar_elemento(numeros)
+
+print('Contenido de la variable `numeros` después de invocar `agregar_elemento`:', numeros)
