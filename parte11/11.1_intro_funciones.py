@@ -42,3 +42,47 @@ help(sumar)
 print()
 
 help(print)
+
+print()
+
+# 4. Creación de una función para alternar los valores de dos variables:
+print('4. Creación de una función para intercambiar los valores de dos variables:')
+
+# a = 2, b = 3
+# a = 3, b = 2
+
+# auxiliar = 2
+# a = 3
+# b = 2
+
+def intercambiar_valores(a, b):
+    """
+    Intercambia los valores de dos variables.
+
+    Parameters:
+    a: primer valor.
+    b: segundo valor.
+
+    Returns:
+    Los valores de a y b intercambiados.
+    """
+    auxiliar = a
+    a = b
+    b = auxiliar
+
+    return a, b
+
+
+x = 2
+b = 3
+
+print('Valores de las variables `x` e `y` antes del intercambio:')
+print(f'x = {x} - y = {y}')
+
+resultado = intercambiar_valores(x, b)
+
+x = resultado[0]
+y = resultado[1]
+
+print('Valores de las variables `x` e `y` después del intercambio:')
+print(f'x = {x} - y = {y}')
