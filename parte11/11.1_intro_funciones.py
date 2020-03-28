@@ -86,3 +86,24 @@ y = resultado[1]
 
 print('Valores de las variables `x` e `y` después del intercambio:')
 print(f'x = {x} - y = {y}')
+
+print()
+
+# 5. Uso de funcionalidad que provee en su defecto (incorporado) el lenguaje de programación:
+print('5. Uso de funcionalidad que provee en su defecto (incorporado) el lenguaje de programación:')
+
+x = 2
+y = 3
+
+resultado = x + y
+print('El resultado de sumar {} y {} es igual a {}.'.format(x, y, resultado))
+
+print()
+
+print('Valores de las variables `x` e `y` antes del intercambio:')
+print(f'x = {x} - y = {y}')
+
+x, y = y, x
+
+print('Valores de las variables `x` e `y` antes del intercambio:')
+print(f'x = {x} - y = {y}')
