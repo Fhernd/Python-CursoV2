@@ -36,3 +36,10 @@ def factorial_recursivo(n):
     else:
         return n * factorial_recursivo(n - 1)
 
+
+resultado = factorial_iterativo(5)
+print('Factorial (iterativo):', resultado)
+
+resultado = factorial_recursivo(5)
+print('Factorial (recursivo):', resultado)
+
