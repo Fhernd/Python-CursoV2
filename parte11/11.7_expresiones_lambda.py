@@ -26,3 +26,35 @@ numero = 10
 
 print('El cuadrado de {} es igual a {}'.format(numero, cuadrado(numero)))
 print('El cuadrado de {} es igual a {}'.format(numero, cuadrado_lambda(numero)))
+
+print()
+
+# Filtrar el contenido de una lista:
+print('Filtrar el contenido de una lista:')
+
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+print('Contenido de la variable `numeros`:', numeros)
+print('Cantidad de elementos en la lista `numeros`:', len(numeros))
+
+def extraer_impares(lista):
+    impares = []
+
+    for n in lista:
+        if n % 2 != 0:
+            impares.append(n)
+    
+    return impares
+
+print()
+
+resultado = extraer_impares(numeros)
+
+print('Contenido de la variable `resultado`:', resultado)
+print('Cantidad de elementos en la lista `resultado`:', len(resultado))
+
+print()
+
+resultado = [n for n in numeros if n % 2 != 0]
+print('Contenido de la variable `resultado`:', resultado)
+print('Cantidad de elementos en la lista `resultado`:', len(resultado))
