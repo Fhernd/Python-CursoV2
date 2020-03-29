@@ -58,3 +58,18 @@ print()
 resultado = [n for n in numeros if n % 2 != 0]
 print('Contenido de la variable `resultado`:', resultado)
 print('Cantidad de elementos en la lista `resultado`:', len(resultado))
+
+print()
+
+resultado = list(filter(lambda n: n % 2 != 0, numeros))
+print('Contenido de la variable `resultado`:', resultado)
+print('Cantidad de elementos en la lista `resultado`:', len(resultado))
+
+print()
+
+def filtro(n):
+    return n % 2 != 0
+
+resultado = list(filter(filtro, numeros))
+print('Contenido de la variable `resultado`:', resultado)
+print('Cantidad de elementos en la lista `resultado`:', len(resultado))
