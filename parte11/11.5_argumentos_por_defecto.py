@@ -26,3 +26,33 @@ print()
 
 resultado = saludar('Daniela', pais='México')
 print('Resultado:', resultado)
+
+print()
+
+resultado = saludar('Oliva', pais='España', saludo='Buenas noches')
+print('Resultado:', resultado)
+
+print()
+
+def exponenciacion(base, exponente=2):
+    """
+    Calcula la exponenciación de un número base respecto a un exponente.
+
+    Parameters:
+    base: Base de la exponenciación.
+    exponente: Potencia de la exponenciación (valor por defecto 2).
+
+    Returns:
+    Exponenciación de una base y un exponente.
+    """
+    resultado = base ** exponente
+
+    return resultado
+
+potencia = exponenciacion(5)
+print('El resultado de la exponenciación es:', potencia)
+
+print()
+
+potencia = exponenciacion(10, 3)
+print('El resultado de la exponenciación es:', potencia)
