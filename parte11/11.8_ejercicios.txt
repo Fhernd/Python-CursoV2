@@ -1,0 +1,21 @@
+Funciones - Ejercicios:
+
+Ejercicio 11.1: Crear una función para obtener el mayor de tres números.
+
+Ejercicio 11.2: Crear una función para sumar todos los números en una lista o tupla.
+
+Ejercicio 11.3: Crear una función para multiplicar todos los números en una lista o tupla.
+
+Ejercicio 11.4: Crear una función para invertir el contenido de una cadena de caracteres.
+
+Ejercicio 11.5: A través de una función validar si un número se halla en un rango.
+
+Ejercicio 11.6: Usar una función para contar minúsculas y mayúsculas en una cadena.
+
+Ejercicio 11.7: Tomar una lista de números e identificar los números únicos.
+
+Ejercicio 11.8: Crear una función recursiva para sumar los números de una lista.
+
+Ejercicio 11.9: Crear una función recursiva para comprobar si una cadena es palíndromo.
+
+Ejercicio 11.10: Crear una función recursiva para dividir dos números.
