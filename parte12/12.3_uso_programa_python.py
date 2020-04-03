@@ -1,4 +1,4 @@
-import demo_122_programa_python_punto_entrada as demo
+import parte12.demo_122_programa_python_punto_entrada as demo
 
 def main():
     demo.main()

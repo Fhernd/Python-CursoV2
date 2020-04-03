@@ -1,4 +1,4 @@
-from funciones_aritmeticas import sumar, restar, multiplicar, dividir
+from .funciones_aritmeticas import sumar, restar, multiplicar, dividir
 
 def menu():
     print("1. Sumar")
@@ -15,7 +15,7 @@ def main():
             try:
                 opcion = int(input('Escriba la operación a ejecutar: '))
                 break
-            except TypeError as e:
+            except ValueError as e:
                 print('ERROR: Ha digitado un valor inválido')
         print()
 
@@ -26,13 +26,13 @@ def main():
                 try:
                     numero_1 = int(input('Escriba el número 1: '))
                     break
-                except TypeError as e:
+                except ValueError as e:
                     print('ERROR: Ha digitado un valor inválido')
             while True:
                 try:
                     numero_2 = int(input('Escriba el número 2: '))
                     break
-                except TypeError as e:
+                except ValueError as e:
                     print('ERROR: Ha digitado un valor inválido')
         if opcion == 1:
             resultado = sumar(numero_1, numero_2)
