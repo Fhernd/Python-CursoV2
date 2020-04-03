@@ -17,7 +17,10 @@ def main():
                 break
             except TypeError as e:
                 print('ERROR: Ha digitado un valor inválido')
+        print()
 
+        if opcion == 0:
+            break
         if 1 <= opcion <= 4:
             while True:
                 try:
@@ -33,7 +36,25 @@ def main():
                     print('ERROR: Ha digitado un valor inválido')
         if opcion == 1:
             resultado = sumar(numero_1, numero_2)
+            print(f'{numero_1} + {numero_2} = {resultado}.')
         elif opcion == 2:
             resultado = restar(numero_1, numero_2)
-        
-        
+            print(f'{numero_1} - {numero_2} = {resultado}.')
+        elif opcion == 3:
+            resultado = multiplicar(numero_1, numero_2)
+            print(f'{numero_1} * {numero_2} = {resultado}.')
+        elif opcion == 4:
+            try:
+                resultado = dividir(numero_1, numero_2)
+                print(f'{numero_1} / {numero_2} = {resultado}.')
+            except ZeroDivisionError as e:
+                print(e)
+        print()
+    
+    print()
+
+    print('El programa ha terminado.')
+
+
+if __name__ == '__main__':
+    main()
