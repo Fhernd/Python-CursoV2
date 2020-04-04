@@ -1,0 +1,19 @@
+Proyecto 0 - Gestor Inventario
+
+La empresa Dispositivos S.a.s nos ha solicitado el desarrollo de un sistema de información para sistematizar y automatizar varios procesos relacionados con la gestión del inventario de equipos informáticos.
+
+Principalmente nos solicitan los siguientes requerimientos funcionales:
+
+1. Registro de nuevos productos
+2. Venta de productos existentes
+3. Búsqueda de los datos de un producto por su código
+4. Cambiar la disponibilidad de un producto.
+5. Generar un reporte de los productos vendidos en un rango de fecha.
+6. Ver un top 5 de los productos más vendidos, al igual que los menos vendidos.
+
+Además, debemos seguir estos requerimientos no-funcionales:
+
+1. Los valores ingresados por el usuario deben validarse.
+2. Evitar la duplicidad de datos.
+3. Garantizar la ejecución de la aplicación ante fallas y excepciones.
+4. Seguir un esquema de desarrollo modular acorde al expuesto en el Parte 12 del curso.
