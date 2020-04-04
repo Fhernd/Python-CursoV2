@@ -46,3 +46,23 @@ def cambiar_estado_producto(producto):
     producto: Producto sobre el que se cambiará su estado.
     """
     producto['disponible'] = not producto['disponible']
+
+def ventas_rango_fecha(ventas, fecha_inicio, fecha_final):
+    """
+    Obtiene las ventas que se han realizado en un rango de fecha.
+
+    Parameters:
+    ventas: lista de las ventas realizadas hasta el momento.
+    fecha_inicio: fecha de inicio del rango.
+    fecha_final: fecha final del rango.
+
+    Returns:
+    Lista de ventas realizadas en el rango especificado.
+    """
+    ventas_rango = []
+
+    for v in ventas:
+        if fecha_inicio <= v['fecha'] <= fecha_final:
+            ventas_rango.append(v)
+    
+    return ventas_rango
