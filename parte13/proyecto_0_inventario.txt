@@ -30,4 +30,5 @@ Atributos/Datos de un producto:
 Venta - atributos:
     - id del producto (entero)
     - fecha (datetime)
+    - cantidad (int - entero)
     - total sin iva (float - real)
