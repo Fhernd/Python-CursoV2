@@ -17,3 +17,17 @@ Además, debemos seguir estos requerimientos no-funcionales:
 2. Evitar la duplicidad de datos.
 3. Garantizar la ejecución de la aplicación ante fallas y excepciones.
 4. Seguir un esquema de desarrollo modular acorde al expuesto en el Parte 12 del curso.
+
+Solución:
+
+Atributos/Datos de un producto:
+    - id (entero - int)
+    - nombre (cadena de caracteres)
+    - precio (float)
+    - cantidad (stock)
+    - disponible (lógico - booleano)
+
+Venta - atributos:
+    - id del producto (entero)
+    - fecha (datetime)
+    - total sin iva (float - real)
