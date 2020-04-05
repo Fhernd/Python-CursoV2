@@ -146,4 +146,6 @@ def mostrar_datos_venta(venta):
     mostrar_datos_producto(venta['id_producto'])
 
 def mostrar_datos_venta_producto(datos_venta):
-    pass
+    producto = buscar_producto(datos_venta[0])
+    mostrar_datos_producto(producto)
+    print('Cantidad vendida: %i' % datos_venta[1])

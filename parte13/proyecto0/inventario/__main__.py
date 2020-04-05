@@ -1,4 +1,4 @@
-from .inventario_funciones import registrar_producto, realizar_venta, buscar_producto, cambiar_estado_producto, ventas_rango_fecha, top_5_mas_vendidos, top_5_menos_vendidos, mostrar_datos_producto, mostrar_datos_venta
+from inventario_funciones import registrar_producto, realizar_venta, buscar_producto, cambiar_estado_producto, ventas_rango_fecha, top_5_mas_vendidos, top_5_menos_vendidos, mostrar_datos_producto, mostrar_datos_venta, mostrar_datos_venta_producto
 import datetime
 
 def mostrar_menu():
@@ -86,11 +86,11 @@ def main():
         while True:
             try:
                 mostrar_menu()
-                opcion = int(input('Digite la opción:'))
+                opcion = int(input('Digite la opción: '))
                 if 0 <= opcion <= 7:
                     break
                 else:
-                    print('MENSAJE: Debe digitar un número mayor o igual a cero.')
+                    print('MENSAJE: Debe digitar un número mayor o igual a 0 y menor o igual a 7.')
             except ValueError:
                 print('ERROR: Debe digitar un número entero válido.')
         
@@ -245,11 +245,23 @@ def main():
                 if len(ventas):
                     productos_vendidos = top_5_mas_vendidos(ventas)
 
-                    
+                    for p in productos_vendidos:
+                        mostrar_datos_venta_producto(p)
                 else:
                     print('MENSAJE: Aún no ha efectuado ninguna venta.')
             else:
-                print('MENSAJE: Aún no ha registrado productos.')    
+                print('MENSAJE: Aún no ha registrado productos.')
+        elif opcion == 7:
+            if len(productos):
+                if len(ventas):
+                    productos_vendidos = top_5_menos_vendidos(ventas)
+
+                    for p in productos_vendidos:
+                        mostrar_datos_venta_producto(p)
+                else:
+                    print('MENSAJE: Aún no ha efectuado ninguna venta.')
+            else:
+                print('MENSAJE: Aún no ha registrado productos.')
     
     print()
     print('El programa ha finalizado.')
