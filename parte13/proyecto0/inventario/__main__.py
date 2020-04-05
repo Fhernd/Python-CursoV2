@@ -75,6 +75,8 @@ def capturar_cadena(mensaje):
 
 def main():
     productos = []
+    ventas = []
+
     while True:
         while True:
             try:
@@ -118,6 +120,25 @@ def main():
                 else:
                     print('MENSAJE: Debe digitar una cantidad positiva para el producto.')
             
+            while True:
+                print('1. Disponible')
+                print('2. No Disponible')
+                disponible = capturar_entero('Digite la opción para la disponibilidad del producto')
+
+                if disponible == 1 or disponible == 2:
+                    disponible = disponible == 1
+                    break
+            
+            nuevo_producto = {'id_producto': id_producto, 'nombre': nombre_producto, 'precio': precio_producto, 'cantidad': cantidad_producto, 'disponible': disponible}
+
+            registrar_producto(productos, nuevo_producto)
+
+            print('MENSAJE: El producto se ha creado de forma satisfactoria.')
+        if opcion == 2:
+            if len(productos):
+                pass
+            else:
+                print('MENSAJE: Aún no ha registrado productos.')
     
     print()
     print('El programa ha finalizado.')
