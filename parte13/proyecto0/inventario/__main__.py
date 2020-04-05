@@ -202,6 +202,8 @@ def main():
 
                 realizar_venta(ventas, nueva_venta)
 
+                print('Total: $%.2f' % (nueva_venta['total_sin_iva'] * 1.19))
+
                 print()
                 print('MENSAJE: La venta se ha realizado de forma satisfactoria.')
             else:
@@ -297,7 +299,7 @@ def main():
                     productos_vendidos = top_5_mas_vendidos(ventas)
 
                     for p in productos_vendidos:
-                        mostrar_datos_venta_producto(ventas, p)
+                        mostrar_datos_venta_producto(productos, p)
                 else:
                     print()
                     print('MENSAJE: Aún no ha efectuado ninguna venta.')

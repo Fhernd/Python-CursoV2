@@ -145,7 +145,7 @@ def mostrar_datos_venta(venta):
     print('Datos del producto:')
     mostrar_datos_producto(venta['id_producto'])
 
-def mostrar_datos_venta_producto(ventas, datos_venta):
-    producto = buscar_producto(ventas, datos_venta[0])
+def mostrar_datos_venta_producto(productos, datos_venta):
+    producto = buscar_producto(productos, datos_venta[0])
     mostrar_datos_producto(producto)
     print('Cantidad vendida: %i' % datos_venta[1])
