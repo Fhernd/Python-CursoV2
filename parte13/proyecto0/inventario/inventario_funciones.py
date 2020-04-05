@@ -69,6 +69,15 @@ def ventas_rango_fecha(ventas, fecha_inicio, fecha_final):
     return ventas_rango
 
 def top_5_mas_vendidos(ventas):
+    """
+    Obtiene el top 5 de los productos más vendidos.
+
+    Parameters:
+    ventas: lista de las ventas realizadas hasta el momento.
+
+    Returns:
+    Lista de tuplas (id, cantidad_total_venta) de los 5 productos más vendidos.
+    """
     conteo_ventas = {}
 
     for v in ventas:
@@ -82,3 +91,27 @@ def top_5_mas_vendidos(ventas):
     contador = Counter(conteo_ventas)
 
     return contador.most_common(5)
+
+def top_5_menos_vendidos(ventas):
+    """
+    Obtiene el top 5 de los productos menos vendidos.
+
+    Parameters:
+    ventas: lista de las ventas realizadas hasta el momento.
+
+    Returns:
+    Lista de tuplas (id, cantidad_total_venta) de los 5 productos menos vendidos.
+    """
+    conteo_ventas = {}
+
+    for v in ventas:
+        if v['id_producto'] in conteo_ventas:
+            conteo_ventas[v['id_producto']] += v['cantidad']
+        else:
+            conteo_ventas[v['id_producto']] = v['cantidad']
+
+    conteo_ventas = {k: v for k, v in sorted(conteo_ventas.items(), key=lambda item: item[1])}
+
+    contador = Counter(conteo_ventas)
+
+    return contador.most_common()[:-6:-1]
