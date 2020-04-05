@@ -143,7 +143,7 @@ def mostrar_datos_venta(productos, venta):
     print('Total:: $%.2f' % (venta['total_sin_iva'] * 1.19))
     print()
     print('Datos del producto:')
-    mostrar_datos_producto(buscar_producto(venta['id_producto']))
+    mostrar_datos_producto(buscar_producto(productos, venta['id_producto']))
 
 def mostrar_datos_venta_producto(productos, datos_venta):
     producto = buscar_producto(productos, datos_venta[0])

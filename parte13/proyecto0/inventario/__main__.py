@@ -9,7 +9,7 @@ def mostrar_menu():
     print('2. Vender un producto')
     print('3. Buscar un producto por su código')
     print('4. Cambiar disponibilidad de un producto')
-    print('5. Productos vendidos en un rango de fecha')
+    print('5. Productos vendidos en un rango de fechas')
     print('6. Ver top 5 de los productos más vendidos')
     print('7. Ver top 5 de los productos menos vendidos')
     print('0. Salir')
@@ -75,16 +75,28 @@ def capturar_cadena(mensaje):
         print()
 
 def listar_productos(productos):
+    """
+    Muestra un listado de productos.
+
+    Parameters:
+    productos: Lista de productos.
+    """
     for p in productos:
         print(f"{p['id_producto']} - {p['nombre']}")
 
 def continuar():
+    """
+    Muestra mensaje de continuación en la consola.
+    """
     print()
     print('Presione Enter para continuar...', end='')
     input()
     print()
 
 def main():
+    """
+    Punto de entrada a la aplicación.
+    """
     productos = []
     ventas = []
 
