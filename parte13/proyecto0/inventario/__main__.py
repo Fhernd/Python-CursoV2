@@ -103,19 +103,27 @@ def main():
             
             continuar()
         
+        print()
+
         if opcion == 0:
             break
         elif opcion == 1:
             while True:
                 id_producto = capturar_entero('Digite el ID del nuevo producto')
 
-                producto = buscar_producto(productos, id_producto)
+                if id_producto > 0:
+                    producto = buscar_producto(productos, id_producto)
 
-                if producto is None:
-                    break
+                    if producto is None:
+                        break
+                    else:
+                        print()
+                        print('MENSAJE: Ya existe un producto con el ID digitado.')
                 else:
                     print()
-                    print('MENSAJE: Ya existe un producto con el ID digitado.')
+                    print('MENSAJE: El ID del producto debe ser un número positivo.')
+                
+                continuar()
             
             nombre_producto = capturar_cadena('Digite el nombre del nuevo producto')
 
@@ -127,6 +135,8 @@ def main():
                 else:
                     print()
                     print('MENSAJE: Debe digitar un precio positivo para el producto.')
+                
+                continuar()
             
             while True:
                 cantidad_producto = capturar_entero('Digite la cantidad del nuevo producto')
@@ -136,6 +146,8 @@ def main():
                 else:
                     print()
                     print('MENSAJE: Debe digitar una cantidad positiva para el producto.')
+                
+                continuar()
             
             while True:
                 print('1. Disponible')
@@ -145,6 +157,11 @@ def main():
                 if disponible == 1 or disponible == 2:
                     disponible = disponible == 1
                     break
+                else:
+                    print()
+                    print('MENSAJE: La opción {} de disponibilidad no existe.'.format(disponible))
+                
+                continuar()
             
             nuevo_producto = {'id_producto': id_producto, 'nombre': nombre_producto, 'precio': precio_producto, 'cantidad': cantidad_producto, 'disponible': disponible}
 
@@ -204,6 +221,7 @@ def main():
 
                 mostrar_datos_producto(producto)
             else:
+                print()
                 print('MENSAJE: Aún no ha registrado productos.')
         elif opcion == 4:
             if len(productos):
@@ -222,6 +240,7 @@ def main():
                 cambiar_estado_producto(producto)
                 mostrar_datos_producto(producto)
             else:
+                print()
                 print('MENSAJE: Aún no ha registrado productos.')
         elif opcion == 5:
             if len(productos):
