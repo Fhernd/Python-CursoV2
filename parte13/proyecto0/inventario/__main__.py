@@ -78,6 +78,12 @@ def listar_productos(productos):
     for p in productos:
         print(f"{p['id_producto']} - {p['nombre']}")
 
+def continuar():
+    print()
+    print('Presione Enter para continuar...', end='')
+    input()
+    print()
+
 def main():
     productos = []
     ventas = []
@@ -92,7 +98,10 @@ def main():
                 else:
                     print('MENSAJE: Debe digitar un número mayor o igual a 0 y menor o igual a 7.')
             except ValueError:
+                print()
                 print('ERROR: Debe digitar un número entero válido.')
+            
+            continuar()
         
         if opcion == 0:
             break
@@ -105,6 +114,7 @@ def main():
                 if producto is None:
                     break
                 else:
+                    print()
                     print('MENSAJE: Ya existe un producto con el ID digitado.')
             
             nombre_producto = capturar_cadena('Digite el nombre del nuevo producto')
@@ -115,6 +125,7 @@ def main():
                 if precio_producto > 0:
                     break
                 else:
+                    print()
                     print('MENSAJE: Debe digitar un precio positivo para el producto.')
             
             while True:
@@ -123,6 +134,7 @@ def main():
                 if cantidad_producto > 0:
                     break
                 else:
+                    print()
                     print('MENSAJE: Debe digitar una cantidad positiva para el producto.')
             
             while True:
@@ -138,6 +150,7 @@ def main():
 
             registrar_producto(productos, nuevo_producto)
 
+            print()
             print('MENSAJE: El producto se ha creado de forma satisfactoria.')
         if opcion == 2:
             if len(productos):
@@ -150,6 +163,7 @@ def main():
                     if producto:
                         break
                     else:
+                        print()
                         print('MENSAJE: Debe escribir un ID de producto existente.')
                 
                 while True:
@@ -159,16 +173,20 @@ def main():
                         if cantidad_producto <= producto['cantidad']:
                             break
                         else:
+                            print()
                             print('MENSAJE: No existe cantidad suficiente para la venta. Sólo hay {} unidades.'.format(producto['cantidad']))
                     else:
+                        print()
                         print('MENSAJE: Debe digitar una cantidad positiva para el producto.')
                 
                 nueva_venta = {'id_producto': id_producto, 'cantidad': cantidad_producto, 'total_sin_iva': producto['precio'] * cantidad_producto}
 
                 realizar_venta(ventas, nueva_venta)
 
+                print()
                 print('MENSAJE: La venta se ha realizado de forma satisfactoria.')
             else:
+                print()
                 print('MENSAJE: Aún no ha registrado productos.')
         elif opcion == 3:
             if len(productos):
@@ -181,6 +199,7 @@ def main():
                     if producto:
                         break
                     else:
+                        print()
                         print('MENSAJE: Debe escribir un ID de producto existente.')
 
                 mostrar_datos_producto(producto)
@@ -197,6 +216,7 @@ def main():
                     if producto:
                         break
                     else:
+                        print()
                         print('MENSAJE: Debe escribir un ID de producto existente.')
                 
                 cambiar_estado_producto(producto)
@@ -213,6 +233,7 @@ def main():
                             fecha_inicio = datetime.datetime.strptime(fecha_inicio, '%Y-%m-%d')
                             break
                         except ValueError:
+                            print()
                             print('ERROR: Debe digitar una fecha válida con el formato AAAA-MM-DD.')
                         
                         print()
@@ -224,6 +245,7 @@ def main():
                             fecha_final = datetime.datetime.strptime(fecha_final, '%Y-%m-%d')
                             break
                         except ValueError:
+                            print()
                             print('ERROR: Debe digitar una fecha válida con el formato AAAA-MM-DD.')
                         
                         print()
@@ -235,10 +257,13 @@ def main():
                             mostrar_datos_venta(v)
                             print()
                     else:
+                        print()
                         print('MENSAJE: No hay ventas para el rango seleccionado.')
                 else:
+                    print()
                     print('MENSAJE: Aún no ha efectuado ninguna venta.')
             else:
+                print()
                 print('MENSAJE: Aún no ha registrado productos.')
         elif opcion == 6:
             if len(productos):
@@ -248,8 +273,10 @@ def main():
                     for p in productos_vendidos:
                         mostrar_datos_venta_producto(p)
                 else:
+                    print()
                     print('MENSAJE: Aún no ha efectuado ninguna venta.')
             else:
+                print()
                 print('MENSAJE: Aún no ha registrado productos.')
         elif opcion == 7:
             if len(productos):
@@ -259,10 +286,13 @@ def main():
                     for p in productos_vendidos:
                         mostrar_datos_venta_producto(p)
                 else:
+                    print()
                     print('MENSAJE: Aún no ha efectuado ninguna venta.')
             else:
+                print()
                 print('MENSAJE: Aún no ha registrado productos.')
-    
+        
+        continuar()
     print()
     print('El programa ha finalizado.')
 
