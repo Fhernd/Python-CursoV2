@@ -128,3 +128,16 @@ def mostrar_datos_producto(producto):
     print('Precio: $%.2f' % producto['precio'])
     print('Cantidad: %i' % producto['cantidad'])
     print('¿Disponible?: %s' % ('Sí' if producto['disponible'] else 'No'))
+
+def mostrar_datos_venta(venta):
+    """
+    Muestra los datos particulares de una venta.
+
+    Parameters:
+    venta: Venta a consultar sus datos.
+    """
+    print('ID Producto: %i' % venta['id_producto'])
+    print('Fecha: %s' % venta['fecha'])
+    print('Cantidad: %i' % venta['cantidad'])
+    print('Total sin IVA: $%.2f' % venta['total_sin_iva'])
+    print('Total:: $%.2f' % venta['total_sin_iva'] * 1.19)
