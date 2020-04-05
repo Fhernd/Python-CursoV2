@@ -21,14 +21,14 @@ Además, debemos seguir estos requerimientos no-funcionales:
 Solución:
 
 Atributos/Datos de un producto:
-    - id (entero - int)
+    - id_producto (entero - int)
     - nombre (cadena de caracteres)
     - precio (float)
     - cantidad (stock)
     - disponible (lógico - booleano)
 
 Venta - atributos:
-    - id del producto (entero)
+    - id_producto del producto (entero)
     - fecha (datetime)
     - cantidad (int - entero)
     - total sin iva (float - real)

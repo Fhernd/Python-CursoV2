@@ -1,4 +1,5 @@
 from datetime import datetime
+from collections import Counter
 
 def registrar_producto(productos, producto):
     """
@@ -66,3 +67,18 @@ def ventas_rango_fecha(ventas, fecha_inicio, fecha_final):
             ventas_rango.append(v)
     
     return ventas_rango
+
+def top_5_mas_vendidos(ventas):
+    conteo_ventas = {}
+
+    for v in ventas:
+        if v['id_producto'] in conteo_ventas:
+            conteo_ventas[v['id_producto']] += v['cantidad']
+        else:
+            conteo_ventas[v['id_producto']] = v['cantidad']
+
+    conteo_ventas = {k: v for k, v in sorted(conteo_ventas.items(), key=lambda item: item[1], reversed=True)}
+
+    contador = Counter(conteo_ventas)
+
+    return contador.most_common(5)
