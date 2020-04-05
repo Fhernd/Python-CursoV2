@@ -90,7 +90,34 @@ def main():
         if opcion == 0:
             break
         elif opcion == 1:
+            while True:
+                id_producto = capturar_entero('Digite el ID del nuevo producto')
 
+                producto = buscar_producto(productos, id_producto)
+
+                if producto is None:
+                    break
+                else:
+                    print('MENSAJE: Ya existe un producto con el ID digitado.')
+            
+            nombre_producto = capturar_cadena('Digite el nombre del nuevo producto')
+
+            while True:
+                precio_producto = capturar_real('Digite el precio del nuevo producto')
+
+                if precio_producto > 0:
+                    break
+                else:
+                    print('MENSAJE: Debe digitar un precio positivo para el producto.')
+            
+            while True:
+                cantidad_producto = capturar_entero('Digite la cantidad del nuevo producto')
+
+                if cantidad_producto > 0:
+                    break
+                else:
+                    print('MENSAJE: Debe digitar una cantidad positiva para el producto.')
+            
     
     print()
     print('El programa ha finalizado.')
