@@ -1,4 +1,4 @@
-from .inventario_funciones import registrar_producto
+from .inventario_funciones import registrar_producto, realizar_venta, buscar_producto, cambiar_estado_producto, ventas_rango_fecha, top_5_mas_vendidos, top_5_menos_vendidos
 
 def mostrar_menu():
     """
@@ -14,7 +14,20 @@ def mostrar_menu():
     print('0. Salir')
 
 def main():
-    pass
+    while True:
+        while True:
+            try:
+                mostrar_menu()
+                opcion = int(input('Digite la opción:'))
+                if 0 <= opcion <= 7:
+                    break
+                else:
+                    print('MENSAJE: Debe digitar un número mayor o igual a cero.')
+            except ValueError:
+                print('ERROR: Debe digitar un número entero válido.')
+        
+        
+
 
 if __name__ == '__main__':
     main()
