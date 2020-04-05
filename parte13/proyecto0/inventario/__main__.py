@@ -73,6 +73,10 @@ def capturar_cadena(mensaje):
         
         print()
 
+def listar_productos(productos):
+    for p in productos:
+        print(f"{p['id_producto']} - {p['nombre']}")
+
 def main():
     productos = []
     ventas = []
@@ -136,7 +140,29 @@ def main():
             print('MENSAJE: El producto se ha creado de forma satisfactoria.')
         if opcion == 2:
             if len(productos):
-                pass
+                while True:
+                    listar_productos(productos)
+                    id_producto = capturar_entero('Digite el ID del producto')
+
+                    producto = buscar_producto(productos, id_producto)
+
+                    if producto:
+                        break
+                    else:
+                        print('MENSAJE: Debe escribir un ID de producto existente.')
+                
+                while True:
+                    cantidad_producto = capturar_entero('Digite la cantidad del nuevo producto')
+
+                    if cantidad_producto > 0:
+                        if cantidad_producto <= producto['cantidad']:
+                            break
+                        else:
+                            print('MENSAJE: No existe cantidad suficiente para la venta. Sólo hay {} unidades.'.format(producto['cantidad']))
+                    else:
+                        print('MENSAJE: Debe digitar una cantidad positiva para el producto.')
+                
+                
             else:
                 print('MENSAJE: Aún no ha registrado productos.')
     
