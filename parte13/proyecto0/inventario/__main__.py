@@ -298,8 +298,10 @@ def main():
                 if len(ventas):
                     productos_vendidos = top_5_mas_vendidos(ventas)
 
+                    print('Top 5 de los productos más vendidos')
                     for p in productos_vendidos:
                         mostrar_datos_venta_producto(productos, p)
+                        print()
                 else:
                     print()
                     print('MENSAJE: Aún no ha efectuado ninguna venta.')
@@ -311,8 +313,10 @@ def main():
                 if len(ventas):
                     productos_vendidos = top_5_menos_vendidos(ventas)
 
+                    print('Top 5 de los productos menos vendidos')
                     for p in productos_vendidos:
-                        mostrar_datos_venta_producto(ventas, p)
+                        mostrar_datos_venta_producto(productos, p)
+                        print()
                 else:
                     print()
                     print('MENSAJE: Aún no ha efectuado ninguna venta.')
