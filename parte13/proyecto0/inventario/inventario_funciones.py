@@ -86,7 +86,7 @@ def top_5_mas_vendidos(ventas):
         else:
             conteo_ventas[v['id_producto']] = v['cantidad']
 
-    conteo_ventas = {k: v for k, v in sorted(conteo_ventas.items(), key=lambda item: item[1], reversed=True)}
+    conteo_ventas = {k: v for k, v in sorted(conteo_ventas.items(), key=lambda item: item[1], reverse=True)}
 
     contador = Counter(conteo_ventas)
 
@@ -145,7 +145,7 @@ def mostrar_datos_venta(venta):
     print('Datos del producto:')
     mostrar_datos_producto(venta['id_producto'])
 
-def mostrar_datos_venta_producto(datos_venta):
-    producto = buscar_producto(datos_venta[0])
+def mostrar_datos_venta_producto(ventas, datos_venta):
+    producto = buscar_producto(ventas, datos_venta[0])
     mostrar_datos_producto(producto)
     print('Cantidad vendida: %i' % datos_venta[1])

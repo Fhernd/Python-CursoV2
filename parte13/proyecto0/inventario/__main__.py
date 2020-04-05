@@ -184,7 +184,7 @@ def main():
                         print('MENSAJE: Debe escribir un ID de producto existente.')
                 
                 while True:
-                    cantidad_producto = capturar_entero('Digite la cantidad del nuevo producto')
+                    cantidad_producto = capturar_entero('Digite la cantidad del producto')
 
                     if cantidad_producto > 0:
                         if cantidad_producto <= producto['cantidad']:
@@ -195,6 +195,8 @@ def main():
                     else:
                         print()
                         print('MENSAJE: Debe digitar una cantidad positiva para el producto.')
+
+                    continuar()
                 
                 nueva_venta = {'id_producto': id_producto, 'cantidad': cantidad_producto, 'total_sin_iva': producto['precio'] * cantidad_producto}
 
@@ -218,7 +220,10 @@ def main():
                     else:
                         print()
                         print('MENSAJE: Debe escribir un ID de producto existente.')
-
+                    
+                    continuar()
+                
+                print()
                 mostrar_datos_producto(producto)
             else:
                 print()
@@ -236,6 +241,8 @@ def main():
                     else:
                         print()
                         print('MENSAJE: Debe escribir un ID de producto existente.')
+                    
+                    continuar()
                 
                 cambiar_estado_producto(producto)
                 mostrar_datos_producto(producto)
@@ -290,7 +297,7 @@ def main():
                     productos_vendidos = top_5_mas_vendidos(ventas)
 
                     for p in productos_vendidos:
-                        mostrar_datos_venta_producto(p)
+                        mostrar_datos_venta_producto(ventas, p)
                 else:
                     print()
                     print('MENSAJE: Aún no ha efectuado ninguna venta.')
@@ -303,7 +310,7 @@ def main():
                     productos_vendidos = top_5_menos_vendidos(ventas)
 
                     for p in productos_vendidos:
-                        mostrar_datos_venta_producto(p)
+                        mostrar_datos_venta_producto(ventas, p)
                 else:
                     print()
                     print('MENSAJE: Aún no ha efectuado ninguna venta.')
