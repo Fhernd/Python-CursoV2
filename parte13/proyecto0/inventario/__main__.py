@@ -1,4 +1,5 @@
-from .inventario_funciones import registrar_producto, realizar_venta, buscar_producto, cambiar_estado_producto, ventas_rango_fecha, top_5_mas_vendidos, top_5_menos_vendidos
+from .inventario_funciones import registrar_producto, realizar_venta, buscar_producto, cambiar_estado_producto, ventas_rango_fecha, top_5_mas_vendidos, top_5_menos_vendidos, mostrar_datos_producto
+import datetime
 
 def mostrar_menu():
     """
@@ -181,7 +182,40 @@ def main():
                         break
                     else:
                         print('MENSAJE: Debe escribir un ID de producto existente.')
+
+                mostrar_datos_producto(producto)
+            else:
+                print('MENSAJE: Aún no ha registrado productos.')
+        elif opcion == 4:
+            if len(productos):
+                while True:
+                    listar_productos(productos)
+                    id_producto = capturar_entero('Digite el ID del producto')
+
+                    producto = buscar_producto(productos, id_producto)
+
+                    if producto:
+                        break
+                    else:
+                        print('MENSAJE: Debe escribir un ID de producto existente.')
                 
+                cambiar_estado_producto(producto)
+                mostrar_datos_producto(producto)
+            else:
+                print('MENSAJE: Aún no ha registrado productos.')
+        elif opcion == 5:
+            if len(productos):
+                while True:
+                    try:
+                        fecha_inicio = capturar_cadena('Digite la fecha de inicio (AAAA-MM-DD)')
+
+                        fecha_inicio = datetime.datetime.strptime(fecha_inicio, '%Y-%m-%d')
+                        break
+                    except ValueError:
+                        print('ERROR: Debe digitar una fecha válida con el formato AAAA-MM-DD.')
+                    
+                    print()
+
                 
             else:
                 print('MENSAJE: Aún no ha registrado productos.')
