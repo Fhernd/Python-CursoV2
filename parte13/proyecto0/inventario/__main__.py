@@ -13,7 +13,19 @@ def mostrar_menu():
     print('7. Ver top 5 de los productos menos vendidos')
     print('0. Salir')
 
+def capturar_entero(mensaje):
+    while True:
+        try:
+            numero = int(input(f'{mensaje}: '))
+
+            return numero
+        except ValueError:
+            print('ERROR: Debe digitar un número entero.')
+        
+        print()
+
 def main():
+    productos = []
     while True:
         while True:
             try:
@@ -26,8 +38,13 @@ def main():
             except ValueError:
                 print('ERROR: Debe digitar un número entero válido.')
         
-        
+        if opcion == 0:
+            break
+        elif opcion == 1:
 
+    
+    print()
+    print('El programa ha finalizado.')
 
 if __name__ == '__main__':
     main()
