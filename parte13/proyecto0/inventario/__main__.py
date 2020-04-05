@@ -162,6 +162,26 @@ def main():
                     else:
                         print('MENSAJE: Debe digitar una cantidad positiva para el producto.')
                 
+                nueva_venta = {'id_producto': id_producto, 'cantidad': cantidad_producto, 'total_sin_iva': producto['precio'] * cantidad_producto}
+
+                realizar_venta(ventas, nueva_venta)
+
+                print('MENSAJE: La venta se ha realizado de forma satisfactoria.')
+            else:
+                print('MENSAJE: Aún no ha registrado productos.')
+        elif opcion == 3:
+            if len(productos):
+                while True:
+                    listar_productos(productos)
+                    id_producto = capturar_entero('Digite el ID del producto')
+
+                    producto = buscar_producto(productos, id_producto)
+
+                    if producto:
+                        break
+                    else:
+                        print('MENSAJE: Debe escribir un ID de producto existente.')
+                
                 
             else:
                 print('MENSAJE: Aún no ha registrado productos.')

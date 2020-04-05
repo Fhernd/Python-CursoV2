@@ -115,3 +115,16 @@ def top_5_menos_vendidos(ventas):
     contador = Counter(conteo_ventas)
 
     return contador.most_common()[:-6:-1]
+
+def mostrar_datos_producto(producto):
+    """
+    Muestra los datos particulares de un producto.
+
+    Parameters:
+    producto: Producto a consultar sus datos.
+    """
+    print('ID: %i' % producto['id_producto'])
+    print('Nombre: %s' % producto['nombre'])
+    print('Precio: $%.2f' % producto['precio'])
+    print('Cantidad: %i' % producto['cantidad'])
+    print('¿Disponible?: %s' % ('Sí' if producto['disponible'] else 'No'))
