@@ -282,7 +282,7 @@ def main():
 
                     if len(ventas_rango):
                         for v in ventas_rango:
-                            mostrar_datos_venta(v)
+                            mostrar_datos_venta(productos, v)
                             print()
                     else:
                         print()

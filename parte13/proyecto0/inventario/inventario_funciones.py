@@ -129,7 +129,7 @@ def mostrar_datos_producto(producto):
     print('Cantidad: %i' % producto['cantidad'])
     print('¿Disponible?: %s' % ('Sí' if producto['disponible'] else 'No'))
 
-def mostrar_datos_venta(venta):
+def mostrar_datos_venta(productos, venta):
     """
     Muestra los datos particulares de una venta.
 
@@ -140,10 +140,10 @@ def mostrar_datos_venta(venta):
     print('Fecha: %s' % venta['fecha'])
     print('Cantidad: %i' % venta['cantidad'])
     print('Total sin IVA: $%.2f' % venta['total_sin_iva'])
-    print('Total:: $%.2f' % venta['total_sin_iva'] * 1.19)
+    print('Total:: $%.2f' % (venta['total_sin_iva'] * 1.19))
     print()
     print('Datos del producto:')
-    mostrar_datos_producto(venta['id_producto'])
+    mostrar_datos_producto(buscar_producto(venta['id_producto']))
 
 def mostrar_datos_venta_producto(productos, datos_venta):
     producto = buscar_producto(productos, datos_venta[0])
