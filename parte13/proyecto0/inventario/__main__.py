@@ -14,6 +14,15 @@ def mostrar_menu():
     print('0. Salir')
 
 def capturar_entero(mensaje):
+    """
+    Captura un número entero. Valida el ingreso de datos.
+
+    Parameters:
+    mensaje: Mensaje o texto personalizado a mostrar para la captura de un número.
+
+    Returns:
+    Número entero resultado de la captura.
+    """
     while True:
         try:
             numero = int(input(f'{mensaje}: '))
@@ -21,6 +30,46 @@ def capturar_entero(mensaje):
             return numero
         except ValueError:
             print('ERROR: Debe digitar un número entero.')
+        
+        print()
+
+def capturar_real(mensaje):
+    """
+    Captura un número real. Valida el ingreso de datos.
+
+    Parameters:
+    mensaje: Mensaje o texto personalizado a mostrar para la captura de un número.
+
+    Returns:
+    Número real resultado de la captura.
+    """
+    while True:
+        try:
+            numero = float(input(f'{mensaje}: '))
+
+            return numero
+        except ValueError:
+            print('ERROR: Debe digitar un número real.')
+        
+        print()
+
+def capturar_cadena(mensaje):
+    """
+    Captura una cadena de caracteres. Valida el ingreso de datos.
+
+    Parameters:
+    mensaje: Mensaje o texto personalizado a mostrar para la captura de una cadena de caracteres.
+
+    Returns:
+    Cadena de caracteres.
+    """
+    while True:
+        cadena = input(f'{mensaje}: ').strip()
+
+        if len(cadena):
+            return cadena
+        else:
+            print('MENSAJE: Debe digitar una cadena de caracteres con texto.')
         
         print()
 
