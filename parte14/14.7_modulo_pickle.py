@@ -13,6 +13,17 @@ def main():
     
     print()
 
+    print('Lectura del contenido de un archivo pickle:')
+
+    with open(nombre_archivo, 'rb') as f:
+        paises_capitales_recuperados = pickle.load(f)
+
+        print('Tipo de dato de la variable `paises_capitales_recuperados`:', type(paises_capitales_recuperados))
+        print('El contenido de la variable `paises_capitales_recuperados`:')
+        print(paises_capitales_recuperados)
+
+    print()
+    
     print('El programa ha terminado.')
 
 if __name__ == "__main__":
