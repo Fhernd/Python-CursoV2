@@ -8,6 +8,8 @@ def main():
 
     numeros = list(archivo.read())
 
+    archivo.close()
+    
     print()
 
     print(numeros)
