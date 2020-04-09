@@ -10,3 +10,7 @@ En esta oportunidad han llegado nuevos requerimientos funcionales:
 Nota 1: Es importante aclarar que el archivo de productos debe existir para visualizar en pantalla el segundo requerimiento.
 
 Nota 2: No se debe modificar los archivos del Proyecto 0. Se debe hacer una copia de los archivos integrales.
+
+Solución:
+
+Se usará el módulo `pickle` para realizar la persistencia de los datos. El módulo `pickle` serializa objetos Python (cualquier tipo de objeto).
