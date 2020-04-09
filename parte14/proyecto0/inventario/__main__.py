@@ -1,5 +1,7 @@
 from .inventario_funciones import registrar_producto, realizar_venta, buscar_producto, cambiar_estado_producto, ventas_rango_fecha, top_5_mas_vendidos, top_5_menos_vendidos, mostrar_datos_producto, mostrar_datos_venta, mostrar_datos_venta_producto
 import datetime
+import os
+import pickle
 
 def mostrar_menu():
     """
@@ -93,12 +95,41 @@ def continuar():
     input()
     print()
 
+def cargar_inventario():
+    while True:
+        print('¿Desea cargar los datos del inventario y las ventas desde el archivo `inventario.pickle`?:')
+        print('1. Sí')
+        print('2. No')
+        opcion = capturar_entero('Digite la opción')
+
+        if opcion == 1 or opcion == 2:
+            break
+    
+    if opcion == 1:
+        with open('inventario.pickle', 'rb') as f:
+            inventario = pickle.load(f)
+            return inventario
+    
+    return None
+
+
 def main():
     """
     Punto de entrada a la aplicación.
     """
-    productos = []
-    ventas = []
+
+    if os.path.isfile('inventario.pickle'):
+        inventario = cargar_inventario()
+        
+        if inventario:
+            productos = inventario['productos']
+            ventas = inventario['ventas']
+        else:
+            productos = []
+            ventas = []
+    else:
+        productos = []
+        ventas = []
 
     while True:
         while True:

@@ -14,3 +14,5 @@ Nota 2: No se debe modificar los archivos del Proyecto 0. Se debe hacer una copi
 Solución:
 
 Se usará el módulo `pickle` para realizar la persistencia de los datos. El módulo `pickle` serializa objetos Python (cualquier tipo de objeto).
+
+inventario.pickle
