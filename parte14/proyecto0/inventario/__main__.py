@@ -106,7 +106,7 @@ def cargar_inventario():
             break
     
     if opcion == 1:
-        with open('inventario.pickle', 'rb') as f:
+        with open('inventario/inventario.pickle', 'rb') as f:
             inventario = pickle.load(f)
             return inventario
     
@@ -123,7 +123,11 @@ def guardar_datos(productos, ventas):
             break
     
     if opcion == 1:
-        # Guardar los datos en el archivo `inventario.pickle`...
+        with open('inventario/inventario.pickle', 'wb') as f:
+            inventario = {'productos': productos, 'ventas': ventas}
+
+            pickle.dump(inventario, f)
+
         return True
     else:
         return False
@@ -133,7 +137,7 @@ def main():
     Punto de entrada a la aplicación.
     """
 
-    if os.path.isfile('inventario.pickle'):
+    if os.path.isfile('inventario/inventario.pickle'):
         inventario = cargar_inventario()
         
         if inventario:
@@ -387,7 +391,12 @@ def main():
     print()
 
     if len(productos):
-        guardar_datos(productos, ventas)
+        if guardar_datos(productos, ventas):
+            print('Los datos del inventario (productos y ventas) se han guardado en disco.')
+        else:
+            print('Ha omitido almacenar los datos en disco.')
+
+    print()
 
     print('El programa ha finalizado.')
 
