@@ -112,6 +112,21 @@ def cargar_inventario():
     
     return None
 
+def guardar_datos(productos, ventas):
+    while True:
+        print('¿Desea guardar los datos de productos y ventas en el archivo `inventario.pickle`?:')
+        print('1. Sí')
+        print('2. No')
+        opcion = capturar_entero('Digite la opción')
+
+        if opcion == 1 or opcion == 2:
+            break
+    
+    if opcion == 1:
+        # Guardar los datos en el archivo `inventario.pickle`...
+        return True
+    else:
+        return False
 
 def main():
     """
@@ -368,7 +383,12 @@ def main():
                 print('MENSAJE: Aún no ha registrado productos.')
         
         continuar()
+    
     print()
+
+    if len(productos):
+        guardar_datos(productos, ventas)
+
     print('El programa ha finalizado.')
 
 if __name__ == '__main__':
