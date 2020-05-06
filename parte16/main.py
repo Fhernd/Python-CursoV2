@@ -4,6 +4,7 @@ from modelos.carro import Carro
 from modelos.camion import Camion
 from modelos.deportivo import Deportivo
 from modelos.volqueta import Volqueta
+from modelos.formula1 import Formula1
 
 def main():
     carro_chevrolet = Carro('ABC-123', 'Chevrolet', 2010, 'Estados Unidos')
@@ -138,7 +139,22 @@ def main():
 
     print('¿Está encendida?:', 'Sí' if volqueta_carga.estado else 'No')
 
+    print()
+
+    # Creación/instanciación de un objeto Formula1:
+    print('Creación/instanciación de un objeto Formula1:')
+
+    auto_formula1 = Formula1('F11-458', 'BMW', 2019, 'Alemania', 120)
     
+    print('El tipo de dato de la variable `auto_formula1`:', type(auto_formula1))
+
+    print('Placa:', auto_formula1.placa)
+    print('Marca:', auto_formula1.marca)
+    print('Modelo:', auto_formula1.modelo)
+    print('País procedencia:', auto_formula1.pais_procedencia)
+    print('¿Está encendido?:', 'Sí' if auto_formula1.estado else 'No')
+    print('Peso (kg):', auto_formula1.peso)
+
 
 if __name__ == '__main__':
     main()
