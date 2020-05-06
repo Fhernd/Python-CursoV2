@@ -86,5 +86,21 @@ def main():
     print('Marca rines:', deportivo_lujo.marca_rines)
     print('Tipo:', deportivo_lujo.tipo)
 
+    print()
+
+    deportivo_lujo.encender()
+
+    print('¿Está encendido?:', 'Sí' if deportivo_lujo.estado else 'No')
+
+    deportivo_lujo.abrir_puertas()
+    deportivo_lujo.cerrar_puertas()
+
+    print()
+
+    deportivo_lujo.acelerar()
+    deportivo_lujo.acelerar()
+
+    deportivo_lujo.frenar()
+
 if __name__ == '__main__':
     main()
