@@ -54,5 +54,18 @@ def main():
     print('¿Está encendido?:', 'Sí' if camion_carga.estado else 'No')
     print('Capacidad de carga (kg):', camion_carga.capacidad_carga)
 
+    print()
+
+    camion_carga.encender()
+
+    print('¿Está encendido?:', 'Sí' if camion_carga.estado else 'No')
+
+    camion_carga.apagar()
+
+    print('¿Está encendido?:', 'Sí' if camion_carga.estado else 'No')
+    
+    camion_carga.cargar_mercancia()
+    camion_carga.descargar_mercancia()
+
 if __name__ == '__main__':
     main()

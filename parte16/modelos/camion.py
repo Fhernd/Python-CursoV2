@@ -6,8 +6,8 @@ class Camion(Carro):
 
         self.capacidad_carga = capacidad_carga
     
-    def cargarMercancia(self):
+    def cargar_mercancia(self):
         print('La mercancía se está cargando...')
     
-    def descargarMercancia(self):
+    def descargar_mercancia(self):
         print('La mercancía se está descargando...')
