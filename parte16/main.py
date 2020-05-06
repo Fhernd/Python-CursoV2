@@ -1,6 +1,7 @@
 # Creación de objetos (instanciación):
 
 from modelos.carro import Carro
+from modelos.camion import Camion
 
 def main():
     carro_chevrolet = Carro('ABC-123', 'Chevrolet', 2010, 'Estados Unidos')
@@ -37,6 +38,21 @@ def main():
 
     carro_chevrolet.acelerar()
     carro_chevrolet.frenar()
+
+    print()
+
+    # Creación/instanciación de un objeto Camion:
+
+    camion_carga = Camion('ABD-456', 'Scania', 2015, 'China', 2000)
+
+    print('El tipo de dato de la variable `camion_carga` es:', type(camion_carga))
+
+    print('Placa:', camion_carga.placa)
+    print('Marca:', camion_carga.marca)
+    print('Modelo:', camion_carga.modelo)
+    print('País procedencia:', camion_carga.pais_procedencia)
+    print('¿Está encendido?:', 'Sí' if camion_carga.estado else 'No')
+    print('Capacidad de carga (kg):', camion_carga.capacidad_carga)
 
 if __name__ == '__main__':
     main()

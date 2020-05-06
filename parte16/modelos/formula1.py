@@ -1,4 +1,4 @@
-from carro import Carro
+from . carro import Carro
 
 class Formula1(Carro):
     def __init__(self, placa, marca, modelo, pais_procedencia, peso):

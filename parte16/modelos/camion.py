@@ -1,4 +1,4 @@
-from carro import Carro
+from . carro import Carro
 
 class Camion(Carro):
     def __init__(self, placa, marca, modelo, pais_procedencia, capacidad_carga):
