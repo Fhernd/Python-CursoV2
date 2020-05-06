@@ -3,6 +3,7 @@
 from modelos.carro import Carro
 from modelos.camion import Camion
 from modelos.deportivo import Deportivo
+from modelos.volqueta import Volqueta
 
 def main():
     carro_chevrolet = Carro('ABC-123', 'Chevrolet', 2010, 'Estados Unidos')
@@ -101,6 +102,24 @@ def main():
     deportivo_lujo.acelerar()
 
     deportivo_lujo.frenar()
+
+    print()
+
+    # Creación/instanciación de un objeto Volqueta:
+    print('Creación/instanciación de un objeto Volqueta:')
+
+    volqueta_carga = Volqueta('FGH-951', 'Daewoo', 2014, 'Taiwan', 4000, 2000000)
+
+    print('El tipo de dato de la variable `volqueta_carga`:', type(volqueta_carga))
+
+    print('Placa:', volqueta_carga.placa)
+    print('Marca:', volqueta_carga.marca)
+    print('Modelo:', volqueta_carga.modelo)
+    print('País procedencia:', volqueta_carga.pais_procedencia)
+    print('¿Está encendida?:', 'Sí' if volqueta_carga.estado else 'No')
+    print('Capacidad carga (kg):', volqueta_carga.capacidad_carga)
+    print('Costo servicio:', volqueta_carga.costo_servicio)
+
 
 if __name__ == '__main__':
     main()
