@@ -155,6 +155,19 @@ def main():
     print('¿Está encendido?:', 'Sí' if auto_formula1.estado else 'No')
     print('Peso (kg):', auto_formula1.peso)
 
+    print()
+
+    auto_formula1.encender()
+
+    print('¿Está encendido?:', 'Sí' if auto_formula1.estado else 'No')
+
+    auto_formula1.acelerar()
+    auto_formula1.competir()
+    auto_formula1.frenar()
+
+    auto_formula1.apagar()
+
+    print('¿Está encendido?:', 'Sí' if auto_formula1.estado else 'No')
 
 if __name__ == '__main__':
     main()
