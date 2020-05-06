@@ -120,6 +120,25 @@ def main():
     print('Capacidad carga (kg):', volqueta_carga.capacidad_carga)
     print('Costo servicio:', volqueta_carga.costo_servicio)
 
+    print()
+
+    volqueta_carga.encender()
+
+    print('¿Está encendida?:', 'Sí' if volqueta_carga.estado else 'No')
+
+    volqueta_carga.cargar_material()
+
+    volqueta_carga.acelerar()
+
+    volqueta_carga.frenar()
+
+    volqueta_carga.descargar_material()
+
+    volqueta_carga.apagar()
+
+    print('¿Está encendida?:', 'Sí' if volqueta_carga.estado else 'No')
+
+    
 
 if __name__ == '__main__':
     main()
