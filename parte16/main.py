@@ -2,6 +2,7 @@
 
 from modelos.carro import Carro
 from modelos.camion import Camion
+from modelos.deportivo import Deportivo
 
 def main():
     carro_chevrolet = Carro('ABC-123', 'Chevrolet', 2010, 'Estados Unidos')
@@ -42,6 +43,7 @@ def main():
     print()
 
     # Creación/instanciación de un objeto Camion:
+    print('Creación/instanciación de un objeto Camion:')
 
     camion_carga = Camion('ABD-456', 'Scania', 2015, 'China', 2000)
 
@@ -66,6 +68,23 @@ def main():
     
     camion_carga.cargar_mercancia()
     camion_carga.descargar_mercancia()
+
+    print()
+
+    # Creación/instanciación de un objeto Deportivo:
+    print('Creación/instanciación de un objeto Deportivo:')
+
+    deportivo_lujo = Deportivo('DEF-789', 'Audi', 2013, 'Alemania', 'Marca Rines', 'Deportivo')
+
+    print('El tipo de dato de la variable `deportivo_lujo` es:', type(deportivo_lujo))
+
+    print('Placa:', deportivo_lujo.placa)
+    print('Marca:', deportivo_lujo.marca)
+    print('Modelo:', deportivo_lujo.modelo)
+    print('País procedencia:', deportivo_lujo.pais_procedencia)
+    print('¿Está encendido?:', 'Sí' if deportivo_lujo.estado else 'No')
+    print('Marca rines:', deportivo_lujo.marca_rines)
+    print('Tipo:', deportivo_lujo.tipo)
 
 if __name__ == '__main__':
     main()
