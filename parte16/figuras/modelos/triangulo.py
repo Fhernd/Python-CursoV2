@@ -12,3 +12,4 @@ class Triangulo(Figura):
     
     def area(self):
         resultado = self.base * self.altura / 2
+        return resultado

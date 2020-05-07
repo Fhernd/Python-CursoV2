@@ -12,3 +12,4 @@ class Circulo(Figura):
     
     def area(self):
         resultado = pi * self.radio ** 2
+        return resultado
