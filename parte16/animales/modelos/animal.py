@@ -1,4 +1,6 @@
-class Animal:
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
     def __init__(self, nombre, edad, nombre_cientifico):
         self.nombre = nombre
         self.edad = edad
@@ -9,3 +11,7 @@ class Animal:
     
     def moverse(self):
         print('El animal se está moviendo...')
+
+    @abstractmethod
+    def hablar(self):
+        pass
