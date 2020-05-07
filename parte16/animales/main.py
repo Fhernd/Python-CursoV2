@@ -15,7 +15,16 @@ def main():
     animales.append(charlie)
     animales.append(mateo)
 
-    
+    print('Nombres de los animales:')
+    for a in animales:
+        print('Nombre del animal:', a.nombre)
+
+    print()
+
+    print('El zootecnista les dice a todos los animales que hablen ahora:')
+
+    for a in animales:
+        a.hablar()
 
 if __name__ == '__main__':
     main()
