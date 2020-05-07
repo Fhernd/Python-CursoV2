@@ -6,3 +6,8 @@ class Pato(Animal):
 
         self.color = color
     
+    def volar(self):
+        print('El pato está volando...')
+    
+    def hablar(self):
+        print('¡Cuá cuá!')
