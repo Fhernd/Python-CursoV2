@@ -13,3 +13,6 @@ class Triangulo(Figura):
     def area(self):
         resultado = self.base * self.altura / 2
         return resultado
+
+    def __str__(self):
+        return f'Triángulo -- {super().__str__()} - Base: {self.base} - Altura: {self.altura}'

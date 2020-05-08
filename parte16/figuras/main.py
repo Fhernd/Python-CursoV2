@@ -36,5 +36,13 @@ def main():
 
     print(rectangulo_rojo)
 
+    print()
+
+    print(circulo_verde)
+
+    print()
+
+    print(triangulo_negro)
+
 if __name__ == '__main__':
     main()

@@ -13,3 +13,6 @@ class Circulo(Figura):
     def area(self):
         resultado = pi * self.radio ** 2
         return resultado
+
+    def __str__(self):
+        return f'Círculo -- {super().__str__()} - Radio: {self.radio}'
