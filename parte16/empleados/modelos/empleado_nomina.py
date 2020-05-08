@@ -9,6 +9,6 @@ class EmpleadoNomina(Empleado):
         self.porcentaje_prestaciones = porcentaje_prestaciones
     
     def calcular_salario(self):
-        total = super().calcular_salario() + SALARIO * (1 - self.porcentaje_prestaciones)
+        total = super().calcular_salario() + EmpleadoNomina.SALARIO * (1 - self.porcentaje_prestaciones)
 
         return total

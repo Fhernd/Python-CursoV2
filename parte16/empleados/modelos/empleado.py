@@ -10,6 +10,9 @@ class Empleado(ABC):
         self.especialidad = especialidad
     
     def calcular_salario(self):
-        total = SALARIO_BASE * 1.10
+        total = Empleado.SALARIO_BASE * 1.10
 
         return total
+
+    def __str__(self):
+        return f'Documento: {self.documento} - Nombre completo: {self.nombre_completo} - Correo-e: {self.correo_electronico} - Especialidad: {self.especialidad}.'
