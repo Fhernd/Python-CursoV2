@@ -1,0 +1,10 @@
+Parte 16 - Ejercicio
+
+En el Proyecto 0 se construyó un sistema de gestión de inventario de dispositivos electrónicos para la empresa Dispositivos S.a.s.
+
+Cambios a realizar sobre el Proyecto 0:
+
+- Aplicar los conceptos de programación orientada objetos
+- Crear un diagrama de clases con UML.
+- Crear archivos para cada clase identificada
+- Adaptar los archivos que sean necesarios.
