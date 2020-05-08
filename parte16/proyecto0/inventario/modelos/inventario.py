@@ -1,3 +1,4 @@
+from collections import Counter
 from .producto import Producto
 from .venta import Venta
 
@@ -52,7 +53,7 @@ class Inventario:
         """
         producto.disponible = not producto.disponible
 
-    def ventas_rango_fecha(ventas, fecha_inicio, fecha_final):
+    def ventas_rango_fecha(self, fecha_inicio, fecha_final):
         """
         Obtiene las ventas que se han realizado en un rango de fecha.
 
@@ -66,13 +67,13 @@ class Inventario:
         """
         ventas_rango = []
 
-        for v in ventas:
-            if fecha_inicio <= v['fecha'] <= fecha_final:
+        for v in self.ventas:
+            if fecha_inicio <= v.fecha <= fecha_final:
                 ventas_rango.append(v)
         
         return ventas_rango
 
-    def top_5_mas_vendidos(ventas):
+    def top_5_mas_vendidos(self):
         """
         Obtiene el top 5 de los productos más vendidos.
 
@@ -84,11 +85,11 @@ class Inventario:
         """
         conteo_ventas = {}
 
-        for v in ventas:
-            if v['id_producto'] in conteo_ventas:
-                conteo_ventas[v['id_producto']] += v['cantidad']
+        for v in self.ventas:
+            if v.codigo_producto in conteo_ventas:
+                conteo_ventas[v.codigo_producto] += v.cantidad
             else:
-                conteo_ventas[v['id_producto']] = v['cantidad']
+                conteo_ventas[v.codigo_producto] = v.cantidad
 
         conteo_ventas = {k: v for k, v in sorted(conteo_ventas.items(), key=lambda item: item[1], reverse=True)}
 
@@ -96,7 +97,7 @@ class Inventario:
 
         return contador.most_common(5)
 
-    def top_5_menos_vendidos(ventas):
+    def top_5_menos_vendidos(self):
         """
         Obtiene el top 5 de los productos menos vendidos.
 
@@ -108,11 +109,11 @@ class Inventario:
         """
         conteo_ventas = {}
 
-        for v in ventas:
-            if v['id_producto'] in conteo_ventas:
-                conteo_ventas[v['id_producto']] += v['cantidad']
+        for v in self.ventas:
+            if v.codigo_producto in conteo_ventas:
+                conteo_ventas[v.codigo_producto] += v.cantidad
             else:
-                conteo_ventas[v['id_producto']] = v['cantidad']
+                conteo_ventas[v.codigo_producto] = v.cantidad
 
         conteo_ventas = {k: v for k, v in sorted(conteo_ventas.items(), key=lambda item: item[1])}
 
@@ -120,36 +121,36 @@ class Inventario:
 
         return contador.most_common()[:-6:-1]
 
-    def mostrar_datos_producto(producto):
+    def mostrar_datos_producto(self, producto):
         """
         Muestra los datos particulares de un producto.
 
         Parameters:
         producto: Producto a consultar sus datos.
         """
-        print('ID: %i' % producto['id_producto'])
-        print('Nombre: %s' % producto['nombre'])
-        print('Precio: $%.2f' % producto['precio'])
-        print('Cantidad: %i' % producto['cantidad'])
-        print('¿Disponible?: %s' % ('Sí' if producto['disponible'] else 'No'))
+        print('ID: %i' % producto.codigo)
+        print('Nombre: %s' % producto.nombre)
+        print('Precio: $%.2f' % producto.precio)
+        print('Cantidad: %i' % producto.cantidad)
+        print('¿Disponible?: %s' % ('Sí' if producto.disponible else 'No'))
 
-    def mostrar_datos_venta(productos, venta):
+    def mostrar_datos_venta(self, venta):
         """
         Muestra los datos particulares de una venta.
 
         Parameters:
         venta: Venta a consultar sus datos.
         """
-        print('ID Producto: %i' % venta['id_producto'])
-        print('Fecha: %s' % venta['fecha'])
-        print('Cantidad: %i' % venta['cantidad'])
-        print('Total sin IVA: $%.2f' % venta['total_sin_iva'])
-        print('Total:: $%.2f' % (venta['total_sin_iva'] * 1.19))
+        print('ID Producto: %i' % venta.codigoproducto)
+        print('Fecha: %s' % venta.fecha)
+        print('Cantidad: %i' % venta.cantidad)
+        print('Total sin IVA: $%.2f' % venta.total_sin_iva)
+        print('Total:: $%.2f' % (venta.total_sin_iva * 1.19))
         print()
         print('Datos del producto:')
-        mostrar_datos_producto(buscar_producto(productos, venta['id_producto']))
+        mostrar_datos_producto(buscar_producto(self.productos, venta.codigo_producto))
 
-    def mostrar_datos_venta_producto(productos, datos_venta):
-        producto = buscar_producto(productos, datos_venta[0])
+    def mostrar_datos_venta_producto(self, datos_venta):
+        producto = buscar_producto(self.productos, datos_venta[0])
         mostrar_datos_producto(producto)
         print('Cantidad vendida: %i' % datos_venta[1])
