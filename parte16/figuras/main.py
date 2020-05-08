@@ -28,6 +28,13 @@ def main():
         print(f'El área es igual a {area} u^2')
 
         print()
+    
+    print()
+
+    # Demostración de sobreescritura de métodos:
+    print('Demostración de sobreescritura de métodos:')
+
+    print(rectangulo_rojo)
 
 if __name__ == '__main__':
     main()
