@@ -12,3 +12,6 @@ class Figura(ABC):
     @abstractmethod
     def area(self):
         pass
+
+    def __str__(self):
+        return f'Color fondo: {self.color_fondo} - Color borde: {self.color_borde}'
