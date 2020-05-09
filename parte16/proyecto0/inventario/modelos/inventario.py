@@ -141,16 +141,16 @@ class Inventario:
         Parameters:
         venta: Venta a consultar sus datos.
         """
-        print('ID Producto: %i' % venta.codigoproducto)
+        print('ID Producto: %i' % venta.codigo_producto)
         print('Fecha: %s' % venta.fecha)
         print('Cantidad: %i' % venta.cantidad)
         print('Total sin IVA: $%.2f' % venta.total_sin_iva)
-        print('Total:: $%.2f' % (venta.total_sin_iva * 1.19))
+        print('Total: $%.2f' % (venta.total_sin_iva * 1.19))
         print()
         print('Datos del producto:')
-        mostrar_datos_producto(buscar_producto(self.productos, venta.codigo_producto))
+        self.mostrar_datos_producto(self.buscar_producto(venta.codigo_producto))
 
     def mostrar_datos_venta_producto(self, datos_venta):
-        producto = buscar_producto(self.productos, datos_venta[0])
-        mostrar_datos_producto(producto)
+        producto = self.buscar_producto(datos_venta[0])
+        self.mostrar_datos_producto(producto)
         print('Cantidad vendida: %i' % datos_venta[1])

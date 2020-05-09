@@ -86,7 +86,7 @@ def listar_productos(productos):
     productos: Lista de productos.
     """
     for p in productos:
-        print(f"{p['id_producto']} - {p['nombre']}")
+        print(f"{p.codigo} - {p.nombre}")
 
 def continuar():
     """
@@ -114,7 +114,7 @@ def cargar_inventario():
     
     return None
 
-def guardar_datos(productos, ventas):
+def guardar_datos(inventario):
     while True:
         print('¿Desea guardar los datos de productos y ventas en el archivo `inventario.pickle`?:')
         print('1. Sí')
@@ -126,7 +126,6 @@ def guardar_datos(productos, ventas):
     
     if opcion == 1:
         with open('inventario/inventario.pickle', 'wb') as f:
-            inventario = {'productos': productos, 'ventas': ventas}
 
             pickle.dump(inventario, f)
 
@@ -269,12 +268,12 @@ def main():
                 print()
                 print('MENSAJE: Aún no ha registrado productos.')
         elif opcion == 3:
-            if len(productos):
+            if len(inventario.productos):
                 while True:
-                    listar_productos(productos)
+                    listar_productos(inventario.productos)
                     codigo_producto = capturar_entero('Digite el ID del producto')
 
-                    producto = buscar_producto(productos, codigo_producto)
+                    producto = inventario.buscar_producto(codigo_producto)
 
                     if producto:
                         break
@@ -285,17 +284,17 @@ def main():
                     continuar()
                 
                 print()
-                mostrar_datos_producto(producto)
+                inventario.mostrar_datos_producto(producto)
             else:
                 print()
                 print('MENSAJE: Aún no ha registrado productos.')
         elif opcion == 4:
-            if len(productos):
+            if len(inventario.productos):
                 while True:
-                    listar_productos(productos)
+                    listar_productos(inventario.productos)
                     codigo_producto = capturar_entero('Digite el ID del producto')
 
-                    producto = buscar_producto(productos, codigo_producto)
+                    producto = inventario.buscar_producto(codigo_producto)
 
                     if producto:
                         break
@@ -305,14 +304,14 @@ def main():
                     
                     continuar()
                 
-                cambiar_estado_producto(producto)
-                mostrar_datos_producto(producto)
+                inventario.cambiar_estado_producto(producto)
+                inventario.mostrar_datos_producto(producto)
             else:
                 print()
                 print('MENSAJE: Aún no ha registrado productos.')
         elif opcion == 5:
-            if len(productos):
-                if len(ventas):
+            if len(inventario.productos):
+                if len(inventario.ventas):
                     while True:
                         try:
                             fecha_inicio = capturar_cadena('Digite la fecha de inicio (AAAA-MM-DD)')
@@ -337,11 +336,11 @@ def main():
                         
                         print()
                     
-                    ventas_rango = ventas_rango_fecha(ventas, fecha_inicio, fecha_final)
+                    ventas_rango = inventario.ventas_rango_fecha(fecha_inicio, fecha_final)
 
                     if len(ventas_rango):
                         for v in ventas_rango:
-                            mostrar_datos_venta(productos, v)
+                            inventario.mostrar_datos_venta(v)
                             print()
                     else:
                         print()
@@ -353,13 +352,13 @@ def main():
                 print()
                 print('MENSAJE: Aún no ha registrado productos.')
         elif opcion == 6:
-            if len(productos):
-                if len(ventas):
-                    productos_vendidos = top_5_mas_vendidos(ventas)
+            if len(inventario.productos):
+                if len(inventario.ventas):
+                    productos_vendidos = inventario.top_5_mas_vendidos()
 
                     print('Top 5 de los productos más vendidos')
                     for p in productos_vendidos:
-                        mostrar_datos_venta_producto(productos, p)
+                        inventario.mostrar_datos_venta_producto( p)
                         print()
                 else:
                     print()
@@ -368,13 +367,13 @@ def main():
                 print()
                 print('MENSAJE: Aún no ha registrado productos.')
         elif opcion == 7:
-            if len(productos):
-                if len(ventas):
-                    productos_vendidos = top_5_menos_vendidos(ventas)
+            if len(inventario.productos):
+                if len(inventario.ventas):
+                    productos_vendidos = inventario.top_5_menos_vendidos()
 
                     print('Top 5 de los productos menos vendidos')
                     for p in productos_vendidos:
-                        mostrar_datos_venta_producto(productos, p)
+                        inventario.mostrar_datos_venta_producto(p)
                         print()
                 else:
                     print()
@@ -387,8 +386,8 @@ def main():
     
     print()
 
-    if len(productos):
-        if guardar_datos(productos, ventas):
+    if len(inventario.productos):
+        if guardar_datos(inventario):
             print('Los datos del inventario (productos y ventas) se han guardado en disco.')
         else:
             print('Ha omitido almacenar los datos en disco.')
