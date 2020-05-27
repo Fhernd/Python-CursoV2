@@ -29,6 +29,7 @@ class CalculadoraVentana(QMainWindow):
         self.btn_calcular_suma = QPushButton('Sumar', self)
         self.btn_calcular_suma.move(150, 130)
         self.btn_calcular_suma.setFixedWidth(200)
+        self.btn_calcular_suma.clicked.connect(self.sumar)
 
         self.lbl_resultado = QLabel('Resultado:', self)
         self.lbl_resultado.move(30, 200)
@@ -36,7 +37,39 @@ class CalculadoraVentana(QMainWindow):
         self.txt_resultado = QLineEdit(self)
         self.txt_resultado.move(150, 200)
         self.txt_resultado.setFixedWidth(200)
+    
+    def sumar(self):
+        primer_numero = self.txt_primer_numero.text().strip()
+        segundo_numero = self.txt_segundo_numero.text().strip()
 
+        mensaje = QMessageBox()
+        mensaje.setWindowTitle('Información')
+
+        if len(primer_numero):
+            if len(segundo_numero):
+                
+                try:
+                    primer_numero = float(primer_numero)
+                except:
+                    mensaje.setIcon(QMessageBox.Warning)
+                    mensaje.setText('El campo Primer número debe ser un valor numérico.')
+                    return
+                
+                try:
+                    segundo_numero = float(segundo_numero)
+                except:
+                    mensaje.setIcon(QMessageBox.Warning)
+                    mensaje.setText('El campo Segundo número debe ser un valor numérico.')
+                    return
+
+                # TODO: Realizar la suma de los dos números.
+
+            else:
+                mensaje.setIcon(QMessageBox.Warning)
+            mensaje.setText('El campo Segundo número es obligatorio.')
+        else:
+            mensaje.setIcon(QMessageBox.Warning)
+            mensaje.setText('El campo Primer número es obligatorio.')
         
 
 def main():
