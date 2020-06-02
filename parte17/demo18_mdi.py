@@ -1,8 +1,11 @@
 import sys
 
-from PyQt5.QtWidgets import QAction, QApplication, QMainWindow, QMdiSubWindow
+from PyQt5.QtWidgets import QAction, QApplication, QMainWindow, QMdiArea, QMdiSubWindow
 
 class MdiAplicacion(QMainWindow):
+
+    contador = 0
+
     def __init__(self):
         super().__init__()
 
@@ -10,6 +13,9 @@ class MdiAplicacion(QMainWindow):
     
     def inicializarGui(self):
         self.setWindowTitle('Ventanas MDI - Multiple Document Interface')
+
+        self.mdi = QMdiArea()
+        self.setCentralWidget(self.mdi)
 
         mbr_principal = self.menuBar()
         mnu_archivo = mbr_principal.addMenu('Archivo')
@@ -25,8 +31,12 @@ class MdiAplicacion(QMainWindow):
         mnu_archivo.addAction(mni_salir)
     
     def agregar_ventana(self):
-        pass
+        MdiAplicacion.contador += 1
 
+        subventana = QMdiSubWindow()
+        subventana.setWindowTitle(f'Subventana {MdiAplicacion.contador}')
+        self.mdi.addSubWindow(subventana)
+        subventana.show()
 
 def main():
     app = QApplication(sys.argv)
