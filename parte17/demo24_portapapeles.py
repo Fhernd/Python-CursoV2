@@ -34,10 +34,10 @@ class GestorPortapapelesVentana(QMainWindow):
         self.btn_pegar.clicked.connect(self.pegar)
 
     def copiar(self):
-        pass
+        self.txt_texto_fuente.copy()
 
     def pegar(self):
-        pass
+        self.txt_texto_destino.paste()
 
 
 def main():
