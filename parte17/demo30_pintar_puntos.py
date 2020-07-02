@@ -19,13 +19,23 @@ class LienzoDibujoVentana(QMainWindow):
         paleta.setColor(self.backgroundRole(), Qt.white)
         self.setPalette(paleta)
 
+        dibujo = DibujoWidget(self)
+        dibujo.move(0, 0)
+        dibujo.resize(400, 400)
+
 class DibujoWidget(QWidget):
     def paintEvent(self, evento):
         painter = QPainter(self)
         painter.setPen(Qt.black)
 
         tamagnio = self.size()
-        
+
+        for _ in range(2048):
+            x = random.randint(1, tamagnio.width() - 1)
+            y = random.randint(1, tamagnio.height() - 1)
+
+            painter.drawPoint(x, y)
+
 
 def main():
     app = QApplication(sys.argv)
