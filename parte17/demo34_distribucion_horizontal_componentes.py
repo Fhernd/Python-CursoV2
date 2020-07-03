@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QDialog, QGroupBox, QHBoxLayout, QPushButton
+from PyQt5.QtWidgets import QApplication, QDialog, QGroupBox, QHBoxLayout, QMessageBox, QPushButton, QVBoxLayout
 
 class SeleccionColorDialogo(QDialog):
     def __init__(self):
@@ -13,6 +13,10 @@ class SeleccionColorDialogo(QDialog):
         self.setFixedSize(300, 150)
 
         self.crearBotonesSeleccionColor()
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.gbx_seleccion_color)
+        self.setLayout(layout)
 
         self.show()
 
@@ -33,14 +37,24 @@ class SeleccionColorDialogo(QDialog):
         btn_color_azul.clicked.connect(self.seleccionar_color_azul)
         layout.addWidget(btn_color_azul)
 
+        self.gbx_seleccion_color.setLayout(layout)
+
     def seleccionar_color_rojo(self):
-        pass
+        self.mostrar_mensaje('rojo')
 
     def seleccionar_color_verde(self):
-        pass
+        self.mostrar_mensaje('verde')
 
-    def seleccionar_colorr_azul(self):
-        pass
+    def seleccionar_color_azul(self):
+        self.mostrar_mensaje('azul')
+
+    def mostrar_mensaje(self, color):
+        mensaje = QMessageBox(self)
+        mensaje.setIcon(QMessageBox.Information)
+        mensaje.setWindowTitle('Mensaje')
+        mensaje.setText(f'Ud. ha seleccionado el color {color}.')
+
+        mensaje.exec_()
 
 def main():
     app = QApplication(sys.argv)
