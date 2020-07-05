@@ -10,12 +10,16 @@ class ArrastrarSoltarDialogo(QWidget):
     
     def inicializarGui(self):
         self.setWindowTitle('Arrastrar & Soltar')
-        self.setFixedSize(400, 200)
+        self.setFixedSize(450, 150)
 
         self.txt_entrada = QLineEdit('Arrastre este texto a la etiqueta', self)
         self.txt_entrada.setDragEnabled(True)
         self.txt_entrada.move(20, 30)
         self.txt_entrada.resize(200, 32)
+
+        self.lbl_contenido = ContenedorLabel('Arrastre aquí...', self)
+        self.lbl_contenido.move(230, 32)
+        self.lbl_contenido.resize(200, 32)
 
         self.show()
 
@@ -23,6 +27,15 @@ class ContenedorLabel(QLabel):
     def __init__(self, texto, padre):
         super().__init__(texto, padre)
         self.setAcceptDrops(True)
+    
+    def dragEnterEvent(self, evento):
+        if evento.mimeData().hasFormat('text/plain'):
+            evento.accept()
+        else:
+            evento.ignore()
+    
+    def dropEvent(self, evento):
+        self.setText(evento.mimeData().text())
 
 def main():
     app = QApplication(sys.argv)
