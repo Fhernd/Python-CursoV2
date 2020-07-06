@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CalculadoraBasicaVentana</class>
+ <widget class="QMainWindow" name="CalculadoraBasicaVentana">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>320</width>
+    <height>185</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Calculadora Básica</string>
+  </property>
+  <widget class="QWidget" name="wdg_principal">
+   <widget class="QLabel" name="lbl_numero_1">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Número 1:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_numero_1">
+    <property name="geometry">
+     <rect>
+      <x>126</x>
+      <y>19</y>
+      <width>181</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_numero_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>47</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Número 2:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_numero_2">
+    <property name="geometry">
+     <rect>
+      <x>126</x>
+      <y>45</y>
+      <width>181</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_sumar">
+    <property name="geometry">
+     <rect>
+      <x>125</x>
+      <y>70</y>
+      <width>181</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sumar</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_resultado">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>115</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Resultado:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txt_resultado">
+    <property name="geometry">
+     <rect>
+      <x>127</x>
+      <y>112</y>
+      <width>181</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="mbr_principal">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>320</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="str_principal"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
