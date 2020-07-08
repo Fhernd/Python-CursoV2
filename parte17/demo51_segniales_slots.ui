@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SegnialesSlots</class>
+ <widget class="QDialog" name="SegnialesSlots">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>240</width>
+    <height>213</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Señales &amp; Slots</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>241</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="lay_ver_principal">
+    <property name="leftMargin">
+     <number>5</number>
+    </property>
+    <property name="rightMargin">
+     <number>5</number>
+    </property>
+    <item>
+     <widget class="QLineEdit" name="txt_fuente"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_copiar">
+      <property name="text">
+       <string>Copiar</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_pegar">
+      <property name="text">
+       <string>Pegar</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="txt_destino">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btn_copiar</sender>
+   <signal>pressed()</signal>
+   <receiver>txt_fuente</receiver>
+   <slot>selectAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>72</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>27</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_copiar</sender>
+   <signal>released()</signal>
+   <receiver>txt_fuente</receiver>
+   <slot>copy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>72</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>27</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_pegar</sender>
+   <signal>clicked()</signal>
+   <receiver>txt_destino</receiver>
+   <slot>paste()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>118</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>162</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
