@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PuntoVenta</class>
+ <widget class="QDialog" name="PuntoVenta">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>555</width>
+    <height>152</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Punto de Venta</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>2</x>
+     <y>1</y>
+     <width>551</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="lay_ver_principal">
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <item>
+     <layout class="QHBoxLayout" name="lay_hor_mouse" stretch="2,1,1,1">
+      <item>
+       <widget class="QLabel" name="lbl_producto_mouse">
+        <property name="text">
+         <string>Producto Mouse HyperX:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txt_mouse_precio"/>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="sbx_mouse_cantidad"/>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txt_mouse_subtotal">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="lay_hor_teclado" stretch="2,1,1,1">
+      <item>
+       <widget class="QLabel" name="lbl_producto_teclado">
+        <property name="text">
+         <string>Producto Teclado HyperX:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txt_teclado_precio"/>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="sbx_teclado_cantidad"/>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="txt_teclado_subtotal">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="lbl_total">
+      <property name="text">
+       <string>$0.00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
