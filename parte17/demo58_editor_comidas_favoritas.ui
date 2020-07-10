@@ -57,7 +57,7 @@
        <widget class="QLineEdit" name="txt_nombre_comida_favorita"/>
       </item>
       <item row="1" column="1">
-       <widget class="QPushButton" name="brn_agregar">
+       <widget class="QPushButton" name="btn_agregar">
         <property name="text">
          <string>Agregar</string>
         </property>
