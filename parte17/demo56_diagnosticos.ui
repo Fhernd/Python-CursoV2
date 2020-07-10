@@ -46,6 +46,9 @@
       </item>
       <item>
        <widget class="QListWidget" name="lst_diagnosticos">
+        <property name="selectionMode">
+         <enum>QAbstractItemView::MultiSelection</enum>
+        </property>
         <item>
          <property name="text">
           <string>Rayos X - $5</string>
