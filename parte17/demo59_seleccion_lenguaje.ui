@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Lenguajes</class>
+ <widget class="QDialog" name="Lenguajes">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>420</width>
+    <height>190</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>420</width>
+    <height>190</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>420</width>
+    <height>190</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Selección Lenguaje</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>13</y>
+     <width>401</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="lay_ver_principal">
+    <item>
+     <layout class="QFormLayout" name="lay_frm_entrada">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbl_seleccion_lenguaje">
+        <property name="text">
+         <string>Seleccione lenguaje de programación:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="cbx_lenguajes">
+        <item>
+         <property name="text">
+          <string>Python</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>C#</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Java</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>C++</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>JavaScript</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>C</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="lbl_seleccion">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
