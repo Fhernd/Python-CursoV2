@@ -76,6 +76,11 @@
           <string>C</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>PHP</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>
