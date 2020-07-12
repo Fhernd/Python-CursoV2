@@ -53,35 +53,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="cbx_fuentes">
-        <item>
-         <property name="text">
-          <string>Times</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Consolas</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Arial</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Tahoma</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Symbol</string>
-         </property>
-        </item>
-       </widget>
-      </item>
       <item row="2" column="0">
        <widget class="QLabel" name="lbl_editor">
         <property name="text">
@@ -92,14 +63,17 @@
       <item row="2" column="1">
        <widget class="QTextEdit" name="txt_editor"/>
       </item>
+      <item row="1" column="1">
+       <widget class="QFontComboBox" name="fcb_fuentes"/>
+      </item>
      </layout>
     </item>
    </layout>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>cbx_fuentes</tabstop>
   <tabstop>txt_editor</tabstop>
+  <tabstop>fcb_fuentes</tabstop>
  </tabstops>
  <resources/>
  <connections/>
