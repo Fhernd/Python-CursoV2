@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HotelSistemaReservas</class>
+ <widget class="QDialog" name="HotelSistemaReservas">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>480</width>
+    <height>420</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>480</width>
+    <height>420</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>480</width>
+    <height>420</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>6</y>
+     <width>471</width>
+     <height>391</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="lay_ver_principal">
+    <property name="spacing">
+     <number>15</number>
+    </property>
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <item>
+     <layout class="QFormLayout" name="lay_frm_entrada">
+      <property name="horizontalSpacing">
+       <number>23</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbl_fecha_reserva">
+        <property name="text">
+         <string>Fecha de reserva:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCalendarWidget" name="cal_fecha_reserva"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lbl_cantidad_dias">
+        <property name="text">
+         <string>Cantidad de días:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="sbx_cantidad_dias"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="lbl_tipo_habitacion">
+        <property name="text">
+         <string>Tipo habitación:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="cbx_tipo_habitacion">
+        <item>
+         <property name="text">
+          <string>Sencilla</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Doble</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Queen</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Queen doble</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QPushButton" name="btn_calcular">
+        <property name="text">
+         <string>Calcular</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QFormLayout" name="lay_frm_seleccion">
+      <property name="horizontalSpacing">
+       <number>20</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbl_resumen_seleccion">
+        <property name="text">
+         <string>Resumen selección:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QTextEdit" name="txt_resumen_seleccion">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lbl_costo">
+        <property name="text">
+         <string>Costo:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="txt_costo">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
