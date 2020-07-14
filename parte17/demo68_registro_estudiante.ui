@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RegistroEstudiante</class>
+ <widget class="QDialog" name="RegistroEstudiante">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>320</width>
+    <height>182</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>320</width>
+    <height>182</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>320</width>
+    <height>182</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Registro Estudiante</string>
+  </property>
+  <widget class="QWidget" name="formLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>311</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="lay_frm_principal">
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>5</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QLabel" name="lbl_identidad">
+      <property name="text">
+       <string>Identidad:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="txt_identidad"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="lbl_nombre_completo">
+      <property name="text">
+       <string>Nombre completo:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="txt_nombre_completo"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="lbl_telefono">
+      <property name="text">
+       <string>Teléfono:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="txt_telefono"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="lbl_carnet">
+      <property name="text">
+       <string>Carnet:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="txt_carnet"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="lbl_carrera">
+      <property name="text">
+       <string>Carrera:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QComboBox" name="cbx_carreras">
+      <item>
+       <property name="text">
+        <string>Sistemas</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Civil</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Industrial</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Psicología</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Biología</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Medicina</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QPushButton" name="btn_registrar">
+      <property name="text">
+       <string>Registrar</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
