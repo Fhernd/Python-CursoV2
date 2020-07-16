@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EditorTexto</class>
+ <widget class="QMainWindow" name="EditorTexto">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>480</width>
+    <height>350</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>480</width>
+    <height>350</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>480</width>
+    <height>350</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Editor Texto</string>
+  </property>
+  <widget class="QWidget" name="wdg_principal">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>4</x>
+      <y>1</y>
+      <width>471</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="lay_ver_principal">
+     <item>
+      <widget class="QPlainTextEdit" name="txt_contenido"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="mbr_principal">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>480</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="mnu_archivo">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="mni_abrir"/>
+    <addaction name="mni_guardar"/>
+    <addaction name="separator"/>
+    <addaction name="mni_salir"/>
+   </widget>
+   <widget class="QMenu" name="mnu_ayuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="mni_acerca_de"/>
+   </widget>
+   <addaction name="mnu_archivo"/>
+   <addaction name="mnu_ayuda"/>
+  </widget>
+  <widget class="QStatusBar" name="stt_principal"/>
+  <action name="mni_abrir">
+   <property name="text">
+    <string>Abrir...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="mni_guardar">
+   <property name="text">
+    <string>Guardar...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="mni_salir">
+   <property name="text">
+    <string>Salir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="mni_acerca_de">
+   <property name="text">
+    <string>Acerca de...</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
