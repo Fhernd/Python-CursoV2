@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ContenedorVentanas</class>
+ <widget class="QMainWindow" name="ContenedorVentanas">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>640</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>640</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Contenedor Ventanas (MDI)</string>
+  </property>
+  <widget class="QWidget" name="wdg_principal">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>641</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="lay_ver_principal">
+     <item>
+      <widget class="QMdiArea" name="mdi_contenedor">
+       <widget class="QWidget" name="wdg_primera_ventana">
+        <property name="windowTitle">
+         <string>Subwindow</string>
+        </property>
+        <widget class="QLabel" name="lbl_primera_ventana">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>60</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Primera ventana</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="wdg_segunda_ventana">
+        <property name="windowTitle">
+         <string>Subwindow</string>
+        </property>
+        <widget class="QLabel" name="lbl_segunda_ventana">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>60</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Segunda ventana</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="mbr_principal">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>640</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="mnu_ventanas">
+    <property name="title">
+     <string>Ventanas</string>
+    </property>
+    <addaction name="mni_tabs"/>
+    <addaction name="mni_cascada"/>
+    <addaction name="mni_cuadricula"/>
+    <addaction name="mni_subventanas"/>
+   </widget>
+   <addaction name="mnu_ventanas"/>
+  </widget>
+  <widget class="QStatusBar" name="stt_principal"/>
+  <action name="mni_tabs">
+   <property name="text">
+    <string>Pestañas</string>
+   </property>
+  </action>
+  <action name="mni_cascada">
+   <property name="text">
+    <string>Cascada</string>
+   </property>
+  </action>
+  <action name="mni_cuadricula">
+   <property name="text">
+    <string>Cuadrícula</string>
+   </property>
+  </action>
+  <action name="mni_subventanas">
+   <property name="text">
+    <string>Subventanas</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
