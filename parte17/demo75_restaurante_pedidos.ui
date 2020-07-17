@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RestaurantePedidos</class>
+ <widget class="QDialog" name="RestaurantePedidos">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>320</width>
+    <height>240</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>320</width>
+    <height>240</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>320</width>
+    <height>240</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Restaurante - Pedidos</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>311</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="lay_ver_principal">
+    <item>
+     <widget class="QTabWidget" name="twd_tabs">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="tab_productos">
+       <attribute name="title">
+        <string>Menú</string>
+       </attribute>
+       <widget class="QWidget" name="horizontalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>1</y>
+          <width>301</width>
+          <height>201</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="lay_hor_productos">
+         <item>
+          <widget class="QGroupBox" name="gbx_panaderia">
+           <property name="title">
+            <string>Panadería</string>
+           </property>
+           <widget class="QWidget" name="verticalLayoutWidget_2">
+            <property name="geometry">
+             <rect>
+              <x>7</x>
+              <y>19</y>
+              <width>131</width>
+              <height>171</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="lay_ver_panaderia">
+             <item>
+              <widget class="QCheckBox" name="chk_tostada">
+               <property name="text">
+                <string>Tostada</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chk_galleta">
+               <property name="text">
+                <string>Galleta</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chk_croissan">
+               <property name="text">
+                <string>Croissan</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chk_sandwich">
+               <property name="text">
+                <string>Sandwich</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chk_pan_integral">
+               <property name="text">
+                <string>Pan integral</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="gbx_bebidas">
+           <property name="title">
+            <string>Bebidas</string>
+           </property>
+           <widget class="QWidget" name="verticalLayoutWidget_3">
+            <property name="geometry">
+             <rect>
+              <x>6</x>
+              <y>20</y>
+              <width>131</width>
+              <height>171</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="lay_ver_bebidas">
+             <item>
+              <widget class="QCheckBox" name="chk_cafe">
+               <property name="text">
+                <string>Café</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chk_chocolate">
+               <property name="text">
+                <string>Chocolate</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chk_milo">
+               <property name="text">
+                <string>Milo</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chk_jugo_naranja">
+               <property name="text">
+                <string>Jugo de naranja</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chk_aromatica">
+               <property name="text">
+                <string>Aromática</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_metodo_pago">
+       <attribute name="title">
+        <string>Método de pago</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget_4">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>10</y>
+          <width>301</width>
+          <height>151</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="lay_ver_metodos_pago">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <item>
+          <widget class="QRadioButton" name="rbn_efectivo">
+           <property name="text">
+            <string>Efectivo</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbn_tarjeta_credito">
+           <property name="text">
+            <string>Tarjeta crédito</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbn_tarjeta_debito">
+           <property name="text">
+            <string>Tarjeta débito</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbn_pago_electronico">
+           <property name="text">
+            <string>Pago electrónico (vía Web)</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_entrega">
+       <attribute name="title">
+        <string>Entrega</string>
+       </attribute>
+       <widget class="QWidget" name="formLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>2</x>
+          <y>2</y>
+          <width>301</width>
+          <height>163</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="lay_frm_entrega">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="topMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="lbl_nombre_completo">
+           <property name="text">
+            <string>Nombre completo:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="txt_nombre_completo"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="lbl_direccion">
+           <property name="text">
+            <string>Dirección:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="txt_direccion"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="lbl_observaciones">
+           <property name="text">
+            <string>Observaciones:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPlainTextEdit" name="txt_observaciones"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QPushButton" name="btn_enviar_solicitud">
+           <property name="text">
+            <string>Enviar solicitud de pedido</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
