@@ -38,7 +38,7 @@
     <item>
      <widget class="QTabWidget" name="twd_tabs">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_productos">
        <attribute name="title">
