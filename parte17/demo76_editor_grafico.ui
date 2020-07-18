@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EditorGrafico</class>
+ <widget class="QMainWindow" name="EditorGrafico">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>480</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>480</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>480</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Editor Gráfico</string>
+  </property>
+  <widget class="QWidget" name="wdg_principal"/>
+  <widget class="QMenuBar" name="mbr_principal">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>480</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="mnu_dibujar">
+    <property name="title">
+     <string>Dibujar</string>
+    </property>
+    <addaction name="mni_circulo"/>
+    <addaction name="mni_rectangulo"/>
+    <addaction name="mni_linea"/>
+   </widget>
+   <widget class="QMenu" name="mnu_ayuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="mni_acerca_de"/>
+   </widget>
+   <addaction name="mnu_dibujar"/>
+   <addaction name="mnu_ayuda"/>
+  </widget>
+  <widget class="QStatusBar" name="stt_principal"/>
+  <action name="mni_circulo">
+   <property name="text">
+    <string>Círculo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="mni_rectangulo">
+   <property name="text">
+    <string>Rectángulo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="mni_linea">
+   <property name="text">
+    <string>Línea</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="mni_acerca_de">
+   <property name="text">
+    <string>Acerca de...</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
