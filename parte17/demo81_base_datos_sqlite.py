@@ -1,0 +1,98 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'demo81_base_datos_sqlite.ui'
+#
+# Created by: PyQt5 UI code generator 5.14.2
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_CreacionBaseDatosTabla(object):
+    def setupUi(self, CreacionBaseDatosTabla):
+        CreacionBaseDatosTabla.setObjectName("CreacionBaseDatosTabla")
+        CreacionBaseDatosTabla.resize(500, 265)
+        CreacionBaseDatosTabla.setMinimumSize(QtCore.QSize(500, 265))
+        CreacionBaseDatosTabla.setMaximumSize(QtCore.QSize(500, 265))
+        self.verticalLayoutWidget = QtWidgets.QWidget(CreacionBaseDatosTabla)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 501, 231))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.lay_ver_principal = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.lay_ver_principal.setContentsMargins(10, 10, 10, 0)
+        self.lay_ver_principal.setObjectName("lay_ver_principal")
+        self.lay_frm_datos = QtWidgets.QFormLayout()
+        self.lay_frm_datos.setObjectName("lay_frm_datos")
+        self.lbl_nombre_base_datos = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_nombre_base_datos.setObjectName("lbl_nombre_base_datos")
+        self.lay_frm_datos.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.lbl_nombre_base_datos)
+        self.txt_nombre_base_datos = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.txt_nombre_base_datos.setObjectName("txt_nombre_base_datos")
+        self.lay_frm_datos.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.txt_nombre_base_datos)
+        self.lbl_nombre_tabla = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_nombre_tabla.setObjectName("lbl_nombre_tabla")
+        self.lay_frm_datos.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.lbl_nombre_tabla)
+        self.txt_nombre_tabla = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.txt_nombre_tabla.setObjectName("txt_nombre_tabla")
+        self.lay_frm_datos.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.txt_nombre_tabla)
+        self.lay_ver_principal.addLayout(self.lay_frm_datos)
+        self.gbx_tabla = QtWidgets.QGroupBox(self.verticalLayoutWidget)
+        self.gbx_tabla.setObjectName("gbx_tabla")
+        self.gridLayoutWidget = QtWidgets.QWidget(self.gbx_tabla)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 25, 461, 61))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.lay_grd_columnas = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.lay_grd_columnas.setContentsMargins(0, 0, 0, 0)
+        self.lay_grd_columnas.setObjectName("lay_grd_columnas")
+        self.txt_nombre_columna = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.txt_nombre_columna.setObjectName("txt_nombre_columna")
+        self.lay_grd_columnas.addWidget(self.txt_nombre_columna, 1, 0, 1, 1)
+        self.lbl_tipo_dato = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.lbl_tipo_dato.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbl_tipo_dato.setObjectName("lbl_tipo_dato")
+        self.lay_grd_columnas.addWidget(self.lbl_tipo_dato, 0, 1, 1, 1)
+        self.cbx_tipo_dato = QtWidgets.QComboBox(self.gridLayoutWidget)
+        self.cbx_tipo_dato.setObjectName("cbx_tipo_dato")
+        self.cbx_tipo_dato.addItem("")
+        self.cbx_tipo_dato.addItem("")
+        self.cbx_tipo_dato.addItem("")
+        self.lay_grd_columnas.addWidget(self.cbx_tipo_dato, 1, 1, 1, 1)
+        self.lbl_nombre_columna = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.lbl_nombre_columna.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbl_nombre_columna.setObjectName("lbl_nombre_columna")
+        self.lay_grd_columnas.addWidget(self.lbl_nombre_columna, 0, 0, 1, 1)
+        self.btn_agregar_columna = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.btn_agregar_columna.setObjectName("btn_agregar_columna")
+        self.lay_grd_columnas.addWidget(self.btn_agregar_columna, 1, 2, 1, 1)
+        self.lay_grd_columnas.setColumnStretch(1, 1)
+        self.lay_grd_columnas.setColumnStretch(2, 1)
+        self.lay_ver_principal.addWidget(self.gbx_tabla)
+        self.btn_crear_base_datos = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btn_crear_base_datos.setObjectName("btn_crear_base_datos")
+        self.lay_ver_principal.addWidget(self.btn_crear_base_datos)
+        self.lbl_resultado = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_resultado.setObjectName("lbl_resultado")
+        self.lay_ver_principal.addWidget(self.lbl_resultado)
+        self.lay_ver_principal.setStretch(0, 2)
+        self.lay_ver_principal.setStretch(1, 3)
+        self.lay_ver_principal.setStretch(2, 1)
+        self.lay_ver_principal.setStretch(3, 1)
+
+        self.retranslateUi(CreacionBaseDatosTabla)
+        QtCore.QMetaObject.connectSlotsByName(CreacionBaseDatosTabla)
+
+    def retranslateUi(self, CreacionBaseDatosTabla):
+        _translate = QtCore.QCoreApplication.translate
+        CreacionBaseDatosTabla.setWindowTitle(_translate("CreacionBaseDatosTabla", "Creación Base Datos SQLite"))
+        self.lbl_nombre_base_datos.setText(_translate("CreacionBaseDatosTabla", "Nombre de la base de datos:"))
+        self.lbl_nombre_tabla.setText(_translate("CreacionBaseDatosTabla", "Nombre de la tabla:"))
+        self.gbx_tabla.setTitle(_translate("CreacionBaseDatosTabla", "Columnas"))
+        self.lbl_tipo_dato.setText(_translate("CreacionBaseDatosTabla", "Tipo de dato"))
+        self.cbx_tipo_dato.setItemText(0, _translate("CreacionBaseDatosTabla", "INTEGER"))
+        self.cbx_tipo_dato.setItemText(1, _translate("CreacionBaseDatosTabla", "TEXT"))
+        self.cbx_tipo_dato.setItemText(2, _translate("CreacionBaseDatosTabla", "REAL"))
+        self.lbl_nombre_columna.setText(_translate("CreacionBaseDatosTabla", "Nombre columna"))
+        self.btn_agregar_columna.setText(_translate("CreacionBaseDatosTabla", "Agregar columna"))
+        self.btn_crear_base_datos.setText(_translate("CreacionBaseDatosTabla", "Crear base de datos"))
+        self.lbl_resultado.setText(_translate("CreacionBaseDatosTabla", "Resultado:"))
