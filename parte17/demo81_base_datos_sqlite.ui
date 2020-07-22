@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CreacionBaseDatosTabla</class>
+ <widget class="QDialog" name="CreacionBaseDatosTabla">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>265</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>500</width>
+    <height>265</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>500</width>
+    <height>265</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Creación Base Datos SQLite</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>501</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="lay_ver_principal" stretch="2,3,1,1">
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <item>
+     <layout class="QFormLayout" name="lay_frm_datos">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lbl_nombre_base_datos">
+        <property name="text">
+         <string>Nombre de la base de datos:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="txt_nombre_base_datos"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lbl_nombre_tabla">
+        <property name="text">
+         <string>Nombre de la tabla:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="txt_nombre_tabla"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="gbx_tabla">
+      <property name="title">
+       <string>Columnas</string>
+      </property>
+      <widget class="QWidget" name="gridLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>25</y>
+         <width>461</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="lay_grd_columnas" columnstretch="0,1,1">
+        <item row="1" column="0">
+         <widget class="QLineEdit" name="txt_nombre_columna"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="lbl_tipo_dato">
+          <property name="text">
+           <string>Tipo de dato</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="cbx_tipo_dato">
+          <item>
+           <property name="text">
+            <string>INTEGER</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TEXT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>REAL</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="lbl_nombre_columna">
+          <property name="text">
+           <string>Nombre columna</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="btn_agregar_columna">
+          <property name="text">
+           <string>Agregar columna</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_crear_base_datos">
+      <property name="text">
+       <string>Crear base de datos</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="lbl_resultado">
+      <property name="text">
+       <string>Resultado:</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
