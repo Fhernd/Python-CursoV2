@@ -66,10 +66,34 @@ class AplicacionNavegacionRegistros(QDialog):
             self.ui.txt_ahorros.setText(str(persona[2]))
 
     def anterior(self):
-        pass
+        if self.registro > 1:
+            sql = '''SELECT * FROM personas ORDER BY documento DESC LIMIT 1 OFFSET ?'''
+            self.registro -= 1
+            persona = self.cursor.execute(sql, (self.total_registros - self.registro,)).fetchone()
+
+            if persona and len(persona):
+                self.ui.txt_documento.setText(str(persona[0]))
+                self.ui.txt_nombre_completo.setText(persona[1])
+                self.ui.txt_ahorros.setText(str(persona[2]))
+        else:
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.setText('Ha alcanzado el primer registro.')
+            self.mensaje.exec_()
 
     def siguiente(self):
-        pass
+        if self.registro < self.total_registros:
+            sql = '''SELECT * FROM personas LIMIT 1 OFFSET ?'''
+            self.registro += 1
+            persona = self.cursor.execute(sql, (self.registro,)).fetchone()
+
+            if persona and len(persona):
+                self.ui.txt_documento.setText(str(persona[0]))
+                self.ui.txt_nombre_completo.setText(persona[1])
+                self.ui.txt_ahorros.setText(str(persona[2]))
+        else:
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.setText('Ha alcanzado el último registro.')
+            self.mensaje.exec_()
     
     def ultimo(self):
         self.registro = self.total_registros
