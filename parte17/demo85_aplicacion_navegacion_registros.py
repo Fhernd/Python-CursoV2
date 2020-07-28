@@ -1,7 +1,7 @@
 import sys
 import sqlite3
 
-from PyQt5.QtWidgets import QApplication, QDialog
+from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from demo85_navegacion_registros import Ui_NavegacionRegistros
 
 class AplicacionNavegacionRegistros(QDialog):
@@ -32,13 +32,38 @@ class AplicacionNavegacionRegistros(QDialog):
         self.conectar_bd()
         self.primero()
 
+        self.mensaje = QMessageBox(self)
+        self.mensaje.setWindowTitle('Mensaje')
+
         self.show()
     
     def conectar_bd(self):
-        pass
+        try:
+            self.conexion = sqlite3.connect('parte17/demo85.db')
+
+            sql = '''SELECT * FROM personas'''
+            self.cursor = self.conexion.cursor()
+            self.total_registros = len(self.cursor.execute(sql).fetchall())
+
+            self.ui.btn_primero.setEnabled(True)
+            self.ui.btn_anterior.setEnabled(True)
+            self.ui.btn_siguiente.setEnabled(True)
+            self.ui.btn_ultimo.setEnabled(True)
+            
+        except sqlite3.Error:
+            self.mensaje.setIcon(QMessageBox.Critical)
+            self.mensaje.setText('Hay problemas al intentar conectar con la base de datos. Revise que el archivo esté disponible.')
+            self.mensaje.exec_()
 
     def primero(self):
-        pass
+        self.registro = 1
+        sql = '''SELECT * FROM personas LIMIT 1'''
+        persona = self.cursor.execute(sql).fetchone()
+
+        if persona and len(persona):
+            self.ui.txt_documento.setText(str(persona[0]))
+            self.ui.txt_nombre_completo.setText(persona[1])
+            self.ui.txt_ahorros.setText(str(persona[2]))
 
     def anterior(self):
         pass
@@ -47,7 +72,14 @@ class AplicacionNavegacionRegistros(QDialog):
         pass
     
     def ultimo(self):
-        pass
+        self.registro = self.total_registros
+        sql = '''SELECT * FROM personas ORDER BY documento DESC LIMIT 1'''
+        persona = self.cursor.execute(sql).fetchone()
+
+        if persona and len(persona):
+            self.ui.txt_documento.setText(str(persona[0]))
+            self.ui.txt_nombre_completo.setText(persona[1])
+            self.ui.txt_ahorros.setText(str(persona[2]))
 
 def main():
     app = QApplication(sys.argv)
