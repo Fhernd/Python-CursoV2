@@ -96,6 +96,8 @@ class AplicacionCambioClave(QDialog):
 
             cursor.execute(sql, (hash_nueva_clave, correo_electronico))
 
+            conexion.commit()
+
             return cursor.rowcount > 0
         except sqlite3.Error:
             self.mensaje.setIcon(QMessageBox.Warning)
