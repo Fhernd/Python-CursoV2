@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DibujoLineas</class>
+ <widget class="QMainWindow" name="DibujoLineas">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dibujo de Líneas</string>
+  </property>
+  <widget class="QWidget" name="wdg_principal">
+   <widget class="QLabel" name="lbl_indicacion">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>181</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Seleccione el tipo de línea a dibujar:</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="lst_tipos_lineas">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>171</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Sólida</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Interlineada</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Interlineada con punto</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Punteada</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Interlineada con doble punto</string>
+     </property>
+    </item>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="mbr_principal">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>640</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="stt_principal"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
