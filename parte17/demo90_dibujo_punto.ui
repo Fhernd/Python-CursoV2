@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DibujoPunto</class>
+ <widget class="QMainWindow" name="DibujoPunto">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dibujar Puntos</string>
+  </property>
+  <widget class="QWidget" name="wdg_principal">
+   <widget class="QLabel" name="lbl_indicacion">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>351</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Haga click en cualquier región de esta ventana para dibujar un punto.</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="mbr_principal">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>640</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="stt_principal"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
