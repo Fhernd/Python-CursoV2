@@ -1,6 +1,7 @@
 import sys
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
+from googlemaps import Client
 from demo97_datos_ubicacion import Ui_DatosUbicacion
 
 class AplicacionDatosUbicacion(QMainWindow):
@@ -22,7 +23,21 @@ class AplicacionDatosUbicacion(QMainWindow):
         self.show()
     
     def buscar(self):
-        pass
+        nombre_ubicacion = self.ui.txt_nombre_ubicacion.text().strip()
+
+        if len(nombre_ubicacion):
+            cliente = Client(key='AIzaSyDCugQUG_8vYlrXz2URJEUgYKuOF4miIcU')
+
+            resultado = cliente.geocode(nombre_ubicacion)[0]
+
+            self.ui.txt_ciudad.setText(nombre_ubicacion)
+            self.ui.txt_nombre_completo_ubicacion.setText(resultado['formatted_address'])
+            self.ui.txt_latitud.setText(str(resultado['geometry']['location']['lat']))
+            self.ui.txt_longitud.setText(str(resultado['geometry']['location']['lng']))
+        else:
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.setText('El campo Nombre ubicación es obligatorio.')
+            self.mensaje.exec_()
 
 def main():
     app = QApplication(sys.argv)
