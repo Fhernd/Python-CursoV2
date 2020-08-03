@@ -1,0 +1,98 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'demo98_ubicacion_latitud_longitud.ui'
+#
+# Created by: PyQt5 UI code generator 5.14.2
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_UbicacionLatitudLongitud(object):
+    def setupUi(self, UbicacionLatitudLongitud):
+        UbicacionLatitudLongitud.setObjectName("UbicacionLatitudLongitud")
+        UbicacionLatitudLongitud.resize(360, 240)
+        UbicacionLatitudLongitud.setMinimumSize(QtCore.QSize(360, 240))
+        UbicacionLatitudLongitud.setMaximumSize(QtCore.QSize(360, 240))
+        self.wdg_principal = QtWidgets.QWidget(UbicacionLatitudLongitud)
+        self.wdg_principal.setObjectName("wdg_principal")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.wdg_principal)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 361, 194))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.lay_ver_principal = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.lay_ver_principal.setContentsMargins(10, 10, 10, 0)
+        self.lay_ver_principal.setObjectName("lay_ver_principal")
+        self.lay_frm_datos_entrada = QtWidgets.QFormLayout()
+        self.lay_frm_datos_entrada.setHorizontalSpacing(92)
+        self.lay_frm_datos_entrada.setObjectName("lay_frm_datos_entrada")
+        self.lbl_latitud = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_latitud.setObjectName("lbl_latitud")
+        self.lay_frm_datos_entrada.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.lbl_latitud)
+        self.txt_latitud = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.txt_latitud.setObjectName("txt_latitud")
+        self.lay_frm_datos_entrada.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.txt_latitud)
+        self.lbl_longitud = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_longitud.setObjectName("lbl_longitud")
+        self.lay_frm_datos_entrada.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.lbl_longitud)
+        self.txt_longitud = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.txt_longitud.setObjectName("txt_longitud")
+        self.lay_frm_datos_entrada.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.txt_longitud)
+        self.btn_buscar = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.btn_buscar.setObjectName("btn_buscar")
+        self.lay_frm_datos_entrada.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.btn_buscar)
+        self.lay_ver_principal.addLayout(self.lay_frm_datos_entrada)
+        self.lay_frm_resultados = QtWidgets.QFormLayout()
+        self.lay_frm_resultados.setObjectName("lay_frm_resultados")
+        self.lbl_ciudad = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_ciudad.setObjectName("lbl_ciudad")
+        self.lay_frm_resultados.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.lbl_ciudad)
+        self.txt_ciudad = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.txt_ciudad.setReadOnly(True)
+        self.txt_ciudad.setObjectName("txt_ciudad")
+        self.lay_frm_resultados.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.txt_ciudad)
+        self.lbl_departamento = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_departamento.setObjectName("lbl_departamento")
+        self.lay_frm_resultados.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.lbl_departamento)
+        self.txt_departamento = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.txt_departamento.setReadOnly(True)
+        self.txt_departamento.setObjectName("txt_departamento")
+        self.lay_frm_resultados.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.txt_departamento)
+        self.lbl_pais = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_pais.setObjectName("lbl_pais")
+        self.lay_frm_resultados.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.lbl_pais)
+        self.txt_pais = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.txt_pais.setReadOnly(True)
+        self.txt_pais.setObjectName("txt_pais")
+        self.lay_frm_resultados.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.txt_pais)
+        self.lbl_nombre_completo_ubicacion = QtWidgets.QLabel(self.verticalLayoutWidget)
+        self.lbl_nombre_completo_ubicacion.setObjectName("lbl_nombre_completo_ubicacion")
+        self.lay_frm_resultados.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.lbl_nombre_completo_ubicacion)
+        self.txt_nombre_completo_ubicacion = QtWidgets.QLineEdit(self.verticalLayoutWidget)
+        self.txt_nombre_completo_ubicacion.setReadOnly(True)
+        self.txt_nombre_completo_ubicacion.setObjectName("txt_nombre_completo_ubicacion")
+        self.lay_frm_resultados.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.txt_nombre_completo_ubicacion)
+        self.lay_ver_principal.addLayout(self.lay_frm_resultados)
+        UbicacionLatitudLongitud.setCentralWidget(self.wdg_principal)
+        self.mbr_principal = QtWidgets.QMenuBar(UbicacionLatitudLongitud)
+        self.mbr_principal.setGeometry(QtCore.QRect(0, 0, 360, 21))
+        self.mbr_principal.setObjectName("mbr_principal")
+        UbicacionLatitudLongitud.setMenuBar(self.mbr_principal)
+        self.stt_principal = QtWidgets.QStatusBar(UbicacionLatitudLongitud)
+        self.stt_principal.setObjectName("stt_principal")
+        UbicacionLatitudLongitud.setStatusBar(self.stt_principal)
+
+        self.retranslateUi(UbicacionLatitudLongitud)
+        QtCore.QMetaObject.connectSlotsByName(UbicacionLatitudLongitud)
+
+    def retranslateUi(self, UbicacionLatitudLongitud):
+        _translate = QtCore.QCoreApplication.translate
+        UbicacionLatitudLongitud.setWindowTitle(_translate("UbicacionLatitudLongitud", "Datos Ubicación"))
+        self.lbl_latitud.setText(_translate("UbicacionLatitudLongitud", "Latitud:"))
+        self.lbl_longitud.setText(_translate("UbicacionLatitudLongitud", "Longitud:"))
+        self.btn_buscar.setText(_translate("UbicacionLatitudLongitud", "Buscar"))
+        self.lbl_ciudad.setText(_translate("UbicacionLatitudLongitud", "Ciudad:"))
+        self.lbl_departamento.setText(_translate("UbicacionLatitudLongitud", "Departamento:"))
+        self.lbl_pais.setText(_translate("UbicacionLatitudLongitud", "País:"))
+        self.lbl_nombre_completo_ubicacion.setText(_translate("UbicacionLatitudLongitud", "Nombre completo ubicación:"))
