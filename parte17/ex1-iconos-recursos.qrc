@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="Iconos">
+    <file>circuloIcon.ico</file>
+    <file>lineaIcon.ico</file>
+    <file>rectanguloIcon.ico</file>
+  </qresource>
+</RCC>
