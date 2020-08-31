@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Graficos</class>
+ <widget class="QMainWindow" name="Graficos">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dibujar Figuras</string>
+  </property>
+  <widget class="QWidget" name="wdg_principal"/>
+  <widget class="QStatusBar" name="stt_principal"/>
+  <widget class="QToolBar" name="tbr_principal">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="mniDibujarCirculo"/>
+   <addaction name="mniDibujarRectangulo"/>
+   <addaction name="mniDibujarLinea"/>
+  </widget>
+  <action name="mniDibujarCirculo">
+   <property name="icon">
+    <iconset resource="ex1-iconos-recursos.qrc">
+     <normaloff>:/Iconos/circuloIcon.ico</normaloff>:/Iconos/circuloIcon.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Dibujar círculo</string>
+   </property>
+   <property name="toolTip">
+    <string>Dibujar círculo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="mniDibujarRectangulo">
+   <property name="icon">
+    <iconset resource="ex1-iconos-recursos.qrc">
+     <normaloff>:/Iconos/rectanguloIcon.ico</normaloff>:/Iconos/rectanguloIcon.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Dibujar rectángulo</string>
+   </property>
+   <property name="toolTip">
+    <string>Dibujar rectángulo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="mniDibujarLinea">
+   <property name="icon">
+    <iconset resource="ex1-iconos-recursos.qrc">
+     <normaloff>:/Iconos/lineaIcon.ico</normaloff>:/Iconos/lineaIcon.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Dibujar línea</string>
+   </property>
+   <property name="toolTip">
+    <string>Dibujar línea</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="ex1-iconos-recursos.qrc"/>
+ </resources>
+ <connections/>
+</ui>
