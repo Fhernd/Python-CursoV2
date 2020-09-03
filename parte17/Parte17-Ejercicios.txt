@@ -1,11 +1,11 @@
 Parte 17 - Ejercicios
 
-1. Crear una aplicación para dibujar diferentes tipos de figuras geométricas: círculo, rectángulo, y línea.
+Ejercicio 1. Crear una aplicación para dibujar diferentes tipos de figuras geométricas: círculo, rectángulo, y línea.
 
 Nota: Ver mockup acompañante.
 
 
-2. En el Proyecto 0 se construyó un sistema de gestión de inventario de dispositivos electrónicos para la empresa Dispositivos S.a.s.
+Ejercicio 2. En el Proyecto 0 se construyó un sistema de gestión de inventario de dispositivos electrónicos para la empresa Dispositivos S.a.s.
 
 Se requiere remodelar la aplicación basada en consola en una aplicación con interfaz gráfica de usuario.
 
