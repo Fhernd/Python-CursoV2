@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GestorInventario</class>
+ <widget class="QMainWindow" name="GestorInventario">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Gestor Inventario - Dispositivos S.a.s.</string>
+  </property>
+  <widget class="QWidget" name="wdg_principal">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="lay_ver_principal">
+      <item>
+       <widget class="QMdiArea" name="mdi_principal"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="mbr_principal">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>640</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="mnu_archivo">
+    <property name="title">
+     <string>Archivo</string>
+    </property>
+    <addaction name="mni_salir"/>
+   </widget>
+   <widget class="QMenu" name="mnu_productos">
+    <property name="title">
+     <string>Productos</string>
+    </property>
+    <addaction name="mni_producto_registrar"/>
+    <addaction name="mni_producto_vender"/>
+    <addaction name="mni_producto_buscar"/>
+    <addaction name="mni_producto_cambiar_disponibilidad"/>
+   </widget>
+   <widget class="QMenu" name="mnu_reportes">
+    <property name="title">
+     <string>Reportes</string>
+    </property>
+    <addaction name="mni_reporte_rango_fechas"/>
+    <addaction name="mni_reporte_productos_mas_vendidos"/>
+    <addaction name="mni_reporte_productos_menos_vendidos"/>
+   </widget>
+   <widget class="QMenu" name="mnu_ayuda">
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+    <addaction name="mni_acerca_de"/>
+   </widget>
+   <addaction name="mnu_archivo"/>
+   <addaction name="mnu_productos"/>
+   <addaction name="mnu_reportes"/>
+   <addaction name="mnu_ayuda"/>
+  </widget>
+  <widget class="QStatusBar" name="stt_principal"/>
+  <action name="mni_salir">
+   <property name="text">
+    <string>Salir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="mni_producto_registrar">
+   <property name="text">
+    <string>Registrar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="mni_producto_vender">
+   <property name="text">
+    <string>Vender</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="mni_producto_buscar">
+   <property name="text">
+    <string>Buscar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="mni_producto_cambiar_disponibilidad">
+   <property name="text">
+    <string>Cambiar disponibilidad</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="mni_reporte_rango_fechas">
+   <property name="text">
+    <string>Productos vendidos en un rango de fechas</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="mni_reporte_productos_mas_vendidos">
+   <property name="text">
+    <string>Productos más vendidos</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="mni_reporte_productos_menos_vendidos">
+   <property name="text">
+    <string>Productos menos vendidos</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
+   </property>
+  </action>
+  <action name="mni_acerca_de">
+   <property name="text">
+    <string>Acerca de...</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
