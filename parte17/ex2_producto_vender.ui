@@ -28,6 +28,9 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QFormLayout" name="lay_frm_principal">
+     <property name="horizontalSpacing">
+      <number>20</number>
+     </property>
      <item row="0" column="0">
       <widget class="QLabel" name="lbl_codigo">
        <property name="text">
