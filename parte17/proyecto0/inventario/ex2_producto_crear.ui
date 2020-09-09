@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProductoCrear</class>
+ <widget class="QWidget" name="ProductoCrear">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>320</width>
+    <height>200</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>320</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>320</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Producto - Crear</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QFormLayout" name="lay_frm_principal">
+     <property name="horizontalSpacing">
+      <number>20</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="lbl_codigo">
+       <property name="text">
+        <string>Código:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="txt_codigo"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="lbl_nombre">
+       <property name="text">
+        <string>Nombre:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="txt_nombre"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lbl_precio">
+       <property name="text">
+        <string>Precio:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="txt_precio"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="lbl_cantidad">
+       <property name="text">
+        <string>Cantidad:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QCheckBox" name="chk_disponible">
+       <property name="text">
+        <string>¿Disponible para venta?</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QPushButton" name="btn_registrar">
+       <property name="text">
+        <string>Crear</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QSpinBox" name="sbx_cantidad"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>txt_codigo</tabstop>
+  <tabstop>txt_nombre</tabstop>
+  <tabstop>txt_precio</tabstop>
+  <tabstop>sbx_cantidad</tabstop>
+  <tabstop>chk_disponible</tabstop>
+  <tabstop>btn_registrar</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

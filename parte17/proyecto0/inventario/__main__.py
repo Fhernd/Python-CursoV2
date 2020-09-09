@@ -5,6 +5,23 @@ import datetime
 import os
 import pickle
 
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from .ex2_gestor_inventario import Ui_GestorInventario
+
+class GestorInventarioAplicacion(QMainWindow):
+
+    def __init__(self):
+        super().__init__()
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        self.ui = Ui_GestorInventario()
+        self.ui.setupUi(self)
+
+        self.show()
+
 def mostrar_menu():
     """
     Muestra el menú de las operaciones disponibles.
@@ -134,6 +151,12 @@ def guardar_datos(inventario):
         return False
 
 def main():
+    app = QApplication(sys.argv)
+    ventana = GestorInventarioAplicacion()
+
+    sys.exit(app.exec_())
+
+def main_console():
     """
     Punto de entrada a la aplicación.
     """
