@@ -6,8 +6,9 @@ import os
 import pickle
 
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 from .ex2_gestor_inventario import Ui_GestorInventario
+from .ex2_producto_crear import Ui_ProductoCrear
 
 class GestorInventarioAplicacion(QMainWindow):
 
@@ -20,7 +21,21 @@ class GestorInventarioAplicacion(QMainWindow):
         self.ui = Ui_GestorInventario()
         self.ui.setupUi(self)
 
+        self.ui.mni_producto_registrar.triggered.connect(self.registrar_producto)
+
         self.show()
+    
+    def registrar_producto(self):
+        gui = ProductoCrear()
+        self.ui.mdi_principal.addSubWindow(gui)
+        gui.show()
+
+class ProductoCrear(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.ui = Ui_ProductoCrear()
+        self.ui.setupUi(self)
 
 def mostrar_menu():
     """
