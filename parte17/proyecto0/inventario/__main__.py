@@ -7,14 +7,15 @@ import pickle
 
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtGui import QDoubleValidator, QIntValidator
 from .ex2_gestor_inventario import Ui_GestorInventario
 from .ex2_producto_crear import Ui_ProductoCrear
 
 class GestorInventarioAplicacion(QMainWindow):
 
-    def __init__(self):
+    def __init__(self, inventario):
         super().__init__()
-
+        self.inventario = inventario
         self.inicializar_gui()
     
     def inicializar_gui(self):
@@ -26,16 +27,29 @@ class GestorInventarioAplicacion(QMainWindow):
         self.show()
     
     def registrar_producto(self):
-        gui = ProductoCrear()
+        gui = ProductoCrear(self.inventario)
         self.ui.mdi_principal.addSubWindow(gui)
         gui.show()
 
 class ProductoCrear(QWidget):
-    def __init__(self):
+    def __init__(self, inventario):
         super().__init__()
+        self.inventario = inventario
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
 
         self.ui = Ui_ProductoCrear()
         self.ui.setupUi(self)
+        
+        self.ui.btn_registrar.clicked.connect(self.producto_crear)
+        self.ui.txt_codigo.setValidator(QIntValidator(1, 1000000, self))
+        self.ui.txt_precio.setValidator(QDoubleValidator(1, 10000000, self))
+        self.ui.sbx_cantidad.setMinimum(1)
+    
+    def producto_crear(self):
+        pass
 
 def mostrar_menu():
     """
@@ -166,8 +180,10 @@ def guardar_datos(inventario):
         return False
 
 def main():
+    inventario = Inventario()
+
     app = QApplication(sys.argv)
-    ventana = GestorInventarioAplicacion()
+    ventana = GestorInventarioAplicacion(inventario)
 
     sys.exit(app.exec_())
 
