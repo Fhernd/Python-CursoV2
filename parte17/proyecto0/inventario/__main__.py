@@ -6,7 +6,7 @@ import os
 import pickle
 
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QWidget
 from PyQt5.QtGui import QDoubleValidator, QIntValidator
 from .ex2_gestor_inventario import Ui_GestorInventario
 from .ex2_producto_crear import Ui_ProductoCrear
@@ -42,14 +42,48 @@ class ProductoCrear(QWidget):
 
         self.ui = Ui_ProductoCrear()
         self.ui.setupUi(self)
+
+        self.mensaje = QMessageBox(self)
+        self.mensaje.setWindowTitle('Mensaje')
         
         self.ui.btn_registrar.clicked.connect(self.producto_crear)
         self.ui.txt_codigo.setValidator(QIntValidator(1, 1000000, self))
-        self.ui.txt_precio.setValidator(QDoubleValidator(1, 10000000, self))
+        self.ui.txt_precio.setValidator(QDoubleValidator(1, 10000000, 2))
         self.ui.sbx_cantidad.setMinimum(1)
     
     def producto_crear(self):
-        pass
+        codigo = int(self.ui.txt_codigo.text())
+
+        if self.inventario.buscar_producto(codigo):
+            self.mensaje.setText('Ya existe un producto con el código especificado.')
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.exec_()
+            return
+        
+        nombre = self.ui.txt_nombre.text().strip()
+
+        if len(nombre) == 0:
+            self.mensaje.setText('El campo Nombre es obligatorio.')
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.exec_()
+            return
+        
+        precio = float(self.ui.txt_precio.text())
+        cantidad = int(self.ui.sbx_cantidad.value())
+        disponible = self.ui.chk_disponible.isChecked()
+
+        nuevo_producto = Producto(codigo, nombre, precio, cantidad, disponible)
+        self.inventario.registrar_producto(nuevo_producto)
+
+        self.mensaje.setText('El producto se ha creado de forma satisfactoria.')
+        self.mensaje.setIcon(QMessageBox.Information)
+        self.mensaje.exec_()
+
+        self.ui.txt_codigo.setText('')
+        self.ui.txt_nombre.setText('')
+        self.ui.txt_precio.setText('1')
+        self.ui.sbx_cantidad.setValue(1)
+        self.ui.chk_disponible.setCheckState(False)
 
 def mostrar_menu():
     """
