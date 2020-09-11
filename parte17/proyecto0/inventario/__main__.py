@@ -10,6 +10,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QWidget
 from PyQt5.QtGui import QDoubleValidator, QIntValidator
 from .ex2_gestor_inventario import Ui_GestorInventario
 from .ex2_producto_crear import Ui_ProductoCrear
+from .ex2_producto_vender import Ui_ProductoVender
 
 class GestorInventarioAplicacion(QMainWindow):
 
@@ -23,11 +24,17 @@ class GestorInventarioAplicacion(QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.mni_producto_registrar.triggered.connect(self.registrar_producto)
+        self.ui.mni_producto_vender.triggered.connect(self.vender_producto)
 
         self.show()
     
     def registrar_producto(self):
         gui = ProductoCrear(self.inventario)
+        self.ui.mdi_principal.addSubWindow(gui)
+        gui.show()
+    
+    def vender_producto(self):
+        gui = ProductoVender(self.inventario)
         self.ui.mdi_principal.addSubWindow(gui)
         gui.show()
 
@@ -84,6 +91,19 @@ class ProductoCrear(QWidget):
         self.ui.txt_precio.setText('1')
         self.ui.sbx_cantidad.setValue(1)
         self.ui.chk_disponible.setCheckState(False)
+
+class ProductoVender(QWidget):
+
+    def __init__(self, inventario):
+        super().__init__()
+
+        self.inventario = inventario
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        self.ui = Ui_ProductoVender()
+        self.ui.setupUi(self)
 
 def mostrar_menu():
     """
