@@ -105,6 +105,41 @@ class ProductoVender(QWidget):
         self.ui = Ui_ProductoVender()
         self.ui.setupUi(self)
 
+        self.mensaje = QMessageBox(self)
+        self.mensaje.setWindowTitle('Mensaje')
+
+        self.ui.btn_vender.clicked.connect(self.vender)
+
+        self.ui.txt_codigo.setValidator(QIntValidator(1, 1000000, self))
+        self.ui.sbx_cantidad.setMinimum(1)
+    
+    def vender(self):
+        codigo = int(self.ui.txt_codigo.text())
+
+        producto = inventario.buscar_producto(codigo)
+
+        if producto is None:
+            self.mensaje.setText('No existe un producto con el código especificado.')
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.exec_()
+            return
+        
+        cantidad = self.ui.sbx_cantidad.value()
+
+        if cantidad == 0:
+            self.mensaje.setText('Debe especificar al menos una unidad del producto para la venta.')
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.exec_()
+            return
+
+        venta = Venta(codigo, cantidad, producto.precio * cantidad)
+
+        inventario.realizar_venta(venta)
+
+        self.mensaje.setText('La venta se ha realizado de forma satisfactoria.')
+        self.mensaje.setIcon(QMessageBox.Information)
+        self.mensaje.exec_()
+
 def mostrar_menu():
     """
     Muestra el menú de las operaciones disponibles.
