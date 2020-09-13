@@ -112,11 +112,18 @@ class ProductoVender(QWidget):
 
         self.ui.txt_codigo.setValidator(QIntValidator(1, 1000000, self))
         self.ui.sbx_cantidad.setMinimum(1)
+        self.ui.sbx_cantidad.setMaximum(1000)
     
     def vender(self):
-        codigo = int(self.ui.txt_codigo.text())
+        try:
+            codigo = int(self.ui.txt_codigo.text())
+        except:
+            self.mensaje.setText('El campo Código es obligatorio.')
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.exec_()
+            return
 
-        producto = inventario.buscar_producto(codigo)
+        producto = self.inventario.buscar_producto(codigo)
 
         if producto is None:
             self.mensaje.setText('No existe un producto con el código especificado.')
@@ -134,7 +141,7 @@ class ProductoVender(QWidget):
 
         venta = Venta(codigo, cantidad, producto.precio * cantidad)
 
-        inventario.realizar_venta(venta)
+        self.inventario.realizar_venta(venta)
 
         self.mensaje.setText('La venta se ha realizado de forma satisfactoria.')
         self.mensaje.setIcon(QMessageBox.Information)
@@ -271,6 +278,13 @@ def guardar_datos(inventario):
 def main():
     inventario = Inventario()
 
+    if os.path.isfile('inventario/inventario.pickle'):
+        resultado = cargar_inventario()
+        
+        if resultado:
+            inventario.productos = resultado['productos']
+            inventario.ventas = resultado['ventas']
+
     app = QApplication(sys.argv)
     ventana = GestorInventarioAplicacion(inventario)
 
@@ -286,7 +300,7 @@ def main_console():
         resultado = cargar_inventario()
         
         if resultado:
-            inventaro.productos = resultado['productos']
+            inventario.productos = resultado['productos']
             inventario.ventas = resultado['ventas']
 
     while True:
