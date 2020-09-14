@@ -14,11 +14,35 @@ from .ex2_producto_vender import Ui_ProductoVender
 
 class GestorInventarioAplicacion(QMainWindow):
 
-    def __init__(self, inventario):
+    def __init__(self):
         super().__init__()
-        self.inventario = inventario
+
+        self.cargar_inventario()
         self.inicializar_gui()
     
+    def closeEvent(self, event):
+        respuesta = QMessageBox.question(self, 'Confirmación', '¿Desea guardar los datos de la aplicación antes de salir?', QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+
+        if respuesta == QMessageBox.Yes:
+            guardar_datos(self.inventario)
+        
+        event.accept()
+    
+    def cargar_inventario(self):
+
+        if os.path.isfile('inventario/inventario.pickle'):
+            respuesta = QMessageBox.question(self, 'Confirmación', '¿Desea cargar los datos de desde el archivo inventario?', QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            
+            self.inventario = Inventario()
+
+            if respuesta == QMessageBox.Yes:
+                with open('inventario/inventario.pickle', 'rb') as f:
+                    resultado = pickle.load(f)
+                
+                if resultado:
+                    self.inventario.productos = resultado['productos']
+                    self.inventario.ventas = resultado['ventas']
+
     def inicializar_gui(self):
         self.ui = Ui_GestorInventario()
         self.ui.setupUi(self)
@@ -240,53 +264,18 @@ def continuar():
     print()
 
 def cargar_inventario():
-    while True:
-        print('¿Desea cargar los datos del inventario y las ventas desde el archivo `inventario.pickle`?:')
-        print('1. Sí')
-        print('2. No')
-        opcion = capturar_entero('Digite la opción')
-
-        if opcion == 1 or opcion == 2:
-            break
-    
-    if opcion == 1:
-        with open('inventario/inventario.pickle', 'rb') as f:
-            inventario = pickle.load(f)
-            return inventario
-    
-    return None
+    with open('inventario/inventario.pickle', 'rb') as f:
+        inventario = pickle.load(f)
+        return inventario
 
 def guardar_datos(inventario):
-    while True:
-        print('¿Desea guardar los datos de productos y ventas en el archivo `inventario.pickle`?:')
-        print('1. Sí')
-        print('2. No')
-        opcion = capturar_entero('Digite la opción')
-
-        if opcion == 1 or opcion == 2:
-            break
-    
-    if opcion == 1:
-        with open('inventario/inventario.pickle', 'wb') as f:
-
-            pickle.dump(inventario, f)
-
-        return True
-    else:
-        return False
+    with open('inventario/inventario.pickle', 'wb') as f:
+        pickle.dump(inventario, f)
 
 def main():
-    inventario = Inventario()
-
-    if os.path.isfile('inventario/inventario.pickle'):
-        resultado = cargar_inventario()
-        
-        if resultado:
-            inventario.productos = resultado['productos']
-            inventario.ventas = resultado['ventas']
 
     app = QApplication(sys.argv)
-    ventana = GestorInventarioAplicacion(inventario)
+    ventana = GestorInventarioAplicacion()
 
     sys.exit(app.exec_())
 
