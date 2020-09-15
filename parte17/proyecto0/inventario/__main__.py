@@ -11,6 +11,7 @@ from PyQt5.QtGui import QDoubleValidator, QIntValidator
 from .ex2_gestor_inventario import Ui_GestorInventario
 from .ex2_producto_crear import Ui_ProductoCrear
 from .ex2_producto_vender import Ui_ProductoVender
+from .ex2_producto_buscar import Ui_ProductoBuscar
 
 class GestorInventarioAplicacion(QMainWindow):
 
@@ -49,6 +50,7 @@ class GestorInventarioAplicacion(QMainWindow):
 
         self.ui.mni_producto_registrar.triggered.connect(self.registrar_producto)
         self.ui.mni_producto_vender.triggered.connect(self.vender_producto)
+        self.ui.mni_producto_buscar.triggered.connect(self.buscar_producto)
 
         self.show()
     
@@ -59,6 +61,11 @@ class GestorInventarioAplicacion(QMainWindow):
     
     def vender_producto(self):
         gui = ProductoVender(self.inventario)
+        self.ui.mdi_principal.addSubWindow(gui)
+        gui.show()
+    
+    def buscar_producto(self):
+        gui = ProductoBuscar(self.inventario)
         self.ui.mdi_principal.addSubWindow(gui)
         gui.show()
 
@@ -170,6 +177,18 @@ class ProductoVender(QWidget):
         self.mensaje.setText('La venta se ha realizado de forma satisfactoria.')
         self.mensaje.setIcon(QMessageBox.Information)
         self.mensaje.exec_()
+
+class ProductoBuscar(QWidget):
+
+    def __init__(self, inventario):
+        super().__init__()
+        self.inventario = inventario
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        self.ui = Ui_ProductoBuscar()
+        self.ui.setupUi(self)
 
 def mostrar_menu():
     """
