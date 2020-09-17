@@ -190,6 +190,37 @@ class ProductoBuscar(QWidget):
         self.ui = Ui_ProductoBuscar()
         self.ui.setupUi(self)
 
+        self.mensaje = QMessageBox(self)
+        self.mensaje.setWindowTitle('Mensaje')
+
+        self.ui.btn_buscar.clicked.connect(self.buscar_producto)
+
+        self.ui.txt_codigo.setValidator(QIntValidator(1, 1000000, self))
+    
+    def buscar_producto(self):
+        codigo = self.ui.txt_codigo.text()
+
+        if len(codigo) == 0:
+            self.mensaje.setText('El camo Código es obligatorio.')
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.exec_()
+            return
+        
+        codigo = int(codigo)
+
+        producto = self.inventario.buscar_producto(codigo)
+
+        if producto is None:
+            self.mensaje.setText('No se ha encontrado un producto con el código especificado.')
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.exec_()
+            return
+        
+        self.ui.txt_nombre.setText(producto.nombre)
+        self.ui.txt_precio.setText(str(producto.precio))
+        self.ui.txt_cantidad.setText(str(producto.cantidad))
+        
+
 def mostrar_menu():
     """
     Muestra el menú de las operaciones disponibles.
