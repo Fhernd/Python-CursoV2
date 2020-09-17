@@ -196,6 +196,7 @@ class ProductoBuscar(QWidget):
         self.ui.btn_buscar.clicked.connect(self.buscar_producto)
 
         self.ui.txt_codigo.setValidator(QIntValidator(1, 1000000, self))
+        self.ui.chk_disponible.setEnabled(False)
     
     def buscar_producto(self):
         codigo = self.ui.txt_codigo.text()
@@ -219,7 +220,7 @@ class ProductoBuscar(QWidget):
         self.ui.txt_nombre.setText(producto.nombre)
         self.ui.txt_precio.setText(str(producto.precio))
         self.ui.txt_cantidad.setText(str(producto.cantidad))
-        
+        self.ui.chk_disponible.setCheckState(producto.disponible)
 
 def mostrar_menu():
     """
