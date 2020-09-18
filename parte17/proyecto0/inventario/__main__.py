@@ -12,6 +12,7 @@ from .ex2_gestor_inventario import Ui_GestorInventario
 from .ex2_producto_crear import Ui_ProductoCrear
 from .ex2_producto_vender import Ui_ProductoVender
 from .ex2_producto_buscar import Ui_ProductoBuscar
+from .ex2_producto_cambiar_disponibilidad import Ui_ProductoCambiarDisponiblidad
 
 class GestorInventarioAplicacion(QMainWindow):
 
@@ -41,8 +42,8 @@ class GestorInventarioAplicacion(QMainWindow):
                     resultado = pickle.load(f)
                 
                 if resultado:
-                    self.inventario.productos = resultado['productos']
-                    self.inventario.ventas = resultado['ventas']
+                    self.inventario.productos = resultado.productos
+                    self.inventario.ventas = resultado.ventas
 
     def inicializar_gui(self):
         self.ui = Ui_GestorInventario()
@@ -221,6 +222,16 @@ class ProductoBuscar(QWidget):
         self.ui.txt_precio.setText(str(producto.precio))
         self.ui.txt_cantidad.setText(str(producto.cantidad))
         self.ui.chk_disponible.setCheckState(producto.disponible)
+
+class ProductoCambioDisponibilidad(QWidget):
+
+    def __init__(self, inventario):
+        super().__init__()
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        pass
 
 def mostrar_menu():
     """
