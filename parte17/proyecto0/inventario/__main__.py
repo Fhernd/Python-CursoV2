@@ -203,7 +203,7 @@ class ProductoBuscar(QWidget):
         codigo = self.ui.txt_codigo.text()
 
         if len(codigo) == 0:
-            self.mensaje.setText('El camo Código es obligatorio.')
+            self.mensaje.setText('El campo Código es obligatorio.')
             self.mensaje.setIcon(QMessageBox.Warning)
             self.mensaje.exec_()
             return
@@ -227,11 +227,37 @@ class ProductoCambioDisponibilidad(QWidget):
 
     def __init__(self, inventario):
         super().__init__()
-
+        self.inventario = inventario
         self.inicializar_gui()
     
     def inicializar_gui(self):
-        pass
+        self.ui = Ui_ProductoCambiarDisponiblidad()
+        self.ui.setupUi(self)
+
+        self.mensaje = QMessageBox(self)
+        self.mensaje.setWindowTitle('Mensaje')
+
+        self.ui.btn_buscar.clicked.connect(self.cambiar_disponibilidad)
+        self.ui.txt_codigo.setValidator(QIntValidator(1, 1000000, self))
+    
+    def cambiar_disponibilidad(self):
+        codigo = self.ui.txt_codigo.text()
+
+        if len(codigo) == 0:
+            self.mensaje.setText('El campo Código es obligatorio.')
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.exec_()
+            return
+        
+        producto = self.inventario.buscar_producto(codigo)
+
+        if producto is None:
+            self.mensaje.setText('No se ha encontrado un producto con el código especificado.')
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.exec_()
+            return
+        
+        self.ui.chk_disponible.setEnabled(producto.disponible)
 
 def mostrar_menu():
     """
