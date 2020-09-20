@@ -52,6 +52,7 @@ class GestorInventarioAplicacion(QMainWindow):
         self.ui.mni_producto_registrar.triggered.connect(self.registrar_producto)
         self.ui.mni_producto_vender.triggered.connect(self.vender_producto)
         self.ui.mni_producto_buscar.triggered.connect(self.buscar_producto)
+        self.ui.mni_producto_cambiar_disponibilidad.triggered.connect(self.cambiar_disponibilidad)
 
         self.show()
     
@@ -67,6 +68,11 @@ class GestorInventarioAplicacion(QMainWindow):
     
     def buscar_producto(self):
         gui = ProductoBuscar(self.inventario)
+        self.ui.mdi_principal.addSubWindow(gui)
+        gui.show()
+    
+    def cambiar_disponibilidad(self):
+        gui = ProductoCambioDisponibilidad(self.inventario)
         self.ui.mdi_principal.addSubWindow(gui)
         gui.show()
 
@@ -239,6 +245,8 @@ class ProductoCambioDisponibilidad(QWidget):
 
         self.ui.btn_buscar.clicked.connect(self.cambiar_disponibilidad)
         self.ui.txt_codigo.setValidator(QIntValidator(1, 1000000, self))
+
+        self.ui.chk_disponiblidad.setEnabled(False)
     
     def cambiar_disponibilidad(self):
         codigo = self.ui.txt_codigo.text()
@@ -249,15 +257,23 @@ class ProductoCambioDisponibilidad(QWidget):
             self.mensaje.exec_()
             return
         
-        producto = self.inventario.buscar_producto(codigo)
+        codigo = int(codigo)
 
-        if producto is None:
+        self.producto = self.inventario.buscar_producto(codigo)
+
+        if self.producto is None:
             self.mensaje.setText('No se ha encontrado un producto con el código especificado.')
             self.mensaje.setIcon(QMessageBox.Warning)
             self.mensaje.exec_()
             return
         
-        self.ui.chk_disponible.setEnabled(producto.disponible)
+        self.ui.chk_disponiblidad.setEnabled(True)
+        self.ui.chk_disponiblidad.setCheckState(self.producto.disponible)
+
+        self.ui.chk_disponiblidad.stateChanged.connect(self.cambiar_disponibilidad_producto)
+    
+    def cambiar_disponibilidad_producto(self):
+        self.producto.disponible = not self.producto.disponible
 
 def mostrar_menu():
     """
