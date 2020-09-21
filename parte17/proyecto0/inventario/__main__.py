@@ -13,14 +13,15 @@ from .ex2_producto_crear import Ui_ProductoCrear
 from .ex2_producto_vender import Ui_ProductoVender
 from .ex2_producto_buscar import Ui_ProductoBuscar
 from .ex2_producto_cambiar_disponibilidad import Ui_ProductoCambiarDisponiblidad
+from .ex2_reporte_ventas_rango_fechas import Ui_ReporteVentasRangoFechas
 
 class GestorInventarioAplicacion(QMainWindow):
 
     def __init__(self):
         super().__init__()
 
-        self.cargar_inventario()
         self.inicializar_gui()
+        self.cargar_inventario()
     
     def closeEvent(self, event):
         respuesta = QMessageBox.question(self, 'Confirmación', '¿Desea guardar los datos de la aplicación antes de salir?', QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -33,7 +34,7 @@ class GestorInventarioAplicacion(QMainWindow):
     def cargar_inventario(self):
 
         if os.path.isfile('inventario/inventario.pickle'):
-            respuesta = QMessageBox.question(self, 'Confirmación', '¿Desea cargar los datos de desde el archivo inventario?', QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            respuesta = QMessageBox.question(self, 'Confirmación', '¿Desea cargar los datos desde el archivo inventario?', QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             
             self.inventario = Inventario()
 
@@ -268,7 +269,7 @@ class ProductoCambioDisponibilidad(QWidget):
             return
         
         self.ui.chk_disponiblidad.setEnabled(True)
-        self.ui.chk_disponiblidad.setCheckState(self.producto.disponible)
+        self.ui.chk_disponiblidad.setChecked(self.producto.disponible)
 
         self.ui.chk_disponiblidad.stateChanged.connect(self.cambiar_disponibilidad_producto)
     
