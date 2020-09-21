@@ -54,6 +54,7 @@ class GestorInventarioAplicacion(QMainWindow):
         self.ui.mni_producto_vender.triggered.connect(self.vender_producto)
         self.ui.mni_producto_buscar.triggered.connect(self.buscar_producto)
         self.ui.mni_producto_cambiar_disponibilidad.triggered.connect(self.cambiar_disponibilidad)
+        self.ui.mni_reporte_rango_fechas.triggered.connect(self.generar_reporte_rango_fechas)
 
         self.show()
     
@@ -74,6 +75,11 @@ class GestorInventarioAplicacion(QMainWindow):
     
     def cambiar_disponibilidad(self):
         gui = ProductoCambioDisponibilidad(self.inventario)
+        self.ui.mdi_principal.addSubWindow(gui)
+        gui.show()
+    
+    def generar_reporte_rango_fechas(self):
+        gui = ReporteVentasRangoFechas(self.inventario)
         self.ui.mdi_principal.addSubWindow(gui)
         gui.show()
 
@@ -275,6 +281,19 @@ class ProductoCambioDisponibilidad(QWidget):
     
     def cambiar_disponibilidad_producto(self):
         self.producto.disponible = not self.producto.disponible
+
+class ReporteVentasRangoFechas(QWidget):
+
+    def __init__(self, inventario):
+        super().__init__()
+
+        self.inventario = inventario
+
+        self.inicializar_gui()
+
+    def inicializar_gui(self):
+        self.ui = Ui_ReporteVentasRangoFechas()
+        self.ui.setupUi(self)
 
 def mostrar_menu():
     """

@@ -53,6 +53,12 @@
        <property name="text">
         <string>¿Disponible para venta?</string>
        </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
     </layout>
