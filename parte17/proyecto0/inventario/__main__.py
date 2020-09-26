@@ -8,6 +8,7 @@ import pickle
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QWidget
 from PyQt5.QtGui import QDoubleValidator, QIntValidator
+from PyQt5.QtCore import QDateTime
 from .ex2_gestor_inventario import Ui_GestorInventario
 from .ex2_producto_crear import Ui_ProductoCrear
 from .ex2_producto_vender import Ui_ProductoVender
@@ -294,6 +295,31 @@ class ReporteVentasRangoFechas(QWidget):
     def inicializar_gui(self):
         self.ui = Ui_ReporteVentasRangoFechas()
         self.ui.setupUi(self)
+
+        self.mensaje = QMessageBox(self)
+        self.mensaje.setWindowTitle('Mensaje')
+
+        self.ui.btn_buscar.clicked.connect(self.buscar_ventas)
+        self.ui.dat_fecha_inicio.setMaximumDateTime(QDateTime.currentDateTime())
+        self.ui.dat_fecha_final.setMaximumDateTime(QDateTime.currentDateTime())
+    
+    def buscar_ventas(self):
+        fecha_inicio = self.ui.dat_fecha_inicio.date()
+        fecha_final = self.ui.dat_fecha_final.date()
+
+        if fecha_inicio > fecha_final:
+            self.mensaje.setIcon(QMessageBox.Warning)
+            self.mensaje.setText('La fecha de inicio no puede ser mayor a la fecha final.')
+            self.mensaje.exec_()
+            return
+        
+        fecha_inicio = fecha_inicio.toString('yyyy-MM-dd')
+        fecha_final = fecha_final.toString('yyyy-MM-dd')
+
+        fecha_inicio = datetime.datetime.strptime(fecha_inicio, '%Y-%m-%d')
+        fecha_final = datetime.datetime.strptime(fecha_final, '%Y-%m-%d')
+
+        
 
 def mostrar_menu():
     """
