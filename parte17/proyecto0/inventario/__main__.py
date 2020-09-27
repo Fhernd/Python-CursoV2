@@ -6,7 +6,7 @@ import os
 import pickle
 
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QTableWidgetItem, QWidget
 from PyQt5.QtGui import QDoubleValidator, QIntValidator
 from PyQt5.QtCore import QDateTime
 from .ex2_gestor_inventario import Ui_GestorInventario
@@ -318,8 +318,28 @@ class ReporteVentasRangoFechas(QWidget):
 
         fecha_inicio = datetime.datetime.strptime(fecha_inicio, '%Y-%m-%d')
         fecha_final = datetime.datetime.strptime(fecha_final, '%Y-%m-%d')
+        print(fecha_inicio)
+        print(fecha_final)
 
-        
+        print(self.inventario.ventas)
+
+        for v in self.inventario.ventas:
+            print(v.codigo_producto, v.fecha)
+
+        print()
+        ventas = self.inventario.ventas_rango_fecha(fecha_inicio, fecha_final)
+
+        print(ventas)
+        print(len(ventas))
+
+        for v in ventas:
+            numero_fila = self.ui.tbl_ventas.rowCount()
+            self.ui.tbl_ventas.insertRow(numero_fila)
+
+            self.ui.tbl_ventas.setItem(numero_fila, 0, QTableWidgetItem(v.codigo_producto))
+            self.ui.tbl_ventas.setItem(numero_fila, 1, QTableWidgetItem(v.fecha))
+            self.ui.tbl_ventas.setItem(numero_fila, 2, QTableWidgetItem(v.cantidad))
+            self.ui.tbl_ventas.setItem(numero_fila, 3, QTableWidgetItem(v.total_sin_iva * 1.13))
 
 def mostrar_menu():
     """
