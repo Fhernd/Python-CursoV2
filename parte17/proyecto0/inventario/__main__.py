@@ -318,28 +318,19 @@ class ReporteVentasRangoFechas(QWidget):
 
         fecha_inicio = datetime.datetime.strptime(fecha_inicio, '%Y-%m-%d')
         fecha_final = datetime.datetime.strptime(fecha_final, '%Y-%m-%d')
-        print(fecha_inicio)
-        print(fecha_final)
+        fecha_final.replace(hour=23, minute=59, second=59, microsecond=999999)
 
-        print(self.inventario.ventas)
-
-        for v in self.inventario.ventas:
-            print(v.codigo_producto, v.fecha)
-
-        print()
         ventas = self.inventario.ventas_rango_fecha(fecha_inicio, fecha_final)
-
-        print(ventas)
-        print(len(ventas))
 
         for v in ventas:
             numero_fila = self.ui.tbl_ventas.rowCount()
             self.ui.tbl_ventas.insertRow(numero_fila)
 
-            self.ui.tbl_ventas.setItem(numero_fila, 0, QTableWidgetItem(v.codigo_producto))
-            self.ui.tbl_ventas.setItem(numero_fila, 1, QTableWidgetItem(v.fecha))
-            self.ui.tbl_ventas.setItem(numero_fila, 2, QTableWidgetItem(v.cantidad))
-            self.ui.tbl_ventas.setItem(numero_fila, 3, QTableWidgetItem(v.total_sin_iva * 1.13))
+            self.ui.tbl_ventas.setItem(numero_fila, 0, QTableWidgetItem(str(v.codigo_producto)))
+            self.ui.tbl_ventas.setItem(numero_fila, 1, QTableWidgetItem(v.fecha.strftime('%Y-%m-%d')))
+            self.ui.tbl_ventas.setItem(numero_fila, 2, QTableWidgetItem(str(v.cantidad)))
+            total = v.total_sin_iva * 1.13
+            self.ui.tbl_ventas.setItem(numero_fila, 3, QTableWidgetItem('{:.2f}'.format(total)))
 
 def mostrar_menu():
     """
