@@ -9,12 +9,14 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QTableWidgetItem, QWidget
 from PyQt5.QtGui import QDoubleValidator, QIntValidator
 from PyQt5.QtCore import QDateTime
+
 from .ex2_gestor_inventario import Ui_GestorInventario
 from .ex2_producto_crear import Ui_ProductoCrear
 from .ex2_producto_vender import Ui_ProductoVender
 from .ex2_producto_buscar import Ui_ProductoBuscar
 from .ex2_producto_cambiar_disponibilidad import Ui_ProductoCambiarDisponiblidad
 from .ex2_reporte_ventas_rango_fechas import Ui_ReporteVentasRangoFechas
+from .ex2_reporte_top_5 import Ui_ReporteTop5
 
 class GestorInventarioAplicacion(QMainWindow):
 
@@ -55,7 +57,9 @@ class GestorInventarioAplicacion(QMainWindow):
         self.ui.mni_producto_vender.triggered.connect(self.vender_producto)
         self.ui.mni_producto_buscar.triggered.connect(self.buscar_producto)
         self.ui.mni_producto_cambiar_disponibilidad.triggered.connect(self.cambiar_disponibilidad)
+
         self.ui.mni_reporte_rango_fechas.triggered.connect(self.generar_reporte_rango_fechas)
+        self.ui.mni_reporte_productos_mas_vendidos.triggered.connect(self.generar_reporte_menos_vendidos)
 
         self.show()
     
@@ -81,6 +85,11 @@ class GestorInventarioAplicacion(QMainWindow):
     
     def generar_reporte_rango_fechas(self):
         gui = ReporteVentasRangoFechas(self.inventario)
+        self.ui.mdi_principal.addSubWindow(gui)
+        gui.show()
+    
+    def generar_reporte_menos_vendidos(self):
+        gui = ReporteTop5(self.inventario)
         self.ui.mdi_principal.addSubWindow(gui)
         gui.show()
 
@@ -331,6 +340,29 @@ class ReporteVentasRangoFechas(QWidget):
             self.ui.tbl_ventas.setItem(numero_fila, 2, QTableWidgetItem(str(v.cantidad)))
             total = v.total_sin_iva * 1.13
             self.ui.tbl_ventas.setItem(numero_fila, 3, QTableWidgetItem('{:.2f}'.format(total)))
+
+class ReporteTop5(QWidget):
+
+    def __init__(self, inventario):
+        super().__init__()
+
+        self.inventario = inventario
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        self.ui = Ui_ReporteTop5()
+        self.ui.setupUi(self)
+
+        self.setWindowTitle('Reporte - Top 5 Productos Más Vendidos')
+
+        self.cargar_reporte_top_5_mas_vendidos()
+
+    def cargar_reporte_top_5_mas_vendidos(self):
+        productos_vendidos = self.inventario.top_5_mas_vendidos()
+
+        for p in productos_vendidos:
+            print(p)
 
 def mostrar_menu():
     """
@@ -665,7 +697,7 @@ def main_console():
 
                     print('Top 5 de los productos más vendidos')
                     for p in productos_vendidos:
-                        inventario.mostrar_datos_venta_producto( p)
+                        inventario.mostrar_datos_venta_producto(p)
                         print()
                 else:
                     print()
