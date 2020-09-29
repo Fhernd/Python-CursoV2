@@ -32,12 +32,17 @@
       <widget class="QTableWidget" name="tbl_top_5">
        <column>
         <property name="text">
-         <string>ID Producto</string>
+         <string>Código</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>Fecha</string>
+         <string>Nombre</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Precio</string>
         </property>
        </column>
        <column>

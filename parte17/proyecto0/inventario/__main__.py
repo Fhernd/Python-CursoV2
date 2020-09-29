@@ -362,7 +362,18 @@ class ReporteTop5(QWidget):
         productos_vendidos = self.inventario.top_5_mas_vendidos()
 
         for p in productos_vendidos:
-            print(p)
+            producto = self.inventario.buscar_producto(p[0])
+            cantidad = p[1]
+            total = cantidad * producto.precio
+
+            numeroFila = self.ui.tbl_top_5.rowCount()
+            self.ui.tbl_top_5.insertRow(numeroFila)
+
+            self.ui.tbl_top_5.setItem(numeroFila, 0, QTableWidgetItem(str(p[0])))
+            self.ui.tbl_top_5.setItem(numeroFila, 1, QTableWidgetItem(producto.nombre))
+            self.ui.tbl_top_5.setItem(numeroFila, 2, QTableWidgetItem(str(producto.precio)))
+            self.ui.tbl_top_5.setItem(numeroFila, 3, QTableWidgetItem(str(cantidad)))
+            self.ui.tbl_top_5.setItem(numeroFila, 4, QTableWidgetItem(str(total)))
 
 def mostrar_menu():
     """
