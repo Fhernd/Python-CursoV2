@@ -59,7 +59,10 @@ class GestorInventarioAplicacion(QMainWindow):
         self.ui.mni_producto_cambiar_disponibilidad.triggered.connect(self.cambiar_disponibilidad)
 
         self.ui.mni_reporte_rango_fechas.triggered.connect(self.generar_reporte_rango_fechas)
-        self.ui.mni_reporte_productos_mas_vendidos.triggered.connect(self.generar_reporte_menos_vendidos)
+        self.ui.mni_reporte_productos_mas_vendidos.triggered.connect(self.generar_reporte_mas_vendidos)
+        self.ui.mni_reporte_productos_menos_vendidos.triggered.connect(self.generar_reporte_menos_vendidos)
+
+        self.ui.mni_acerca_de.triggered.connect(self.acerca_de)
 
         self.show()
     
@@ -88,10 +91,22 @@ class GestorInventarioAplicacion(QMainWindow):
         self.ui.mdi_principal.addSubWindow(gui)
         gui.show()
     
-    def generar_reporte_menos_vendidos(self):
+    def generar_reporte_mas_vendidos(self):
         gui = ReporteTop5(self.inventario)
         self.ui.mdi_principal.addSubWindow(gui)
         gui.show()
+    
+    def generar_reporte_menos_vendidos(self):
+        gui = ReporteTop5MenosVendidos(self.inventario)
+        self.ui.mdi_principal.addSubWindow(gui)
+        gui.show()
+    
+    def acerca_de(self):
+        mensaje = QMessageBox(self)
+        mensaje.setWindowTitle('Acerca de...')
+        mensaje.setIcon(QMessageBox.Information)
+        mensaje.setText('Gestor Inventario v. 1.0.0')
+        mensaje.exec_()
 
 class ProductoCrear(QWidget):
     def __init__(self, inventario):
@@ -375,6 +390,39 @@ class ReporteTop5(QWidget):
             self.ui.tbl_top_5.setItem(numeroFila, 3, QTableWidgetItem(str(cantidad)))
             self.ui.tbl_top_5.setItem(numeroFila, 4, QTableWidgetItem(str(total)))
 
+class ReporteTop5MenosVendidos(QWidget):
+    def __init__(self, inventario):
+        super().__init__()
+
+        self.inventario = inventario
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        self.ui = Ui_ReporteTop5()
+        self.ui.setupUi(self)
+
+        self.setWindowTitle('Reporte - Top 5 Productos Menos Vendidos')
+
+        self.cargar_reporte_top_5_menos_vendidos()
+
+    def cargar_reporte_top_5_menos_vendidos(self):
+        productos_vendidos = self.inventario.top_5_menos_vendidos()
+
+        for p in productos_vendidos:
+            producto = self.inventario.buscar_producto(p[0])
+            cantidad = p[1]
+            total = cantidad * producto.precio
+
+            numeroFila = self.ui.tbl_top_5.rowCount()
+            self.ui.tbl_top_5.insertRow(numeroFila)
+
+            self.ui.tbl_top_5.setItem(numeroFila, 0, QTableWidgetItem(str(p[0])))
+            self.ui.tbl_top_5.setItem(numeroFila, 1, QTableWidgetItem(producto.nombre))
+            self.ui.tbl_top_5.setItem(numeroFila, 2, QTableWidgetItem(str(producto.precio)))
+            self.ui.tbl_top_5.setItem(numeroFila, 3, QTableWidgetItem(str(cantidad)))
+            self.ui.tbl_top_5.setItem(numeroFila, 4, QTableWidgetItem(str(total)))
+
 def mostrar_menu():
     """
     Muestra el menú de las operaciones disponibles.
@@ -482,269 +530,6 @@ def main():
     ventana = GestorInventarioAplicacion()
 
     sys.exit(app.exec_())
-
-def main_console():
-    """
-    Punto de entrada a la aplicación.
-    """
-    inventario = Inventario()
-
-    if os.path.isfile('inventario/inventario.pickle'):
-        resultado = cargar_inventario()
-        
-        if resultado:
-            inventario.productos = resultado['productos']
-            inventario.ventas = resultado['ventas']
-
-    while True:
-        while True:
-            try:
-                mostrar_menu()
-                opcion = int(input('Digite la opción: '))
-                if 0 <= opcion <= 7:
-                    break
-                else:
-                    print('MENSAJE: Debe digitar un número mayor o igual a 0 y menor o igual a 7.')
-            except ValueError:
-                print()
-                print('ERROR: Debe digitar un número entero válido.')
-            
-            continuar()
-        
-        print()
-
-        if opcion == 0:
-            break
-        elif opcion == 1:
-            while True:
-                codigo_producto = capturar_entero('Digite el ID del nuevo producto')
-
-                if codigo_producto > 0:
-                    producto = inventario.buscar_producto(codigo_producto)
-
-                    if producto is None:
-                        break
-                    else:
-                        print()
-                        print('MENSAJE: Ya existe un producto con el ID digitado.')
-                else:
-                    print()
-                    print('MENSAJE: El ID del producto debe ser un número positivo.')
-                
-                continuar()
-            
-            nombre_producto = capturar_cadena('Digite el nombre del nuevo producto')
-
-            while True:
-                precio_producto = capturar_real('Digite el precio del nuevo producto')
-
-                if precio_producto > 0:
-                    break
-                else:
-                    print()
-                    print('MENSAJE: Debe digitar un precio positivo para el producto.')
-                
-                continuar()
-            
-            while True:
-                cantidad_producto = capturar_entero('Digite la cantidad del nuevo producto')
-
-                if cantidad_producto > 0:
-                    break
-                else:
-                    print()
-                    print('MENSAJE: Debe digitar una cantidad positiva para el producto.')
-                
-                continuar()
-            
-            while True:
-                print('1. Disponible')
-                print('2. No Disponible')
-                disponible = capturar_entero('Digite la opción para la disponibilidad del producto')
-
-                if disponible == 1 or disponible == 2:
-                    disponible = disponible == 1
-                    break
-                else:
-                    print()
-                    print('MENSAJE: La opción {} de disponibilidad no existe.'.format(disponible))
-                
-                continuar()
-            
-            nuevo_producto = Producto(codigo_producto, nombre_producto, precio_producto, cantidad_producto, disponible)
-
-            inventario.registrar_producto(nuevo_producto)
-
-            print()
-            print('MENSAJE: El producto se ha creado de forma satisfactoria.')
-        if opcion == 2:
-            if len(inventario.productos):
-                while True:
-                    listar_productos(inventario.productos)
-                    codigo_producto = capturar_entero('Digite el ID del producto')
-
-                    producto = inventario.buscar_producto(codigo_producto)
-
-                    if producto:
-                        break
-                    else:
-                        print()
-                        print('MENSAJE: Debe escribir un ID de producto existente.')
-                
-                while True:
-                    cantidad_producto = capturar_entero('Digite la cantidad del producto')
-
-                    if cantidad_producto > 0:
-                        if cantidad_producto <= producto.cantidad:
-                            break
-                        else:
-                            print()
-                            print('MENSAJE: No existe cantidad suficiente para la venta. Sólo hay {} unidades.'.format(producto.cantidad))
-                    else:
-                        print()
-                        print('MENSAJE: Debe digitar una cantidad positiva para el producto.')
-
-                    continuar()
-                
-                nueva_venta = Venta(codigo_producto, cantidad_producto, producto.precio * cantidad_producto)
-
-                inventario.realizar_venta(nueva_venta)
-
-                print('Total: $%.2f' % (nueva_venta.total_sin_iva * 1.19))
-
-                print()
-                print('MENSAJE: La venta se ha realizado de forma satisfactoria.')
-            else:
-                print()
-                print('MENSAJE: Aún no ha registrado productos.')
-        elif opcion == 3:
-            if len(inventario.productos):
-                while True:
-                    listar_productos(inventario.productos)
-                    codigo_producto = capturar_entero('Digite el ID del producto')
-
-                    producto = inventario.buscar_producto(codigo_producto)
-
-                    if producto:
-                        break
-                    else:
-                        print()
-                        print('MENSAJE: Debe escribir un ID de producto existente.')
-                    
-                    continuar()
-                
-                print()
-                inventario.mostrar_datos_producto(producto)
-            else:
-                print()
-                print('MENSAJE: Aún no ha registrado productos.')
-        elif opcion == 4:
-            if len(inventario.productos):
-                while True:
-                    listar_productos(inventario.productos)
-                    codigo_producto = capturar_entero('Digite el ID del producto')
-
-                    producto = inventario.buscar_producto(codigo_producto)
-
-                    if producto:
-                        break
-                    else:
-                        print()
-                        print('MENSAJE: Debe escribir un ID de producto existente.')
-                    
-                    continuar()
-                
-                inventario.cambiar_estado_producto(producto)
-                inventario.mostrar_datos_producto(producto)
-            else:
-                print()
-                print('MENSAJE: Aún no ha registrado productos.')
-        elif opcion == 5:
-            if len(inventario.productos):
-                if len(inventario.ventas):
-                    while True:
-                        try:
-                            fecha_inicio = capturar_cadena('Digite la fecha de inicio (AAAA-MM-DD)')
-
-                            fecha_inicio = datetime.datetime.strptime(fecha_inicio, '%Y-%m-%d')
-                            break
-                        except ValueError:
-                            print()
-                            print('ERROR: Debe digitar una fecha válida con el formato AAAA-MM-DD.')
-                        
-                        print()
-
-                    while True:
-                        try:
-                            fecha_final = capturar_cadena('Digite la fecha final (AAAA-MM-DD)')
-
-                            fecha_final = datetime.datetime.strptime(fecha_final, '%Y-%m-%d')
-                            break
-                        except ValueError:
-                            print()
-                            print('ERROR: Debe digitar una fecha válida con el formato AAAA-MM-DD.')
-                        
-                        print()
-                    
-                    ventas_rango = inventario.ventas_rango_fecha(fecha_inicio, fecha_final)
-
-                    if len(ventas_rango):
-                        for v in ventas_rango:
-                            inventario.mostrar_datos_venta(v)
-                            print()
-                    else:
-                        print()
-                        print('MENSAJE: No hay ventas para el rango seleccionado.')
-                else:
-                    print()
-                    print('MENSAJE: Aún no ha efectuado ninguna venta.')
-            else:
-                print()
-                print('MENSAJE: Aún no ha registrado productos.')
-        elif opcion == 6:
-            if len(inventario.productos):
-                if len(inventario.ventas):
-                    productos_vendidos = inventario.top_5_mas_vendidos()
-
-                    print('Top 5 de los productos más vendidos')
-                    for p in productos_vendidos:
-                        inventario.mostrar_datos_venta_producto(p)
-                        print()
-                else:
-                    print()
-                    print('MENSAJE: Aún no ha efectuado ninguna venta.')
-            else:
-                print()
-                print('MENSAJE: Aún no ha registrado productos.')
-        elif opcion == 7:
-            if len(inventario.productos):
-                if len(inventario.ventas):
-                    productos_vendidos = inventario.top_5_menos_vendidos()
-
-                    print('Top 5 de los productos menos vendidos')
-                    for p in productos_vendidos:
-                        inventario.mostrar_datos_venta_producto(p)
-                        print()
-                else:
-                    print()
-                    print('MENSAJE: Aún no ha efectuado ninguna venta.')
-            else:
-                print()
-                print('MENSAJE: Aún no ha registrado productos.')
-        
-        continuar()
-    
-    print()
-
-    if len(inventario.productos):
-        if guardar_datos(inventario):
-            print('Los datos del inventario (productos y ventas) se han guardado en disco.')
-        else:
-            print('Ha omitido almacenar los datos en disco.')
-
-    print()
-
-    print('El programa ha finalizado.')
 
 if __name__ == '__main__':
     main()
