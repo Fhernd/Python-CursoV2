@@ -19,10 +19,13 @@ class SeleccionDato(tk.Frame):
 
         tk.Button(self, text='Seleccionar valor', command=self.seleccionar_valor).pack()
 
-        self.lbl_valor_seleccionado = tk.Label(self).pack()
+        self.lbl_valor_seleccionado = tk.Label(self)
+        self.lbl_valor_seleccionado.pack()
     
     def seleccionar_valor(self):
-        pass
+        seleccion = f'El valor seleccionado es: {self.valor_seleccionado.get()}'
+
+        self.lbl_valor_seleccionado.config(text=seleccion, font=('Courier', 15))
 
 def main():
     app = tk.Tk()
