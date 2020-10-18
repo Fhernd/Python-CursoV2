@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import scrolledtext
+from tkinter.filedialog import askopenfile
 
 class AperturaArchivo(tk.Frame):
 
@@ -14,10 +16,15 @@ class AperturaArchivo(tk.Frame):
         self.btn_seleccionar_archivo['command'] = self.seleccionar_archivo
         self.btn_seleccionar_archivo.pack()
 
-        # TODO: crear área de texto
+        self.txa_contenido_archivo = scrolledtext.ScrolledText(self, width=40, height=30, wrap=tk.WORD, font=('Arial', 15))
+        self.txa_contenido_archivo.pack()
 
     def seleccionar_archivo(self):
-        pass
+        archivo = askopenfile(mode='r', filetypes=[('Archivos de texto', '*.txt')])
+
+        if archivo is not None:
+            contenido = archivo.read()
+            self.txa_contenido_archivo.insert(tk.INSERT, contenido)
 
 def main():
     app = tk.Tk()
