@@ -21,7 +21,22 @@ class AlmacenamientoArchivo(tk.Frame):
         btn_guardar_contenido.pack()
     
     def guardar_contenido(self):
-        pass
+        contenido = self.txa_contenido.get("1.0", tk.END)
+
+        if len(contenido) == 0:
+            messagebox.showwarning('Mensaje', 'El área de texto debe tener contenido.')
+            return
+        
+        configuracion_dialogo = [('Archivos de texto', '.txt')]
+
+        archivo = asksaveasfile(filetypes=configuracion_dialogo, defaultextension=configuracion_dialogo)
+
+        if archivo is None:
+            messagebox.showwarning('Mensaje', 'Debe seleccionar un archivo para guardar el contenido del área de texto.')
+            return
+        
+        archivo.write(contenido)
+        archivo.close()
 
 def main():
     app = tk.Tk()
