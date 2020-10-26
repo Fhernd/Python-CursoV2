@@ -13,9 +13,15 @@ class Aplicacion(tk.Frame):
         mbr_principal = tk.Menu(self.master)
         mnu_archivo = tk.Menu(mbr_principal)
 
-        mbr_principal.add_cascade(label='Archivo')
+        mnu_archivo.add_command(label='Abrir')
+        mnu_archivo.add_command(label='Guardar')
+        mnu_archivo.add_command(label='Salir', command=self.salir)
+        mbr_principal.add_cascade(label='Archivo', menu=mnu_archivo)
 
         self.master.config(menu=mbr_principal)
+    
+    def salir(self):
+        self.master.destroy()
 
 def main():
     ventana_principal = tk.Tk()
