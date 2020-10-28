@@ -15,6 +15,17 @@ class VentanaPrincipal(tk.Frame):
         tab_datos =  ttk.Frame(contenedor)
         contenedor.add(tab_datos, text='Datos')
 
+        lbl_python = tk.Label(tab_datos, text='Python')
+        lbl_python.grid(row=0, column=0)
+
+        tab_informacion = ttk.Frame(contenedor)
+        contenedor.add(tab_informacion, text='Información')
+
+        lbl_programacion = tk.Label(tab_informacion, text='Programación')
+        lbl_programacion.grid(row=0, column=0)
+
+        txt_nombre = tk.Entry(tab_informacion)
+        txt_nombre.grid(row=1, column=0)
 
         contenedor.pack(expand=1, fill='both')
 
