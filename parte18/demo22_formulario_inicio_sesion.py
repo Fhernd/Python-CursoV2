@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import messagebox
+from functools import partial
 
 class FormularioLogin(tk.Frame):
 
@@ -19,6 +21,24 @@ class FormularioLogin(tk.Frame):
 
         self.contrasegnia = tk.StringVar()
         tk.Entry(self.master, textvariable=self.contrasegnia, show='*').grid(row=1, column=1)
+
+        validar_login_credenciales = partial(self.validar_login, self.usuario, self.contrasegnia)
+
+        tk.Button(self.master, text='Login', command=validar_login_credenciales).grid(row=2, column=0)
+    
+    def validar_login(self, usuario, contrasegnia):
+        if len(usuario.get()) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Usuario es obligatorio.')
+            return
+        
+        if len(contrasegnia.get()) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Contraseña es obligatorio.')
+            return
+        
+        if usuario.get() == 'admin' and contrasegnia.get() == 'User2k20':
+            messagebox.showinfo('Mensaje', 'Ha accedido al sistema.')
+        else:
+            messagebox.showwarning('Mensaje', 'Las credenciales de acceso no son válidas.')
 
 def main():
     app = tk.Tk()
