@@ -37,7 +37,16 @@ class EditorTextoAplicacion(tk.Frame):
         self.master.title(f'Editor de texto - {ruta_archivo}')
 
     def guardar_archivo(self):
-        pass
+        ruta_archivo = asksaveasfilename(defaultextension='txt', filetypes=[('Archivos de texto', '*.txt')])
+
+        if not ruta_archivo:
+            return
+        
+        with open(ruta_archivo, 'wt', encoding='utf-8') as f:
+            contenido = self.area_texto.get(1.0, tk.END)
+            f.write(contenido)
+        
+        self.master.title(f'Editor de texto - {ruta_archivo}')
 
 def main():
     root = tk.Tk()
