@@ -20,3 +20,32 @@ class EditorTextoAplicacion(tk.Frame):
         btn_guardar.grid(row=1, column=0, sticky='ew', padx=5)
 
         frm_botones.grid(row=0, column=0, sticky='ns')
+        self.area_texto.grid(row=0, column=1, sticky='nsew')
+    
+    def abrir_archivo(self):
+        ruta_archivo = askopenfilename(filetypes=[('Archivo de texto', ('*.txt'))])
+
+        if not ruta_archivo:
+            return
+        
+        self.area_texto.delete(1.0, tk.END)
+
+        with open(ruta_archivo, 'r', encoding='utf-8') as f:
+            contenido = f.read()
+            self.area_texto.insert(tk.END, contenido)
+        
+        self.master.title(f'Editor de texto - {ruta_archivo}')
+
+    def guardar_archivo(self):
+        pass
+
+def main():
+    root = tk.Tk()
+    root.title('Editor de texto')
+    root.geometry('480x400')
+
+    ventana = EditorTextoAplicacion(root)
+    ventana.mainloop()
+
+if __name__ == "__main__":
+    main()
