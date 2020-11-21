@@ -13,11 +13,11 @@ class VisualizacionImagen:
 
         img_logo_python = tk.PhotoImage(file='parte18/python-logo.png')
         canvas.create_image(0, 0, anchor=tk.NW, image=img_logo_python)
+        canvas.image = img_logo_python
 
 def main():
     root = tk.Tk()
     root.title('Logo Python')
-    root.geometry('920x500')
 
     ventana = VisualizacionImagen(root)
 
