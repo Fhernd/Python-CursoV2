@@ -17,6 +17,19 @@ class Imagenes:
         lbl_logo_python_1 = tk.Label(self.master, image=img_logo_python_1)
         lbl_logo_python_1.image = img_logo_python_1
         lbl_logo_python_1.place(x=10, y=10)
+        
+        img_logo_python_2 = Image.open('parte18/python-logo-file-black.png')
+        img_logo_python_2 = ImageTk.PhotoImage(img_logo_python_2)
+        lbl_logo_python_2 = tk.Label(self.master, image=img_logo_python_2)
+        lbl_logo_python_2.image = img_logo_python_2
+        lbl_logo_python_2.place(x=170, y=50)
+        
+        img_logo_python_3 = Image.open('parte18/python-logo-name-black.png')
+        img_logo_python_3 = ImageTk.PhotoImage(img_logo_python_3)
+        lbl_logo_python_3 = tk.Label(self.master, image=img_logo_python_3)
+        lbl_logo_python_3.image = img_logo_python_3
+        lbl_logo_python_3.place(x=30, y=350)
+
 
 def main():
     master = tk.Tk()
