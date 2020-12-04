@@ -14,7 +14,18 @@ class SelectorImagenes:
         btn_seleccionar_imagen.grid(row=0, columnspan=4)
     
     def seleccionar_imagen(self):
-        pass
+        archivo = filedialog.askopenfilename(filetypes=[('Archivos de imagen', '*.png')])
+
+        if archivo is not None:
+            imagen = Image.open(archivo)
+
+            imagen = imagen.resize((256, 256), Image.ANTIALIAS)
+
+            imagen = ImageTk.PhotoImage(imagen)
+
+            lbl_imagen = Label(self.master, image=imagen)
+            lbl_imagen.image = imagen
+            lbl_imagen.grid(row=2)
 
 def main():
     master = Tk()
