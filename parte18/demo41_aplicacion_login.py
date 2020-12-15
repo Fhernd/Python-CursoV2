@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 import time
 
 class Aplicacion:
@@ -28,6 +29,7 @@ class LoginVentana:
     def __init__(self, master):
         self.master = master
         self.ventana = tk.Toplevel()
+        self.ventana.grab_set()
         self.ventana.title('Login')
         self.ventana.geometry('300x200')
 
@@ -42,18 +44,31 @@ class LoginVentana:
 
         lbl_clave = tk.Label(self.ventana, text='Clave:')
         lbl_clave.place(x=20, y=50)
-        self.txt_clave = tk.Entry(self.ventana)
+        self.txt_clave = tk.Entry(self.ventana, show='*')
         self.txt_clave.place(x=80, y=50)
 
         btn_login = tk.Button(self.ventana, text='Login')
         btn_login.place(x=80, y=80)
         btn_login['command'] = self.login
+
+        self.ventana.bind('<Escape>', lambda e: self.ventana.destroy())
     
     def login(self):
-        usuario = self.txt_usuario.get()
-        clave = self.txt_clave.get()
+        usuario = self.txt_usuario.get().strip()
+        clave = self.txt_clave.get().strip()
 
-        # TODO: Validar datos sobre el login...
+        if len(usuario) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Usuario es obligatorio.')
+            return
+        
+        if len(clave) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Clave es obligatorio.')
+            return
+
+        if usuario == 'User2k20' and clave == '@User2k23':
+            messagebox.showinfo('Mensaje', 'Ha iniciado sesión de forma satisfactoria.')
+        else:
+            messagebox.showwarning('Mensaje', 'Las credenciales ingresadas son inválidas.')
 
 def main():
     root = tk.Tk()
