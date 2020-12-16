@@ -77,4 +77,50 @@ class GestionContactos:
         return False
     
     def reemplazar_archivo(self, contactos):
+        try:
+            with open(self.nombre_archivo, 'wt', encoding='utf-8') as f:
+                for c in contactos:
+                    f.write(c)
+                    f.write('\n')
+            return True
+        except:
+            return False
+    
+    def modificar_contacto(self, email, contacto):
+        contactos = self.obtener_contactos()
+
+        indice = 0
+
+        for c in contactos:
+            if c.email == email:
+                c.nombre = contacto.nombre
+                c.fecha_nacimiento = contacto.fecha_nacimiento
+                self.reemplazar_archivo(contactos)
+                
+                return True
+        
+        return False
+
+class ContactosApp:
+
+    def __init__(self, master):
+        self.master = master
+        self.gestion_contactos = GestionContactos()
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        lbl_titulo = tk.Label(self.master, text='Contactos App', font=('Helvetica', 18))
+        lbl_titulo.place(x=10, y=10)
+
+        self.lbx_contactos = tk.Listbox(self.master, width=30, height=20)
+        self.lbx_contactos.place(x=10, y=40)
+        self.lbx_contactos.bind('<<ListboxSelect>>', self.seleccionar_contacto)
+
+        lbl_nombre = tk.Label(self.master, text='Nombre:', font=('Helvetica', 13))
+        lbl_nombre.place(x=230, y=40)
+        self.txt_nombre = tk.Entry(self.master, width=200)
+        self.txt_nombre.place(x=230, y=60)
+    
+    def seleccionar_contacto(self):
         pass
