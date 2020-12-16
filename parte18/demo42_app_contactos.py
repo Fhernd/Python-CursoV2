@@ -110,7 +110,7 @@ class ContactosApp:
         self.inicializar_gui()
     
     def inicializar_gui(self):
-        lbl_titulo = tk.Label(self.master, text='Contactos App', font=('Helvetica', 18))
+        lbl_titulo = tk.Label(self.master, text='Contactos App', font=('Helvetica', 16))
         lbl_titulo.place(x=10, y=10)
 
         self.lbx_contactos = tk.Listbox(self.master, width=30, height=20)
@@ -119,8 +119,65 @@ class ContactosApp:
 
         lbl_nombre = tk.Label(self.master, text='Nombre:', font=('Helvetica', 13))
         lbl_nombre.place(x=230, y=40)
-        self.txt_nombre = tk.Entry(self.master, width=200)
-        self.txt_nombre.place(x=230, y=60)
+        self.txt_nombre = tk.Entry(self.master, width=48)
+        self.txt_nombre.place(x=230, y=70)
+        
+        lbl_email = tk.Label(self.master, text='Email:', font=('Helvetica', 13))
+        lbl_email.place(x=230, y=90)
+        self.txt_email = tk.Entry(self.master, width=48)
+        self.txt_email.place(x=230, y=120)
+        
+        lbl_fecha_nacimiento = tk.Label(self.master, text='Fecha nacimiento:', font=('Helvetica', 13))
+        lbl_fecha_nacimiento.place(x=230, y=140)
+        self.txt_email = tk.Entry(self.master, width=48)
+        self.txt_email.place(x=230, y=170)
+
+        lbl_edad = tk.Label(self.master, text='Edad:', font=('Helvetica', 13))
+        lbl_edad.place(x=230, y=190)
+        self.lbl_edad_agnios = tk.Label(self.master, text='0 años', font=('Helvetica', 13))
+        self.lbl_edad_agnios.place(x=230, y=215)
+
+        btn_nuevo = tk.Button(self.master, text='Nuevo', width=18)
+        btn_nuevo.place(x=230, y=255)
+        btn_nuevo['command'] = self.nuevo
+        
+        btn_guardar = tk.Button(self.master, text='Guardar', width=18)
+        btn_guardar.place(x=385, y=255)
+        btn_guardar['command'] = self.guardar
+        
+        btn_actualizar = tk.Button(self.master, text='Actualizar', width=18)
+        btn_actualizar.place(x=230, y=287)
+        btn_actualizar['command'] = self.actualizar
+        
+        btn_eliminar = tk.Button(self.master, text='Guardar', width=18)
+        btn_eliminar.place(x=385, y=287)
+        btn_eliminar['command'] = self.eliminar
+
+        self.lbl_foto = tk.Label(self.master)
+        self.lbl_foto.place(x=550, y=70, width=200, height=200)
+
+    def nuevo(self):
+        pass
+    
+    def guardar(self):
+        pass
+    
+    def actualizar(self):
+        pass
+    
+    def eliminar(self):
+        pass
     
     def seleccionar_contacto(self):
         pass
+
+def main():
+    app = tk.Tk()
+    app.title('Contactos App')
+    app.geometry('700x420')
+
+    ventana = ContactosApp(app)
+    app.mainloop()
+
+if __name__ == "__main__":
+    main()
