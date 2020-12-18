@@ -54,7 +54,7 @@ class GestionContactos:
             with open(self.nombre_archivo, 'rt', encoding='utf-8') as f:
                 for l in f.readlines():
                     partes = l.split(';')
-                    contacto = Contacto(*partes)
+                    contacto = Contacto(partes[0], partes[1], partes[2].strip())
                     contactos.append(contacto)
 
             return contactos
@@ -74,7 +74,7 @@ class GestionContactos:
         for c in contactos:
             if c.email == email:
                 contactos.remove(c)
-                reemplazar_archivo(contactos)
+                self.reemplazar_archivo(contactos)
                 return True
         
         return False
@@ -83,13 +83,13 @@ class GestionContactos:
         try:
             with open(self.nombre_archivo, 'wt', encoding='utf-8') as f:
                 for c in contactos:
-                    f.write(c)
+                    f.write(c.to_str())
                     f.write('\n')
             return True
         except:
             return False
     
-    def modificar_contacto(self, email, contacto):
+    def actualizar_contacto(self, email, contacto):
         contactos = self.obtener_contactos()
 
         indice = 0
@@ -204,21 +204,97 @@ class ContactosApp:
             messagebox.showwarning('Mensaje', 'Hay problemas con la creación del contacto.')
     
     def actualizar(self):
-        pass
+        email = self.txt_email.get().strip()
+        nombre = self.txt_nombre.get().strip()
+        fecha_nacimiento = self.txt_fecha_nacimiento.get().strip()
+
+        if not self.patron_email.search(email):
+            messagebox.showwarning('Mensaje', 'Debe escribir un email válido.')
+            return
+        
+        if len(nombre) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Nombre es obligatorio.')
+            return
+        
+        try:
+            datetime.datetime.strptime(fecha_nacimiento, '%Y/%m/%d')
+        except ValueError as e:
+            messagebox.showwarning('Mensaje', 'El campo Fecha nacimiento debe tener el formato AAAA/MM/DD.')
+            return
+        
+        if not self.gestion_contactos.existe_contacto(email):
+            messagebox.showwarning('Mensaje', 'No existe un contacto con el email especificado.')
+            return
+        
+        contacto = Contacto(email, nombre, fecha_nacimiento)
+
+        if self.gestion_contactos.actualizar_contacto(contacto.email, contacto):
+            messagebox.showinfo('Mensaje', 'El contacto se actualizó de forma satisfactoria.')
+            self.nuevo()
+            self.refrescar_lista_contactos()
+        else:
+            messagebox.showwarning('Mensaje', 'Hay problemas con la actualización del contacto.')
     
     def eliminar(self):
-        pass
+        email = self.txt_email.get().strip()
+
+        if not self.patron_email.search(email):
+            messagebox.showwarning('Mensaje', 'Debe escribir un email válido.')
+            return
+        
+        if not self.gestion_contactos.existe_contacto(email):
+            messagebox.showwarning('Mensaje', 'No existe un contacto con el email especificado.')
+            return
+        
+        respuesta = messagebox.askquestion('Confirmación', '¿Está seguro de querer eliminar el contacto seleccionado?', icon='warning')
+
+        if respuesta == 'yes':
+            if self.gestion_contactos.eliminar_contacto_por_email(email):
+                messagebox.showinfo('Mensaje', 'El contacto se eliminó de forma satisfactoria.')
+                self.nuevo()
+                self.refrescar_lista_contactos()
+            else:
+                messagebox.showwarning('Mensaje', 'Hay problemas con la eliminación del contacto.')
     
     def seleccionar_contacto(self, evento):
-        pass
+        if self.lbx_contactos.curselection():
+            self.contacto_seleccionado = int(self.lbx_contactos.curselection()[0])
+            email = self.contactos_emails[self.contacto_seleccionado]
+            contacto = self.gestion_contactos.buscar_contacto_por_email(email)
+
+            self.txt_nombre.delete(0, tk.END)
+            self.txt_nombre.insert(0, contacto.nombre)
+            
+            self.txt_email.delete(0, tk.END)
+            self.txt_email.insert(0, contacto.email)
+            
+            self.txt_fecha_nacimiento.delete(0, tk.END)
+            self.txt_fecha_nacimiento.insert(0, contacto.fecha_nacimiento.strip())
+
+            self.edad_agnios.set(f'{self.calcular_edad_agnios(contacto.fecha_nacimiento.strip())} años')
+    
+    def calcular_edad_agnios(self, fecha_nacimiento):
+        hoy = datetime.datetime.now()
+        fecha_nacimiento = datetime.datetime.strptime(fecha_nacimiento, '%Y/%m/%d')
+        
+        edad = hoy.year - fecha_nacimiento.year
+        
+        if hoy.month < fecha_nacimiento.month:
+            edad -= 1
+        elif hoy.month == fecha_nacimiento.month and hoy.day < fecha_nacimiento.day: 
+            edad -= 1
+        
+        return edad
 
     def refrescar_lista_contactos(self):
         contactos = self.gestion_contactos.obtener_contactos()
 
         self.lbx_contactos.delete(0, tk.END)
+        self.contactos_emails = []
 
         for c in contactos:
-            self.lbx_contactos.insert(tk.END, c.nombre)
+            self.lbx_contactos.insert(tk.END, f'{c.nombre} ({c.email})')
+            self.contactos_emails.append(c.email)
 
         self.contacto_seleccionado = -1
 
