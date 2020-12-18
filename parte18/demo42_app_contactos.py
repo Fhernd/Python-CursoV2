@@ -1,5 +1,7 @@
 from datetime import timedelta, datetime
+import datetime
 import os
+import re
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
@@ -13,7 +15,7 @@ class Contacto:
         self.nombre = nombre
         self.fecha_nacimiento = fecha_nacimiento
     
-    def __str__(self):
+    def to_str(self):
         return f'{self.email};{self.nombre};{self.fecha_nacimiento}'
 
 class GestionContactos:
@@ -31,15 +33,16 @@ class GestionContactos:
     def agregar_contacto(self, contacto):
         try:
             with open(self.nombre_archivo, 'at', encoding='utf-8') as f:
-                f.write(contacto)
+                f.write(contacto.to_str())
                 f.write('\n')
 
             return True
-        except:
+        except Exception as e:
+            print(e)
             return False
     
     def existe_contacto(self, email):
-        for c in self.obtener_contactos:
+        for c in self.obtener_contactos():
             if c.email == email:
                 return True
         
@@ -59,14 +62,14 @@ class GestionContactos:
             return None
     
     def buscar_contacto_por_email(self, email):
-        for c in self.obtener_contactos:
+        for c in self.obtener_contactos():
             if c.email == email:
                 return c
         
         return None
     
     def eliminar_contacto_por_email(self, email):
-        contactos = self.obtener_contactos
+        contactos = self.obtener_contactos()
 
         for c in contactos:
             if c.email == email:
@@ -107,7 +110,12 @@ class ContactosApp:
         self.master = master
         self.gestion_contactos = GestionContactos()
 
+        patron = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+        self.patron_email = re.compile(patron)
+
         self.inicializar_gui()
+
+        self.refrescar_lista_contactos()
     
     def inicializar_gui(self):
         lbl_titulo = tk.Label(self.master, text='Contactos App', font=('Helvetica', 16))
@@ -129,12 +137,13 @@ class ContactosApp:
         
         lbl_fecha_nacimiento = tk.Label(self.master, text='Fecha nacimiento:', font=('Helvetica', 13))
         lbl_fecha_nacimiento.place(x=230, y=140)
-        self.txt_email = tk.Entry(self.master, width=48)
-        self.txt_email.place(x=230, y=170)
+        self.txt_fecha_nacimiento = tk.Entry(self.master, width=48)
+        self.txt_fecha_nacimiento.place(x=230, y=170)
 
         lbl_edad = tk.Label(self.master, text='Edad:', font=('Helvetica', 13))
         lbl_edad.place(x=230, y=190)
-        self.lbl_edad_agnios = tk.Label(self.master, text='0 años', font=('Helvetica', 13))
+        self.edad_agnios = tk.StringVar()
+        self.lbl_edad_agnios = tk.Label(self.master, text='0 años', font=('Helvetica', 13), textvariable=self.edad_agnios)
         self.lbl_edad_agnios.place(x=230, y=215)
 
         btn_nuevo = tk.Button(self.master, text='Nuevo', width=18)
@@ -149,7 +158,7 @@ class ContactosApp:
         btn_actualizar.place(x=230, y=287)
         btn_actualizar['command'] = self.actualizar
         
-        btn_eliminar = tk.Button(self.master, text='Guardar', width=18)
+        btn_eliminar = tk.Button(self.master, text='Eliminar', width=18)
         btn_eliminar.place(x=385, y=287)
         btn_eliminar['command'] = self.eliminar
 
@@ -157,10 +166,42 @@ class ContactosApp:
         self.lbl_foto.place(x=550, y=70, width=200, height=200)
 
     def nuevo(self):
-        pass
+        self.txt_email.delete(0, tk.END)
+        self.txt_nombre.delete(0, tk.END)
+        self.txt_fecha_nacimiento.delete(0, tk.END)
+        self.edad_agnios.set('0 años')
     
     def guardar(self):
-        pass
+        email = self.txt_email.get().strip()
+        nombre = self.txt_nombre.get().strip()
+        fecha_nacimiento = self.txt_fecha_nacimiento.get().strip()
+
+        if not self.patron_email.search(email):
+            messagebox.showwarning('Mensaje', 'Debe escribir un email válido.')
+            return
+        
+        if len(nombre) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Nombre es obligatorio.')
+            return
+        
+        try:
+            datetime.datetime.strptime(fecha_nacimiento, '%Y/%m/%d')
+        except ValueError as e:
+            messagebox.showwarning('Mensaje', 'El campo Fecha nacimiento debe tener el formato AAAA/MM/DD.')
+            return
+        
+        if self.gestion_contactos.existe_contacto(email):
+            messagebox.showwarning('Mensaje', 'Ya existe un contacto con el email especificado.')
+            return
+        
+        contacto = Contacto(email, nombre, fecha_nacimiento)
+
+        if self.gestion_contactos.agregar_contacto(contacto):
+            messagebox.showinfo('Mensaje', 'El contacto se creó de forma satisfactoria.')
+            self.nuevo()
+            self.refrescar_lista_contactos()
+        else:
+            messagebox.showwarning('Mensaje', 'Hay problemas con la creación del contacto.')
     
     def actualizar(self):
         pass
@@ -168,8 +209,18 @@ class ContactosApp:
     def eliminar(self):
         pass
     
-    def seleccionar_contacto(self):
+    def seleccionar_contacto(self, evento):
         pass
+
+    def refrescar_lista_contactos(self):
+        contactos = self.gestion_contactos.obtener_contactos()
+
+        self.lbx_contactos.delete(0, tk.END)
+
+        for c in contactos:
+            self.lbx_contactos.insert(tk.END, c.nombre)
+
+        self.contacto_seleccionado = -1
 
 def main():
     app = tk.Tk()
