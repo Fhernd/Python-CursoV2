@@ -32,7 +32,7 @@ class CalculadoraApp:
 
         btn_dividir = Button(frm_botones, text='/', fg='black', width=10, height=3, bd=0, bg='#EEE')
         btn_dividir['cursor'] = 'hand2'
-        btn_dividir['command'] = self.dividir
+        btn_dividir['command'] = lambda: self.presion_tecla('/')
         btn_dividir.grid(row=0, column=3, padx=1, pady=1)
 
         btn_siete = Button(frm_botones, text='7', fg='black', width=10, height=3, bd=0, bg='#EEE')
@@ -60,25 +60,57 @@ class CalculadoraApp:
         btn_cuatro['command'] = lambda: self.presion_tecla(4)
         btn_cuatro.grid(row=2, column=0, padx=1, pady=1)
         
-        btn_ocho = Button(frm_botones, text='5', fg='black', width=10, height=3, bd=0, bg='#EEE')
-        btn_ocho['cursor'] = 'hand2'
-        btn_ocho['command'] = lambda: self.presion_tecla(5)
-        btn_ocho.grid(row=2, column=1, padx=1, pady=1)
+        btn_cinco = Button(frm_botones, text='5', fg='black', width=10, height=3, bd=0, bg='#EEE')
+        btn_cinco['cursor'] = 'hand2'
+        btn_cinco['command'] = lambda: self.presion_tecla(5)
+        btn_cinco.grid(row=2, column=1, padx=1, pady=1)
         
-        btn_nueve = Button(frm_botones, text='6', fg='black', width=10, height=3, bd=0, bg='#EEE')
+        btn_seis = Button(frm_botones, text='6', fg='black', width=10, height=3, bd=0, bg='#EEE')
+        btn_seis['cursor'] = 'hand2'
+        btn_seis['command'] = lambda: self.presion_tecla(6)
+        btn_seis.grid(row=2, column=2, padx=1, pady=1)
+        
+        btn_resta = Button(frm_botones, text='-', fg='black', width=10, height=3, bd=0, bg='#EEE')
+        btn_resta['cursor'] = 'hand2'
+        btn_resta['command'] = lambda: self.presion_tecla('-')
+        btn_resta.grid(row=2, column=3, padx=1, pady=1)
+
+        btn_uno = Button(frm_botones, text='1', fg='black', width=10, height=3, bd=0, bg='#EEE')
+        btn_uno['cursor'] = 'hand2'
+        btn_uno['command'] = lambda: self.presion_tecla(1)
+        btn_uno.grid(row=3, column=0, padx=1, pady=1)
+
+        btn_dos = Button(frm_botones, text='2', fg='black', width=10, height=3, bd=0, bg='#EEE')
+        btn_dos['cursor'] = 'hand2'
+        btn_dos['command'] = lambda: self.presion_tecla(2)
+        btn_dos.grid(row=3, column=1, padx=1, pady=1)
+        
+        btn_nueve = Button(frm_botones, text='3', fg='black', width=10, height=3, bd=0, bg='#EEE')
         btn_nueve['cursor'] = 'hand2'
-        btn_nueve['command'] = lambda: self.presion_tecla(6)
-        btn_nueve.grid(row=2, column=2, padx=1, pady=1)
+        btn_nueve['command'] = lambda: self.presion_tecla(3)
+        btn_nueve.grid(row=3, column=2, padx=1, pady=1)
         
-        btn_producto = Button(frm_botones, text='-', fg='black', width=10, height=3, bd=0, bg='#EEE')
-        btn_producto['cursor'] = 'hand2'
-        btn_producto['command'] = lambda: self.presion_tecla('-')
-        btn_producto.grid(row=2, column=3, padx=1, pady=1)
+        btn_suma = Button(frm_botones, text='+', fg='black', width=10, height=3, bd=0, bg='#EEE')
+        btn_suma['cursor'] = 'hand2'
+        btn_suma['command'] = lambda: self.presion_tecla('+')
+        btn_suma.grid(row=3, column=3, padx=1, pady=1)
+        
+        btn_cero = Button(frm_botones, text='0', fg='black', width=21, height=3, bd=0, bg='#EEE')
+        btn_cero['cursor'] = 'hand2'
+        btn_cero['command'] = lambda: self.presion_tecla(0)
+        btn_cero.grid(row=4, column=0, columnspan=2, padx=1, pady=1)
+        
+        btn_punto = Button(frm_botones, text='.', fg='black', width=10, height=3, bd=0, bg='#EEE')
+        btn_punto['cursor'] = 'hand2'
+        btn_punto['command'] = lambda: self.presion_tecla('.')
+        btn_punto.grid(row=4, column=2, padx=1, pady=1)
+        
+        btn_igual = Button(frm_botones, text='=', fg='black', width=10, height=3, bd=0, bg='#EEE')
+        btn_igual['cursor'] = 'hand2'
+        btn_igual['command'] = lambda: self.presion_tecla('=')
+        btn_igual.grid(row=4, column=3, padx=1, pady=1)
 
     def limpiar(self):
-        pass
-    
-    def dividir(self):
         pass
 
     def presion_tecla(self, tecla):
