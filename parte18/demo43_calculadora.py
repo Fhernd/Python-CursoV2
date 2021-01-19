@@ -18,9 +18,9 @@ class CalculadoraApp:
         frm_entrada = Frame(self.master, width=312, height=50, bd=0, highlightbackground='black', highlightcolor='black', highlightthickness=2)
         frm_entrada.pack(side=TOP)
 
-        txt_expresion = Entry(frm_entrada, font=('Helvetica', 18, 'bold'), textvariable=self.entrada_expresion, width=50, bg='#EEE', bd=0, justify=RIGHT)
-        txt_expresion.grid(row=0, column=0)
-        txt_expresion.pack(ipady=10)
+        self.txt_expresion = Entry(frm_entrada, font=('Helvetica', 18, 'bold'), textvariable=self.entrada_expresion, width=50, bg='#EEE', bd=0, justify=RIGHT)
+        self.txt_expresion.grid(row=0, column=0)
+        self.txt_expresion.pack(ipady=10)
 
         frm_botones = Frame(self.master, width=312, height=273, bg='grey')
         frm_botones.pack()
@@ -107,14 +107,21 @@ class CalculadoraApp:
         
         btn_igual = Button(frm_botones, text='=', fg='black', width=10, height=3, bd=0, bg='#EEE')
         btn_igual['cursor'] = 'hand2'
-        btn_igual['command'] = lambda: self.presion_tecla('=')
+        btn_igual['command'] = self.calcular
         btn_igual.grid(row=4, column=3, padx=1, pady=1)
 
     def limpiar(self):
-        pass
+        self.expresion = ''
+        self.entrada_expresion.set('')
 
     def presion_tecla(self, tecla):
-        pass
+        self.expresion += str(tecla)
+        self.entrada_expresion.set(self.expresion)
+
+    def calcular(self):
+        resultado = str(eval(self.expresion))
+        self.entrada_expresion.set(resultado)
+        self.expresion = ''
 
 def main():
     app = Tk()
