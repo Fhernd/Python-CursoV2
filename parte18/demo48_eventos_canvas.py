@@ -8,7 +8,22 @@ class EventosCanvas:
         self.inicializar_gui()
     
     def inicializar_gui(self):
-        pass
+        canvas = Canvas(self.master, width=300, height=300)
+
+        txt_click = canvas.create_text(130, 50, text='Click')
+        txt_doble_click = canvas.create_text(130, 200, text='Doble click')
+
+        canvas.tag_bind(txt_click, '<ButtonPress-1>', self.click)
+
+        canvas.tag_bind(txt_doble_click, '<Double-1>', self.doble_click)
+
+        canvas.pack()
+    
+    def click(self, evento):
+        messagebox.showinfo('Mensaje', 'Se ha hecho click en un texto.')
+    
+    def doble_click(self, evento):
+        messagebox.showinfo('Mensaje', 'Se ha hecho doble click en un texto.')
 
 def main():
     master = Tk()
