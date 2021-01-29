@@ -8,30 +8,45 @@ class Dibujo(object):
         self.inicializar_gui()
     
     def inicializar_gui(self):
-        canvas = Canvas(bg='white', height=300, width=300)
-        canvas.pack()
+        self.canvas = Canvas(bg='white', height=300, width=300)
+        self.canvas.pack()
 
-        canvas.bind('<ButtonPress-1>', self.iniciar_dibujo)
-        canvas.bind('<B1-Motion>', self.dibujar)
-        canvas.bind('<Double-1>', self.limpiar)
-        canvas.bind('<ButtonPress-3>', self.mover)
+        self.canvas.bind('<ButtonPress-1>', self.iniciar_dibujo)
+        self.canvas.bind('<B1-Motion>', self.dibujar)
+        self.canvas.bind('<Double-1>', self.limpiar)
+        self.canvas.bind('<ButtonPress-3>', self.mover)
 
-        self.tipos_figuras = [canvas.create_oval, canvas.create_rectangle]
+        self.tipos_figuras = [self.canvas.create_oval, self.canvas.create_rectangle]
         self.dibujo = None
     
     def iniciar_dibujo(self, evento):
         self.figura = self.tipos_figuras[0]
         self.tipos_figuras = self.tipos_figuras[1:] + self.tipos_figuras[:1]
+        self.inicio = evento
         self.dibujo = None
 
     def dibujar(self, evento):
-        pass
+        canvas = evento.widget
+        
+        if self.dibujo:
+            self.canvas.delete(self.dibujo)
+        
+        id_figura = self.figura(self.inicio.x, self.inicio.y, evento.x, evento.y)
+
+        self.dibujo = id_figura
 
     def limpiar(self, evento):
-        pass
+        evento.widget.delete('all')
 
     def mover(self, evento):
-        pass
+        if self.dibujo:
+            canvas = evento.widget
+            diferencia_x = evento.x - self.inicio.x
+            diferencia_y = evento.y - self.inicio.y
+
+            canvas.move(self.dibujo, diferencia_x, diferencia_y)
+
+            self.inicio = evento
 
 def main():
     master = Tk()
