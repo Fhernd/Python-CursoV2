@@ -1,7 +1,7 @@
-from tkinter import Button, Entry, Label, LabelFrame, Radiobutton, StringVar, Tk
-from tkinter.ttk import Style
+import tkinter as tk
+from tkinter import ttk
 
-class Apariencia(Tk):
+class Apariencia(tk.Tk):
 
     def __init__(self):
         super().__init__()
@@ -12,21 +12,21 @@ class Apariencia(Tk):
         self.title('Tema Colores')
         self.geometry('400x300')
 
-        self.estilo = Style(self)
+        self.estilo = ttk.Style(self)
 
-        Label(self, text='Nombre:').grid(column=0, row=0, padx=10, pady=10, sticky='w')
+        ttk.Label(self, text='Nombre:').grid(column=0, row=0, padx=10, pady=10, sticky='w')
 
-        Entry(self).grid(column=1, row=0, padx=10, pady=10, sticky='w')
+        ttk.Entry(self).grid(column=1, row=0, padx=10, pady=10, sticky='w')
 
-        Button(self, text='Mostrar').grid(column=2, row=0, padx=10, pady=10, sticky='w')
+        ttk.Button(self, text='Mostrar').grid(column=2, row=0, padx=10, pady=10, sticky='w')
 
-        self.tema_seleccionado = StringVar()
+        self.tema_seleccionado = tk.StringVar()
 
-        lbf_contenedor = LabelFrame(self, text='Temas')
+        lbf_contenedor = ttk.LabelFrame(self, text='Temas')
         lbf_contenedor.grid(ipadx=20, ipady=20, padx=10, pady=10, sticky='w')
 
         for t in self.estilo.theme_names():
-            rbn_tema = Radiobutton(
+            rbn_tema = ttk.Radiobutton(
                 lbf_contenedor,
                 text=t,
                 value=t,
