@@ -21,6 +21,7 @@ class ComentariosApp(Tk):
         self.estilo.configure('Encabezado.TLabel', font=('Arial', 18, 'bold'))
 
         self.frm_encabezado = ttk.Frame(self)
+        self.frm_encabezado.pack()
 
         self.img_logo = PhotoImage(file='parte18/python-logo.png')
 
@@ -29,6 +30,27 @@ class ComentariosApp(Tk):
 
         lbl_nombre_app = ttk.Label(self.frm_encabezado, text='ComentariosApp', style='Encabezado.TLabel')
         lbl_nombre_app.grid(column=1, row=0)
+
+        lbl_indicaciones = ttk.Label(self.frm_encabezado, wraplength=300,
+                    text=(
+                        'Ingrese los datos a registrar:\nNombre, correo-e, y el texto del comentario.'
+                    ))
+        lbl_indicaciones.grid(column=1, row=1)
+
+        self.frm_principal = ttk.Frame(self)
+        self.frm_principal.pack()
+
+        lbl_nombre = ttk.Label(self.frm_principal, text='Nombre:')
+        lbl_nombre.grid(column=0, row=0, padx=5, sticky='sw')
+        
+        lbl_email = ttk.Label(self.frm_principal, text='Email:')
+        lbl_email.grid(column=1, row=0, padx=5, sticky='sw')
+        
+        lbl_comentario = ttk.Label(self.frm_principal, text='Comentario:')
+        lbl_comentario.grid(column=1, row=0, padx=5, sticky='sw')
+
+        self.txt_nombre = ttk.Entry(self.frm_principal, width=25, font=('Arial', 11))
+        self.txt_nombre.grid(column=0, row=1, padx=5)
 
 
 def main():
