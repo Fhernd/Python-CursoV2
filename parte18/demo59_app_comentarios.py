@@ -11,19 +11,19 @@ class ComentariosApp(Tk):
     
     def inicializar_gui(self):
         self.title('Comentarios App')
-        self.configure(background='gray')
+        self.configure(background='white')
         self.minsize(400, 400)
 
         self.estilo = ttk.Style()
-        self.estilo.configure('TFrame', background='black')
+        self.estilo.configure('TFrame', background='white')
         self.estilo.configure('TButton', background='#95A3B3')
-        self.estilo.configure('TLabel', background='#1E152A', font=('Arial', 13))
+        self.estilo.configure('TLabel', background='#FFFFFF', font=('Arial', 13))
         self.estilo.configure('Encabezado.TLabel', font=('Arial', 18, 'bold'))
 
         self.frm_encabezado = ttk.Frame(self)
         self.frm_encabezado.pack()
 
-        self.img_logo = PhotoImage(file='parte18/python-logo.png')
+        self.img_logo = PhotoImage(file='parte18/python-logo-black.png')
 
         lbl_logo = ttk.Label(self.frm_encabezado, image=self.img_logo)
         lbl_logo.grid(column=0, row=0, rowspan=2)
@@ -51,6 +51,26 @@ class ComentariosApp(Tk):
 
         self.txt_nombre = ttk.Entry(self.frm_principal, width=25, font=('Arial', 11))
         self.txt_nombre.grid(column=0, row=1, padx=5)
+        
+        self.txt_email = ttk.Entry(self.frm_principal, width=25, font=('Arial', 11))
+        self.txt_email.grid(column=1, row=1, padx=5)
+
+        self.txt_comentario = Text(self.frm_principal, width=50, height=7, font=('Arial', 11))
+        self.txt_comentario.grid(column=0, row=3, columnspan=2, padx=5, pady=5)
+
+        btn_guardar_comentario = ttk.Button(self.frm_principal, text='Guardar')
+        btn_guardar_comentario['command'] = self.guardar_comentario
+        btn_guardar_comentario.grid(column=0, row=4, padx=5, pady=5, sticky='e')
+        
+        btn_limpiar = ttk.Button(self.frm_principal, text='Limpiar')
+        btn_limpiar['command'] = self.limpiar
+        btn_limpiar.grid(column=1, row=4, padx=5, pady=5, sticky='w')
+    
+    def guardar_comentario(self):
+        pass
+
+    def limpiar(self):
+        pass
 
 
 def main():
