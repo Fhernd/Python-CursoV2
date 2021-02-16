@@ -47,7 +47,7 @@ class ComentariosApp(Tk):
         lbl_email.grid(column=1, row=0, padx=5, sticky='sw')
         
         lbl_comentario = ttk.Label(self.frm_principal, text='Comentario:')
-        lbl_comentario.grid(column=1, row=0, padx=5, sticky='sw')
+        lbl_comentario.grid(column=0, row=2, padx=5, sticky='sw')
 
         self.txt_nombre = ttk.Entry(self.frm_principal, width=25, font=('Arial', 11))
         self.txt_nombre.grid(column=0, row=1, padx=5)
@@ -67,10 +67,33 @@ class ComentariosApp(Tk):
         btn_limpiar.grid(column=1, row=4, padx=5, pady=5, sticky='w')
     
     def guardar_comentario(self):
-        pass
+        nombre = self.txt_nombre.get().strip()
+
+        if len(nombre) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Nombre es obligatorio.')
+            return
+        
+        email = self.txt_email.get().strip()
+        if len(email) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Email es obligatorio.')
+            return
+        
+        comentario = self.txt_comentario.get(1.0, 'end')
+        if len(comentario) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Comentario es obligatorio.')
+            return
+        
+        with open('parte18/demo59_comentarios.txt', 'at', encoding='utf-8') as f:
+            f.write(f'{nombre};{email};{comentario}')
+
+            messagebox.showinfo('Mensaje', 'El comentario se ha guardado de forma satisfactoria.')
+
+            self.limpiar()
 
     def limpiar(self):
-        pass
+        self.txt_nombre.delete(0, 'end')
+        self.txt_email.delete(0, 'end')
+        self.txt_comentario.delete(1.0, 'end')
 
 
 def main():
