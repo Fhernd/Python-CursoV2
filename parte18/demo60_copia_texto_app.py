@@ -27,6 +27,27 @@ class CopiaTextoApp(tk.Tk):
         self.txt_columna_origen = ttk.Entry(self.lfm_seleccion, textvariable=self.columna_origen)
         self.txt_columna_origen.grid(column=1, row=1, padx=5, pady=5, sticky='e')
 
+        lbl_fila_destino = ttk.Label(self.lfm_seleccion, text='Hasta fila:')
+        lbl_fila_destino.grid(column=0, row=2, padx=5, pady=5, sticky='e')
+        self.fila_destino = tk.StringVar()
+        self.txt_fila_origen = ttk.Entry(self.lfm_seleccion, textvariable=self.fila_destino)
+        self.txt_fila_origen.grid(column=1, row=2, padx=5, pady=5, sticky='e')
+        
+        lbl_columna_destino = ttk.Label(self.lfm_seleccion, text='Hasta columna:')
+        lbl_columna_destino.grid(column=0, row=3, padx=5, pady=5, sticky='e')
+        self.columna_destino = tk.StringVar()
+        self.txt_columna_origen = ttk.Entry(self.lfm_seleccion, textvariable=self.columna_destino)
+        self.txt_columna_origen.grid(column=1, row=3, padx=5, pady=5, sticky='e')
+
+        btn_copiar = ttk.Button(self.lfm_seleccion, text='Copiar', command=self.copiar)
+        btn_copiar.grid(column=1, row=4, padx=10, pady=10)
+
+        self.txa_destino = st.ScrolledText(self, width=50, height=10)
+        self.txa_destino.grid(column=0, row=2, padx=10, pady=10)
+    
+    def copiar(self):
+        pass
+
 def main():
     app = CopiaTextoApp()
     app.mainloop()
