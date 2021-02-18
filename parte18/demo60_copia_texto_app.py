@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 from tkinter import ttk
 from tkinter import scrolledtext as st
 
@@ -46,7 +47,76 @@ class CopiaTextoApp(tk.Tk):
         self.txa_destino.grid(column=0, row=2, padx=10, pady=10)
     
     def copiar(self):
-        pass
+        fila_origen = self.fila_origen.get().strip()
+
+        if len(fila_origen) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Desde fila es obligatorio.')
+            return
+        
+        columna_origen = self.columna_origen.get().strip()
+
+        if len(columna_origen) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Desde columna es obligatorio.')
+            return
+        
+        fila_destino = self.fila_destino.get().strip()
+
+        if len(fila_destino) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Hasta fila es obligatorio.')
+            return
+        
+        columna_destino = self.columna_destino.get().strip()
+
+        if len(columna_destino) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Hasta columna es obligatorio.')
+            return
+        
+        try:
+            fila_origen = int(fila_origen)
+        except:
+            messagebox.showwarning('Mensaje', 'El campo Desde fila debe ser un número entero.')
+            return
+        
+        try:
+            columna_origen = int(columna_origen)
+        except:
+            messagebox.showwarning('Mensaje', 'El campo Desde columna debe ser un número entero.')
+            return
+        
+        try:
+            fila_destino = int(fila_destino)
+        except:
+            messagebox.showwarning('Mensaje', 'El campo Hasta fila debe ser un número entero.')
+            return
+        
+        try:
+            columna_destino = int(columna_destino)
+        except:
+            messagebox.showwarning('Mensaje', 'El campo Hasta columna debe ser un número entero.')
+            return
+
+        if fila_origen >= 1 and columna_origen >= 1 and fila_destino >= 1 and columna_destino >= 1:
+            texto_seleccionado = self.txa_origen.get('1.0', tk.END)
+
+            lineas = texto_seleccionado.split('\n')
+            resultado = []
+
+            fila_origen -= 1
+            columna_origen -= 1
+            fila_destino -= 1
+
+            for i in range(fila_origen, fila_destino + 1):
+                l = lineas[i].strip()
+
+                if len(l):
+                    resultado.append(l[columna_origen: columna_destino if columna_destino <= len(l) else len(l)])
+
+            self.txa_destino.delete('1.0', tk.END)
+
+            self.txa_destino.insert('1.0', '\n'.join(resultado))
+        else:
+            messagebox.showwarning('Mensaje', 'Los campos de Selección deben ser números positivos.')
+            return
 
 def main():
     app = CopiaTextoApp()
