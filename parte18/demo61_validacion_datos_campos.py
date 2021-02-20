@@ -1,3 +1,4 @@
+import re
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
@@ -8,6 +9,7 @@ class FormularioRegistro(tk.Tk):
         super().__init__()
 
         self.inicializar_gui()
+        self.definir_patrones_validaciones()
     
     def inicializar_gui(self):
         self.title('Validación Datos')
@@ -66,8 +68,62 @@ class FormularioRegistro(tk.Tk):
         btn_salir = tk.Button(frm_principal, text='Salir', command=self.salir)
         btn_salir.grid(row=7, column=4)
     
+    def definir_patrones_validaciones(self):
+        patron_nombre = r'^[^\s]+( [^\s]+)+$'
+        self.regex_nombre = re.compile(patron_nombre)
+
+        patron_contrasegnia = r'^[a-zA-Z0-9]{8,16}$'
+        self.regex_contrasegnia = re.compile(patron_contrasegnia)
+
+        patron_email = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+        self.regex_email = re.compile(patron_email)
+
+        patron_documento = r'^[0-9]{7,10}$'
+        self.regex_documento = re.compile(patron_documento)
+
+        patron_ahorros = r'^\b(([1-9][0-9]*)?[0-9]\.[0-9]+)\b$'
+        self.regex_ahorros = re.compile(patron_ahorros)
+
+    
     def guardar(self):
-        pass
+        nombre = self.txt_nombre.get().strip()
+        
+        if re.match(self.regex_nombre, nombre) is None:
+            messagebox.showwarning('Mensaje', 'El campo Nombre debe incluir Nombre y Apellido')
+            return
+        
+        contrasegnia = self.txt_contrasegnia.get().strip()
+        if re.match(self.regex_contrasegnia, contrasegnia) is None:
+            messagebox.showwarning('Mensaje', 'El campo Contraseña debe tener mínimo 8 caracteres, máximo 16.')
+            return
+        
+        contrasegnia_repetir = self.txt_contrasegnia_repetir.get()
+        if re.match(self.regex_contrasegnia, contrasegnia_repetir) is None:
+            messagebox.showwarning('Mensaje', 'El campo Contraseña Repetir debe tener mínimo 8 caracteres, máximo 16.')
+            return
+        
+        if contrasegnia != contrasegnia_repetir:
+            messagebox.showwarning('Mensaje', 'Las contraseñas deben ser iguales.')
+            return
+        
+        email = self.txt_email.get().strip()
+        if re.match(self.regex_email, email) is None:
+            messagebox.showwarning('Mensaje', 'El campo Email no es válido.')
+            return
+        
+        documento = self.txt_documento.get().strip()
+        if re.match(self.regex_documento, documento) is None:
+            messagebox.showwarning('Mensaje', 'El campo Documento debe ser un número con mínimo 7 dígitos, máximo 10.')
+            return
+        
+        ahorros = self.txt_ahorros.get().strip()
+        if re.match(self.regex_ahorros, ahorros) is None:
+            messagebox.showwarning('Mensaje', 'El campo Ahorros debe ser un número real (e.g., 1000.53).')
+            return
+        
+        messagebox.showinfo('Mensaje', 'Los datos se guardaron de forma satisfactoria.')
+        
+        self.limpiar()
 
     def limpiar(self):
         self.txt_nombre.delete(0, 'end')
