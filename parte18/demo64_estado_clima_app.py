@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 import requests
 import PIL.Image
 import PIL.ImageTk
@@ -9,6 +10,9 @@ class EstadoClimaApp(tk.Tk):
         super().__init__()
 
         self.inicializar_gui()
+
+        self.API_OPEN_WEATHER_MAP = '40aabb59f41e9e88db7be4bab11f49f8'
+        self.URL_OPEN_WEATHER_MAP = 'https://api.openweathermap.org/data/2.5/weather'
     
     def inicializar_gui(self):
         self.title('Estado del Clima')
@@ -39,6 +43,20 @@ class EstadoClimaApp(tk.Tk):
         self.lbl_resultados.place(relx=0, rely=0, relheight=1, relwidth=1)
     
     def buscar(self):
+        ciudad = self.txt_ciudad.get().strip()
+
+        if len(ciudad) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Ciudad es obligatorio.')
+            return
+
+        parametros = {'APPID': self.API_OPEN_WEATHER_MAP, 'q': ciudad, 'units': 'imperial'}
+        respuesta = requests.get(self.URL_OPEN_WEATHER_MAP, parametros)
+
+        estado_clima = respuesta.json()
+
+        self.lbl_resultados['text'] = self.formatear_resultado(estado_clima)
+    
+    def formatear_resultado(self, estado_clima):
         pass
 
 def main():
