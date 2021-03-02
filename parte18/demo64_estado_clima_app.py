@@ -57,7 +57,14 @@ class EstadoClimaApp(tk.Tk):
         self.lbl_resultados['text'] = self.formatear_resultado(estado_clima)
     
     def formatear_resultado(self, estado_clima):
-        pass
+        try:
+            nombre = estado_clima['name']
+            descripcion = estado_clima['weather'][0]['description']
+            temperatura = estado_clima['main']['temp']
+            
+            return f'Ciudad: {nombre}\nCondiciones: {descripcion}\nTemperatura (F): {temperatura}'
+        except:
+            return 'Ha ocurrido un error en la consulta.'
 
 def main():
     app = EstadoClimaApp()
