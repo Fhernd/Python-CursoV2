@@ -11,7 +11,7 @@ class EstadoClimaApp(tk.Tk):
 
         self.inicializar_gui()
 
-        self.API_OPEN_WEATHER_MAP = '40aabb59f41e9e88db7be4bab11f49f8'
+        self.API_OPEN_WEATHER_MAP = 'API_KEY_AQUÍ'
         self.URL_OPEN_WEATHER_MAP = 'https://api.openweathermap.org/data/2.5/weather'
     
     def inicializar_gui(self):
