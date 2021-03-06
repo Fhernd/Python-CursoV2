@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 import requests
 import PIL
 
@@ -6,6 +7,8 @@ class GitHupUsuarioApp(tk.Tk):
 
     def __init__(self):
         super().__init__()
+
+        self.URL_GITHUB = 'https://api.github.com/users/'
 
         self.inicializar_gui()
     
@@ -41,7 +44,7 @@ class GitHupUsuarioApp(tk.Tk):
         self.txt_url = tk.Entry(lbf_resultado, width=28)
         self.txt_url.grid(row=2, column=1, padx=10, pady=2)
         
-        lbl_gists = tk.Label(lbf_resultado, text='Gists:', width=12, justify=tk.LEFT, anchor='w')
+        lbl_gists = tk.Label(lbf_resultado, text='URL Gists:', width=12, justify=tk.LEFT, anchor='w')
         lbl_gists.grid(row=3, column=0, padx=10, pady=2)
         self.txt_gists = tk.Entry(lbf_resultado, width=28)
         self.txt_gists.grid(row=3, column=1, padx=10, pady=2)
@@ -70,7 +73,32 @@ class GitHupUsuarioApp(tk.Tk):
         lbl_foto.grid(row=8, column=0, padx=10, pady=2)
 
     def consultar(self):
-        pass
+        nombre_usuario = self.txt_usuario.get().strip()
+
+        if len(nombre_usuario) == 0:
+            messagebox.showwarning('Mensaje', 'El campo Usuario es obligatorio.')
+            return
+        
+        consulta = f'{self.URL_GITHUB}{nombre_usuario}'
+
+        respuesta = requests.get(consulta)
+        respuesta_json = respuesta.json()
+
+        self.mostrar_datos(respuesta_json)
+    
+    def mostrar_datos(self, respuesta_json):
+        try:
+            self.txt_nombre.delete(0, 'end')
+            self.txt_nombre.insert(0, respuesta_json['name'])
+            self.txt_fecha_creacion.delete(0, 'end')
+            self.txt_fecha_creacion.insert(0, respuesta_json['created_at'])
+            self.txt_url.delete(0, 'end')
+            self.txt_url.insert(0, respuesta_json['url'])
+            self.txt_gists.delete(0, 'end')
+            self.txt_gists.insert(0, respuesta_json['gists_url'])
+            # TODO...
+        except:
+            messagebox.showwarning('Mensaje', 'El usuario especificado no existe en GitHub.')
 
 def main():
     app = GitHupUsuarioApp()
