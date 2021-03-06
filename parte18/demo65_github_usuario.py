@@ -26,11 +26,48 @@ class GitHupUsuarioApp(tk.Tk):
         lbf_resultado = tk.LabelFrame(self, text='Resultados')
         lbf_resultado.place(relx=0.5, rely=0.25, relheight=0.9, relwidth=0.9, anchor='n')
 
-        lbl_nombre = tk.Label(lbf_resultado, text='Nombre:', width=20)
-        lbl_nombre.grid(row=0, column=0, padx=10, pady=10)
+        lbl_nombre = tk.Label(lbf_resultado, text='Nombre:', width=12, justify=tk.LEFT, anchor='w')
+        lbl_nombre.grid(row=0, column=0, padx=10, pady=2)
+        self.txt_nombre = tk.Entry(lbf_resultado, width=28)
+        self.txt_nombre.grid(row=0, column=1, padx=10, pady=2)
+        
+        lbl_fecha_creacion = tk.Label(lbf_resultado, text='Fecha creación:', width=12, justify=tk.LEFT, anchor='w')
+        lbl_fecha_creacion.grid(row=1, column=0, padx=10, pady=2)
+        self.txt_fecha_creacion = tk.Entry(lbf_resultado, width=28)
+        self.txt_fecha_creacion.grid(row=1, column=1, padx=10, pady=2)
+        
+        lbl_url = tk.Label(lbf_resultado, text='URL:', width=12, justify=tk.LEFT, anchor='w')
+        lbl_url.grid(row=2, column=0, padx=10, pady=2)
+        self.txt_url = tk.Entry(lbf_resultado, width=28)
+        self.txt_url.grid(row=2, column=1, padx=10, pady=2)
+        
+        lbl_gists = tk.Label(lbf_resultado, text='Gists:', width=12, justify=tk.LEFT, anchor='w')
+        lbl_gists.grid(row=3, column=0, padx=10, pady=2)
+        self.txt_gists = tk.Entry(lbf_resultado, width=28)
+        self.txt_gists.grid(row=3, column=1, padx=10, pady=2)
+        
+        lbl_url_repos = tk.Label(lbf_resultado, text='URL repos:', width=12, justify=tk.LEFT, anchor='w')
+        lbl_url_repos.grid(row=4, column=0, padx=10, pady=2)
+        self.txt_url_repos = tk.Entry(lbf_resultado, width=28)
+        self.txt_url_repos.grid(row=4, column=1, padx=10, pady=2)
+        
+        lbl_cantidad_repos = tk.Label(lbf_resultado, text='Cantidad repos:', width=12, justify=tk.LEFT, anchor='w')
+        lbl_cantidad_repos.grid(row=5, column=0, padx=10, pady=2)
+        self.txt_cantidad_repos = tk.Entry(lbf_resultado, width=28)
+        self.txt_cantidad_repos.grid(row=5, column=1, padx=10, pady=2)
+        
+        lbl_ubicacion = tk.Label(lbf_resultado, text='Ubicación:', width=12, justify=tk.LEFT, anchor='w')
+        lbl_ubicacion.grid(row=6, column=0, padx=10, pady=2)
+        self.txt_ubicacion = tk.Entry(lbf_resultado, width=28)
+        self.txt_ubicacion.grid(row=6, column=1, padx=10, pady=2)
+        
+        lbl_blog = tk.Label(lbf_resultado, text='Blog:', width=12, justify=tk.LEFT, anchor='w')
+        lbl_blog.grid(row=7, column=0, padx=10, pady=2)
+        self.txt_blog = tk.Entry(lbf_resultado, width=28)
+        self.txt_blog.grid(row=7, column=1, padx=10, pady=2)
 
-        self.txt_nombre = tk.Entry(lbf_resultado)
-        self.txt_nombre.grid(row=0, column=1, padx=10, pady=10)
+        lbl_foto = tk.Label(lbf_resultado, text='Foto:', width=12, justify=tk.LEFT, anchor='w')
+        lbl_foto.grid(row=8, column=0, padx=10, pady=2)
 
     def consultar(self):
         pass
