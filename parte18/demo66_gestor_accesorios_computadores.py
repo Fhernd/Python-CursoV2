@@ -1,6 +1,7 @@
 import sqlite3
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import ttk
 
 class GestorAccesoriosComputador(tk.Tk):
 
@@ -12,6 +13,26 @@ class GestorAccesoriosComputador(tk.Tk):
     def inicializar_gui(self):
         self.title('Gestor Accesorios & Repuestos para Computador')
         self.geometry('550x340')
+
+        frm_entrada = tk.Frame(self)
+        frm_entrada.place(relx=0.05, rely=0.05, relwidth=1, relheight=0.333333)
+
+        lbl_nombre = tk.Label(frm_entrada, text='Nombre:')
+        lbl_nombre.place(relx=0, rely=0, relwidth=0.25, relheight=1)
+        self.txt_nombre = tk.Entry(frm_entrada)
+        self.txt_nombre.place(relx=0.25, rely=0, relwidth=0.25, relheight=0.5)
+        
+        lbl_cliente = tk.Label(frm_entrada, text='Cliente:')
+        lbl_cliente.place(relx=0.5, rely=0, relwidth=0.25, relheight=1)
+        self.txt_cliente = tk.Entry(frm_entrada)
+        self.txt_cliente.place(relx=0.70, rely=0, relwidth=0.25, relheight=0.5)
+        
+        lbl_tipo = tk.Label(frm_entrada, text='Tipo:')
+        lbl_tipo.place(relx=0, rely=0.5, relwidth=0.25, relheight=0.5)
+        self.cbx_tipo = ttk.Combobox(frm_entrada)
+        self.cbx_tipo.place(relx=0.25, rely=0, relwidth=0.25, relheight=0.5)
+
+
 
 def main():
 
