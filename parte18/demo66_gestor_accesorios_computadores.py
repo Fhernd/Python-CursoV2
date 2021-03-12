@@ -74,7 +74,52 @@ class GestorAccesoriosComputador(tk.Tk):
         pass
     
     def limpiar(self):
-        pass
+        self.txt_nombre.delete(0, 'end')
+        self.txt_cliente.delete(0, 'end')
+        self.txt_costo.delete(0, 'end')
+
+
+class GestionBaseDatos:
+
+    def __init__(self, nombre_bd):
+        self.conexion = sqlite3.connect(f'parte18/{nombre_bd}')
+        self.cursor = self.conexion.cursor()
+        self.inicializar_bd()
+    
+    def inicializar_bd(self):
+        ddl_tabla = """
+        CREATE TABLE IF NOT EXISTS componentes(
+            id INTEGER PRIMARY KEY,
+            nombre TEXT,
+            cliente TEXT,
+            tipo TEXT
+        )
+        """
+        self.cursor.execute(ddl_tabla)
+    
+    def todos(self):
+        dml_todos = """
+            SELECT * FROM componentes
+        """
+        registros = self.cursor.execute(dml_todos).fetchall()
+
+        return registros
+
+    def insertar(self, componente):
+        dml_insertar = """
+            INSERT INTO componentes VALUES (NULL, ?, ?, ?)
+        """
+        self.cursor.execute(dml_insertar, 
+            (componente.nombre, componente.cliente, componente.tipo))
+        
+        self.conexion.commit()
+    
+    def remover(self, id_):
+        dml_remover = """
+            DELETE FROM componentes WHERE id = ?
+        """
+        self.cursor.execute(dml_remover, (id_,))
+        self.conexion.commit()
 
 def main():
 
