@@ -15,7 +15,7 @@ class GestorAccesoriosComputador(tk.Tk):
         self.geometry('550x340')
 
         frm_entrada = tk.Frame(self)
-        frm_entrada.place(relx=0.05, rely=0.05, relwidth=1, relheight=0.2, anchor='n')
+        frm_entrada.place(relx=0.05, rely=0.05, relwidth=1, relheight=0.2)
 
         lbl_nombre = tk.Label(frm_entrada, text='Nombre:')
         lbl_nombre.place(relx=0, rely=0, relwidth=0.25, relheight=0.5)
@@ -30,6 +30,8 @@ class GestorAccesoriosComputador(tk.Tk):
         lbl_tipo = tk.Label(frm_entrada, text='Tipo:')
         lbl_tipo.place(relx=0, rely=0.5, relwidth=0.25, relheight=0.5)
         self.cbx_tipo = ttk.Combobox(frm_entrada)
+        tipos = ('Periférico', 'Board', 'Procesador', 'Almacenamiento', 'Red', 'Impresión', 'Otros')
+        self.cbx_tipo['values'] = tipos
         self.cbx_tipo.place(relx=0.25, rely=0.5, relwidth=0.25, relheight=0.5)
 
         lbl_costo = tk.Label(frm_entrada, text='Costo:')
@@ -38,13 +40,40 @@ class GestorAccesoriosComputador(tk.Tk):
         self.txt_costo.place(relx=0.70, rely=0.5, relwidth=0.25, relheight=0.5)
 
         frm_botones = tk.Frame(self)
-        frm_entrada.place(relx=0.05, rely=0.25, relwidth=1, relheight=0.1, anchor='n')
+        frm_botones.place(relx=0.025, rely=0.30, relwidth=0.95, relheight=0.1)
 
         btn_agregar = tk.Button(frm_botones, text='Agregar')
         btn_agregar['command'] = self.agregar
         btn_agregar.place(relx=0, rely=0, relwidth=0.25, relheight=1)
+        
+        btn_remover = tk.Button(frm_botones, text='Remover')
+        btn_remover['command'] = self.remover
+        btn_remover.place(relx=0.25, rely=0, relwidth=0.25, relheight=1)
+        
+        btn_actualizar = tk.Button(frm_botones, text='Actualizar')
+        btn_actualizar['command'] = self.actualizar
+        btn_actualizar.place(relx=0.5, rely=0, relwidth=0.25, relheight=1)
+        
+        btn_limpiar = tk.Button(frm_botones, text='Limpiar')
+        btn_limpiar['command'] = self.limpiar
+        btn_limpiar.place(relx=0.75, rely=0, relwidth=0.25, relheight=1)
+
+        frm_lista = tk.Frame(self)
+        frm_lista.place(relx=0.025, rely=0.42, relwidth=0.95, relheight=1)
+
+        lbx_componentes = tk.Listbox(frm_lista)
+        lbx_componentes.place(relx=0, rely=0, relwidth=1, relheight=1)
     
     def agregar(self):
+        pass
+    
+    def remover(self):
+        pass
+    
+    def actualizar(self):
+        pass
+    
+    def limpiar(self):
         pass
 
 def main():
