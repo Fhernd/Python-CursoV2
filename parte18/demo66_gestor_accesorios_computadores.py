@@ -9,6 +9,8 @@ class GestorAccesoriosComputador(tk.Tk):
         super().__init__()
 
         self.inicializar_gui()
+        self.bd = GestionBaseDatos()
+        self.cargar_componentes()
     
     def inicializar_gui(self):
         self.title('Gestor Accesorios & Repuestos para Computador')
@@ -19,12 +21,14 @@ class GestorAccesoriosComputador(tk.Tk):
 
         lbl_nombre = tk.Label(frm_entrada, text='Nombre:')
         lbl_nombre.place(relx=0, rely=0, relwidth=0.25, relheight=0.5)
-        self.txt_nombre = tk.Entry(frm_entrada)
+        self.nombre = tk.StringVar(self)
+        self.txt_nombre = tk.Entry(frm_entrada, textvariable=self.nombre)
         self.txt_nombre.place(relx=0.25, rely=0, relwidth=0.25, relheight=0.5)
         
         lbl_cliente = tk.Label(frm_entrada, text='Cliente:')
         lbl_cliente.place(relx=0.5, rely=0, relwidth=0.25, relheight=0.5)
-        self.txt_cliente = tk.Entry(frm_entrada)
+        self.cliente = tk.StringVar(self)
+        self.txt_cliente = tk.Entry(frm_entrada, textvariable=self.cliente)
         self.txt_cliente.place(relx=0.70, rely=0, relwidth=0.25, relheight=0.5)
         
         lbl_tipo = tk.Label(frm_entrada, text='Tipo:')
@@ -36,7 +40,8 @@ class GestorAccesoriosComputador(tk.Tk):
 
         lbl_costo = tk.Label(frm_entrada, text='Costo:')
         lbl_costo.place(relx=0.5, rely=0.5, relwidth=0.25, relheight=0.5)
-        self.txt_costo = tk.Entry(frm_entrada)
+        self.costo = tk.StringVar(self)
+        self.txt_costo = tk.Entry(frm_entrada, textvariable=self.costo)
         self.txt_costo.place(relx=0.70, rely=0.5, relwidth=0.25, relheight=0.5)
 
         frm_botones = tk.Frame(self)
@@ -61,11 +66,32 @@ class GestorAccesoriosComputador(tk.Tk):
         frm_lista = tk.Frame(self)
         frm_lista.place(relx=0.025, rely=0.42, relwidth=0.95, relheight=1)
 
-        lbx_componentes = tk.Listbox(frm_lista)
-        lbx_componentes.place(relx=0, rely=0, relwidth=1, relheight=1)
+        self.lbx_componentes = tk.Listbox(frm_lista)
+        self.lbx_componentes.place(relx=0, rely=0, relwidth=1, relheight=1)
     
+    def cargar_componentes(self):
+        self.lbx_componentes.delete(0, tk.END)
+
+        componentes = self.bd.todos()
+
+        for c in componentes:
+            self.lbx_componentes.insert(tk.END, c)
+
     def agregar(self):
-        pass
+        nombre = self.nombre.get().strip()
+        cliente = self.cliente.get().strip()
+        tipo = self.cbx_tipo.get()
+        costo = self.costo.get().strip()
+
+        if len(nombre) == 0 or len(cliente) == 0 or len(costo) == 0:
+            messagebox.showwarning('Mensaje', 'Todos los campos son obligatorios.')
+            return
+        
+        componente = Componente(None, nombre, cliente, tipo, costo)
+        
+        self.bd.insertar(componente)
+
+        self.limpiar()
     
     def remover(self):
         pass
@@ -77,6 +103,15 @@ class GestorAccesoriosComputador(tk.Tk):
         self.txt_nombre.delete(0, 'end')
         self.txt_cliente.delete(0, 'end')
         self.txt_costo.delete(0, 'end')
+
+
+class Componente:
+    def __init__(self, id_, nombre, cliente, tipo, costo):
+        self.id_ = id_
+        self.nombre = nombre
+        self.cliente = cliente
+        self.tipo = tipo
+        self.costo = costo
 
 
 class GestionBaseDatos:
@@ -92,7 +127,8 @@ class GestionBaseDatos:
             id INTEGER PRIMARY KEY,
             nombre TEXT,
             cliente TEXT,
-            tipo TEXT
+            tipo TEXT,
+            costo REAL
         )
         """
         self.cursor.execute(ddl_tabla)
@@ -107,10 +143,10 @@ class GestionBaseDatos:
 
     def insertar(self, componente):
         dml_insertar = """
-            INSERT INTO componentes VALUES (NULL, ?, ?, ?)
+            INSERT INTO componentes VALUES (NULL, ?, ?, ?, ?)
         """
         self.cursor.execute(dml_insertar, 
-            (componente.nombre, componente.cliente, componente.tipo))
+            (componente.nombre, componente.cliente, componente.tipo, componente.costo))
         
         self.conexion.commit()
     
@@ -120,6 +156,19 @@ class GestionBaseDatos:
         """
         self.cursor.execute(dml_remover, (id_,))
         self.conexion.commit()
+    
+    def actualizar(self, id_, componente):
+        dml_actualizar = """
+            UPDATE componentes SET nombre = ?, cliente = ?, tipo = ?, costo = ? WHERE id = ?
+        """
+
+        self.cursor.execute(dml_actualizar, 
+                            (componente.nombre, componente.cliente, componente.tipo, componente.costo, id_))
+        
+        self.conexion.commit()
+    
+    def __del__(self):
+        self.conexion.close()
 
 def main():
 
