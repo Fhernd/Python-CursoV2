@@ -9,8 +9,9 @@ class GestorAccesoriosComputador(tk.Tk):
         super().__init__()
 
         self.inicializar_gui()
-        self.bd = GestionBaseDatos()
+        self.bd = GestionBaseDatos('demo66_componentes.db')
         self.cargar_componentes()
+        self.componente_seleccionado = 0
     
     def inicializar_gui(self):
         self.title('Gestor Accesorios & Repuestos para Computador')
@@ -68,6 +69,7 @@ class GestorAccesoriosComputador(tk.Tk):
 
         self.lbx_componentes = tk.Listbox(frm_lista)
         self.lbx_componentes.place(relx=0, rely=0, relwidth=1, relheight=1)
+        self.lbx_componentes.bind('<<ListboxSelect>>', self.seleccionar_componente)
     
     def cargar_componentes(self):
         self.lbx_componentes.delete(0, tk.END)
@@ -92,18 +94,56 @@ class GestorAccesoriosComputador(tk.Tk):
         self.bd.insertar(componente)
 
         self.limpiar()
+        self.cargar_componentes()
     
     def remover(self):
-        pass
+        self.bd.remover(self.componente_seleccionado.id_)
+        self.limpiar()
+        self.cargar_componentes()
     
     def actualizar(self):
-        pass
+        nombre = self.nombre.get().strip()
+        cliente = self.cliente.get().strip()
+        tipo = self.cbx_tipo.get()
+        costo = self.costo.get().strip()
+
+        if len(nombre) == 0 or len(cliente) == 0 or len(costo) == 0:
+            messagebox.showwarning('Mensaje', 'Todos los campos son obligatorios.')
+            return
+        
+        id_ = self.componente_seleccionado.id_
+        nombre = nombre
+        cliente = cliente
+        tipo = tipo
+        costo = costo
+        
+        componente = Componente(id_, nombre, cliente, tipo, costo)
+
+        self.bd.actualizar(id_, componente)
+        self.limpiar()
+        self.cargar_componentes()
     
     def limpiar(self):
         self.txt_nombre.delete(0, 'end')
         self.txt_cliente.delete(0, 'end')
         self.txt_costo.delete(0, 'end')
 
+    def seleccionar_componente(self, event):
+        try:
+            indice = self.lbx_componentes.curselection()[0]
+            datos = self.lbx_componentes.get(indice)
+
+            self.componente_seleccionado = Componente(*datos)
+
+            self.txt_nombre.delete(0, tk.END)
+            self.txt_nombre.insert(tk.END, self.componente_seleccionado.nombre)
+            self.txt_cliente.delete(0, tk.END)
+            self.txt_cliente.insert(tk.END, self.componente_seleccionado.cliente)
+            self.txt_costo.delete(0, tk.END)
+            self.txt_costo.insert(tk.END, self.componente_seleccionado.costo)
+            self.cbx_tipo.set(self.componente_seleccionado.tipo)
+        except IndexError:
+            pass
 
 class Componente:
     def __init__(self, id_, nombre, cliente, tipo, costo):
