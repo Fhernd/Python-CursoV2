@@ -22,3 +22,29 @@ class DescargadorHtmlApp(tk.Tk):
 
         lbl_url = ttk.Label(self.frm_superior, text='URL:')
         lbl_url.grid(row=0, column=0, sticky=tk.W)
+
+        self.url = tk.StringVar(self)
+        txt_url = ttk.Entry(self.frm_superior, textvariable=self.url, width=90)
+        txt_url.grid(row=0, column=1, sticky=tk.EW)
+
+        btn_descargar = ttk.Button(self.frm_superior, text='Descargar')
+        btn_descargar['command'] = self.descargar
+        btn_descargar.grid(row=0, column=2, sticky=tk.E)
+
+        self.frm_superior.grid(row=0, column=0, sticky=tk.NSEW, padx=10, pady=10)
+
+        frm_intermedio = ttk.Frame(self)
+
+        self.txa_html = tk.Text(frm_intermedio, height=20)
+        self.txa_html.grid(row=1, column=0)
+
+
+    def descargar(self):
+        pass
+
+def main():
+    app = DescargadorHtmlApp()
+    app.mainloop()
+
+if __name__ == '__main__':
+    main()
