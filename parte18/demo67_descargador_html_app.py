@@ -12,7 +12,7 @@ class DescargadorHtmlApp(tk.Tk):
 
     def inicializar_gui(self):
         self.title('Descargador HTML')
-        self.geometry('680x420')
+        self.geometry('680x435')
         self.resizable(0, 0)
 
         self.frm_superior = tk.Frame(self)
@@ -38,8 +38,27 @@ class DescargadorHtmlApp(tk.Tk):
         self.txa_html = tk.Text(frm_intermedio, height=20)
         self.txa_html.grid(row=1, column=0)
 
+        sbr_txa_html = ttk.Scrollbar(frm_intermedio, orient='vertical', command=self.txa_html.yview)
+        sbr_txa_html.grid(row=1, column=1, sticky=tk.NS)
+        self.txa_html['yscrollcommand'] = sbr_txa_html.set
+
+        frm_intermedio.grid(row=1, column=0, sticky=tk.NSEW, padx=10, pady=10)
+
+        frm_inferior = ttk.Frame(self)
+        frm_inferior.columnconfigure(0, weight=1)
+
+        btn_copiar = ttk.Button(frm_inferior, text='Copiar', command=self.copiar)
+        btn_copiar.grid(row=0, column=0, sticky=tk.E)
+
+        btn_salir = ttk.Button(frm_inferior, text='Salir', command=self.destroy)
+        btn_salir.grid(row=0, column=1, sticky=tk.E)
+
+        frm_inferior.grid(row=2, column=0, sticky=tk.NSEW, padx=10, pady=10)
 
     def descargar(self):
+        pass
+    
+    def copiar(self):
         pass
 
 def main():
