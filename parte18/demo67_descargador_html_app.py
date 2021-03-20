@@ -1,7 +1,23 @@
 import threading
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
+import validators
 import requests
+
+
+class DescargaHtmlAsincronico(threading.Thread):
+
+    def __init__(self, url):
+        super().__init__()
+
+        self.url = url
+        self.html = None
+    
+    def run(self):
+        respuesta = requests.get(self.url)
+        self.html = respuesta.text
+
 
 class DescargadorHtmlApp(tk.Tk):
 
@@ -56,7 +72,11 @@ class DescargadorHtmlApp(tk.Tk):
         frm_inferior.grid(row=2, column=0, sticky=tk.NSEW, padx=10, pady=10)
 
     def descargar(self):
-        pass
+        url = self.url.get()
+
+        if not validators.url(url):
+            messagebox.showwarning('Advertencia', 'La URL especificada no es válida.')
+            return
     
     def copiar(self):
         pass
