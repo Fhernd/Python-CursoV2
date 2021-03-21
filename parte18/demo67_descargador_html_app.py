@@ -43,9 +43,9 @@ class DescargadorHtmlApp(tk.Tk):
         txt_url = ttk.Entry(self.frm_superior, textvariable=self.url, width=90)
         txt_url.grid(row=0, column=1, sticky=tk.EW)
 
-        btn_descargar = ttk.Button(self.frm_superior, text='Descargar')
-        btn_descargar['command'] = self.descargar
-        btn_descargar.grid(row=0, column=2, sticky=tk.E)
+        self.btn_descargar = ttk.Button(self.frm_superior, text='Descargar')
+        self.btn_descargar['command'] = self.descargar
+        self.btn_descargar.grid(row=0, column=2, sticky=tk.E)
 
         self.frm_superior.grid(row=0, column=0, sticky=tk.NSEW, padx=10, pady=10)
 
@@ -77,6 +77,21 @@ class DescargadorHtmlApp(tk.Tk):
         if not validators.url(url):
             messagebox.showwarning('Advertencia', 'La URL especificada no es válida.')
             return
+        
+        self.btn_descargar['state'] = tk.DISABLED
+        self.txa_html.delete(1.0, 'end')
+
+        thread_descarga = DescargaHtmlAsincronico(url)
+        thread_descarga.start()
+
+        self.monitorear_descarga(thread_descarga)
+    
+    def monitorear_descarga(self, thread_descarga):
+        if thread_descarga.is_alive():
+            self.after(100, lambda: self.monitorear_descarga(thread_descarga))
+        else:
+            self.txa_html.insert(1.0, thread_descarga.html)
+            self.btn_descargar['state'] = tk.NORMAL
     
     def copiar(self):
         pass
