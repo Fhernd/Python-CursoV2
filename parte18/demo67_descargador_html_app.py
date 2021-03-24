@@ -15,8 +15,11 @@ class DescargaHtmlAsincronico(threading.Thread):
         self.html = None
     
     def run(self):
-        respuesta = requests.get(self.url)
-        self.html = respuesta.text
+        try:
+            respuesta = requests.get(self.url)
+            self.html = respuesta.text
+        except:
+            self.html = 'EL DOMINIO NO ESTÁ DISPONIBLE'
 
 
 class DescargadorHtmlApp(tk.Tk):
@@ -94,7 +97,9 @@ class DescargadorHtmlApp(tk.Tk):
             self.btn_descargar['state'] = tk.NORMAL
     
     def copiar(self):
-        pass
+        if len(self.txa_html.get(1.0, 'end')):
+            self.clipboard_clear()
+            self.clipboard_append(self.txa_html.get(1.0, 'end'))
 
 def main():
     app = DescargadorHtmlApp()
