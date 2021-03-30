@@ -1,5 +1,15 @@
 import tkinter as tk
+from tkinter import filedialog
 import threading
+
+class Descargador(threading.Thread):
+
+    def __init__(self, url, destino):
+        self.url = url
+        self.destiono = destino
+
+    def run(self):
+        pass
 
 class GestorDescargasApp(tk.Tk):
 
@@ -10,7 +20,7 @@ class GestorDescargasApp(tk.Tk):
     
     def inicializar_gui(self):
         self.title('Gestor Descargas')
-        self.geometry('600x200')
+        self.geometry('600x180')
         self.resizable(0, 0)
 
         frm_superior = tk.Frame(self)
@@ -28,7 +38,7 @@ class GestorDescargasApp(tk.Tk):
         lbl_destino.grid(row=1, column=0, sticky=tk.W, pady=10)
 
         self.destino = tk.StringVar(self)
-        self.txt_destino = tk.Entry(frm_superior, textvariable=self.url, width=80)
+        self.txt_destino = tk.Entry(frm_superior, textvariable=self.destino, width=80, state=tk.DISABLED)
         self.txt_destino.grid(row=1, column=1, sticky=tk.EW, pady=10)
 
         frm_superior.grid(row=0, column=0, sticky=tk.NSEW, padx=10, pady=15)
@@ -41,16 +51,18 @@ class GestorDescargasApp(tk.Tk):
 
         btn_seleccionar_destino = tk.Button(frm_inferior, text='Seleccionar destino...')
         btn_seleccionar_destino['command'] = self.seleccionar_destino
-        btn_seleccionar_destino.grid(row=0, column=1, sticky='E')
+        btn_seleccionar_destino.grid(row=0, column=1, sticky='E', padx=10)
         
         btn_iniciar_descarga = tk.Button(frm_inferior, text='Iniciar descarga')
         btn_iniciar_descarga['command'] = self.iniciar_descarga
         btn_iniciar_descarga.grid(row=0, column=2, sticky='E')
 
-        frm_inferior.grid(row=1, column=0, sticky=tk.NSEW, padx=10, pady=20)
+        frm_inferior.grid(row=1, column=0, sticky=tk.NSEW, padx=10, pady=10)
     
     def seleccionar_destino(self):
-        pass
+        carpeta_destino = filedialog.askdirectory()
+
+        self.destino.set(carpeta_destino)
     
     def iniciar_descarga(self):
         pass
