@@ -1,15 +1,24 @@
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import messagebox
 import threading
+import urllib
+import os
+import validators
 
 class Descargador(threading.Thread):
 
     def __init__(self, url, destino):
         self.url = url
-        self.destiono = destino
+        self.destino = destino
 
     def run(self):
-        pass
+        nombre_archivo = self.url.split('/')[-1]
+
+        with urllib.request.urlopen(self.url) as r:
+            with open(os.path.join(self.destino, nombre_archivo), 'wb') as f:
+                f.write(r.read())
+                messagebox.showinfo('Información', f'El archivo {nombre_archivo} se ha descargado en la siguiente ruta {self.destino}.')
 
 class GestorDescargasApp(tk.Tk):
 
@@ -65,7 +74,13 @@ class GestorDescargasApp(tk.Tk):
         self.destino.set(carpeta_destino)
     
     def iniciar_descarga(self):
-        pass
+        url = self.url.get().strip()
+
+        if not validators.url(url):
+            messagebox.showwarning('Mensaje', 'La URL escrita no es válida.')
+            return
+        
+        # TODO: Crear un thread para ejecutar el proceso de descarga en segundo plano.
 
 def main():
     app = GestorDescargasApp()
