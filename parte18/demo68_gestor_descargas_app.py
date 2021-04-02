@@ -2,20 +2,21 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
 import threading
-import urllib
+from urllib import request
 import os
 import validators
 
 class Descargador(threading.Thread):
 
     def __init__(self, url, destino):
+        super().__init__()
         self.url = url
         self.destino = destino
 
     def run(self):
         nombre_archivo = self.url.split('/')[-1]
 
-        with urllib.request.urlopen(self.url) as r:
+        with request.urlopen(self.url) as r:
             with open(os.path.join(self.destino, nombre_archivo), 'wb') as f:
                 f.write(r.read())
                 messagebox.showinfo('Información', f'El archivo {nombre_archivo} se ha descargado en la siguiente ruta {self.destino}.')
@@ -55,16 +56,16 @@ class GestorDescargasApp(tk.Tk):
         frm_inferior = tk.Frame(self)
         frm_inferior.columnconfigure(0, weight=1)
 
-        lbl_estado = tk.Label(frm_inferior, text='Listo', width=10, justify=tk.LEFT, anchor="w")
-        lbl_estado.grid(row=0, column=0, sticky=tk.W, pady=10)
+        self.lbl_estado = tk.Label(frm_inferior, text='Listo', width=10, justify=tk.LEFT, anchor="w")
+        self.lbl_estado.grid(row=0, column=0, sticky=tk.W, pady=10)
 
         btn_seleccionar_destino = tk.Button(frm_inferior, text='Seleccionar destino...')
         btn_seleccionar_destino['command'] = self.seleccionar_destino
         btn_seleccionar_destino.grid(row=0, column=1, sticky='E', padx=10)
         
-        btn_iniciar_descarga = tk.Button(frm_inferior, text='Iniciar descarga')
-        btn_iniciar_descarga['command'] = self.iniciar_descarga
-        btn_iniciar_descarga.grid(row=0, column=2, sticky='E')
+        self.btn_iniciar_descarga = tk.Button(frm_inferior, text='Iniciar descarga')
+        self.btn_iniciar_descarga['command'] = self.iniciar_descarga
+        self.btn_iniciar_descarga.grid(row=0, column=2, sticky='E')
 
         frm_inferior.grid(row=1, column=0, sticky=tk.NSEW, padx=10, pady=10)
     
@@ -80,7 +81,30 @@ class GestorDescargasApp(tk.Tk):
             messagebox.showwarning('Mensaje', 'La URL escrita no es válida.')
             return
         
-        # TODO: Crear un thread para ejecutar el proceso de descarga en segundo plano.
+        destino = self.destino.get()
+
+        if len(destino) == 0:
+            messagebox.showwarning('Mensaje', 'Debe especificar una ruta para guardar el archivo.')
+            return
+        
+        t = Descargador(url, destino)
+
+        t.start()
+
+        self.btn_iniciar_descarga['state'] = tk.DISABLED
+        self.lbl_estado.config(text='Descargando archivo...')
+
+        self.validar_finalizacion(t)
+    
+    def validar_finalizacion(self, t):
+        self.after(1000, self.comprobar_fin_descarga, t)
+    
+    def comprobar_fin_descarga(self, t):
+        if not t.is_alive():
+            self.lbl_estado.config(text='La descarga ha finalizado.')
+            self.btn_iniciar_descarga['state'] = tk.NORMAL
+        else:
+            self.validar_finalizacion(t)
 
 def main():
     app = GestorDescargasApp()
