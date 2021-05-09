@@ -21,6 +21,20 @@ class FormularioRegistro(tk.Tk):
         tk.Entry(lfm_informacion_personal).grid(row=0, column=1, sticky=tk.W)
         tk.Entry(lfm_informacion_personal).grid(row=1, column=1, sticky=tk.W)
 
+        lfm_ubicacion = tk.LabelFrame(self, padx=15, pady=10, text='Ubicación')
+        lfm_ubicacion.pack(padx=10, pady=5)
+
+        tk.Label(lfm_ubicacion, text='Dirección').grid(row=0)
+        tk.Label(lfm_ubicacion, text='Ciudad').grid(row=1)
+        tk.Label(lfm_ubicacion, text='Código postal').grid(row=2)
+
+        tk.Entry(lfm_ubicacion).grid(row=0, column=1, sticky=tk.W)
+        tk.Entry(lfm_ubicacion).grid(row=1, column=1, sticky=tk.W)
+        tk.Entry(lfm_ubicacion, width=8).grid(row=2, column=1, sticky=tk.W)
+
+        btn_registrar = tk.Button(self, text='Registrar')
+        btn_registrar.pack(padx=10, pady=10, side=tk.RIGHT)
+
 
 def main():
     app = FormularioRegistro()
