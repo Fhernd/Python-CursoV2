@@ -20,3 +20,23 @@ class AparienciaComponentes(tk.Tk):
 
         btn_cambiar_fondo = tk.Button(self, text='Cambiar color de fondo')
         btn_cambiar_fondo['command'] = partial(self.cambiar_color, 'bg')
+        
+        btn_cambiar_color = tk.Button(self, text='Cambiar color del texto')
+        btn_cambiar_color['command'] = partial(self.cambiar_color, 'fg')
+
+        self.lbl_texto.pack(padx=20, pady=20)
+        btn_cambiar_fondo.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        btn_cambiar_color.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+    def cambiar_color(self, atributo):
+        color_seleccionado  = askcolor()[1]
+        self.lbl_texto.config(**{atributo: color_seleccionado})
+
+
+def main():
+    app = AparienciaComponentes()
+    app.mainloop()
+
+
+if __name__ == '__main__':
+    main()
