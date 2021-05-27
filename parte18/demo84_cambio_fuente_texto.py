@@ -28,3 +28,17 @@ class CambioFuenteTexto(tk.Tk):
         self.lbl_texto.pack(padx=20, pady=20)
         opt_fuentes.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         spx_tamagnio.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+    
+    def cambiar_fuente(self, *argumentos):
+        fuente = self.fuente.get()
+        tamagnio = self.tamagnio.get()
+        self.lbl_texto.config(font=(fuente, tamagnio))
+
+
+def main():
+    app = CambioFuenteTexto()
+    app.mainloop()
+
+
+if __name__ == '__main__':
+    main()
