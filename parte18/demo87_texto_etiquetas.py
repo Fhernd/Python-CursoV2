@@ -22,9 +22,28 @@ class TextoEtiqueta(tk.Tk):
         self.txa_contenido.tag_config('link', foreground='blue', underline=1)
         self.txa_contenido.tag_bind('link', '<Button-1>', self.abrir_enlace)
         self.txa_contenido.tag_bind('link', '<Enter>', lambda _: self.txa_contenido.config(cursor='hand2'))
+        self.txa_contenido.tag_bind('link', '<Leave>', lambda _: self.txa_contenido.config(cursor=''))
+
+        self.txa_contenido.pack()
+        self.btn_agregar_enlace.pack(expand=True)
     
     def agregar_enlace(self):
-        pass
+        seleccion = self.txa_contenido.tag_ranges(tk.SEL)
+        if seleccion:
+            self.txa_contenido.tag_add('link', *seleccion)
 
-    def abrir_enlace(self):
-        pass
+    def abrir_enlace(self, evento):
+        posicion = '@{},{} + 1c'.format(evento.x, evento.y)
+        indice = self.txa_contenido.index(posicion)
+        resultado = self.txa_contenido.tag_prevrange('link', indice)
+        url = self.txa_contenido.get(*resultado)
+        webbrowser.open(url)
+
+
+def main():
+    app = TextoEtiqueta()
+    app.mainloop()
+
+
+if __name__ == '__main__':
+    main()
