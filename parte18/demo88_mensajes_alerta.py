@@ -34,12 +34,19 @@ class Alertas(tk.Tk):
         btn_error.pack(**opciones_botones)
     
     def mostrar_alerta_informativa(self):
-        pass
+        mb.showinfo('Información', 'Esta es una alerta informativa.')
 
     def mostrar_alerta_advertencia(self):
-        pass
+        mb.showwarning('Advertencia', 'Esta es una alerta de tipo advertencia.')
 
     def mostrar_alerta_error(self):
-        pass
+        mb.showerror('Error', 'Esta es una alerta de tipo error.')
 
 
+def main():
+    app = Alertas()
+    app.mainloop()
+
+
+if __name__ == '__main__':
+    main()
