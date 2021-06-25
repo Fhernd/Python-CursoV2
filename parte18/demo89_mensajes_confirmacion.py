@@ -24,3 +24,11 @@ class Aplicacion(tk.Tk):
         btn_comando = tk.Button(self, text=titulo, command=comando)
         btn_comando.pack(padx=40, pady=5, expand=True, fill=tk.BOTH)
 
+
+def main():
+    app = Aplicacion()
+    app.mainloop()
+
+
+if __name__ == '__main__':
+    main()
