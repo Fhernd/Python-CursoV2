@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.filedialog as fd
+import tkinter.messagebox as mb
 
 
 class Aplicacion(tk.Tk):
@@ -23,10 +24,18 @@ class Aplicacion(tk.Tk):
         btn_seleccionar_carpeta.pack(padx=60, pady=10)
     
     def seleccionar_archivo(self):
-        pass
+        tipos = (('Texto plano', '*.txt'), ('Imágenes', '*.jpg *.png *.gif'), ('Todos los archivos', '*'))
+
+        archivo = fd.askopenfilename(title='Abrir archivo...', initialdir='/', filetypes=tipos)
+
+        if archivo:
+            mb.showinfo('Mensaje', archivo)
     
     def seleccionar_carpeta(self):
-        pass
+        directorio = fd.askdirectory(title='Abrir carpeta...', initialdir='/')
+
+        if directorio:
+            mb.showinfo('Mensaje', directorio)
 
 
 def main():
