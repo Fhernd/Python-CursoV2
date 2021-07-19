@@ -22,7 +22,15 @@ class AlmacenamientoContenido(tk.Tk):
         btn_guardar_contenido.pack(pady=10, ipadx=5)
 
     def guardar_contenido(self):
-        pass
+        nuevo_archivo = fd.asksaveasfile(title='Guardar archivo...',
+                                        defaultextension='.txt',
+                                        filetypes=(('Text files', '*.txt'),))
+        
+        if nuevo_archivo:
+            contenido = self.txt_contenido.get(1.0, tk.END)
+
+            nuevo_archivo.write(contenido)
+            nuevo_archivo.close()
 
 
 def main():
