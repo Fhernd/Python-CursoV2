@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from tkinter.messagebox import showinfo
 
 class Aplicacion(tk.Tk):
 
@@ -15,15 +15,32 @@ class Aplicacion(tk.Tk):
         self.seleccionado = tk.BooleanVar()
         self.seleccionado.trace('w', self.seguir_seleccionado)
 
-        self.elemento_seleccionado = tk.StringVar()
-        self.elemento_seleccionado.set('1')
-        self.elemento_seleccionado.trace('w', self.seguir_elemento_seleccionado)
-    
-    def seguir_seleccionado(self):
-        pass
+        self.color_seleccionado = tk.StringVar()
+        self.color_seleccionado.set('1')
+        self.color_seleccionado.trace('w', self.seguir_color_seleccionado)
 
-    def seguir_elemento_seleccionado(self):
-        pass
+        mnu_principal = tk.Menu(self)
+        mnu_opciones = tk.Menu(mnu_principal, tearoff=0)
+
+        mnu_opciones.add_checkbutton(label='Activo', onvalue=True, offvalue=False, variable=self.seleccionado)
+
+        mnu_opciones.add_separator()
+
+        mnu_opciones.add_radiobutton(label='Rojo', value='rojo', variable=self.color_seleccionado)
+        mnu_opciones.add_radiobutton(label='Verde', value='verde', variable=self.color_seleccionado)
+        mnu_opciones.add_radiobutton(label='Azul', value='azul', variable=self.color_seleccionado)
+
+        mnu_principal.add_cascade(label='Opciones', menu=mnu_opciones)
+        mnu_principal.add_command(label='Salir', command=self.destroy)
+
+        self.config(menu=mnu_principal)
+
+    
+    def seguir_seleccionado(self, *args):
+        showinfo('Mensaje', self.seleccionado.get())
+
+    def seguir_color_seleccionado(self, *args):
+        showinfo('Mensaje', self.color_seleccionado.get())
 
 
 def main():
