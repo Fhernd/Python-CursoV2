@@ -26,16 +26,24 @@ class MenuContextualApp(tk.Tk):
         self.mcx_edicion.post(evento.x_root, evento.y_root)
 
     def copiar(self):
-        pass
+        seleccion = self.txa_contenido.tag_ranges(tk.SEL)
+
+        if seleccion:
+            self.clipboard_clear()
+            self.clipboard_append(self.txa_contenido.get(*seleccion))
     
     def cortar(self):
-        pass
+        self.copiar()
+        self.eliminar()
     
     def pegar(self):
-        pass
+        self.txa_contenido.insert(tk.INSERT, self.clipboard_get())
     
     def eliminar(self):
-        pass
+        seleccion = self.txa_contenido.tag_ranges(tk.SEL)
+
+        if seleccion:
+            self.txa_contenido.delete(*seleccion)
 
 
 def main():
