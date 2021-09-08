@@ -1,4 +1,5 @@
 import re
+import tkinter as tk
 
 
 def dato_obligatorio(dato, mensaje):
@@ -42,3 +43,17 @@ class Contacto(object):
     @email.setter
     def email(self, valor):
         self._email = coincide(valor, self.regex_email, 'Formato inválido para el email.')
+
+
+class ListaContactos(tk.Frame):
+
+    def __init__(self, root, **kwargs):
+        super().__init__(root)
+
+        self.lbx_contactos = tk.Listbox(self, **kwargs)
+        scl_contactos = tk.Scrollbar(self, command=self.lbx_contactos.yview)
+
+        self.lbx_contactos.config(yscrollcommand=scl_contactos.set)
+        scl_contactos.pack(side=tk.RIGHT, fill=tk.Y)
+        self.lbx_contactos.pack(side=tk.LEFT, fill=tk.BOTH, expand=1)
+    
