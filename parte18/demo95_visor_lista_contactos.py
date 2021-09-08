@@ -73,3 +73,19 @@ class ListaContactos(tk.Frame):
         handler = lambda _: callback(self.lbx_contactos.curselection()[0])
 
         self.lbx_contactos.bind('<Double-Button-1>', handler)
+
+
+class FormularioContacto(tk.LabelFrame):
+    campos = ('Apellido', 'Nombre', 'Email', 'Teléfono')
+
+    def __init__(self, root, **kwargs):
+        super().__init__(root, text='Contacto', padx=10, pady=10, **kwargs)
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        self.frm_contacto = tk.Frame(self)
+        self.campos_entradas = list(map(self.crear_campo, enumerate(self.campos)))
+    
+    def crear_campo(self, campo):
+        pass
