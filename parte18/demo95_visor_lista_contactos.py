@@ -1,5 +1,7 @@
+import csv
 import re
 import tkinter as tk
+from tkinter import messagebox as mb
 
 
 def dato_obligatorio(dato, mensaje):
@@ -113,8 +115,40 @@ class FormularioContacto(tk.LabelFrame):
         try:
             return Contacto(*valores)
         except ValueError as e:
-            pass
+            mb.showwarning('Error de validación', str(e), parent=self)
     
     def limpiar(self):
         for e in self.campos_entradas:
             e.delete(0, tk.END)
+
+
+class AplicacionVisorListaContactos(tk.Tk):
+
+    def __init__(self):
+        super().__init__()
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        self.title('Visor Lista Contactos')
+        self.lista_contactos = ListaContactos(self, height=12)
+        self.formulario_contacto = FormularioContacto(self)
+
+        self.contactos = self.cargar_contactos()
+
+        for c in self.contactos:
+            self.lista_contactos.insertar(c)
+        
+        self.lista_contactos.pack(side=tk.LEFT, padx=10, pady=10)
+        self.formulario_contacto.pack(side=tk.LEFT, padx=10, pady=10)
+
+        self.lista_contactos.bind_doble_click(self.mostrar_contacto)
+    
+    def cargar_contactos(self):
+        with open('parte18/demo95_contactos.csv', encoding='utf-8', newline='') as f:
+            return [Contacto(*r) for r in csv.reader(f)]
+    
+    def mostrar_contacto(self, indice):
+        contacto = self.contactos[indice]
+
+        self.formulario_contacto.cargar_datos(contacto)
