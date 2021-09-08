@@ -57,3 +57,19 @@ class ListaContactos(tk.Frame):
         scl_contactos.pack(side=tk.RIGHT, fill=tk.Y)
         self.lbx_contactos.pack(side=tk.LEFT, fill=tk.BOTH, expand=1)
     
+    def insertar(self, contacto, indice=tk.END):
+        texto = '{}, {}'.format(contacto.apellido, contacto)
+
+        self.lbx_contactos.insert(indice, texto)
+    
+    def eliminar(self, indice):
+        self.lbx_contactos.delete(indice, indice)
+    
+    def actualizar(self, contacto, indice):
+        self.eliminar(indice)
+        self.insertar(contacto, indice)
+    
+    def bind_doble_click(self, callback):
+        handler = lambda _: callback(self.lbx_contactos.curselection()[0])
+
+        self.lbx_contactos.bind('<Double-Button-1>', handler)
