@@ -86,6 +86,35 @@ class FormularioContacto(tk.LabelFrame):
     def inicializar_gui(self):
         self.frm_contacto = tk.Frame(self)
         self.campos_entradas = list(map(self.crear_campo, enumerate(self.campos)))
+
+        self.frm_contacto.pack()
     
     def crear_campo(self, campo):
-        pass
+        posicion, texto = campo
+
+        lbl_campo = tk.Label(self.frm_contacto, text=texto)
+        lbl_campo.grid(row=posicion, column=0)
+
+        txt_campo = tk.Entry(self.frm_contacto, width=25)
+        txt_campo.grid(row=posicion, column=1)
+
+        return txt_campo
+
+    def cargar_datos(self, contacto):
+        valores = (contacto.apellido, contacto.nombre, contacto.email, contacto.telefono)
+
+        for campo, valor in zip(self.campos_entradas, valores):
+            campo.delete(0, tk.END)
+            campo.insert(0, valor)
+    
+    def obtener_detalles(self):
+        valores = [e.get() for e in self.campos_entradas]
+
+        try:
+            return Contacto(*valores)
+        except ValueError as e:
+            pass
+    
+    def limpiar(self):
+        for e in self.campos_entradas:
+            e.delete(0, tk.END)
