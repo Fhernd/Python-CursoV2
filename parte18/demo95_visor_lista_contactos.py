@@ -60,7 +60,7 @@ class ListaContactos(tk.Frame):
         self.lbx_contactos.pack(side=tk.LEFT, fill=tk.BOTH, expand=1)
     
     def insertar(self, contacto, indice=tk.END):
-        texto = '{}, {}'.format(contacto.apellido, contacto)
+        texto = '{}, {}'.format(contacto.apellido, contacto.nombre)
 
         self.lbx_contactos.insert(indice, texto)
     
@@ -152,3 +152,12 @@ class AplicacionVisorListaContactos(tk.Tk):
         contacto = self.contactos[indice]
 
         self.formulario_contacto.cargar_datos(contacto)
+
+
+def main():
+    app = AplicacionVisorListaContactos()
+    app.mainloop()
+
+
+if __name__ == '__main__':
+    main()
