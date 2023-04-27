@@ -17,9 +17,16 @@ class DescargarHTML(tk.Frame):
         self.txt_url = tk.Entry(self)
         self.txt_url.pack(side='top')
 
-        self.btn_descargar = tk.Button(self, text='Descargar HTML', command=self.descargarHtml)
+        self.btn_descargar = tk.Button(self, text='Descargar HTML', command=self.descargar_html)
         self.btn_descargar.pack(side='bottom')
 
         self.txa_contenido_html = tk.Text(self, height=20, width=20)
         self.txa_contenido_html.pack(side='bottom')
+    
+    def descargar_html(self):
+        url = self.txt_url.get()
+        
+        html = urlopen(url).read().decode()
+        self.txa_contenido_html.delete('1.0', 'end')
+        self.txa_contenido_html.insert('end', html)
 
