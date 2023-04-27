@@ -105,8 +105,8 @@ class GestorProductos(tk.Frame):
         self.btn_agregar = tk.Button(self, text='Crear', command=self.crear_producto)
         self.btn_agregar.grid(row=5, column=0, columnspan=2)
 
-        productos = self.bd.recuperar_todos()
-        print(productos)
+        self.lst_productos = tk.Listbox(self, height=20, width=80)
+        self.lst_productos.grid(row=6, columnspan=2)
     
     def crear_producto(self):
         id = self.txt_id.get()
@@ -118,6 +118,8 @@ class GestorProductos(tk.Frame):
         producto = Producto(id, nombre, descripcion, categoria, precio)
 
         self.bd.insertar(producto)
+
+        self.lst_productos.insert('end', f'{id} - {nombre} - {precio}')
 
 
 if __name__ == '__main__':
