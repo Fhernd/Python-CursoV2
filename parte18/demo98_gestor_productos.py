@@ -12,6 +12,17 @@ class Producto:
         self.precio = precio
 
 
+class BaseDatosProductos:
+    def __init__(self):
+        self.conexion = sqlite3.connect('parte18/productos.db')
+        self.cursor = self.conexion.cursor()
+
+        self.crear_tabla_producto()
+    
+    def crear_tabla_producto(self):
+        pass
+
+
 class GestorProductos(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
