@@ -33,12 +33,23 @@ class BaseDatosProductos:
         """
 
         self.cursor.execute(sql)
+    
+    def insertar(self, producto):
+        sql = """
+        INSERT INTO producto VALUES (?, ?, ?, ?, ?)
+        """
+
+        self.cursor.execute(sql, (producto.id, producto.nombre, producto.descripcion, producto.categoria, producto.precio))
+
+        self.conexion.commit()
 
 
 class GestorProductos(tk.Frame):
-    def __init__(self, master=None):
+    def __init__(self, master=None, bd=None):
         super().__init__(master)
         self.master = master
+        self.bd = bd
+
         self.pack()
 
         self.inicializar_gui()
@@ -81,8 +92,12 @@ class GestorProductos(tk.Frame):
 
         producto = Producto(id, nombre, descripcion, categoria, precio)
 
+        self.bd.insertar(producto)
+
 
 if __name__ == '__main__':
+    bd = BaseDatosProductos()
+    
     root = tk.Tk()
-    app = GestorProductos(master=root)
+    app = GestorProductos(master=root, bd=bd)
     app.mainloop()
