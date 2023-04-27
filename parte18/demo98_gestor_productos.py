@@ -22,7 +22,7 @@ class BaseDatosProductos:
     def crear_tabla_producto(self):
         sql = """
         
-        CRTEATE TABLE IF NOT EXISTS producto (
+        CREATE TABLE IF NOT EXISTS producto (
             id INTEGER PRIMARY KEY,
             nombre TEXT NOT NULL,
             descripcion TEXT NOT NULL,
