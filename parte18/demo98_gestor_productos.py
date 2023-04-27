@@ -20,7 +20,19 @@ class BaseDatosProductos:
         self.crear_tabla_producto()
     
     def crear_tabla_producto(self):
-        pass
+        sql = """
+        
+        CRTEATE TABLE IF NOT EXISTS producto (
+            id INTEGER PRIMARY KEY,
+            nombre TEXT NOT NULL,
+            descripcion TEXT NOT NULL,
+            categoria TEXT NOT NULL,
+            precio REAL NOT NULL
+        )
+        
+        """
+
+        self.cursor.execute(sql)
 
 
 class GestorProductos(tk.Frame):
