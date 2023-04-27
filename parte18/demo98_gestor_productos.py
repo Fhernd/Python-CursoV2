@@ -49,4 +49,10 @@ class GestorProductos(tk.Frame):
         self.btn_agregar = tk.Button(self, text='Crear', command=self.crear_producto)
         self.btn_agregar.grid(row=5, column=0, columnspan=2)
     
+    def crear_producto(self):
+        id = self.txt_id.get()
+        nombre = self.txt_nombre.get()
+        descripcion = self.txt_descripcion.get()
+        categoria = self.cbx_categoria.get()
+        precio = self.txt_precio.get()
     
