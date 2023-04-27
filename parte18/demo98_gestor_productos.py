@@ -15,6 +15,8 @@ class Producto:
 class BaseDatosProductos:
     def __init__(self):
         self.conexion = sqlite3.connect('parte18/productos.db')
+        self.conexion.row_factory = sqlite3.Row
+
         self.cursor = self.conexion.cursor()
 
         self.crear_tabla_producto()
@@ -99,6 +101,9 @@ class GestorProductos(tk.Frame):
     
         self.btn_agregar = tk.Button(self, text='Crear', command=self.crear_producto)
         self.btn_agregar.grid(row=5, column=0, columnspan=2)
+
+        productos = self.bd.recuperar_todos()
+        print(productos)
     
     def crear_producto(self):
         id = self.txt_id.get()
