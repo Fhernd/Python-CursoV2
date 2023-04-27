@@ -107,6 +107,8 @@ class GestorProductos(tk.Frame):
 
         self.lst_productos = tk.Listbox(self, height=20, width=80)
         self.lst_productos.grid(row=6, columnspan=2)
+
+        self.leer_productos()
     
     def crear_producto(self):
         id = self.txt_id.get()
@@ -119,8 +121,13 @@ class GestorProductos(tk.Frame):
 
         self.bd.insertar(producto)
 
-        self.lst_productos.insert('end', f'{id} - {nombre} - {precio}')
+        self.lst_productos.insert('end', f'{id} - {nombre} - ${precio}')
 
+    def leer_productos(self):
+        productos = self.bd.recuperar_todos()
+
+        for p in productos:
+            self.lst_productos.insert('end', f'{p.id} - {p.nombre} - ${p.precio}')
 
 if __name__ == '__main__':
     bd = BaseDatosProductos()
