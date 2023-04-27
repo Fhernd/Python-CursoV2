@@ -42,6 +42,23 @@ class BaseDatosProductos:
         self.cursor.execute(sql, (producto.id, producto.nombre, producto.descripcion, producto.categoria, producto.precio))
 
         self.conexion.commit()
+    
+    def recuperar_todos(self):
+        sql = """
+        
+        SELECT * FROM producto
+        
+        """
+
+        self.cursor.execute(sql)
+        registros = self.cursor.fetchall()
+
+        productos = []
+
+        for r in registros:
+            productos.append(Producto(**dict(r)))
+        
+        return productos
 
 
 class GestorProductos(tk.Frame):
