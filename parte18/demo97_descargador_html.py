@@ -2,7 +2,7 @@ import tkinter as tk
 from urllib.request import urlopen
 
 
-class DescargarHTML(tk.Frame):
+class DescargadorHTML(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
         self.master = master
@@ -30,3 +30,8 @@ class DescargarHTML(tk.Frame):
         self.txa_contenido_html.delete('1.0', 'end')
         self.txa_contenido_html.insert('end', html)
 
+
+if __name__ == '__main__':
+    root = tk.Tk()
+    app = DescargadorHTML(master=root)
+    app.mainloop()
