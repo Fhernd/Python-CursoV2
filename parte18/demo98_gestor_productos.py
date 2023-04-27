@@ -55,4 +55,11 @@ class GestorProductos(tk.Frame):
         descripcion = self.txt_descripcion.get()
         categoria = self.cbx_categoria.get()
         precio = self.txt_precio.get()
-    
+
+        producto = Producto(id, nombre, descripcion, categoria, precio)
+
+
+if __name__ == '__main__':
+    root = tk.Tk()
+    app = GestorProductos(master=root)
+    app.mainloop()
