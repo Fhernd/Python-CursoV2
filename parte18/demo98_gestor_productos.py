@@ -10,6 +10,9 @@ class Producto:
         self.descripcion = descripcion
         self.categoria = categoria
         self.precio = precio
+    
+    def __repr__(self) -> str:
+        return f'ID: {self.id} - Nombre: {self.nombre}'
 
 
 class BaseDatosProductos:
