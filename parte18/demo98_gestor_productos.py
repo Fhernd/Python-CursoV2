@@ -12,4 +12,41 @@ class Producto:
         self.precio = precio
 
 
+class GestorProductos(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.master = master
+        self.pack()
 
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        self.lbl_id = tk.Label(self, text='ID:')
+        self.lbl_id.grid(row=0, column=0)
+        self.txt_id = tk.Entry(self)
+        self.txt_id.grid(row=0, column=1)
+        
+        self.lbl_nombre = tk.Label(self, text='Nombre:')
+        self.lbl_nombre.grid(row=1, column=0)
+        self.txt_nombre = tk.Entry(self)
+        self.txt_nombre.grid(row=1, column=1)
+        
+        self.lbl_descripcion = tk.Label(self, text='Descripción:')
+        self.lbl_descripcion.grid(row=2, column=0)
+        self.txt_descripcion = tk.Entry(self)
+        self.txt_descripcion.grid(row=2, column=1)
+
+        self.lbl_categoria = tk.Label(self, text='Categoría:')
+        self.lbl_categoria.grid(row=3, column=0)
+        self.cbx_categoria = ttk.Combobox(self, values=['Electrónicos', 'Ropa', 'Calzado', 'Herramientas', 'Otro'])
+        self.cbx_categoria.grid(row=3, column=1)
+
+        self.lbl_precio = tk.Label(self, text='Precio:')
+        self.lbl_precio.grid(row=4, column=0)
+        self.txt_precio = tk.Entry(self)
+        self.txt_precio.grid(row=4, column=1)
+    
+        self.btn_agregar = tk.Button(self, text='Crear', command=self.crear_producto)
+        self.btn_agregar.grid(row=5, column=0, columnspan=2)
+    
+    
