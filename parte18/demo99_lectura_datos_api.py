@@ -20,3 +20,15 @@ class LecturaDatosApi(tk.Frame):
         self.tbl_datos.heading('Email', text='Email')
 
         self.consultar_datos_api()
+    
+    def consultar_datos_api(self):
+        respuesta = requests.get('https://randomuser.me/api?results=5')
+        datos = respuesta.json()['results']
+
+        for d in datos:
+            nombre = f"{d['name']['first']} {d['name']['last']}"
+            ubicacion = f"{d['location']['city']} ({d['location']['country']})"
+            telefono = d['phone']
+            email = d['email']
+
+            self.tbl_datos.insert('', 'end', values=(nombre, ubicacion, telefono, email))
