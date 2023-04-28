@@ -32,3 +32,9 @@ class LecturaDatosApi(tk.Frame):
             email = d['email']
 
             self.tbl_datos.insert('', 'end', values=(nombre, ubicacion, telefono, email))
+
+
+if __name__ == '__main__':
+    root = tk.Tk()
+    app = LecturaDatosApi(root)
+    app.mainloop()
