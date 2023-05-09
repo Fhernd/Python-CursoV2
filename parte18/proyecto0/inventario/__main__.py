@@ -170,7 +170,8 @@ def main():
     """
     Punto de entrada a la aplicación.
     """
-    
+    app = MDIParent()
+    app.mainloop()
 
 
 if __name__ == '__main__':
