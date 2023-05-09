@@ -1,9 +1,7 @@
 from .modelos.inventario import Inventario
 from .modelos.producto import Producto
 from .modelos.venta import Venta
-import datetime
-import os
-import pickle
+
 
 def mostrar_menu():
     """
