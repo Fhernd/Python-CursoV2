@@ -1,0 +1,5 @@
+Ejercicio 1. En el Proyecto 0 se construyó un sistema de gestión de inventario de dispositivos electrónicos para la empresa Dispositivos S.a.s.
+
+Se requiere remodelar la aplicación basada en consola en una aplicación con interfaz gráfica de usuario.
+
+Se debe utilizar un enfoque basado en MDI (Multiple Document Interface) con la librería Tkinter.
