@@ -20,7 +20,7 @@ class VentanaPrincipal(tk.Tk):
         self.menu_bar.add_cascade(label="Archivo", menu=self.file_menu)
 
         self.product_menu = tk.Menu(self.menu_bar, tearoff=0)
-        self.product_menu.add_command(label="Registrar")
+        self.product_menu.add_command(label="Registrar", command=self.registrar_producto)
         self.product_menu.add_command(label="Vender")
         self.product_menu.add_command(label="Buscar")
         self.product_menu.add_command(label="Cambiar disponibilidad")
@@ -34,7 +34,58 @@ class VentanaPrincipal(tk.Tk):
         self.help_menu.add_command(label="Acerca de")
         self.menu_bar.add_cascade(label="Ayuda", menu=self.help_menu)
         self.config(menu=self.menu_bar)
+
+    def registrar_producto(self):
+        nested_window = tk.Toplevel(self)
+        nested_window.title('Formulario')
         
+        # Definir los campos del formulario
+        codigo_label = tk.Label(nested_window, text='Código:')
+        codigo_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.W)
+        codigo_entry = tk.Entry(nested_window)
+        codigo_entry.grid(row=0, column=1, padx=5, pady=5)
+
+        nombre_label = tk.Label(nested_window, text='Nombre:')
+        nombre_label.grid(row=1, column=0, padx=5, pady=5, sticky=tk.W)
+        nombre_entry = tk.Entry(nested_window)
+        nombre_entry.grid(row=1, column=1, padx=5, pady=5)
+
+        precio_label = tk.Label(nested_window, text='Precio:')
+        precio_label.grid(row=2, column=0, padx=5, pady=5, sticky=tk.W)
+        precio_entry = tk.Entry(nested_window)
+        precio_entry.grid(row=2, column=1, padx=5, pady=5)
+
+        cantidad_label = tk.Label(nested_window, text='Cantidad:')
+        cantidad_label.grid(row=3, column=0, padx=5, pady=5, sticky=tk.W)
+        cantidad_entry = tk.Entry(nested_window)
+        cantidad_entry.grid(row=3, column=1, padx=5, pady=5)
+
+        disponible_var = tk.BooleanVar()
+        disponible_checkbutton = tk.Checkbutton(nested_window, text='Disponible para venta?', variable=disponible_var)
+        disponible_checkbutton.grid(row=4, column=0, padx=5, pady=5, sticky=tk.W)
+
+        # Crear el botón de crear y la función asociada
+        crear_button = tk.Button(nested_window, text='Crear', command=lambda: self.crear_producto(codigo_entry.get(), nombre_entry.get(), precio_entry.get(), cantidad_entry.get(), disponible_var.get()))
+        crear_button.grid(row=5, column=1, padx=5, pady=5, sticky=tk.E)
+
+        # Establecer tamaño mínimo del formulario
+        nested_window.minsize(250, 250)
+
+        # Hacer que el formulario se adapte al tamaño de la ventana anidada
+        nested_window.grid_rowconfigure(0, weight=1)
+        nested_window.grid_rowconfigure(1, weight=1)
+        nested_window.grid_rowconfigure(2, weight=1)
+        nested_window.grid_rowconfigure(3, weight=1)
+        nested_window.grid_rowconfigure(4, weight=1)
+        nested_window.grid_rowconfigure(5, weight=1)
+        nested_window.grid_columnconfigure(0, weight=1)
+        nested_window.grid_columnconfigure(1, weight=1)
+
+    def crear_producto(self, codigo, nombre, precio, cantidad, disponible):
+        # Aquí se puede implementar la lógica para crear el producto
+        print('Creando producto...')
+        print(f'Código: {codigo}')
+
     def quit(self) -> None:
         """
         Cierra la aplicación.
