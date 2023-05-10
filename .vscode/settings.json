@@ -1,5 +1,5 @@
 {
-    "editor.fontSize": 27,
+    "editor.fontSize": 19,
     "editor.minimap.enabled": false,
     "editor.wordWrap": "on",
     "code-runner.executorMap": {

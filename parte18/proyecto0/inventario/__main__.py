@@ -139,7 +139,10 @@ import tkinter as tk
 class MDIParent(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Ventana MDI")
+        self.title("Gestor Inventario - Dispositivos S.a.s.")
+
+        self.geometry("500x500")
+
         self.menu_bar = tk.Menu(self)
         self.file_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.file_menu.add_command(label="Salir", command=self.quit)
