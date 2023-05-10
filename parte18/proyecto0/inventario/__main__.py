@@ -6,12 +6,12 @@ from .modelos.producto import Producto
 from .modelos.venta import Venta
 
 
-class VentanaPrincipal(tk.Tk):
-    def __init__(self):
+class VentanaPrincipal(tk.Frame):
+    def __init__(self, parent=None):
         super().__init__()
-        self.title("Gestor Inventario - Dispositivos S.a.s.")
+        self.parent = parent
 
-        self.geometry("500x500")
+        self.parent.title("Gestor Inventario - Dispositivos S.a.s.")
 
         self.menu_bar = tk.Menu(self)
         
@@ -33,7 +33,7 @@ class VentanaPrincipal(tk.Tk):
         self.help_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.help_menu.add_command(label="Acerca de")
         self.menu_bar.add_cascade(label="Ayuda", menu=self.help_menu)
-        self.config(menu=self.menu_bar)
+        self.parent.config(menu=self.menu_bar)
 
     def registrar_producto(self):
         nested_window = tk.Toplevel(self)
@@ -95,7 +95,11 @@ class VentanaPrincipal(tk.Tk):
 
 
 if __name__ == "__main__":
-    app = VentanaPrincipal()
+    root = tk.Tk()
+    root.geometry("500x500")
+
+    app = VentanaPrincipal(root)
+    
     app.mainloop()
 
 
