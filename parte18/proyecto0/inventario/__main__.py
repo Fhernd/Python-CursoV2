@@ -1,3 +1,5 @@
+import pickle
+import os
 import tkinter as tk
 from tkinter import messagebox
 
@@ -12,6 +14,7 @@ class VentanaPrincipal(tk.Frame):
         self.parent = parent
 
         self.inicializar_gui()
+        self.cargar_inventario()
 
     def inicializar_gui(self):
         self.parent.title("Gestor Inventario - Dispositivos S.a.s.")
@@ -41,6 +44,19 @@ class VentanaPrincipal(tk.Frame):
     def registrar_producto(self):
         registro_producto_frame = ProductoCrearFrame(self.parent)
         registro_producto_frame.grab_set()
+
+    def cargar_inventario(self):
+        if os.path.isfile('inventario/inventario.pickle'):
+            # Usar un diálogo de confirmación para preguntar si se desea cargar el inventario:
+            self.inventario = Inventario()
+            
+            if messagebox.askyesno('Mensaje', '¿Desea cargar el inventario?'):
+                with open('inventario/inventario.pickle', 'rb') as f:
+                    resultado = pickle.load(f)
+                
+                if resultado:
+                    self.inventario.productos = resultado.productos
+                    self.inventario.ventas = resultado.ventas
 
 
 class ProductoCrearFrame(tk.Toplevel):
