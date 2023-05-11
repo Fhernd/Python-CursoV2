@@ -11,6 +11,9 @@ class VentanaPrincipal(tk.Frame):
         super().__init__()
         self.parent = parent
 
+        self.inicializar_gui()
+
+    def inicializar_gui(self):
         self.parent.title("Gestor Inventario - Dispositivos S.a.s.")
 
         self.menu_bar = tk.Menu(self)
