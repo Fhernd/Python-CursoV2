@@ -41,8 +41,10 @@ class VentanaPrincipal(tk.Frame):
 
 
 class ProductoCrearFrame(tk.Toplevel):
-    def __init__(self, parent=None):
+    def __init__(self, parent, inventario):
         tk.Toplevel.__init__(self, parent)
+
+        self.inventario = inventario
 
         self.inicializar_gui()
 
@@ -103,7 +105,7 @@ class ProductoCrearFrame(tk.Toplevel):
         disponible = self.disponible_var.get()
         
         if not codigo or not nombre or not precio or not cantidad:
-            messagebox.showwarning('Mensaje', 'Todos los campos son obligatorios.')
+            messagebox.showwarning('Mensaje', 'Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.')
             return
         
         try:
