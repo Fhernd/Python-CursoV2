@@ -167,16 +167,3 @@ if __name__ == "__main__":
     app = VentanaPrincipal(root)
     
     app.mainloop()
-
-
-
-def main():
-    """
-    Punto de entrada a la aplicación.
-    """
-    app = VentanaPrincipal()
-    app.mainloop()
-
-
-if __name__ == '__main__':
-    main()
