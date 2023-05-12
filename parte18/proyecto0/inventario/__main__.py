@@ -180,7 +180,7 @@ class ProductoCrearFrame(tk.Toplevel):
 
 from tkinter import Toplevel, Label, Entry, Button, Grid, IntVar
 
-class ProductoVenderFrame(Toplevel):
+class ProductoVenderFrame(tk.Toplevel):
     def __init__(self, parent, inventario):
         super().__init__(parent)
         self.title("Venta de Producto")
@@ -190,21 +190,21 @@ class ProductoVenderFrame(Toplevel):
         self.inicializar_gui()
     
     def inicializar_gui(self):
-        label_codigo = Label(self, text="Código:")
+        label_codigo = tk.Label(self, text="Código:")
         label_codigo.grid(row=0, column=0)
         
-        codigo_var = IntVar()
-        entry_codigo = Entry(self, textvariable=codigo_var)
+        self.codigo_var = tk.IntVar()
+        entry_codigo = tk.Entry(self, textvariable=self.codigo_var)
         entry_codigo.grid(row=0, column=1)
         
-        label_cantidad = Label(self, text="Cantidad:")
+        label_cantidad = tk.Label(self, text="Cantidad:")
         label_cantidad.grid(row=1, column=0)
         
-        cantidad_var = IntVar()
-        entry_cantidad = Entry(self, textvariable=cantidad_var)
+        self.cantidad_var = tk.IntVar()
+        entry_cantidad = tk.Entry(self, textvariable=self.cantidad_var)
         entry_cantidad.grid(row=1, column=1)
         
-        button_vender = Button(self, text="Vender", command=lambda: self.vender_producto(codigo_var.get(), cantidad_var.get()))
+        button_vender = tk.Button(self, text="Vender", command=lambda: self.vender_producto())
         button_vender.grid(row=2, columnspan=2)
     
     def vender_producto(self, codigo, cantidad):
