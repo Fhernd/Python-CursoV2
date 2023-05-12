@@ -208,9 +208,51 @@ class ProductoVenderFrame(tk.Toplevel):
         button_vender.grid(row=2, columnspan=2)
     
     def vender_producto(self, codigo, cantidad):
-        # Lógica para vender el producto y actualizar el inventario
+        # Leer los datos de los campos:
+        codigo = self.codigo_var.get()
+        cantidad = self.cantidad_var.get()
+
+        if not codigo or not cantidad:
+            messagebox.showwarning("Mensaje", "Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
+            return
+
+        try:
+            codigo = int(codigo)
+        except ValueError:
+            messagebox.showwarning("Mensaje", "El código debe ser numérico.")
+            return
         
-        self.destroy()
+        if codigo <= 0:
+            messagebox.showwarning("Mensaje", "El código debe ser positivo.")
+            return
+        
+        producto = self.inventario.buscar_producto(codigo)
+
+        if not producto:
+            messagebox.showwarning("Mensaje", "El producto no existe.")
+            return
+
+        try:
+            cantidad = int(cantidad)
+        except ValueError:
+            messagebox.showwarning("Mensaje", "La cantidad debe ser numérica.")
+            return
+
+        if cantidad <= 0:
+            messagebox.showwarning("Mensaje", "La cantidad debe ser positiva.")
+            return
+        
+        if cantidad > producto.cantidad:
+            messagebox.showwarning("Mensaje", "La cantidad solicitada es mayor a la cantidad disponible.")
+            return
+        
+        venta = Venta(codigo, cantidad, producto.precio * cantidad)
+        self.inventario.realizar_venta(venta)
+
+        messagebox.showinfo("Mensaje", "La venta se ha realizado de forma satisfactoria.")
+
+        self.codigo_var.set('')
+        self.cantidad_var.set('')
 
 
 if __name__ == "__main__":
