@@ -68,7 +68,7 @@ class ProductoCrearFrame(tk.Toplevel):
         self.inicializar_gui()
 
     def inicializar_gui(self):
-        self.title('Formulario')
+        self.title('Producto - Crear')
         
         # Variable para almacenar el inventario:
         self.codigo_var = tk.IntVar()
@@ -162,13 +162,12 @@ class ProductoCrearFrame(tk.Toplevel):
 
         messagebox.showinfo('Mensaje', 'El producto se ha creado de forma satisfactoria.')
 
-        # Limpiar los campos del formulario
-        self.codigo_entry.delete(0, tk.END)
-        self.nombre_entry.delete(0, tk.END)
-        self.precio_entry.delete(0, tk.END)
-        self.cantidad_entry.delete(0, tk.END)
+        # Limpiar cada uno de los campos:
+        self.codigo_var.set('')
+        self.nombre_var.set('')
+        self.precio_var.set('')
+        self.cantidad_var.set('')
         self.disponible_var.set(False)
-
         
 
     def quit(self) -> None:
