@@ -42,7 +42,7 @@ class VentanaPrincipal(tk.Frame):
         self.parent.config(menu=self.menu_bar)
 
     def registrar_producto(self):
-        registro_producto_frame = ProductoCrearFrame(self.parent)
+        registro_producto_frame = ProductoCrearFrame(self.parent, self.inventario)
         registro_producto_frame.grab_set()
 
     def cargar_inventario(self):
