@@ -47,7 +47,6 @@ class VentanaPrincipal(tk.Frame):
 
     def cargar_inventario(self):
         if os.path.isfile('inventario/inventario.pickle'):
-            # Usar un diálogo de confirmación para preguntar si se desea cargar el inventario:
             self.inventario = Inventario()
             
             if messagebox.askyesno('Mensaje', '¿Desea cargar el inventario?'):
@@ -55,8 +54,8 @@ class VentanaPrincipal(tk.Frame):
                     resultado = pickle.load(f)
                 
                 if resultado:
-                    self.inventario.productos = resultado.productos
-                    self.inventario.ventas = resultado.ventas
+                    self.inventario.productos = resultado['productos'] if 'productos' in resultado else []
+                    self.inventario.ventas = resultado['ventas'] if 'ventas' in resultado else []
 
 
 class ProductoCrearFrame(tk.Toplevel):
@@ -177,8 +176,6 @@ class ProductoCrearFrame(tk.Toplevel):
         if messagebox.askokcancel("Salir", "¿Desea salir de la aplicación?"):
             exit()
 
-
-from tkinter import Toplevel, Label, Entry, Button, Grid, IntVar
 
 class ProductoVenderFrame(tk.Toplevel):
     def __init__(self, parent, inventario):
