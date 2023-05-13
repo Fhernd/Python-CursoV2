@@ -27,7 +27,7 @@ class VentanaPrincipal(tk.Frame):
 
         self.product_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.product_menu.add_command(label="Registrar", command=self.registrar_producto)
-        self.product_menu.add_command(label="Vender")
+        self.product_menu.add_command(label="Vender", command=self.vender_producto)
         self.product_menu.add_command(label="Buscar")
         self.product_menu.add_command(label="Cambiar disponibilidad")
         self.menu_bar.add_cascade(label="Productos", menu=self.product_menu)
@@ -44,6 +44,10 @@ class VentanaPrincipal(tk.Frame):
     def registrar_producto(self):
         registro_producto_frame = ProductoCrearFrame(self.parent, self.inventario)
         registro_producto_frame.grab_set()
+
+    def vender_producto(self):
+        venta_producto_frame = ProductoVenderFrame(self.parent, self.inventario)
+        venta_producto_frame.grab_set()
 
     def cargar_inventario(self):
         if os.path.isfile('inventario/inventario.pickle'):
