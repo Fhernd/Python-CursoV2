@@ -205,11 +205,10 @@ class ProductoVenderFrame(tk.Toplevel):
         entry_cantidad = tk.Entry(self, textvariable=self.cantidad_var)
         entry_cantidad.grid(row=1, column=1)
         
-        button_vender = tk.Button(self, text="Vender", command=lambda: self.vender_producto())
+        button_vender = tk.Button(self, text="Vender", command=self.vender_producto)
         button_vender.grid(row=2, columnspan=2)
     
-    def vender_producto(self, codigo, cantidad):
-        # Leer los datos de los campos:
+    def vender_producto(self):
         codigo = self.codigo_var.get()
         cantidad = self.cantidad_var.get()
 
