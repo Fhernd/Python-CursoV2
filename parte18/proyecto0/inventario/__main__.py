@@ -58,9 +58,17 @@ class VentanaPrincipal(tk.Frame):
                     resultado = pickle.load(f)
                 
                 if resultado:
-                    self.inventario.productos = resultado['productos'] if 'productos' in resultado else []
+                    self.inventario.productos = self.cargar_productos(resultado['productos']) if 'productos' in resultado else []
                     self.inventario.ventas = resultado['ventas'] if 'ventas' in resultado else []
 
+    def cargar_productos(self, productos):
+        productos_inventario = []
+
+        for p in productos:
+            producto = Producto(p['codigo'], p['nombre'], p['precio'], p['cantidad'], p['disponible'])
+            productos_inventario.append(producto)
+        
+        return productos_inventario
 
 class ProductoCrearFrame(tk.Toplevel):
     def __init__(self, parent, inventario):
