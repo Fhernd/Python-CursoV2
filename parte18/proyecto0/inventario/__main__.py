@@ -59,9 +59,18 @@ class VentanaPrincipal(tk.Frame):
                 
                 if resultado:
                     self.inventario.productos = self.cargar_productos(resultado['productos']) if 'productos' in resultado else []
-                    self.inventario.ventas = resultado['ventas'] if 'ventas' in resultado else []
+                    self.inventario.ventas = self.cargar_productos(resultado['ventas']) if 'ventas' in resultado else []
 
     def cargar_productos(self, productos):
+        """
+        Carga los productos en el inventario.
+
+        Parameters:
+        productos: lista de productos a cargar en el inventario.
+
+        Returns:
+        Lista de productos cargados en el inventario.
+        """
         productos_inventario = []
 
         for p in productos:
@@ -69,6 +78,25 @@ class VentanaPrincipal(tk.Frame):
             productos_inventario.append(producto)
         
         return productos_inventario
+
+    def cargar_ventas(self, ventas):
+        """
+        Carga las ventas en el inventario.
+
+        Parameters:
+        ventas: lista de ventas a cargar en el inventario.
+
+        Returns:
+        Lista de ventas cargadas en el inventario.
+        """
+        ventas_inventario = []
+
+        for v in ventas:
+            venta = Venta(v['codigo_producto'], v['fecha'], v['cantidad'], v['total_sin_iva'])
+            ventas_inventario.append(venta)
+        
+        return ventas_inventario
+
 
 class ProductoCrearFrame(tk.Toplevel):
     def __init__(self, parent, inventario):
