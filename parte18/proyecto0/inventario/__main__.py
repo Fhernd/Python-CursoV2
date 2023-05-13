@@ -50,6 +50,9 @@ class VentanaPrincipal(tk.Frame):
         venta_producto_frame.grab_set()
 
     def cargar_inventario(self):
+        """
+        Carga el inventario desde el archivo inventario.pickle si es que existe.
+        """
         if os.path.isfile('inventario/inventario.pickle'):
             self.inventario = Inventario()
             
