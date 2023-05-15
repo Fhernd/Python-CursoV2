@@ -1,6 +1,7 @@
 import pickle
 import os
 import tkinter as tk
+from tkinter import ttk
 from tkinter import messagebox
 
 from .modelos.inventario import Inventario
@@ -28,7 +29,7 @@ class VentanaPrincipal(tk.Frame):
         self.product_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.product_menu.add_command(label="Registrar", command=self.registrar_producto)
         self.product_menu.add_command(label="Vender", command=self.vender_producto)
-        self.product_menu.add_command(label="Buscar")
+        self.product_menu.add_command(label="Buscar", command=self.buscar_producto)
         self.product_menu.add_command(label="Cambiar disponibilidad")
         self.menu_bar.add_cascade(label="Productos", menu=self.product_menu)
         self.report_menu = tk.Menu(self.menu_bar, tearoff=0)
@@ -49,6 +50,10 @@ class VentanaPrincipal(tk.Frame):
         venta_producto_frame = ProductoVenderFrame(self.parent, self.inventario)
         venta_producto_frame.grab_set()
 
+    def buscar_producto(self):
+        buscar_producto_frame = ProductoBuscarFrame(self.parent, self.inventario)
+        buscar_producto_frame.grab_set()
+    
     def cargar_inventario(self):
         """
         Carga el inventario desde el archivo inventario.pickle si es que existe.
@@ -294,9 +299,6 @@ class ProductoVenderFrame(tk.Toplevel):
         self.codigo_var.set('')
         self.cantidad_var.set('')
 
-
-import tkinter as tk
-from tkinter import ttk
 
 class ProductoBuscarFrame(tk.Toplevel):
     def __init__(self, master, inventario):
