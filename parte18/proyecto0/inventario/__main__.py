@@ -303,23 +303,29 @@ class ProductoBuscarFrame(tk.Toplevel):
         super().__init__(master)
         self.title("Buscar Producto")
 
-        # Crear etiquetas y campos de entrada
         label_codigo = ttk.Label(self, text="Código:")
         label_nombre = ttk.Label(self, text="Nombre:")
         label_precio = ttk.Label(self, text="Precio:")
         label_cantidad = ttk.Label(self, text="Cantidad:")
 
-        self.entry_codigo = ttk.Entry(self)
-        self.entry_nombre = ttk.Entry(self)
-        self.entry_precio = ttk.Entry(self)
-        self.entry_cantidad = ttk.Entry(self)
+        self.codigo_var = tk.IntVar()
+        self.entry_codigo = ttk.Entry(self, textvariable=self.codigo_var)
+        self.entry_codigo.focus()
 
-        self.checkbox_disponible = ttk.Checkbutton(self, text="Disponible para venta")
+        self.nombre_var = tk.StringVar()
+        self.entry_nombre = ttk.Entry(self, textvariable=self.nombre_var)
 
-        # Crear botón de búsqueda
+        self.precio_var = tk.DoubleVar()
+        self.entry_precio = ttk.Entry(self, textvariable=self.precio_var)
+
+        self.cantidad_var = tk.IntVar()
+        self.entry_cantidad = ttk.Entry(self, textvariable=self.cantidad_var)
+
+        self.disponible_var = tk.BooleanVar()
+        self.checkbox_disponible = ttk.Checkbutton(self, text="Disponible para venta", variable=self.disponible_var)
+
         button_buscar = ttk.Button(self, text="Buscar", command=self.buscar_producto)
 
-        # Posicionar los elementos en el layout grid
         label_codigo.grid(row=0, column=0, sticky=tk.W)
         self.entry_codigo.grid(row=0, column=1)
         button_buscar.grid(row=0, column=2)
