@@ -295,6 +295,68 @@ class ProductoVenderFrame(tk.Toplevel):
         self.cantidad_var.set('')
 
 
+import tkinter as tk
+from tkinter import ttk
+
+class ProductoBuscarFrame(tk.Toplevel):
+    def __init__(self, master):
+        super().__init__(master)
+        self.title("Buscar Producto")
+
+        # Crear etiquetas y campos de entrada
+        label_codigo = ttk.Label(self, text="Código:")
+        label_nombre = ttk.Label(self, text="Nombre:")
+        label_precio = ttk.Label(self, text="Precio:")
+        label_cantidad = ttk.Label(self, text="Cantidad:")
+
+        self.entry_codigo = ttk.Entry(self)
+        self.entry_nombre = ttk.Entry(self)
+        self.entry_precio = ttk.Entry(self)
+        self.entry_cantidad = ttk.Entry(self)
+
+        self.checkbox_disponible = ttk.Checkbutton(self, text="Disponible para venta")
+
+        # Crear botón de búsqueda
+        button_buscar = ttk.Button(self, text="Buscar", command=self.buscar_producto)
+
+        # Posicionar los elementos en el layout grid
+        label_codigo.grid(row=0, column=0, sticky=tk.W)
+        self.entry_codigo.grid(row=0, column=1)
+        button_buscar.grid(row=0, column=2)
+
+        label_nombre.grid(row=1, column=0, sticky=tk.W)
+        self.entry_nombre.grid(row=1, column=1)
+
+        label_precio.grid(row=2, column=0, sticky=tk.W)
+        self.entry_precio.grid(row=2, column=1)
+
+        label_cantidad.grid(row=3, column=0, sticky=tk.W)
+        self.entry_cantidad.grid(row=3, column=1)
+
+        self.checkbox_disponible.grid(row=4, columnspan=2, sticky=tk.W)
+
+    def buscar_producto(self):
+        # Implementa aquí la lógica para buscar el producto por el código ingresado
+        codigo = self.entry_codigo.get()
+        # Realizar acciones de búsqueda con el código ingresado
+
+        # Actualizar los campos con los datos encontrados
+        self.entry_nombre.delete(0, tk.END)
+        self.entry_nombre.insert(0, "Nombre del producto encontrado")
+
+        self.entry_precio.delete(0, tk.END)
+        self.entry_precio.insert(0, "Precio del producto encontrado")
+
+        self.entry_cantidad.delete(0, tk.END)
+        self.entry_cantidad.insert(0, "Cantidad del producto encontrado")
+
+        # Simplemente para mostrar el estado de la checkbox
+        if self.checkbox_disponible.instate(['selected']):
+            print("Producto disponible para venta")
+        else:
+            print("Producto no disponible para venta")
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     root.geometry("500x500")
