@@ -299,10 +299,15 @@ import tkinter as tk
 from tkinter import ttk
 
 class ProductoBuscarFrame(tk.Toplevel):
-    def __init__(self, master):
+    def __init__(self, master, inventario):
         super().__init__(master)
-        self.title("Buscar Producto")
+        self.inventario = inventario
 
+        self.title("Producto - Buscar")
+
+        self.inicializar_gui()
+
+    def inicializar_gui(self):
         label_codigo = ttk.Label(self, text="Código:")
         label_nombre = ttk.Label(self, text="Nombre:")
         label_precio = ttk.Label(self, text="Precio:")
@@ -342,25 +347,28 @@ class ProductoBuscarFrame(tk.Toplevel):
         self.checkbox_disponible.grid(row=4, columnspan=2, sticky=tk.W)
 
     def buscar_producto(self):
-        # Implementa aquí la lógica para buscar el producto por el código ingresado
         codigo = self.entry_codigo.get()
-        # Realizar acciones de búsqueda con el código ingresado
+        
 
-        # Actualizar los campos con los datos encontrados
-        self.entry_nombre.delete(0, tk.END)
-        self.entry_nombre.insert(0, "Nombre del producto encontrado")
+        if not codigo and codigo == 0:
+            messagebox.showwarning("Mensaje", "El código es obligatorio.")
+            return
 
-        self.entry_precio.delete(0, tk.END)
-        self.entry_precio.insert(0, "Precio del producto encontrado")
+        producto = self.inventario.buscar_producto(codigo)
+        
+        self.nombre_var.set('')
+        self.precio_var.set('')
+        self.cantidad_var.set('')
+        self.disponible_var.set(False)
 
-        self.entry_cantidad.delete(0, tk.END)
-        self.entry_cantidad.insert(0, "Cantidad del producto encontrado")
+        if not producto:
+            messagebox.showwarning("Mensaje", "El producto no existe.")
+            return
 
-        # Simplemente para mostrar el estado de la checkbox
-        if self.checkbox_disponible.instate(['selected']):
-            print("Producto disponible para venta")
-        else:
-            print("Producto no disponible para venta")
+        self.nombre_var.set(producto.nombre)
+        self.precio_var.set(producto.precio)
+        self.cantidad_var.set(producto.cantidad)
+        self.disponible_var.set(producto.disponible)
 
 
 if __name__ == "__main__":
