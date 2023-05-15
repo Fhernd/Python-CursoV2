@@ -96,7 +96,7 @@ class VentanaPrincipal(tk.Frame):
 
         for v in ventas:
             print(v)
-            venta = Venta(v['id_producto'], v['fecha'], v['cantidad'], v['total_sin_iva'])
+            venta = Venta(v['id_producto'], v['cantidad'], v['total_sin_iva'], v['fecha'])
             ventas_inventario.append(venta)
         
         return ventas_inventario
