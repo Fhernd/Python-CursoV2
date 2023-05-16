@@ -380,13 +380,16 @@ class ProductoBuscarFrame(tk.Toplevel):
 class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
     def __init__(self, master, inventario):
         super().__init__(master)
-        self.title("Producto - Cambiar Disponibilidad")
-        self.minsize(300, 200)
+        self.master = master
 
         self.inventario = inventario
 
+        self.inicializar_gui()
+
     def inicializar_gui(self):
-        # Crear etiquetas y controles
+        self.title("Producto - Cambiar Disponibilidad")
+        self.minsize(300, 200)
+        
         label_codigo = ttk.Label(self, text="Código:")
         self.entry_codigo = ttk.Entry(self, validate="key", validatecommand=(self.register(self.validate_integer), "%P"))
 
@@ -394,7 +397,6 @@ class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
 
         button_buscar = ttk.Button(self, text="Buscar", command=self.buscar_producto)
 
-        # Posicionar los elementos en el layout grid
         label_codigo.grid(row=0, column=0, sticky=tk.W)
         self.entry_codigo.grid(row=0, column=1)
         button_buscar.grid(row=1, columnspan=2)
