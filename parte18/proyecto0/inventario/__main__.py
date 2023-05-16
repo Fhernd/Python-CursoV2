@@ -321,15 +321,19 @@ class ProductoBuscarFrame(tk.Toplevel):
 
         self.nombre_var = tk.StringVar()
         self.entry_nombre = ttk.Entry(self, textvariable=self.nombre_var)
+        self.entry_nombre.state(['disabled'])
 
         self.precio_var = tk.DoubleVar()
         self.entry_precio = ttk.Entry(self, textvariable=self.precio_var)
+        self.entry_precio.state(['disabled'])
 
         self.cantidad_var = tk.IntVar()
         self.entry_cantidad = ttk.Entry(self, textvariable=self.cantidad_var)
+        self.entry_cantidad.state(['disabled'])
 
         self.disponible_var = tk.BooleanVar()
         self.checkbox_disponible = ttk.Checkbutton(self, text="Disponible para venta", variable=self.disponible_var)
+        self.checkbox_disponible.state(['disabled'])
 
         button_buscar = ttk.Button(self, text="Buscar", command=self.buscar_producto)
 
