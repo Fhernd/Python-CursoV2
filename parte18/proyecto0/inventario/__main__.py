@@ -30,7 +30,7 @@ class VentanaPrincipal(tk.Frame):
         self.product_menu.add_command(label="Registrar", command=self.registrar_producto)
         self.product_menu.add_command(label="Vender", command=self.vender_producto)
         self.product_menu.add_command(label="Buscar", command=self.buscar_producto)
-        self.product_menu.add_command(label="Cambiar disponibilidad")
+        self.product_menu.add_command(label="Cambiar disponibilidad", command=self.cambiar_disponibilidad_producto)
         self.menu_bar.add_cascade(label="Productos", menu=self.product_menu)
         self.report_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.report_menu.add_command(label="Ventas en un rango de fechas")
@@ -54,6 +54,10 @@ class VentanaPrincipal(tk.Frame):
         buscar_producto_frame = ProductoBuscarFrame(self.parent, self.inventario)
         buscar_producto_frame.grab_set()
     
+    def cambiar_disponibilidad_producto(self):
+        cambiar_disponibilidad_producto_frame = ProductoCambiarDisponibilidadFrame(self.parent, self.inventario)
+        cambiar_disponibilidad_producto_frame.grab_set()
+
     def cargar_inventario(self):
         """
         Carga el inventario desde el archivo inventario.pickle si es que existe.
