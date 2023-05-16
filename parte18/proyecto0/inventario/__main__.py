@@ -431,6 +431,22 @@ class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
         self.checkbox_disponible.state(['!disabled'])
         self.checkbox_disponible.state(['!selected']) if producto.disponible else self.checkbox_disponible.state(['selected'])
 
+    def cambiar_estado_producto(self, event):
+        codigo = self.entry_codigo.get()
+
+        if not codigo and codigo == 0:
+            messagebox.showwarning("Mensaje", "El código es obligatorio.")
+            return
+
+        producto = self.inventario.buscar_producto(codigo)
+
+        if not producto:
+            messagebox.showwarning("Mensaje", "El producto no existe.")
+            return
+
+        self.inventario.cambiar_estado_producto(producto)
+
+    
 if __name__ == "__main__":
     root = tk.Tk()
     root.geometry("500x500")
