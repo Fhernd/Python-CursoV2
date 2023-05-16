@@ -385,6 +385,7 @@ class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
 
         self.inventario = inventario
 
+    def inicializar_gui(self):
         # Crear etiquetas y controles
         label_codigo = ttk.Label(self, text="Código:")
         self.entry_codigo = ttk.Entry(self, validate="key", validatecommand=(self.register(self.validate_integer), "%P"))
