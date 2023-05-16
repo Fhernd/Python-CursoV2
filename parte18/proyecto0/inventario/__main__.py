@@ -377,6 +377,48 @@ class ProductoBuscarFrame(tk.Toplevel):
         self.disponible_var.set(producto.disponible)
 
 
+class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
+    def __init__(self, master, inventario):
+        super().__init__(master)
+        self.title("Producto - Cambiar Disponibilidad")
+        self.minsize(300, 200)
+
+        self.inventario = inventario
+
+        # Crear etiquetas y controles
+        label_codigo = ttk.Label(self, text="Código:")
+        self.entry_codigo = ttk.Entry(self, validate="key", validatecommand=(self.register(self.validate_integer), "%P"))
+
+        self.checkbox_disponible = ttk.Checkbutton(self, text="¿Disponible para venta?")
+
+        button_buscar = ttk.Button(self, text="Buscar", command=self.buscar_producto)
+
+        # Posicionar los elementos en el layout grid
+        label_codigo.grid(row=0, column=0, sticky=tk.W)
+        self.entry_codigo.grid(row=0, column=1)
+        button_buscar.grid(row=1, columnspan=2)
+        self.checkbox_disponible.grid(row=2, columnspan=2, sticky=tk.W)
+
+    def validate_integer(self, value):
+        # Validar que solo se ingresen números enteros en el campo de código
+        if value.isdigit() or value == "":
+            return True
+        return False
+
+    def buscar_producto(self):
+        # Obtener el código del producto ingresado
+        codigo = self.entry_codigo.get()
+
+        # Realizar acciones de búsqueda en el inventario
+        if codigo in self.inventario:
+            # El producto existe en el inventario
+            disponible_para_venta = self.inventario[codigo]
+            self.checkbox_disponible.setvar(tk.BooleanVar(value=disponible_para_venta))
+        else:
+            # El producto no existe en el inventario
+            self.checkbox_disponible.setvar(tk.BooleanVar(value=False))
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     root.geometry("500x500")
