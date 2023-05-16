@@ -358,7 +358,6 @@ class ProductoBuscarFrame(tk.Toplevel):
 
     def buscar_producto(self):
         codigo = self.entry_codigo.get()
-        
 
         if not codigo and codigo == 0:
             messagebox.showwarning("Mensaje", "El código es obligatorio.")
@@ -398,6 +397,10 @@ class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
         self.entry_codigo = ttk.Entry(self, validate="key", validatecommand=(self.register(self.validate_integer), "%P"))
 
         self.checkbox_disponible = ttk.Checkbutton(self, text="¿Disponible para venta?")
+        self.checkbox_disponible.state(['disabled'])
+
+        # Evento para responder al cambio del checkbox:
+        self.checkbox_disponible.bind("<Button-1>", self.cambiar_estado_producto)
 
         button_buscar = ttk.Button(self, text="Buscar", command=self.buscar_producto)
 
@@ -413,18 +416,20 @@ class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
         return False
 
     def buscar_producto(self):
-        # Obtener el código del producto ingresado
         codigo = self.entry_codigo.get()
 
-        # Realizar acciones de búsqueda en el inventario
-        if codigo in self.inventario:
-            # El producto existe en el inventario
-            disponible_para_venta = self.inventario[codigo]
-            self.checkbox_disponible.setvar(tk.BooleanVar(value=disponible_para_venta))
-        else:
-            # El producto no existe en el inventario
-            self.checkbox_disponible.setvar(tk.BooleanVar(value=False))
+        if not codigo and codigo == 0:
+            messagebox.showwarning("Mensaje", "El código es obligatorio.")
+            return
 
+        producto = self.inventario.buscar_producto(codigo)
+
+        if not producto:
+            messagebox.showwarning("Mensaje", "El producto no existe.")
+            return
+
+        self.checkbox_disponible.state(['!disabled'])
+        self.checkbox_disponible.state(['!selected']) if producto.disponible else self.checkbox_disponible.state(['selected'])
 
 if __name__ == "__main__":
     root = tk.Tk()
