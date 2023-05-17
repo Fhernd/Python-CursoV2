@@ -28,6 +28,7 @@ class VentanaPrincipal(tk.Frame):
 
         self.product_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.product_menu.add_command(label="Registrar", command=self.registrar_producto)
+        self.product_menu.add_command(label="Listar", command=self.listar_productos)
         self.product_menu.add_command(label="Vender", command=self.vender_producto)
         self.product_menu.add_command(label="Buscar", command=self.buscar_producto)
         self.product_menu.add_command(label="Cambiar disponibilidad", command=self.cambiar_disponibilidad_producto)
@@ -45,6 +46,9 @@ class VentanaPrincipal(tk.Frame):
     def registrar_producto(self):
         registro_producto_frame = ProductoCrearFrame(self.parent, self.inventario)
         registro_producto_frame.grab_set()
+
+    def listar_productos(self):
+        pass
 
     def vender_producto(self):
         venta_producto_frame = ProductoVenderFrame(self.parent, self.inventario)
@@ -104,7 +108,6 @@ class VentanaPrincipal(tk.Frame):
         ventas_inventario = []
 
         for v in ventas:
-            print(v)
             venta = Venta(v['id_producto'], v['cantidad'], v['total_sin_iva'], v['fecha'])
             ventas_inventario.append(venta)
         
