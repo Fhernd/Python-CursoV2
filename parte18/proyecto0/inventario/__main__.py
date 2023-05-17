@@ -341,7 +341,6 @@ class ProductoVenderFrame(tk.Toplevel):
         self.codigo_var.set('')
         self.cantidad_var.set('')
 
-
 class ProductoBuscarFrame(tk.Toplevel):
     def __init__(self, master, inventario):
         super().__init__(master)
@@ -400,6 +399,12 @@ class ProductoBuscarFrame(tk.Toplevel):
         if not codigo and codigo == 0:
             messagebox.showwarning("Mensaje", "El código es obligatorio.")
             return
+        
+        try:
+            codigo = int(codigo)
+        except ValueError:
+            messagebox.showwarning("Mensaje", "El código debe ser numérico.")
+            return
 
         producto = self.inventario.buscar_producto(codigo)
         
@@ -416,7 +421,6 @@ class ProductoBuscarFrame(tk.Toplevel):
         self.precio_var.set(producto.precio)
         self.cantidad_var.set(producto.cantidad)
         self.disponible_var.set(producto.disponible)
-
 
 class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
     def __init__(self, master, inventario):
