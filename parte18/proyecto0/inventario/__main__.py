@@ -48,7 +48,8 @@ class VentanaPrincipal(tk.Frame):
         registro_producto_frame.grab_set()
 
     def listar_productos(self):
-        pass
+        listar_productos_frame = ProductosListarFrame(self.parent, self.inventario)
+        listar_productos_frame.grab_set()
 
     def vender_producto(self):
         venta_producto_frame = ProductoVenderFrame(self.parent, self.inventario)
@@ -235,31 +236,28 @@ class ProductoCrearFrame(tk.Toplevel):
 class ProductosListarFrame(tk.Toplevel):
     def __init__(self, master, inventario):
         super().__init__(master)
-        self.inventorio = inventario
+        self.inventario = inventario
 
         self.inicializar_gui()
     
     def inicializar_gui(self):
         self.title("Productos")
         
-        # Crear tabla
         self.table = ttk.Treeview(self)
         self.table["columns"] = ("Código", "Nombre", "Precio", "Cantidad", "Disponible")
         
-        # Definir encabezados de columna
         self.table.heading("Código", text="Código")
         self.table.heading("Nombre", text="Nombre")
         self.table.heading("Precio", text="Precio")
         self.table.heading("Cantidad", text="Cantidad")
-        self.table.heading("Disponible", text="Disponible")
+        self.table.heading("Disponible", text="¿Disponible?")
         
-        # Agregar filas con los datos de productos
         for producto in self.inventario.productos:
-            codigo = producto["Código"]
-            nombre = producto["Nombre"]
-            precio = producto["Precio"]
-            cantidad = producto["Cantidad"]
-            disponible = producto["Disponible"]
+            codigo = producto.codigo
+            nombre = producto.nombre
+            precio = producto.precio
+            cantidad = producto.cantidad
+            disponible = 'Sí' if producto.disponible else 'No'
             
             self.table.insert("", tk.END, values=(codigo, nombre, precio, cantidad, disponible))
         
