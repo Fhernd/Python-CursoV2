@@ -232,6 +232,43 @@ class ProductoCrearFrame(tk.Toplevel):
         if messagebox.askokcancel("Salir", "¿Desea salir de la aplicación?"):
             exit()
 
+class ProductosListarFrame(tk.Toplevel):
+    def __init__(self, master, inventario):
+        super().__init__(master)
+        self.inventorio = inventario
+
+        self.inicializar_gui()
+    
+    def inicializar_gui(self):
+        self.title("Productos")
+        
+        # Crear tabla
+        self.table = ttk.Treeview(self)
+        self.table["columns"] = ("Código", "Nombre", "Precio", "Cantidad", "Disponible")
+        
+        # Definir encabezados de columna
+        self.table.heading("Código", text="Código")
+        self.table.heading("Nombre", text="Nombre")
+        self.table.heading("Precio", text="Precio")
+        self.table.heading("Cantidad", text="Cantidad")
+        self.table.heading("Disponible", text="Disponible")
+        
+        # Agregar filas con los datos de productos
+        for producto in self.inventario.productos:
+            codigo = producto["Código"]
+            nombre = producto["Nombre"]
+            precio = producto["Precio"]
+            cantidad = producto["Cantidad"]
+            disponible = producto["Disponible"]
+            
+            self.table.insert("", tk.END, values=(codigo, nombre, precio, cantidad, disponible))
+        
+        # Ajustar el tamaño de las columnas
+        for column in ("Código", "Nombre", "Precio", "Cantidad", "Disponible"):
+            self.table.column(column, width=100, anchor=tk.CENTER)
+        
+        # Colocar la tabla en el layout
+        self.table.pack(fill=tk.BOTH, expand=True)
 
 class ProductoVenderFrame(tk.Toplevel):
     def __init__(self, parent, inventario):
