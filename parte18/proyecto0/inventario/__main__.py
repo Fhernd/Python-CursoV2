@@ -440,7 +440,8 @@ class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
         label_codigo = ttk.Label(self, text="Código:")
         self.entry_codigo = ttk.Entry(self, validate="key", validatecommand=(self.register(self.validate_integer), "%P"))
 
-        self.checkbox_disponible = ttk.Checkbutton(self, text="¿Disponible para venta?")
+        self.estado = tk.IntVar(value=0)
+        self.checkbox_disponible = ttk.Checkbutton(self, text="¿Disponible para venta?", variable=self.estado)
         self.checkbox_disponible.state(['disabled'])
 
         # Evento para responder al cambio del checkbox:
@@ -460,20 +461,30 @@ class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
         return False
 
     def buscar_producto(self):
-        codigo = int(self.entry_codigo.get())
+        codigo = self.entry_codigo.get().strip()
+
+        if len(codigo) == 0:
+            messagebox.showwarning("Mensaje", "El código es obligatorio.")
+            return
+        
+        codigo = int(codigo)
 
         if not codigo and codigo == 0:
             messagebox.showwarning("Mensaje", "El código es obligatorio.")
             return
-
+        
         producto = self.inventario.buscar_producto(codigo)
 
         if not producto:
+            self.checkbox_disponible.state(['!disabled'])
             messagebox.showwarning("Mensaje", "El producto no existe.")
             return
 
+        current_state = self.estado.get()
+        new_state = 0 if current_state == 1 else 1
+        self.estado.set(new_state)
+
         self.checkbox_disponible.state(['!disabled'])
-        self.checkbox_disponible.state(['!selected']) if producto.disponible else self.checkbox_disponible.state(['selected'])
 
     def cambiar_estado_producto(self, event):
         codigo = int(self.entry_codigo.get())
