@@ -333,10 +333,12 @@ class ProductoVenderFrame(tk.Toplevel):
             messagebox.showwarning("Mensaje", "La cantidad solicitada es mayor a la cantidad disponible.")
             return
         
-        venta = Venta(codigo, cantidad, producto.precio * cantidad)
+        total = producto.precio * cantidad
+
+        venta = Venta(codigo, cantidad, total)
         self.inventario.realizar_venta(venta)
 
-        messagebox.showinfo("Mensaje", "La venta se ha realizado de forma satisfactoria.")
+        messagebox.showinfo("Mensaje", f"La venta se ha realizado de forma satisfactoria. Total a pagar: ${total * 1.19}")
 
         self.codigo_var.set('')
         self.cantidad_var.set('')
