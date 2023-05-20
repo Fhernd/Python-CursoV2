@@ -460,7 +460,7 @@ class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
         return False
 
     def buscar_producto(self):
-        codigo = self.entry_codigo.get()
+        codigo = int(self.entry_codigo.get())
 
         if not codigo and codigo == 0:
             messagebox.showwarning("Mensaje", "El código es obligatorio.")
@@ -476,7 +476,7 @@ class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
         self.checkbox_disponible.state(['!selected']) if producto.disponible else self.checkbox_disponible.state(['selected'])
 
     def cambiar_estado_producto(self, event):
-        codigo = self.entry_codigo.get()
+        codigo = int(self.entry_codigo.get())
 
         if not codigo and codigo == 0:
             messagebox.showwarning("Mensaje", "El código es obligatorio.")
