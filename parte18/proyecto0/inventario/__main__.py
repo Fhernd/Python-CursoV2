@@ -524,7 +524,6 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         hace_mes = datetime.datetime.now() - datetime.timedelta(days=30)
         hoy = datetime.datetime.now()
         
-        # Etiquetas y campos de entrada para las fechas de inicio y fin
         tk.Label(self, text="Fecha de inicio (dd/mm/aaaa):").grid(row=0, column=0, padx=5, pady=5)
         self.start_date_entry = DateEntry(self, month=hace_mes.month, year=hace_mes.year, day=hace_mes.day, maxdate=hoy)
         self.start_date_entry.grid(row=0, column=1, padx=5, pady=5)
@@ -533,11 +532,9 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         self.end_date_entry = DateEntry(self, maxdate=hoy)
         self.end_date_entry.grid(row=1, column=1, padx=5, pady=5)
 
-        # Botón de búsqueda
-        self.search_button = tk.Button(self, text="Buscar", command=self.search)
+        self.search_button = tk.Button(self, text="Buscar", command=self.buscar_ventas)
         self.search_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
 
-        # Tabla con las columnas ID Producto, Fecha, Cantidad y Total
         self.table = tk.ttk.Treeview(self, columns=("id", "fecha", "cantidad", "total"))
         self.table.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
 
@@ -546,25 +543,21 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         self.table.heading("cantidad", text="Cantidad")
         self.table.heading("total", text="Total")
 
-    def search(self):
-        # Obtener las fechas ingresadas
+    def buscar_ventas(self):
         start_date = self.start_date_entry.get()
         end_date = self.end_date_entry.get()
 
-        # Verificar si las fechas son válidas
+        print(start_date, end_date)
+
         if not self.is_valid_date(start_date) or not self.is_valid_date(end_date):
             messagebox.showerror("Error", "Por favor ingrese fechas válidas (dd/mm/aaaa).")
             return
 
-        # Realizar la búsqueda en el inventario y actualizar la tabla
-        # Aquí deberías implementar la lógica de búsqueda en tu inventario y actualizar la tabla con los resultados obtenidos
-        # Por simplicidad, en este ejemplo simplemente borramos todos los elementos de la tabla
         self.table.delete(*self.table.get_children())
 
     @staticmethod
     def is_valid_date(date_str):
         try:
-            # Intentar convertir la cadena de fecha en un objeto de fecha
             datetime.datetime.strptime(date_str, "%d/%m/%Y")
             return True
         except ValueError:
