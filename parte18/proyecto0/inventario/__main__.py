@@ -521,13 +521,16 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         self.inicializar_gui()
 
     def inicializar_gui(self):
+        hace_mes = datetime.datetime.now() - datetime.timedelta(days=30)
+        hoy = datetime.datetime.now()
+        
         # Etiquetas y campos de entrada para las fechas de inicio y fin
         tk.Label(self, text="Fecha de inicio (dd/mm/aaaa):").grid(row=0, column=0, padx=5, pady=5)
-        self.start_date_entry = DateEntry(self)
+        self.start_date_entry = DateEntry(self, month=hace_mes.month, year=hace_mes.year, day=hace_mes.day, maxdate=hoy)
         self.start_date_entry.grid(row=0, column=1, padx=5, pady=5)
 
         tk.Label(self, text="Fecha final (dd/mm/aaaa):").grid(row=1, column=0, padx=5, pady=5)
-        self.end_date_entry = DateEntry(self)
+        self.end_date_entry = DateEntry(self, maxdate=hoy)
         self.end_date_entry.grid(row=1, column=1, padx=5, pady=5)
 
         # Botón de búsqueda
