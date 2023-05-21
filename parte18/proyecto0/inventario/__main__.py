@@ -1,8 +1,11 @@
+import datetime
 import pickle
 import os
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+
+from tkcalendar import Calendar, DateEntry
 
 from .modelos.inventario import Inventario
 from .modelos.producto import Producto
@@ -520,11 +523,11 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
     def inicializar_gui(self):
         # Etiquetas y campos de entrada para las fechas de inicio y fin
         tk.Label(self, text="Fecha de inicio (dd/mm/aaaa):").grid(row=0, column=0, padx=5, pady=5)
-        self.start_date_entry = tk.Entry(self)
+        self.start_date_entry = DateEntry(self)
         self.start_date_entry.grid(row=0, column=1, padx=5, pady=5)
 
         tk.Label(self, text="Fecha final (dd/mm/aaaa):").grid(row=1, column=0, padx=5, pady=5)
-        self.end_date_entry = tk.Entry(self)
+        self.end_date_entry = DateEntry(self)
         self.end_date_entry.grid(row=1, column=1, padx=5, pady=5)
 
         # Botón de búsqueda
