@@ -213,6 +213,12 @@ class ProductoCrearFrame(tk.Toplevel):
             messagebox.showwarning('Mensaje', 'La cantidad debe ser positiva.')
             return
         
+        producto = self.inventario.buscar_producto(codigo)
+
+        if producto:
+            messagebox.showwarning('Mensaje', 'Ya existe un producto con el código especificado.')
+            return
+
         nuevo_producto = Producto(codigo, nombre, precio, cantidad, disponible)
         self.inventario.registrar_producto(nuevo_producto)
 
