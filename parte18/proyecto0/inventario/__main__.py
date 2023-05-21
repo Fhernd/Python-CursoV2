@@ -551,20 +551,20 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
 
         print(fecha_inicio, fecha_final)
 
-        if not self.is_valid_date(fecha_inicio):
+        if not self.es_fecha_valida(fecha_inicio):
             messagebox.showwarning("Advertencia", "El campo de Fecha de inicio debe tener el formato dd/mm/aaaa.")
             return
         
-        if not self.is_valid_date(fecha_final):
+        if not self.es_fecha_valida(fecha_final):
             messagebox.showwarning("Advertencia", "El campo de Fecha final debe tener el formato dd/mm/aaaa.")
             return
 
         self.table.delete(*self.table.get_children())
 
     @staticmethod
-    def is_valid_date(date_str):
+    def es_fecha_valida(fecha_cadena):
         try:
-            datetime.datetime.strptime(date_str, "%d/%m/%Y")
+            datetime.datetime.strptime(fecha_cadena, "%d/%m/%Y")
             return True
         except ValueError:
             return False
