@@ -527,12 +527,12 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         patron_fecha = 'dd/mm/yyyy'
         
         tk.Label(self, text="Fecha de inicio (dd/mm/aaaa):").grid(row=0, column=0, padx=5, pady=5)
-        self.start_date_entry = DateEntry(self, month=hace_mes.month, year=hace_mes.year, day=hace_mes.day, maxdate=hoy, date_pattern=patron_fecha)
-        self.start_date_entry.grid(row=0, column=1, padx=5, pady=5)
+        self.dat_fecha_inicio = DateEntry(self, month=hace_mes.month, year=hace_mes.year, day=hace_mes.day, maxdate=hoy, date_pattern=patron_fecha)
+        self.dat_fecha_inicio.grid(row=0, column=1, padx=5, pady=5)
 
         tk.Label(self, text="Fecha final (dd/mm/aaaa):").grid(row=1, column=0, padx=5, pady=5)
-        self.end_date_entry = DateEntry(self, maxdate=hoy, date_pattern=patron_fecha)
-        self.end_date_entry.grid(row=1, column=1, padx=5, pady=5)
+        self.dat_fecha_final = DateEntry(self, maxdate=hoy, date_pattern=patron_fecha)
+        self.dat_fecha_final.grid(row=1, column=1, padx=5, pady=5)
 
         self.search_button = tk.Button(self, text="Buscar", command=self.buscar_ventas)
         self.search_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
@@ -546,10 +546,8 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         self.table.heading("total", text="Total")
 
     def buscar_ventas(self):
-        fecha_inicio = self.start_date_entry.get()
-        fecha_final = self.end_date_entry.get()
-
-        print(fecha_inicio, fecha_final)
+        fecha_inicio = self.dat_fecha_inicio.get()
+        fecha_final = self.dat_fecha_final.get()
 
         if not self.es_fecha_valida(fecha_inicio):
             messagebox.showwarning("Advertencia", "El campo de Fecha de inicio debe tener el formato dd/mm/aaaa.")
@@ -558,6 +556,12 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         if not self.es_fecha_valida(fecha_final):
             messagebox.showwarning("Advertencia", "El campo de Fecha final debe tener el formato dd/mm/aaaa.")
             return
+        
+        fecha_inicio = datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y')
+        fecha_final = datetime.datetime.strptime(fecha_final, '%d/%m/%Y')
+        fecha_final = fecha_final.replace(hour=23, minute=59, second=59, microsecond=999999)
+
+        print(fecha_inicio, fecha_final)
 
         self.table.delete(*self.table.get_children())
 
