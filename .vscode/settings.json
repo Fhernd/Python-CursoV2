@@ -1,6 +1,6 @@
 {
     "editor.fontSize": 19,
-    "editor.minimap.enabled": false,
+    "editor.minimap.enabled": true,
     "editor.wordWrap": "on",
     "code-runner.executorMap": {
         "python": "D:\\Dropbox\\Pro\\Cursos\\Python-CursoV2\\Scripts\\activate.bat && python -u",
