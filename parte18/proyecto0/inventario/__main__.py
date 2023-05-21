@@ -537,13 +537,13 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         self.search_button = tk.Button(self, text="Buscar", command=self.buscar_ventas)
         self.search_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
 
-        self.table = tk.ttk.Treeview(self, columns=("id", "fecha", "cantidad", "total"))
-        self.table.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
+        self.tbl_ventas = tk.ttk.Treeview(self, columns=("id", "fecha", "cantidad", "total"))
+        self.tbl_ventas.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
 
-        self.table.heading("id", text="ID Producto")
-        self.table.heading("fecha", text="Fecha")
-        self.table.heading("cantidad", text="Cantidad")
-        self.table.heading("total", text="Total")
+        self.tbl_ventas.heading("id", text="ID Producto")
+        self.tbl_ventas.heading("fecha", text="Fecha")
+        self.tbl_ventas.heading("cantidad", text="Cantidad")
+        self.tbl_ventas.heading("total", text="Total")
 
     def buscar_ventas(self):
         fecha_inicio = self.dat_fecha_inicio.get()
@@ -561,9 +561,15 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         fecha_final = datetime.datetime.strptime(fecha_final, '%d/%m/%Y')
         fecha_final = fecha_final.replace(hour=23, minute=59, second=59, microsecond=999999)
 
-        print(fecha_inicio, fecha_final)
+        ventas = self.inventario.ventas_rango_fecha(fecha_inicio, fecha_final)
 
-        self.table.delete(*self.table.get_children())
+        if len(ventas) == 0:
+            messagebox.showinfo("Mensaje", "No se encontraron ventas en el rango de fechas especificado.")
+            self.tbl_ventas.delete(*self.tbl_ventas.get_children())
+            return
+
+        for v in ventas:
+            self.tbl_ventas.insert("", tk.END, values=(v.codigo_producto, v.fecha, v.cantidad, v.total_sin_iva))
 
     @staticmethod
     def es_fecha_valida(fecha_cadena):
