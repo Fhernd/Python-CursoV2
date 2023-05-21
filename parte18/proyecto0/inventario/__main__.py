@@ -34,7 +34,7 @@ class VentanaPrincipal(tk.Frame):
         self.product_menu.add_command(label="Cambiar disponibilidad", command=self.cambiar_disponibilidad_producto)
         self.menu_bar.add_cascade(label="Productos", menu=self.product_menu)
         self.report_menu = tk.Menu(self.menu_bar, tearoff=0)
-        self.report_menu.add_command(label="Ventas en un rango de fechas")
+        self.report_menu.add_command(label="Ventas en un rango de fechas", command=self.reporte_ventas_rango_fechas)
         self.report_menu.add_command(label="Top 5 de productos más vendidos")
         self.report_menu.add_command(label="Top 5 de productos menos vendidos")
         self.menu_bar.add_cascade(label="Reportes", menu=self.report_menu)
@@ -62,6 +62,10 @@ class VentanaPrincipal(tk.Frame):
     def cambiar_disponibilidad_producto(self):
         cambiar_disponibilidad_producto_frame = ProductoCambiarDisponibilidadFrame(self.parent, self.inventario)
         cambiar_disponibilidad_producto_frame.grab_set()
+
+    def reporte_ventas_rango_fechas(self):
+        reporte_ventas_rango_fechas_frame = ReporteVentasRangoFechasFrame(self.parent, self.inventario)
+        reporte_ventas_rango_fechas_frame.grab_set()
 
     def cargar_inventario(self):
         """
