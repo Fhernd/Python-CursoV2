@@ -523,13 +523,15 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
     def inicializar_gui(self):
         hace_mes = datetime.datetime.now() - datetime.timedelta(days=30)
         hoy = datetime.datetime.now()
+
+        patron_fecha = 'dd/mm/yyyy'
         
         tk.Label(self, text="Fecha de inicio (dd/mm/aaaa):").grid(row=0, column=0, padx=5, pady=5)
-        self.start_date_entry = DateEntry(self, month=hace_mes.month, year=hace_mes.year, day=hace_mes.day, maxdate=hoy)
+        self.start_date_entry = DateEntry(self, month=hace_mes.month, year=hace_mes.year, day=hace_mes.day, maxdate=hoy, date_pattern=patron_fecha)
         self.start_date_entry.grid(row=0, column=1, padx=5, pady=5)
 
         tk.Label(self, text="Fecha final (dd/mm/aaaa):").grid(row=1, column=0, padx=5, pady=5)
-        self.end_date_entry = DateEntry(self, maxdate=hoy)
+        self.end_date_entry = DateEntry(self, maxdate=hoy, date_pattern=patron_fecha)
         self.end_date_entry.grid(row=1, column=1, padx=5, pady=5)
 
         self.search_button = tk.Button(self, text="Buscar", command=self.buscar_ventas)
@@ -544,13 +546,17 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         self.table.heading("total", text="Total")
 
     def buscar_ventas(self):
-        start_date = self.start_date_entry.get()
-        end_date = self.end_date_entry.get()
+        fecha_inicio = self.start_date_entry.get()
+        fecha_final = self.end_date_entry.get()
 
-        print(start_date, end_date)
+        print(fecha_inicio, fecha_final)
 
-        if not self.is_valid_date(start_date) or not self.is_valid_date(end_date):
-            messagebox.showerror("Error", "Por favor ingrese fechas válidas (dd/mm/aaaa).")
+        if not self.is_valid_date(fecha_inicio):
+            messagebox.showwarning("Advertencia", "El campo de Fecha de inicio debe tener el formato dd/mm/aaaa.")
+            return
+        
+        if not self.is_valid_date(fecha_final):
+            messagebox.showwarning("Advertencia", "El campo de Fecha final debe tener el formato dd/mm/aaaa.")
             return
 
         self.table.delete(*self.table.get_children())
