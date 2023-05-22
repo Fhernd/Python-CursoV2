@@ -537,10 +537,11 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         self.search_button = tk.Button(self, text="Buscar", command=self.buscar_ventas)
         self.search_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
 
-        self.tbl_ventas = tk.ttk.Treeview(self, columns=("id", "fecha", "cantidad", "total"))
+        self.tbl_ventas = tk.ttk.Treeview(self, columns=("id", 'nombre_producto', "fecha", "cantidad", "total"))
         self.tbl_ventas.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
 
         self.tbl_ventas.heading("id", text="ID Producto")
+        self.tbl_ventas.heading("nombre_producto", text="Nombre Producto")
         self.tbl_ventas.heading("fecha", text="Fecha")
         self.tbl_ventas.heading("cantidad", text="Cantidad")
         self.tbl_ventas.heading("total", text="Total")
@@ -569,7 +570,9 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
             return
 
         for v in ventas:
-            self.tbl_ventas.insert("", tk.END, values=(v.codigo_producto, v.fecha, v.cantidad, v.total_sin_iva))
+            producto = self.inventario.buscar_producto(v.codigo_producto)
+            fecha = v.fecha.strftime("%d/%B/%Y %H:%M:%S")
+            self.tbl_ventas.insert("", tk.END, values=(v.codigo_producto, producto.nombre, fecha, v.cantidad, v.total_sin_iva))
 
     @staticmethod
     def es_fecha_valida(fecha_cadena):
