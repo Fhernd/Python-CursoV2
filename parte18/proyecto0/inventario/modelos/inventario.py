@@ -1,4 +1,6 @@
 from collections import Counter
+import pickle
+
 from .producto import Producto
 from .venta import Venta
 
@@ -154,3 +156,13 @@ class Inventario:
         producto = self.buscar_producto(datos_venta[0])
         self.mostrar_datos_producto(producto)
         print('Cantidad vendida: %i' % datos_venta[1])
+
+    def guardar_datos(self):
+        """
+        Guarda los datos del inventario en un archivo.
+
+        Parameters:
+        inventario: Inventario a guardar sus datos.
+        """
+        with open('inventario/inventario.pickle', 'wb') as f:
+            pickle.dump(self, f)

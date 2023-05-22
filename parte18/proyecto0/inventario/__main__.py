@@ -581,7 +581,8 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
             return True
         except ValueError:
             return False
-    
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     root.geometry("500x500")
