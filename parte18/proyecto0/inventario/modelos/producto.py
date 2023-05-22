@@ -7,4 +7,4 @@ class Producto:
         self.disponible = disponible
     
     def __str__(self):
-        return f'ID: {self.codigo}\nNombre: {self.nombre}\nPrecio: ${self.precio:.2f}\nCantidad: {self.cantidad}\n¿Disponible?: {"Sí" if self.disponible else "No"}'
+        return f'ID: {self.codigo}\nNombre: {self.nombre}\nPrecio: {self.precio}\nCantidad: {self.cantidad}\n¿Disponible?: {"Sí" if self.disponible else "No"}'

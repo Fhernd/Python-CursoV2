@@ -98,7 +98,7 @@ class VentanaPrincipal(tk.Frame):
         productos_inventario = []
 
         for p in productos:
-            producto = Producto(p.codigo, p.nombre, p.nombre, p.cantidad, p.disponible)
+            producto = Producto(p.codigo, p.nombre, p.precio, p.cantidad, p.disponible)
             productos_inventario.append(producto)
         
         return productos_inventario
@@ -347,9 +347,6 @@ class ProductoVenderFrame(tk.Toplevel):
             messagebox.showwarning("Mensaje", "La cantidad solicitada es mayor a la cantidad disponible.")
             return
         
-        print('producto', producto)
-        print('cantidad', cantidad)
-        print('cantidad tipo', type(cantidad))
         total = producto.precio * cantidad
 
         venta = Venta(codigo, cantidad, total)
