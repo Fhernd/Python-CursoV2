@@ -229,9 +229,10 @@ class ProductoCrearFrame(tk.Toplevel):
         nuevo_producto = Producto(codigo, nombre, precio, cantidad, disponible)
         self.inventario.registrar_producto(nuevo_producto)
 
+        self.inventario.guardar_datos()
+
         messagebox.showinfo('Mensaje', 'El producto se ha creado de forma satisfactoria.')
 
-        # Limpiar cada uno de los campos:
         self.codigo_var.set('')
         self.nombre_var.set('')
         self.precio_var.set('')
@@ -352,6 +353,8 @@ class ProductoVenderFrame(tk.Toplevel):
         self.inventario.realizar_venta(venta)
 
         messagebox.showinfo("Mensaje", f"La venta se ha realizado de forma satisfactoria. Total a pagar: ${total * 1.19}")
+
+        self.inventario.guardar_datos()
 
         self.codigo_var.set('')
         self.cantidad_var.set('')
@@ -513,6 +516,8 @@ class ProductoCambiarDisponibilidadFrame(tk.Toplevel):
             return
 
         self.inventario.cambiar_estado_producto(producto)
+
+        self.inventario.guardar_datos()
 
 class ReporteVentasRangoFechasFrame(tk.Toplevel):
     def __init__(self, master, inventario):
