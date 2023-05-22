@@ -165,4 +165,8 @@ class Inventario:
         inventario: Inventario a guardar sus datos.
         """
         with open('inventario/inventario.pickle', 'wb') as f:
-            pickle.dump(self, f)
+            datos = {
+                'productos': self.productos,
+                'ventas': self.ventas
+            }
+            pickle.dump(datos, f)
