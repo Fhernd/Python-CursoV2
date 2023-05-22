@@ -347,6 +347,9 @@ class ProductoVenderFrame(tk.Toplevel):
             messagebox.showwarning("Mensaje", "La cantidad solicitada es mayor a la cantidad disponible.")
             return
         
+        print('producto', producto)
+        print('cantidad', cantidad)
+        print('cantidad tipo', type(cantidad))
         total = producto.precio * cantidad
 
         venta = Venta(codigo, cantidad, total)
