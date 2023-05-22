@@ -46,6 +46,13 @@ class VentanaPrincipal(tk.Frame):
         self.menu_bar.add_cascade(label="Ayuda", menu=self.help_menu)
         self.parent.config(menu=self.menu_bar)
 
+        self.parent.protocol("WM_DELETE_WINDOW", self.salir)
+    
+    def salir(self):
+        if messagebox.askokcancel("Salir", "¿Desea salir de la aplicación?"):
+            self.inventario.guardar_datos()
+            self.parent.destroy()
+
     def registrar_producto(self):
         registro_producto_frame = ProductoCrearFrame(self.parent, self.inventario)
         registro_producto_frame.grab_set()
