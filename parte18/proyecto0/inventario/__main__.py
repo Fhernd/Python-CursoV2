@@ -351,8 +351,10 @@ class ProductoVenderFrame(tk.Toplevel):
 
         venta = Venta(codigo, cantidad, total)
         self.inventario.realizar_venta(venta)
+        total *= 1.19
+        total = "${:,.2f}".format(total)
 
-        messagebox.showinfo("Mensaje", f"La venta se ha realizado de forma satisfactoria. Total a pagar: ${total * 1.19}")
+        messagebox.showinfo("Mensaje", f"La venta se ha realizado de forma satisfactoria. Total a pagar: {total}")
 
         self.inventario.guardar_datos()
 
@@ -577,7 +579,10 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         for v in ventas:
             producto = self.inventario.buscar_producto(v.codigo_producto)
             fecha = v.fecha.strftime("%d/%B/%Y %H:%M:%S")
-            self.tbl_ventas.insert("", tk.END, values=(v.codigo_producto, producto.nombre, fecha, v.cantidad, v.total_sin_iva))
+
+            total = "${:,.2f}".format(v.total_sin_iva * 1.19)
+
+            self.tbl_ventas.insert("", tk.END, values=(v.codigo_producto, producto.nombre, fecha, v.cantidad, total))
 
     @staticmethod
     def es_fecha_valida(fecha_cadena):
