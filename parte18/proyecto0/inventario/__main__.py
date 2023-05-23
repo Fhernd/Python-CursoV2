@@ -39,7 +39,7 @@ class VentanaPrincipal(tk.Frame):
         self.report_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.report_menu.add_command(label="Ventas en un rango de fechas", command=self.reporte_ventas_rango_fechas)
         self.report_menu.add_command(label="Top 5 de productos más vendidos", command=self.reporte_top_5_productos_mas_vendidos)
-        self.report_menu.add_command(label="Top 5 de productos menos vendidos")
+        self.report_menu.add_command(label="Top 5 de productos menos vendidos", command=self.reporte_top_5_productos_mas_vendidos)
         self.menu_bar.add_cascade(label="Reportes", menu=self.report_menu)
         self.help_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.help_menu.add_command(label="Acerca de")
@@ -79,6 +79,10 @@ class VentanaPrincipal(tk.Frame):
 
     def reporte_top_5_productos_mas_vendidos(self):
         ventana = Top5MasVendidosFrame(self.parent, self.inventario)
+        ventana.grab_set()
+
+    def reporte_top_5_productos_mas_vendidos(self):
+        ventana = Top5MenosVendidosFrame(self.parent, self.inventario)
         ventana.grab_set()
 
     def cargar_inventario(self):
