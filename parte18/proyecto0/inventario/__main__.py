@@ -602,6 +602,41 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         except ValueError:
             return False
 
+class Top5MasVendidosFrame(tk.Toplevel):
+    def __init__(self, master, inventario):
+        super().__init__(master)
+        self.title("Tabla de Inventario")
+        
+        # Crear tabla
+        self.tabla = ttk.Treeview(self)
+        self.tabla['columns'] = ('codigo', 'nombre', 'precio', 'cantidad', 'total')
+        
+        # Configurar encabezados de columna
+        self.tabla.heading('codigo', text='Código Producto')
+        self.tabla.heading('nombre', text='Nombre Producto')
+        self.tabla.heading('precio', text='Precio')
+        self.tabla.heading('cantidad', text='Cantidad')
+        self.tabla.heading('total', text='Total')
+        
+        # Configurar anchos de columna
+        self.tabla.column('codigo', width=100)
+        self.tabla.column('nombre', width=150)
+        self.tabla.column('precio', width=80)
+        self.tabla.column('cantidad', width=80)
+        self.tabla.column('total', width=80)
+        
+        # Agregar datos a la tabla
+        for producto in inventario:
+            codigo = producto['codigo']
+            nombre = producto['nombre']
+            precio = producto['precio']
+            cantidad = producto['cantidad']
+            total = producto['precio'] * producto['cantidad']
+            self.tabla.insert('', 'end', values=(codigo, nombre, precio, cantidad, total))
+        
+        # Empaquetar la tabla
+        self.tabla.pack(fill='both', expand=True)
+
 
 if __name__ == "__main__":
     root = tk.Tk()
