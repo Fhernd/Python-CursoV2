@@ -78,7 +78,8 @@ class VentanaPrincipal(tk.Frame):
         reporte_ventas_rango_fechas_frame.grab_set()
 
     def reporte_top_5_productos_mas_vendidos(self):
-        pass
+        ventana = Top5MasVendidosFrame(self.parent, self.inventario)
+        ventana.grab_set()
 
     def cargar_inventario(self):
         """
@@ -605,6 +606,7 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
 class Top5MasVendidosFrame(tk.Toplevel):
     def __init__(self, master, inventario):
         super().__init__(master)
+        self.inventario = inventario
         self.title("Tabla de Inventario")
         
         # Crear tabla
@@ -625,13 +627,18 @@ class Top5MasVendidosFrame(tk.Toplevel):
         self.tabla.column('cantidad', width=80)
         self.tabla.column('total', width=80)
         
+        productos_mas_vendidos = self.inventario.top_5_mas_vendidos()
+
         # Agregar datos a la tabla
-        for producto in inventario:
-            codigo = producto['codigo']
-            nombre = producto['nombre']
-            precio = producto['precio']
-            cantidad = producto['cantidad']
-            total = producto['precio'] * producto['cantidad']
+        for p in productos_mas_vendidos:
+            producto = self.inventario.buscar_producto(p[0])
+            cantidad = p[1]
+            total = cantidad * producto.precio
+            
+            codigo = producto.codigo
+            nombre = producto.nombre
+            precio = producto.precio
+            cantidad = producto.cantidad
             self.tabla.insert('', 'end', values=(codigo, nombre, precio, cantidad, total))
         
         # Empaquetar la tabla
