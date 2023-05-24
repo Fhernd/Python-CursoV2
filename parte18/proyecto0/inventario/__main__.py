@@ -71,10 +71,10 @@ class VentanaPrincipal(tk.Frame):
 
         if archivo is not None:
             with open(archivo.name, 'w', newline='', encoding='utf8') as f:
-                f.write('Código,Nombre,Precio,Cantidad,Disponible\n')
+                f.write('Código Producto,Cantidad,Total sin IVA,Fecha\n')
 
                 for venta in self.inventario.ventas:
-                    f.write(f'{venta.codigo},{venta.nombre},{venta.precio},{venta.cantidad},{"Sí" if venta.disponible else "No"}\n')
+                    f.write(f'{venta.codigo_producto},{venta.cantidad},{venta.total_sin_iva},{venta.fecha.strftime("%d/%m/%Y")}\n')
                 
                 messagebox.showinfo("Exportar a CSV", "Datos de ventas exportados correctamente.")
         
