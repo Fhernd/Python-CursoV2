@@ -82,7 +82,7 @@ class VentanaPrincipal(tk.Frame):
         ventana.grab_set()
 
     def reporte_top_5_productos_menos_vendidos(self):
-        ventana = Top5MenosVendidosFrame(self.parent, self.inventario)
+        ventana = Top5VendidosFrame(self.parent, self.inventario, self.inventario.top_5_menos_vendidos())
         ventana.grab_set()
 
     def cargar_inventario(self):
