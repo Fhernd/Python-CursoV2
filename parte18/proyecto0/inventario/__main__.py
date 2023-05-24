@@ -56,8 +56,7 @@ class VentanaPrincipal(tk.Frame):
             self.parent.destroy()
 
     def exportar_csv(self):
-        # Mostrar diálogo para guardar archivo:
-        archivo = filedialog.asksaveasfile(title="Exportar a CSV", defaultextension=".csv", filetypes=(("CSV", "*.csv"),))
+        archivo = filedialog.asksaveasfile(title="Exportar productos a CSV", defaultextension=".csv", filetypes=(("CSV", "*.csv"),))
 
         if archivo is not None:
             with open(archivo.name, 'w', newline='', encoding='utf8') as f:
@@ -65,6 +64,20 @@ class VentanaPrincipal(tk.Frame):
 
                 for producto in self.inventario.productos:
                     f.write(f'{producto.codigo},{producto.nombre},{producto.precio},{producto.cantidad},{"Sí" if producto.disponible else "No"}\n')
+                
+                messagebox.showinfo("Exportar a CSV", "Datos de productos exportados correctamente.")
+        
+        archivo = filedialog.asksaveasfile(title="Exportar ventas a CSV", defaultextension=".csv", filetypes=(("CSV", "*.csv"),))
+
+        if archivo is not None:
+            with open(archivo.name, 'w', newline='', encoding='utf8') as f:
+                f.write('Código,Nombre,Precio,Cantidad,Disponible\n')
+
+                for venta in self.inventario.ventas:
+                    f.write(f'{venta.codigo},{venta.nombre},{venta.precio},{venta.cantidad},{"Sí" if venta.disponible else "No"}\n')
+                
+                messagebox.showinfo("Exportar a CSV", "Datos de ventas exportados correctamente.")
+        
         
     
     def registrar_producto(self):
