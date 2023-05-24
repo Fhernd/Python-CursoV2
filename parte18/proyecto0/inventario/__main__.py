@@ -78,7 +78,7 @@ class VentanaPrincipal(tk.Frame):
         reporte_ventas_rango_fechas_frame.grab_set()
 
     def reporte_top_5_productos_mas_vendidos(self):
-        ventana = Top5MasVendidosFrame(self.parent, self.inventario, self.inventario.top_5_mas_vendidos())
+        ventana = Top5VendidosFrame(self.parent, self.inventario, self.inventario.top_5_mas_vendidos())
         ventana.grab_set()
 
     def reporte_top_5_productos_menos_vendidos(self):
@@ -607,7 +607,7 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
         except ValueError:
             return False
 
-class Top5MasVendidosFrame(tk.Toplevel):
+class Top5VendidosFrame(tk.Toplevel):
     def __init__(self, master, inventario, productos):
         super().__init__(master)
         self.inventario = inventario
