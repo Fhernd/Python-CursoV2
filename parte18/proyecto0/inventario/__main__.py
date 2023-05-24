@@ -42,7 +42,7 @@ class VentanaPrincipal(tk.Frame):
         self.report_menu.add_command(label="Top 5 de productos menos vendidos", command=self.reporte_top_5_productos_menos_vendidos)
         self.menu_bar.add_cascade(label="Reportes", menu=self.report_menu)
         self.help_menu = tk.Menu(self.menu_bar, tearoff=0)
-        self.help_menu.add_command(label="Acerca de")
+        self.help_menu.add_command(label="Acerca de", command=self.acerca_de)
         self.menu_bar.add_cascade(label="Ayuda", menu=self.help_menu)
         self.parent.config(menu=self.menu_bar)
 
@@ -136,6 +136,13 @@ class VentanaPrincipal(tk.Frame):
         
         return ventas_inventario
 
+    def acerca_de(self):
+        # Incluir un mensaje con el desarrollador del software, la versión y el sitio Web:
+        mensaje = 'Desarrollado por: John Ortiz Ordoñez\n' + \
+            'Versión: 1.0.0\n' + \
+            'Sitio Web: https://ortizol.blogspot.com'
+        
+        messagebox.showinfo('Acerca de', mensaje)
 
 class ProductoCrearFrame(tk.Toplevel):
     def __init__(self, parent, inventario):
