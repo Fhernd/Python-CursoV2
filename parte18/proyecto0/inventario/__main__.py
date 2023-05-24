@@ -39,7 +39,7 @@ class VentanaPrincipal(tk.Frame):
         self.report_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.report_menu.add_command(label="Ventas en un rango de fechas", command=self.reporte_ventas_rango_fechas)
         self.report_menu.add_command(label="Top 5 de productos más vendidos", command=self.reporte_top_5_productos_mas_vendidos)
-        self.report_menu.add_command(label="Top 5 de productos menos vendidos", command=self.reporte_top_5_productos_mas_vendidos)
+        self.report_menu.add_command(label="Top 5 de productos menos vendidos", command=self.reporte_top_5_productos_menos_vendidos)
         self.menu_bar.add_cascade(label="Reportes", menu=self.report_menu)
         self.help_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.help_menu.add_command(label="Acerca de")
@@ -78,10 +78,10 @@ class VentanaPrincipal(tk.Frame):
         reporte_ventas_rango_fechas_frame.grab_set()
 
     def reporte_top_5_productos_mas_vendidos(self):
-        ventana = Top5MasVendidosFrame(self.parent, self.inventario)
+        ventana = Top5MasVendidosFrame(self.parent, self.inventario, self.inventario.top_5_mas_vendidos())
         ventana.grab_set()
 
-    def reporte_top_5_productos_mas_vendidos(self):
+    def reporte_top_5_productos_menos_vendidos(self):
         ventana = Top5MenosVendidosFrame(self.parent, self.inventario)
         ventana.grab_set()
 
@@ -608,9 +608,10 @@ class ReporteVentasRangoFechasFrame(tk.Toplevel):
             return False
 
 class Top5MasVendidosFrame(tk.Toplevel):
-    def __init__(self, master, inventario):
+    def __init__(self, master, inventario, productos):
         super().__init__(master)
         self.inventario = inventario
+        self.productos = productos
 
         self.inicializar_gui()
     
@@ -638,10 +639,8 @@ class Top5MasVendidosFrame(tk.Toplevel):
         self.mostrar_tabla()
 
     def mostrar_tabla(self):
-        
-        productos_mas_vendidos = self.inventario.top_5_mas_vendidos()
 
-        for p in productos_mas_vendidos:
+        for p in self.productos:
             producto = self.inventario.buscar_producto(p[0])
             cantidad = p[1]
             total = cantidad * producto.precio
@@ -650,6 +649,10 @@ class Top5MasVendidosFrame(tk.Toplevel):
             nombre = producto.nombre
             precio = producto.precio
             cantidad = producto.cantidad
+
+            precio = "${:,.2f}".format(precio)
+            total = "${:,.2f}".format(total)
+
             self.tabla.insert('', 'end', values=(codigo, nombre, precio, cantidad, total))
         
         # Empaquetar la tabla
