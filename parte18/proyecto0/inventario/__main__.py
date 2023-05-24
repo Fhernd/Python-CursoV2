@@ -4,6 +4,7 @@ import os
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from tkinter import filedialog
 
 from tkcalendar import Calendar, DateEntry
 
@@ -27,6 +28,7 @@ class VentanaPrincipal(tk.Frame):
         
         self.file_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.file_menu.add_command(label="Salir", command=self.quit)
+        self.file_menu.add_command(label="Exportar a CSV...", command=self.exportar_csv)
         self.menu_bar.add_cascade(label="Archivo", menu=self.file_menu)
 
         self.product_menu = tk.Menu(self.menu_bar, tearoff=0)
@@ -53,6 +55,18 @@ class VentanaPrincipal(tk.Frame):
             self.inventario.guardar_datos()
             self.parent.destroy()
 
+    def exportar_csv(self):
+        # Mostrar diálogo para guardar archivo:
+        archivo = filedialog.asksaveasfile(title="Exportar a CSV", defaultextension=".csv", filetypes=(("CSV", "*.csv"),))
+
+        if archivo is not None:
+            with open(archivo.name, 'w', newline='', encoding='utf8') as f:
+                f.write('Código,Nombre,Precio,Cantidad,Disponible\n')
+
+                for producto in self.inventario.productos:
+                    f.write(f'{producto.codigo},{producto.nombre},{producto.precio},{producto.cantidad},{"Sí" if producto.disponible else "No"}\n')
+        
+    
     def registrar_producto(self):
         registro_producto_frame = ProductoCrearFrame(self.parent, self.inventario)
         registro_producto_frame.grab_set()
