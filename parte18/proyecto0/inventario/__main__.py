@@ -9,6 +9,8 @@ from tkinter import filedialog
 
 from tkcalendar import Calendar, DateEntry
 
+import openpyxl
+
 from .modelos.inventario import Inventario
 from .modelos.producto import Producto
 from .modelos.venta import Venta
@@ -104,7 +106,33 @@ class VentanaPrincipal(tk.Frame):
             messagebox.showinfo("Exportar a JSON", "Datos exportados correctamente.")
     
     def exportar_datos_xlsx(self):
-        pass
+        # Solicitar ruta de archivo:
+        archivo = filedialog.asksaveasfile(title="Exportar datos a XLSX", defaultextension=".xlsx", filetypes=(("XLSX", "*.xlsx"),))
+
+        if archivo is not None:
+            # Crear libro de trabajo:
+            libro_trabajo = openpyxl.Workbook()
+
+            # Crear hoja de productos:
+            hoja_productos = libro_trabajo.create_sheet("Productos")
+            hoja_productos.append(['Código', 'Nombre', 'Precio', 'Cantidad', 'Disponible'])
+
+            # Agregar productos a la hoja:
+            for producto in self.inventario.productos:
+                hoja_productos.append([producto.codigo, producto.nombre, producto.precio, producto.cantidad, "Sí" if producto.disponible else "No"])
+            
+            # Crear hoja de ventas:
+            hoja_ventas = libro_trabajo.create_sheet("Ventas")
+            hoja_ventas.append(['Código Producto', 'Cantidad', 'Total sin IVA', 'Fecha'])
+
+            # Agregar ventas a la hoja:
+            for venta in self.inventario.ventas:
+                hoja_ventas.append([venta.codigo_producto, venta.cantidad, venta.total_sin_iva, venta.fecha.strftime("%d/%m/%Y")])
+            
+            # Guardar libro de trabajo:
+            libro_trabajo.save(archivo.name)
+
+            messagebox.showinfo("Exportar a XLSX", "Datos exportados correctamente.")
 
     def registrar_producto(self):
         registro_producto_frame = ProductoCrearFrame(self.parent, self.inventario)
