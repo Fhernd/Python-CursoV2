@@ -31,6 +31,7 @@ class VentanaPrincipal(tk.Frame):
         self.file_menu.add_command(label="Salir", command=self.quit)
         self.file_menu.add_command(label="Exportar datos a CSV...", command=self.exportar_csv)
         self.file_menu.add_command(label="Exportar datos a JSON...", command=self.exportar_datos_json)
+        self.file_menu.add_command(label="Exportar datos a XLSX...", command=self.exportar_datos_xlsx)
         self.menu_bar.add_cascade(label="Archivo", menu=self.file_menu)
 
         self.product_menu = tk.Menu(self.menu_bar, tearoff=0)
@@ -102,6 +103,9 @@ class VentanaPrincipal(tk.Frame):
             
             messagebox.showinfo("Exportar a JSON", "Datos exportados correctamente.")
     
+    def exportar_datos_xlsx(self):
+        pass
+
     def registrar_producto(self):
         registro_producto_frame = ProductoCrearFrame(self.parent, self.inventario)
         registro_producto_frame.grab_set()
