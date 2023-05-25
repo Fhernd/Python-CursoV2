@@ -1,4 +1,5 @@
 import datetime
+import json
 import pickle
 import os
 import tkinter as tk
@@ -28,7 +29,8 @@ class VentanaPrincipal(tk.Frame):
         
         self.file_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.file_menu.add_command(label="Salir", command=self.quit)
-        self.file_menu.add_command(label="Exportar a CSV...", command=self.exportar_csv)
+        self.file_menu.add_command(label="Exportar datos a CSV...", command=self.exportar_csv)
+        self.file_menu.add_command(label="Exportar datos a JSON...", command=self.exportar_datos_json)
         self.menu_bar.add_cascade(label="Archivo", menu=self.file_menu)
 
         self.product_menu = tk.Menu(self.menu_bar, tearoff=0)
@@ -78,7 +80,27 @@ class VentanaPrincipal(tk.Frame):
                 
                 messagebox.showinfo("Exportar a CSV", "Datos de ventas exportados correctamente.")
         
-        
+    def exportar_datos_json(self):
+        archivo = filedialog.asksaveasfile(title="Exportar datos a JSON", defaultextension=".json", filetypes=(("JSON", "*.json"),))
+
+        if archivo is not None:
+            datos = {
+                'productos': [e.__dict__ for e in self.inventario.productos],
+                'ventas': [
+                    {
+                        'codigo_producto': e.codigo_producto,
+                        'cantidad': e.cantidad,
+                        'total_sin_iva': e.total_sin_iva,
+                        'fecha': e.fecha.strftime("%d/%m/%Y")
+                    } for e in self.inventario.ventas
+                ]
+            }
+
+            with open(archivo.name, 'wt', encoding='utf8') as f:
+                # Serializar a JSON todos los productos y ventas:
+                json.dump(datos, f, indent=4)
+            
+            messagebox.showinfo("Exportar a JSON", "Datos exportados correctamente.")
     
     def registrar_producto(self):
         registro_producto_frame = ProductoCrearFrame(self.parent, self.inventario)
