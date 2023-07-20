@@ -120,10 +120,18 @@ def prueba():
 
 def main(page: flt.Page):
     page.title = "Extractor de CSV desde HTML"
-    page.vertical_alignment = flt.MainAxisAlignment.CENTER
+    # Tamaño de la ventana:
+    page.size = (400, 600)
+
+    contenedor_1 = flt.Row([
+            flt.Text("URL:"),
+            flt.TextField(),
+            flt.TextButton("Consultar..."),
+        ],
+    )
 
     page.add(
-        flt.Row([flt.IconButton(flt.icons.REMOVE)])
+        contenedor_1
     )
 
 if __name__ == '__main__':
