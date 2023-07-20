@@ -44,7 +44,7 @@ def contar_tablas_html(soup):
     return len(soup.find_all("table"))
 
 
-def extraer_contenido_tabla(soup, indice_tabla):
+def extraer_tabla(soup, indice_tabla):
     """
     Función que extrae el contenido de una tabla HTML de un objeto BeautifulSoup.
 
@@ -53,3 +53,27 @@ def extraer_contenido_tabla(soup, indice_tabla):
     :return: Contenido de la tabla HTML.
     """
     return soup.find_all("table")[indice_tabla]
+
+
+def prueba():
+    url = 'https://www.htmlquick.com/es/tutorials/tables.html'
+
+    html = consultar_url(url)
+
+    soup = crear_objeto_beautifulsoup(html)
+
+    # print(soup.prettify())
+
+    print(tiene_tablas_html(soup))
+
+    print(contar_tablas_html(soup))
+
+    indice = 0
+
+    tabla = extraer_tabla(soup, indice)
+
+    print(type(tabla))
+
+
+if __name__ == '__main__':
+    prueba()
