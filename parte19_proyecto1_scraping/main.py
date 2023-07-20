@@ -14,6 +14,16 @@ def consultar_url(url):
     return response.content
 
 
+def crear_objeto_beautifulsoup(html):
+    """
+    Función que crea un objeto BeautifulSoup a partir de un HTML.
+
+    :param html: HTML.
+    :return: Objeto BeautifulSoup.
+    """
+    return BeautifulSoup(html, "html.parser")
+
+
 def tiene_tablas_html(soup):
     """
     Función que verifica si un objeto BeautifulSoup tiene tablas HTML.
