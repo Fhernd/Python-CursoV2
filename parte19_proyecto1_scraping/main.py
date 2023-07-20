@@ -3,7 +3,7 @@ import csv
 from bs4 import BeautifulSoup
 import requests
 
-import flet as flt
+import flet as ft
 
 
 def consultar_url(url):
@@ -118,15 +118,30 @@ def prueba():
     crear_csv(contenido, nombre_archivo)
 
 
-def main(page: flt.Page):
+def main(page: ft.Page):
     page.title = "Extractor de CSV desde HTML"
     # Tamaño de la ventana:
     page.size = (400, 600)
 
-    contenedor_1 = flt.Row([
-            flt.Text("URL:"),
-            flt.TextField(),
-            flt.TextButton("Consultar..."),
+    def on_click_consultar(event):
+        print("Consultar...")
+
+    contenedor_1 = ft.ResponsiveRow([
+        ft.Container(
+            ft.Text("URL:", size=25),
+            padding=15,
+            col={"sm": 2, "md": 1, "xl": 1},
+        ),
+        ft.Container(
+            ft.TextField(),
+            padding=5,
+            col={"sm": 8, "md": 9, "xl": 8},
+        ),
+        ft.Container(
+            ft.FilledButton("Consultar...", on_click=on_click_consultar),
+            padding=12,
+            col={"sm": 2, "md": 2, "xl": 2},
+        )
         ],
     )
 
@@ -135,4 +150,4 @@ def main(page: flt.Page):
     )
 
 if __name__ == '__main__':
-    flt.app(target=main)
+    ft.app(target=main)
