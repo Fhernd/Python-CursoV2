@@ -111,6 +111,10 @@ def prueba():
     contenido = extraer_contenido_tabla(tabla)
     print(contenido)
 
+    nombre_archivo = 'tabla.csv'
+
+    crear_csv(contenido, nombre_archivo)
+
 
 if __name__ == '__main__':
     prueba()
