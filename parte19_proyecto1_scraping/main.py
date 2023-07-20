@@ -32,3 +32,13 @@ def tiene_tablas_html(soup):
     :return: True si tiene tablas HTML, False en caso contrario.
     """
     return len(soup.find_all("table")) > 0
+
+
+def contar_tablas_html(soup):
+    """
+    Función que cuenta las tablas HTML de un objeto BeautifulSoup.
+
+    :param soup: Objeto BeautifulSoup.
+    :return: Número de tablas HTML.
+    """
+    return len(soup.find_all("table"))
