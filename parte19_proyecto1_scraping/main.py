@@ -3,6 +3,8 @@ import csv
 from bs4 import BeautifulSoup
 import requests
 
+import flet as flt
+
 
 def consultar_url(url):
     """
@@ -116,5 +118,13 @@ def prueba():
     crear_csv(contenido, nombre_archivo)
 
 
+def main(page: flt.Page):
+    page.title = "Extractor de CSV desde HTML"
+    page.vertical_alignment = flt.MainAxisAlignment.CENTER
+
+    page.add(
+        flt.Row([flt.IconButton(flt.icons.REMOVE)])
+    )
+
 if __name__ == '__main__':
-    prueba()
+    flt.app(target=main)
