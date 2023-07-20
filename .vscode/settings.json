@@ -5,6 +5,6 @@
     "code-runner.executorMap": {
         "python": "D:\\Dropbox\\Pro\\Cursos\\Python-CursoV2\\Scripts\\activate.bat && python -u",
     },
-    "terminal.integrated.fontSize": 25,
+    "terminal.integrated.fontSize": 19,
     "python.linting.pylintEnabled": false
 }
