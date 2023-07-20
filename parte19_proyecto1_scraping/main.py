@@ -12,3 +12,13 @@ def consultar_url(url):
     response = requests.get(url)
     
     return response.content
+
+
+def tiene_tablas_html(soup):
+    """
+    Función que verifica si un objeto BeautifulSoup tiene tablas HTML.
+
+    :param soup: Objeto BeautifulSoup.
+    :return: True si tiene tablas HTML, False en caso contrario.
+    """
+    return len(soup.find_all("table")) > 0
