@@ -42,3 +42,14 @@ def contar_tablas_html(soup):
     :return: Número de tablas HTML.
     """
     return len(soup.find_all("table"))
+
+
+def extraer_contenido_tabla(soup, indice_tabla):
+    """
+    Función que extrae el contenido de una tabla HTML de un objeto BeautifulSoup.
+
+    :param soup: Objeto BeautifulSoup.
+    :param indice_tabla: Índice de la tabla HTML.
+    :return: Contenido de la tabla HTML.
+    """
+    return soup.find_all("table")[indice_tabla]
