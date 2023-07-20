@@ -55,6 +55,26 @@ def extraer_tabla(soup, indice_tabla):
     return soup.find_all("table")[indice_tabla]
 
 
+def extraer_contenido_tabla(tabla):
+    """
+    Función que extrae el contenido de una tabla HTML.
+
+    :param tabla: Tabla HTML.
+    :return: Contenido de la tabla HTML.
+    """
+    contenido = []
+
+    for fila in tabla.find_all("tr"):
+        fila_contenido = []
+
+        for columna in fila.find_all(["th", "td"]):
+            fila_contenido.append(columna.text.strip())
+
+        contenido.append(fila_contenido)
+
+    return contenido
+
+
 def prueba():
     url = 'https://www.htmlquick.com/es/tutorials/tables.html'
 
