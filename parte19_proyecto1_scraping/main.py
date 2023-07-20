@@ -1,5 +1,7 @@
-import requests
+import csv
+
 from bs4 import BeautifulSoup
+import requests
 
 
 def consultar_url(url):
@@ -75,6 +77,18 @@ def extraer_contenido_tabla(tabla):
     return contenido
 
 
+def crear_csv(contenido, nombre_archivo):
+    """
+    Función que crea un archivo CSV a partir de un contenido.
+
+    :param contenido: Contenido.
+    :param nombre_archivo: Nombre del archivo.
+    """
+    with open(nombre_archivo, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(contenido)
+
+
 def prueba():
     url = 'https://www.htmlquick.com/es/tutorials/tables.html'
 
@@ -93,6 +107,9 @@ def prueba():
     tabla = extraer_tabla(soup, indice)
 
     print(type(tabla))
+
+    contenido = extraer_contenido_tabla(tabla)
+    print(contenido)
 
 
 if __name__ == '__main__':
