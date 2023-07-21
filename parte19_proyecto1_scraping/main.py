@@ -124,7 +124,10 @@ def main(page: ft.Page):
     page.size = (400, 600)
 
     def on_click_consultar(event):
-        print("Consultar...")
+        url = txt_url.value
+        print(url)
+
+    txt_url = ft.TextField()
 
     contenedor_1 = ft.ResponsiveRow([
         ft.Container(
@@ -133,7 +136,7 @@ def main(page: ft.Page):
             col={"sm": 2, "md": 1, "xl": 1},
         ),
         ft.Container(
-            ft.TextField(),
+            txt_url,
             padding=5,
             col={"sm": 8, "md": 9, "xl": 8},
         ),
