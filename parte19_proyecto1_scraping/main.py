@@ -119,6 +119,24 @@ def prueba():
     crear_csv(contenido, nombre_archivo)
 
 
+def validate_url(url):
+    """
+    Esta función valida si la cadena de entrada es una URL válida.
+
+    :param url: URL a validar.
+    :return: True si es una URL válida, False en caso contrario.
+    """
+    regex = re.compile(
+        r'http[s]?://'  # http:// or https://
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'  # domain...
+        r'localhost|'  # localhost...
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # ...or ip
+        r'(?::\d+)?'  # optional port
+        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+    
+    return re.match(regex, url) is not None
+
+
 def main(page: ft.Page):
     page.title = "Extractor de CSV desde HTML"
     # Tamaño de la ventana:
@@ -148,9 +166,7 @@ def main(page: ft.Page):
             page.update()
             return
         
-        regex = r'^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$'
-
-        if re.match(regex, url) is None:
+        if not validate_url(url):
             dlg_modal.content = ft.Text('Debe ingresar una URL válida. Por ejemplo: https://ortizol.blogspot.com')
             page.dialog = dlg_modal
             dlg_modal.open = True
