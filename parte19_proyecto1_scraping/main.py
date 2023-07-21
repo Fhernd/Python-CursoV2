@@ -79,7 +79,7 @@ def generar_tabla(contenido):
                 ],
             ),
         ],
-    ),
+    )
 
 
 def extraer_tabla(soup, indice_tabla):
@@ -174,7 +174,6 @@ soup = None
 
 def main(page: ft.Page):
     page.title = "Extractor de CSV desde HTML"
-    # Tamaño de la ventana:
     page.size = (400, 600)
 
     def on_click_extraer_datos(event):
@@ -194,6 +193,19 @@ def main(page: ft.Page):
         contenido = extraer_contenido_tabla(tabla)
 
         tbl_contenido = generar_tabla(contenido)
+
+        contenedor = ft.Container(
+            tbl_contenido,
+            padding=5,
+            bgcolor=ft.colors.YELLOW,
+            col={"sm": 12, "md": 12, "xl": 12},
+        )
+
+        contenedor_3.controls.clear()
+        # contenedor_3.controls.append(contenedor)
+
+        page.update()
+        print('okkkkkk')
 
     btn_extraer_datos = ft.FilledButton("Extraer datos...", on_click=on_click_extraer_datos, disabled=True)
 
@@ -301,7 +313,14 @@ def main(page: ft.Page):
         ],
     )
 
-    contenedor_3 = ft.ResponsiveRow([])
+    contenedor_3 = ft.ResponsiveRow([
+        ft.Container(
+            generar_tabla(None),
+            padding=5,
+            bgcolor=ft.colors.YELLOW,
+            col={"sm": 12, "md": 12, "xl": 12},
+        )
+    ])
 
     page.add(
         contenedor_1
