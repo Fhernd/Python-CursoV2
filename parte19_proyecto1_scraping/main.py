@@ -197,6 +197,11 @@ def main(page: ft.Page):
         ],
     )
 
+    cbx_tablas = ft.Dropdown(
+        width=100,
+        options=[],
+    )
+
     contenedor_2 = ft.ResponsiveRow([
         ft.Container(
             ft.Text("Tabla:", size=25),
@@ -204,7 +209,7 @@ def main(page: ft.Page):
             col={"sm": 2, "md": 1, "xl": 1},
         ),
         ft.Container(
-            txt_url,
+            cbx_tablas,
             padding=5,
             col={"sm": 8, "md": 9, "xl": 8},
         ),
