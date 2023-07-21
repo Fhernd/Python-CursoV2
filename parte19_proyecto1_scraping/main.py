@@ -136,6 +136,7 @@ def validate_url(url):
     
     return re.match(regex, url) is not None
 
+
 soup = None
 
 def main(page: ft.Page):
@@ -145,8 +146,6 @@ def main(page: ft.Page):
 
     def on_click_extraer_datos(event):
         opcion_tabla = cbx_tablas.value
-
-        print(soup)
 
         if opcion_tabla is None:
             dlg_modal.content = ft.Text('Debe seleccionar una tabla')
@@ -159,7 +158,9 @@ def main(page: ft.Page):
 
         tabla = extraer_tabla(soup, indice_tabla)
 
-        # contenido = extraer_contenido_tabla(tabla)
+        contenido = extraer_contenido_tabla(tabla)
+
+        mostrar_tabla(contenido)
 
         # nombre_archivo = 'tabla.csv'
 
@@ -227,9 +228,6 @@ def main(page: ft.Page):
 
         cbx_tablas.disabled = False
         btn_extraer_datos.disabled = False
-
-        print('soup:')
-        print(soup.prettify())
 
         page.update()
 
