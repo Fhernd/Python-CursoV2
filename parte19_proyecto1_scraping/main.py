@@ -142,8 +142,32 @@ def main(page: ft.Page):
     # Tamaño de la ventana:
     page.size = (400, 600)
 
+    soup = None
+
     def on_click_extraer_datos(event):
-        print('on_click_extraer_datos')
+        opcion_tabla = cbx_tablas.value
+
+        if opcion_tabla is None:
+            dlg_modal.content = ft.Text('Debe seleccionar una tabla')
+            page.dialog = dlg_modal
+            dlg_modal.open = True
+            page.update()
+            return
+
+        indice_tabla = int(cbx_tablas.value)
+
+        tabla = extraer_tabla(soup, indice_tabla)
+
+        # contenido = extraer_contenido_tabla(tabla)
+
+        # nombre_archivo = 'tabla.csv'
+
+        # crear_csv(contenido, nombre_archivo)
+
+        # dlg_modal.content = ft.Text('Se ha creado el archivo CSV')
+        # page.dialog = dlg_modal
+        # dlg_modal.open = True
+        # page.update()
 
     btn_extraer_datos = ft.FilledButton("Extraer datos...", on_click=on_click_extraer_datos, disabled=True)
 
@@ -202,10 +226,6 @@ def main(page: ft.Page):
         btn_extraer_datos.disabled = False
 
         page.update()
-
-
-    def on_click_extraer_datos(event):
-        print('on_click_extraer_datos')
 
     txt_url = ft.TextField()
 
