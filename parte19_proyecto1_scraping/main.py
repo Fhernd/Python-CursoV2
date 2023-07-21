@@ -136,16 +136,17 @@ def validate_url(url):
     
     return re.match(regex, url) is not None
 
+soup = None
 
 def main(page: ft.Page):
     page.title = "Extractor de CSV desde HTML"
     # Tamaño de la ventana:
     page.size = (400, 600)
 
-    soup = None
-
     def on_click_extraer_datos(event):
         opcion_tabla = cbx_tablas.value
+
+        print(soup)
 
         if opcion_tabla is None:
             dlg_modal.content = ft.Text('Debe seleccionar una tabla')
@@ -186,6 +187,8 @@ def main(page: ft.Page):
     )
 
     def on_click_consultar(event):
+        global soup
+        
         url = txt_url.value
 
         btn_extraer_datos.disabled = True
@@ -224,6 +227,9 @@ def main(page: ft.Page):
 
         cbx_tablas.disabled = False
         btn_extraer_datos.disabled = False
+
+        print('soup:')
+        print(soup.prettify())
 
         page.update()
 
