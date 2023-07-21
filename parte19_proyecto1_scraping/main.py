@@ -173,6 +173,8 @@ def main(page: ft.Page):
             page.update()
             return
 
+    def on_click_extraer_datos(event):
+        print('on_click_extraer_datos')
 
     txt_url = ft.TextField()
 
@@ -195,9 +197,32 @@ def main(page: ft.Page):
         ],
     )
 
+    contenedor_2 = ft.ResponsiveRow([
+        ft.Container(
+            ft.Text("Tabla:", size=25),
+            padding=15,
+            col={"sm": 2, "md": 1, "xl": 1},
+        ),
+        ft.Container(
+            txt_url,
+            padding=5,
+            col={"sm": 8, "md": 9, "xl": 8},
+        ),
+        ft.Container(
+            ft.FilledButton("Extraer datos...", on_click=on_click_extraer_datos),
+            padding=12,
+            col={"sm": 2, "md": 2, "xl": 2},
+        )
+        ],
+    )
+
     page.add(
         contenedor_1
     )
+    page.add(
+        contenedor_2
+    )
+
 
 if __name__ == '__main__':
     ft.app(target=main)
