@@ -49,6 +49,39 @@ def contar_tablas_html(soup):
     return len(soup.find_all("table"))
 
 
+def generar_tabla(contenido):
+    return ft.DataTable(
+        columns=[
+            ft.DataColumn(ft.Text("First name")),
+            ft.DataColumn(ft.Text("Last name")),
+            ft.DataColumn(ft.Text("Age"), numeric=True),
+        ],
+        rows=[
+            ft.DataRow(
+                cells=[
+                    ft.DataCell(ft.Text("John")),
+                    ft.DataCell(ft.Text("Smith")),
+                    ft.DataCell(ft.Text("43")),
+                ],
+            ),
+            ft.DataRow(
+                cells=[
+                    ft.DataCell(ft.Text("Jack")),
+                    ft.DataCell(ft.Text("Brown")),
+                    ft.DataCell(ft.Text("19")),
+                ],
+            ),
+            ft.DataRow(
+                cells=[
+                    ft.DataCell(ft.Text("Alice")),
+                    ft.DataCell(ft.Text("Wong")),
+                    ft.DataCell(ft.Text("25")),
+                ],
+            ),
+        ],
+    ),
+
+
 def extraer_tabla(soup, indice_tabla):
     """
     Función que extrae el contenido de una tabla HTML de un objeto BeautifulSoup.
@@ -160,16 +193,7 @@ def main(page: ft.Page):
 
         contenido = extraer_contenido_tabla(tabla)
 
-        mostrar_tabla(contenido)
-
-        # nombre_archivo = 'tabla.csv'
-
-        # crear_csv(contenido, nombre_archivo)
-
-        # dlg_modal.content = ft.Text('Se ha creado el archivo CSV')
-        # page.dialog = dlg_modal
-        # dlg_modal.open = True
-        # page.update()
+        tbl_contenido = generar_tabla(contenido)
 
     btn_extraer_datos = ft.FilledButton("Extraer datos...", on_click=on_click_extraer_datos, disabled=True)
 
@@ -277,11 +301,16 @@ def main(page: ft.Page):
         ],
     )
 
+    contenedor_3 = ft.ResponsiveRow([])
+
     page.add(
         contenedor_1
     )
     page.add(
         contenedor_2
+    )
+    page.add(
+        contenedor_3
     )
 
 
