@@ -142,6 +142,11 @@ def main(page: ft.Page):
     # Tamaño de la ventana:
     page.size = (400, 600)
 
+    def on_click_extraer_datos(event):
+        print('on_click_extraer_datos')
+
+    btn_extraer_datos = ft.FilledButton("Extraer datos...", on_click=on_click_extraer_datos, disabled=False)
+
     def close_dialog(e):
         dlg_modal.open = False
         page.update()
@@ -158,6 +163,8 @@ def main(page: ft.Page):
 
     def on_click_consultar(event):
         url = txt_url.value
+
+        btn_extraer_datos.disabled = True
         
         if url == '':
             dlg_modal.content = ft.Text('Debe ingresar una URL. El campo no puede quedar vacío')
@@ -172,6 +179,11 @@ def main(page: ft.Page):
             dlg_modal.open = True
             page.update()
             return
+        
+        cbx_tablas.disabled = False
+        btn_extraer_datos.disabled = False
+        print('ok')
+
 
     def on_click_extraer_datos(event):
         print('on_click_extraer_datos')
@@ -200,6 +212,7 @@ def main(page: ft.Page):
     cbx_tablas = ft.Dropdown(
         width=100,
         options=[],
+        disabled=False,
     )
 
     contenedor_2 = ft.ResponsiveRow([
@@ -214,7 +227,7 @@ def main(page: ft.Page):
             col={"sm": 8, "md": 9, "xl": 8},
         ),
         ft.Container(
-            ft.FilledButton("Extraer datos...", on_click=on_click_extraer_datos),
+            btn_extraer_datos,
             padding=12,
             col={"sm": 2, "md": 2, "xl": 2},
         )
