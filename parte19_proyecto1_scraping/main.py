@@ -1,4 +1,5 @@
 import csv
+import re
 
 from bs4 import BeautifulSoup
 import requests
@@ -123,9 +124,39 @@ def main(page: ft.Page):
     # Tamaño de la ventana:
     page.size = (400, 600)
 
+    def close_dialog(e):
+        dlg_modal.open = False
+        page.update()
+
+    dlg_modal = ft.AlertDialog(
+        modal=True,
+        title=ft.Text("Mensaje"),
+        content=ft.Text(''),
+        actions=[
+            ft.TextButton("OK", on_click=close_dialog),
+        ],
+        actions_alignment=ft.MainAxisAlignment.END,
+    )
+
     def on_click_consultar(event):
         url = txt_url.value
-        print(url)
+        
+        if url == '':
+            dlg_modal.content = ft.Text('Debe ingresar una URL. El campo no puede quedar vacío')
+            page.dialog = dlg_modal
+            dlg_modal.open = True
+            page.update()
+            return
+        
+        regex = r'^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$'
+
+        if re.match(regex, url) is None:
+            dlg_modal.content = ft.Text('Debe ingresar una URL válida. Por ejemplo: https://ortizol.blogspot.com')
+            page.dialog = dlg_modal
+            dlg_modal.open = True
+            page.update()
+            return
+
 
     txt_url = ft.TextField()
 
