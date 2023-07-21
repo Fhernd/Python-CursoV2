@@ -145,7 +145,7 @@ def main(page: ft.Page):
     def on_click_extraer_datos(event):
         print('on_click_extraer_datos')
 
-    btn_extraer_datos = ft.FilledButton("Extraer datos...", on_click=on_click_extraer_datos, disabled=False)
+    btn_extraer_datos = ft.FilledButton("Extraer datos...", on_click=on_click_extraer_datos, disabled=True)
 
     def close_dialog(e):
         dlg_modal.open = False
@@ -165,6 +165,7 @@ def main(page: ft.Page):
         url = txt_url.value
 
         btn_extraer_datos.disabled = True
+        cbx_tablas.disabled = True
         
         if url == '':
             dlg_modal.content = ft.Text('Debe ingresar una URL. El campo no puede quedar vacío')
@@ -180,9 +181,27 @@ def main(page: ft.Page):
             page.update()
             return
         
+        html = consultar_url(url)
+
+        soup = crear_objeto_beautifulsoup(html)
+
+        if not tiene_tablas_html(soup):
+            dlg_modal.content = ft.Text('La URL no tiene tablas HTML')
+            page.dialog = dlg_modal
+            dlg_modal.open = True
+            page.update()
+            return
+        
+        contador_tablas = contar_tablas_html(soup)
+
+        opciones_tablas = [ft.dropdown.Option(str(i)) for i in range(1, contador_tablas + 1)]
+
+        cbx_tablas.options = opciones_tablas
+
         cbx_tablas.disabled = False
         btn_extraer_datos.disabled = False
-        print('ok')
+
+        page.update()
 
 
     def on_click_extraer_datos(event):
@@ -212,7 +231,7 @@ def main(page: ft.Page):
     cbx_tablas = ft.Dropdown(
         width=100,
         options=[],
-        disabled=False,
+        disabled=True,
     )
 
     contenedor_2 = ft.ResponsiveRow([
