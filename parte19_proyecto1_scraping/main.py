@@ -328,3 +328,6 @@ class ExtractorCSVDesdeHTML:
 if __name__ == '__main__':
     extractor = ExtractorCSVDesdeHTML()
     ft.app(target=extractor.main)
+
+    # Ejecución en modo navegador web:
+    # ft.app(target=extractor.main, view=ft.AppView.WEB_BROWSER)
