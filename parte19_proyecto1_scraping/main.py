@@ -173,7 +173,7 @@ def main(page: ft.Page):
             page.update()
             return
 
-        indice_tabla = int(cbx_tablas.value)
+        indice_tabla = int(cbx_tablas.value) - 1
 
         tabla = extraer_tabla(soup, indice_tabla)
 
