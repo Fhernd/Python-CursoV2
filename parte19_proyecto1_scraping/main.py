@@ -249,6 +249,7 @@ def main(page: ft.Page):
 
         cbx_tablas.disabled = False
         btn_extraer_datos.disabled = False
+        btn_guardar_csv.disabled = False
 
         page.update()
 
@@ -300,7 +301,21 @@ def main(page: ft.Page):
 
     contenedor_3 = ft.ResponsiveRow([])
 
-    btn_guardar_csv = ft.FilledButton("Guardar CSV...")
+    def on_click_guardar_csv(event):
+        def on_archivo_seleccionado(e: ft.FilePickerResultEvent):
+            ruta = fpk_guardar_csv.result.path 
+
+            print(ruta)
+
+        fpk_guardar_csv = ft.FilePicker(on_result=on_archivo_seleccionado)
+        page.overlay.append(fpk_guardar_csv)
+        page.update()
+
+        fpk_guardar_csv.save_file(
+            allowed_extensions=["csv"]
+        )
+
+    btn_guardar_csv = ft.FilledButton("Guardar CSV...", on_click=on_click_guardar_csv, disabled=True)
 
     contenedor_4 = ft.ResponsiveRow([
         ft.Container(
