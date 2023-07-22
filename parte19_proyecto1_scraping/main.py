@@ -197,15 +197,13 @@ def main(page: ft.Page):
         contenedor = ft.Container(
             tbl_contenido,
             padding=5,
-            bgcolor=ft.colors.YELLOW,
             col={"sm": 12, "md": 12, "xl": 12},
         )
 
         contenedor_3.controls.clear()
-        # contenedor_3.controls.append(contenedor)
+        contenedor_3.controls = [contenedor]
 
         page.update()
-        print('okkkkkk')
 
     btn_extraer_datos = ft.FilledButton("Extraer datos...", on_click=on_click_extraer_datos, disabled=True)
 
@@ -313,14 +311,7 @@ def main(page: ft.Page):
         ],
     )
 
-    contenedor_3 = ft.ResponsiveRow([
-        ft.Container(
-            generar_tabla(None),
-            padding=5,
-            bgcolor=ft.colors.YELLOW,
-            col={"sm": 12, "md": 12, "xl": 12},
-        )
-    ])
+    contenedor_3 = ft.ResponsiveRow([])
 
     page.add(
         contenedor_1
