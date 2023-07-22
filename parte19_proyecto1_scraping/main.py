@@ -330,6 +330,9 @@ def main(page: ft.Page):
 
     contenedor_4 = ft.ResponsiveRow([
         ft.Container(
+            col={"sm": 9, "md": 9, "xl": 9},
+        ),
+        ft.Container(
             btn_guardar_csv,
             padding=12,
             col={"sm": 2, "md": 2, "xl": 2},
