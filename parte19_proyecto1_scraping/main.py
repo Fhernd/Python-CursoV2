@@ -100,14 +100,14 @@ def extraer_contenido_tabla(tabla):
     return contenido
 
 
-def crear_csv(contenido, nombre_archivo):
+def guardar_csv(contenido, nombre_archivo):
     """
     Función que crea un archivo CSV a partir de un contenido.
 
     :param contenido: Contenido.
     :param nombre_archivo: Nombre del archivo.
     """
-    with open(nombre_archivo, 'w', newline='') as file:
+    with open(nombre_archivo, 'w', newline='', encoding='utf8') as file:
         writer = csv.writer(file)
         writer.writerows(contenido)
 
@@ -136,7 +136,7 @@ def prueba():
 
     nombre_archivo = 'tabla.csv'
 
-    crear_csv(contenido, nombre_archivo)
+    guardar_csv(contenido, nombre_archivo)
 
 
 def validate_url(url):
@@ -158,12 +158,14 @@ def validate_url(url):
 
 
 soup = None
+contenido = None
 
 def main(page: ft.Page):
     page.title = "Extractor de CSV desde HTML"
     page.size = (400, 600)
 
     def on_click_extraer_datos(event):
+        global contenido
         opcion_tabla = cbx_tablas.value
 
         if opcion_tabla is None:
@@ -190,6 +192,8 @@ def main(page: ft.Page):
         contenedor_3.controls.clear()
         contenedor_3.controls = [contenedor]
 
+        btn_guardar_csv.disabled = False
+
         page.update()
 
     btn_extraer_datos = ft.FilledButton("Extraer datos...", on_click=on_click_extraer_datos, disabled=True)
@@ -215,6 +219,7 @@ def main(page: ft.Page):
 
         btn_extraer_datos.disabled = True
         cbx_tablas.disabled = True
+        btn_guardar_csv.disabled = True
         
         if url == '':
             dlg_modal.content = ft.Text('Debe ingresar una URL. El campo no puede quedar vacío')
@@ -249,7 +254,6 @@ def main(page: ft.Page):
 
         cbx_tablas.disabled = False
         btn_extraer_datos.disabled = False
-        btn_guardar_csv.disabled = False
 
         page.update()
 
@@ -305,7 +309,14 @@ def main(page: ft.Page):
         def on_archivo_seleccionado(e: ft.FilePickerResultEvent):
             ruta = fpk_guardar_csv.result.path 
 
-            print(ruta)
+            if ruta is not None:
+                guardar_csv(contenido, ruta)
+
+                dlg_modal.content = ft.Text('El archivo se guardó correctamente.')
+                page.dialog = dlg_modal
+                dlg_modal.open = True
+                page.update()
+                
 
         fpk_guardar_csv = ft.FilePicker(on_result=on_archivo_seleccionado)
         page.overlay.append(fpk_guardar_csv)
