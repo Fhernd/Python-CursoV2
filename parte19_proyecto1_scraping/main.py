@@ -50,35 +50,22 @@ def contar_tablas_html(soup):
 
 
 def generar_tabla(contenido):
+
+    rows = []
+
+    for fila in contenido[1:]:
+        cells = []
+
+        for columna in fila:
+            cells.append(ft.DataCell(ft.Text(columna)))
+
+        rows.append(ft.DataRow(cells=cells))
+
     return ft.DataTable(
         columns=[
-            ft.DataColumn(ft.Text("First name")),
-            ft.DataColumn(ft.Text("Last name")),
-            ft.DataColumn(ft.Text("Age"), numeric=True),
+            ft.DataColumn(ft.Text(d)) for d in contenido[0]
         ],
-        rows=[
-            ft.DataRow(
-                cells=[
-                    ft.DataCell(ft.Text("John")),
-                    ft.DataCell(ft.Text("Smith")),
-                    ft.DataCell(ft.Text("43")),
-                ],
-            ),
-            ft.DataRow(
-                cells=[
-                    ft.DataCell(ft.Text("Jack")),
-                    ft.DataCell(ft.Text("Brown")),
-                    ft.DataCell(ft.Text("19")),
-                ],
-            ),
-            ft.DataRow(
-                cells=[
-                    ft.DataCell(ft.Text("Alice")),
-                    ft.DataCell(ft.Text("Wong")),
-                    ft.DataCell(ft.Text("25")),
-                ],
-            ),
-        ],
+        rows=rows,
     )
 
 
