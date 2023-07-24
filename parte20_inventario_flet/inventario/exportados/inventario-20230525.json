@@ -1,0 +1,64 @@
+{
+    "productos": [
+        {
+            "codigo": 1,
+            "nombre": "Monitor",
+            "precio": 300000.0,
+            "cantidad": 100,
+            "disponible": true
+        },
+        {
+            "codigo": 2,
+            "nombre": "Mouse",
+            "precio": 150000.0,
+            "cantidad": 200,
+            "disponible": true
+        },
+        {
+            "codigo": 3,
+            "nombre": "Parlantes gamer",
+            "precio": 350000.0,
+            "cantidad": 100,
+            "disponible": true
+        },
+        {
+            "codigo": 4,
+            "nombre": "Deademas",
+            "precio": 150000.0,
+            "cantidad": 150,
+            "disponible": true
+        }
+    ],
+    "ventas": [
+        {
+            "codigo_producto": 1,
+            "cantidad": 5,
+            "total_sin_iva": 1500000.0,
+            "fecha": "22/05/2023"
+        },
+        {
+            "codigo_producto": 4,
+            "cantidad": 20,
+            "total_sin_iva": 3000000.0,
+            "fecha": "22/05/2023"
+        },
+        {
+            "codigo_producto": 1,
+            "cantidad": 1,
+            "total_sin_iva": 300000.0,
+            "fecha": "22/05/2023"
+        },
+        {
+            "codigo_producto": 3,
+            "cantidad": 10,
+            "total_sin_iva": 3500000.0,
+            "fecha": "22/05/2023"
+        },
+        {
+            "codigo_producto": 2,
+            "cantidad": 160,
+            "total_sin_iva": 24000000.0,
+            "fecha": "23/05/2023"
+        }
+    ]
+}
