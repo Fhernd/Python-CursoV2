@@ -32,9 +32,11 @@ class Inventario:
         cursor = self.conexion.cursor()
 
         cursor.execute(sql, (producto.codigo, producto.nombre, producto.precio, producto.cantidad, producto.disponible))
+
+        cursor.close()
         
 
-    def realizar_venta(self, ventas, venta):
+    def realizar_venta(self, venta):
         """
         Crea una nueva venta
 
@@ -42,8 +44,19 @@ class Inventario:
         ventas: lista de las ventas realizadas hasta el momento.
         venta: venta recién realizada
         """
-        venta['fecha'] = datetime.now()
-        ventas.append(venta)
+        venta.fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        sql = """
+            INSERT INTO ventas (codigo_producto, fecha, cantidad, total_sin_iva) 
+            VALUES (?, ?, ?, ?)
+        """
+
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql, (venta.codigo_producto, venta.fecha, venta.cantidad, venta.total_sin_iva))
+
+        cursor.close()
+        
 
     def buscar_producto(self, productos, id_producto):
         """
