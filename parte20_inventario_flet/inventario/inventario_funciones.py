@@ -6,7 +6,17 @@ class Inventario:
     """
     Clase que contiene las funciones del inventario.
     """
-    def registrar_producto(self, productos, producto):
+
+    def __init__(self, conexion):
+        """
+        Constructor de la clase.
+
+        Parameters:
+        conexion: Conexión con la base de datos.
+        """
+        self.conexion = conexion
+    
+    def registrar_producto(self, producto):
         """
         Registrar un nuevo producto en el inventario.
 
@@ -14,7 +24,15 @@ class Inventario:
         productos: lista de productos en el inventario
         producto: producto a agregar al inventario
         """
-        productos.append(producto)
+        sql = """
+            INSERT INTO productos (codigo, nombre, precio, cantidad, disponible) 
+            VALUES (?, ?, ?, ?, ?)
+        """
+
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql, (producto.codigo, producto.nombre, producto.precio, producto.cantidad, producto.disponible))
+        
 
     def realizar_venta(self, ventas, venta):
         """
