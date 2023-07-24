@@ -1,6 +1,5 @@
 from datetime import datetime
 from collections import Counter
-from sqlite3 import connect
 
 
 class Inventario:
