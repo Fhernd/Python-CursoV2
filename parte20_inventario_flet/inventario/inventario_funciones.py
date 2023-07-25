@@ -119,7 +119,7 @@ class Inventario:
 
         return ventas
 
-    def top_5_mas_vendidos(self, ventas):
+    def top_5_mas_vendidos(self):
         """
         Obtiene el top 5 de los productos más vendidos.
 
@@ -131,11 +131,23 @@ class Inventario:
         """
         conteo_ventas = {}
 
+        sql = """
+            SELECT * FROM venta
+        """
+
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql)
+
+        ventas = cursor.fetchall()
+
+        cursor.close()
+
         for v in ventas:
-            if v['id_producto'] in conteo_ventas:
-                conteo_ventas[v['id_producto']] += v['cantidad']
+            if v.codigo_producto in conteo_ventas:
+                conteo_ventas[v.codigo_producto] += v.cantidad
             else:
-                conteo_ventas[v['id_producto']] = v['cantidad']
+                conteo_ventas[v.codigo_producto] = v.cantidad
 
         conteo_ventas = {k: v for k, v in sorted(conteo_ventas.items(), key=lambda item: item[1], reverse=True)}
 
