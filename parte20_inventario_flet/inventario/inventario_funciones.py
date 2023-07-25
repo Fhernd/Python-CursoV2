@@ -21,11 +21,10 @@ class Inventario:
         Registrar un nuevo producto en el inventario.
 
         Parameters:
-        productos: lista de productos en el inventario
         producto: producto a agregar al inventario
         """
         sql = """
-            INSERT INTO productos (codigo, nombre, precio, cantidad, disponible) 
+            INSERT INTO producto (codigo, nombre, precio, cantidad, disponible) 
             VALUES (?, ?, ?, ?, ?)
         """
 
@@ -41,13 +40,12 @@ class Inventario:
         Crea una nueva venta
 
         Parameters:
-        ventas: lista de las ventas realizadas hasta el momento.
         venta: venta recién realizada
         """
         venta.fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
         sql = """
-            INSERT INTO ventas (codigo_producto, fecha, cantidad, total_sin_iva) 
+            INSERT INTO venta (codigo_producto, fecha, cantidad, total_sin_iva) 
             VALUES (?, ?, ?, ?)
         """
 
@@ -58,22 +56,27 @@ class Inventario:
         cursor.close()
         
 
-    def buscar_producto(self, productos, id_producto):
+    def buscar_producto(self, id_producto):
         """
         Busca un producto a partir de su ID.
 
         Parameters:
-        productos: lista de productos en el inventario
         id_producto: ID del producto a buscar
 
         Returns:
         El producto encontrado, si no se encuentra None.
         """
-        for p in productos:
-            if p['id_producto'] == id_producto:
-                return p
+        sql = """
+            SELECT * FROM producto WHERE codigo = ?
+        """
+
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql, (id_producto,))
+
+        producto = cursor.fetchone()
         
-        return None
+        return producto
 
     def cambiar_estado_producto(self, producto):
         """
