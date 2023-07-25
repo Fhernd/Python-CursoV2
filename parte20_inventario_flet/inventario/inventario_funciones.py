@@ -155,23 +155,32 @@ class Inventario:
 
         return contador.most_common(5)
 
-    def top_5_menos_vendidos(self, ventas):
+    def top_5_menos_vendidos(self):
         """
         Obtiene el top 5 de los productos menos vendidos.
-
-        Parameters:
-        ventas: lista de las ventas realizadas hasta el momento.
 
         Returns:
         Lista de tuplas (id, cantidad_total_venta) de los 5 productos menos vendidos.
         """
         conteo_ventas = {}
 
+        sql = """
+            SELECT * FROM venta
+        """
+
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql)
+
+        ventas = cursor.fetchall()
+
+        cursor.close()
+
         for v in ventas:
-            if v['id_producto'] in conteo_ventas:
-                conteo_ventas[v['id_producto']] += v['cantidad']
+            if v.codigo_producto in conteo_ventas:
+                conteo_ventas[v.codigo_producto] += v.cantidad
             else:
-                conteo_ventas[v['id_producto']] = v['cantidad']
+                conteo_ventas[v.codigo_producto] = v.cantidad
 
         conteo_ventas = {k: v for k, v in sorted(conteo_ventas.items(), key=lambda item: item[1])}
 
