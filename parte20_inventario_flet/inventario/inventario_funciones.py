@@ -195,11 +195,11 @@ class Inventario:
         Parameters:
         producto: Producto a consultar sus datos.
         """
-        print('ID: %i' % producto['id_producto'])
-        print('Nombre: %s' % producto['nombre'])
-        print('Precio: $%.2f' % producto['precio'])
-        print('Cantidad: %i' % producto['cantidad'])
-        print('¿Disponible?: %s' % ('Sí' if producto['disponible'] else 'No'))
+        print('ID: %i' % producto.codigo)
+        print('Nombre: %s' % producto.nombre)
+        print('Precio: $%.2f' % producto.precio)
+        print('Cantidad: %i' % producto.cantidad)
+        print('¿Disponible?: %s' % ('Sí' if producto.disponible else 'No'))
 
     def mostrar_datos_venta(self, productos, venta):
         """
