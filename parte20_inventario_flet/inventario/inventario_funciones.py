@@ -33,7 +33,6 @@ class Inventario:
         cursor.execute(sql, (producto.codigo, producto.nombre, producto.precio, producto.cantidad, producto.disponible))
 
         cursor.close()
-        
 
     def realizar_venta(self, venta):
         """
@@ -54,14 +53,13 @@ class Inventario:
         cursor.execute(sql, (venta.codigo_producto, venta.fecha, venta.cantidad, venta.total_sin_iva))
 
         cursor.close()
-        
 
-    def buscar_producto(self, id_producto):
+    def buscar_producto_por_codigo(self, codigo):
         """
         Busca un producto a partir de su ID.
 
         Parameters:
-        id_producto: ID del producto a buscar
+        codigo: Código del producto a buscar.
 
         Returns:
         El producto encontrado, si no se encuentra None.
@@ -72,20 +70,29 @@ class Inventario:
 
         cursor = self.conexion.cursor()
 
-        cursor.execute(sql, (id_producto,))
+        cursor.execute(sql, (codigo,))
 
         producto = cursor.fetchone()
         
         return producto
 
-    def cambiar_estado_producto(self, producto):
+    def cambiar_estado_producto(self, codigo, disponible):
         """
         Cambia el estado de un producto.
 
         Parameters:
-        producto: Producto sobre el que se cambiará su estado.
+        codigo: Código del producto a cambiar su estado.
+        disponible: Nuevo estado del producto.
         """
-        producto['disponible'] = not producto['disponible']
+        sql = """
+            UPDATE producto SET disponible = ? WHERE codigo = ?
+        """
+
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql, (disponible, codigo))
+
+        cursor.close()
 
     def ventas_rango_fecha(self, ventas, fecha_inicio, fecha_final):
         """
@@ -182,9 +189,9 @@ class Inventario:
         print('Total:: $%.2f' % (venta['total_sin_iva'] * 1.19))
         print()
         print('Datos del producto:')
-        self.mostrar_datos_producto(self.buscar_producto(productos, venta['id_producto']))
+        self.mostrar_datos_producto(self.buscar_producto_por_codigo(productos, venta['id_producto']))
 
     def mostrar_datos_venta_producto(self, productos, datos_venta):
-        producto = self.buscar_producto(productos, datos_venta[0])
+        producto = self.buscar_producto_por_codigo(productos, datos_venta[0])
         self.mostrar_datos_producto(producto)
         print('Cantidad vendida: %i' % datos_venta[1])
