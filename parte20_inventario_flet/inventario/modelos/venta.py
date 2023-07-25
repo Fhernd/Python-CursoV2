@@ -18,3 +18,12 @@ class Venta:
         self.fecha = fecha
         self.cantidad = cantidad
         self.total_sin_iva = total_sin_iva
+
+    def __str__(self):
+        """
+        Representación en cadena de texto de la venta.
+
+        Returns:
+        Representación en cadena de texto de la venta.
+        """
+        return f'Código del producto: {self.codigo_producto}\nFecha: {self.fecha}\nCantidad: {self.cantidad}\nTotal sin IVA: {self.total_sin_iva}'
