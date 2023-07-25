@@ -217,7 +217,13 @@ class Inventario:
         print('Datos del producto:')
         self.mostrar_datos_producto(self.buscar_producto_por_codigo(venta.codigo_producto))
 
-    def mostrar_datos_venta_producto(self, productos, datos_venta):
-        producto = self.buscar_producto_por_codigo(productos, datos_venta[0])
+    def mostrar_datos_venta_producto(self, datos_venta):
+        """
+        Muestra los datos particulares de una venta.
+
+        Parameters:
+        datos_venta: tupla con los datos de la venta.
+        """
+        producto = self.buscar_producto_por_codigo(datos_venta[0])
         self.mostrar_datos_producto(producto)
         print('Cantidad vendida: %i' % datos_venta[1])
