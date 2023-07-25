@@ -1,79 +1,123 @@
+from datetime import datetime
 from collections import Counter
-import pickle
 
-from .producto import Producto
-from .venta import Venta
 
 class Inventario:
-    def __init__(self):
-        self.productos = []
-        self.ventas = []
+    """
+    Clase que contiene las funciones del inventario.
+    """
+
+    def __init__(self, conexion):
+        """
+        Constructor de la clase.
+
+        Parameters:
+        conexion: Conexión con la base de datos.
+        """
+        self.conexion = conexion
     
     def registrar_producto(self, producto):
         """
         Registrar un nuevo producto en el inventario.
 
         Parameters:
-        productos: lista de productos en el inventario
         producto: producto a agregar al inventario
         """
-        self.productos.append(producto)
+        sql = """
+            INSERT INTO producto (codigo, nombre, precio, cantidad, disponible) 
+            VALUES (?, ?, ?, ?, ?)
+        """
+
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql, (producto.codigo, producto.nombre, producto.precio, producto.cantidad, producto.disponible))
+
+        cursor.close()
 
     def realizar_venta(self, venta):
         """
         Crea una nueva venta
 
         Parameters:
-        ventas: lista de las ventas realizadas hasta el momento.
         venta: venta recién realizada
         """
-        self.ventas.append(venta)
+        venta.fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        sql = """
+            INSERT INTO venta (codigo_producto, fecha, cantidad, total_sin_iva) 
+            VALUES (?, ?, ?, ?)
+        """
 
-    def buscar_producto(self, codigo):
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql, (venta.codigo_producto, venta.fecha, venta.cantidad, venta.total_sin_iva))
+
+        cursor.close()
+
+    def buscar_producto_por_codigo(self, codigo):
         """
         Busca un producto a partir de su ID.
 
         Parameters:
-        productos: lista de productos en el inventario
-        id_producto: ID del producto a buscar
+        codigo: Código del producto a buscar.
 
         Returns:
         El producto encontrado, si no se encuentra None.
         """
-        for p in self.productos:
-            if p.codigo == codigo:
-                return p
-        
-        return None
+        sql = """
+            SELECT * FROM producto WHERE codigo = ?
+        """
 
-    def cambiar_estado_producto(self, producto):
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql, (codigo,))
+
+        producto = cursor.fetchone()
+        
+        return producto
+
+    def cambiar_estado_producto(self, codigo, disponible):
         """
         Cambia el estado de un producto.
 
         Parameters:
-        producto: Producto sobre el que se cambiará su estado.
+        codigo: Código del producto a cambiar su estado.
+        disponible: Nuevo estado del producto.
         """
-        producto.disponible = not producto.disponible
+        sql = """
+            UPDATE producto SET disponible = ? WHERE codigo = ?
+        """
+
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql, (disponible, codigo))
+
+        cursor.close()
 
     def ventas_rango_fecha(self, fecha_inicio, fecha_final):
         """
         Obtiene las ventas que se han realizado en un rango de fecha.
 
         Parameters:
-        ventas: lista de las ventas realizadas hasta el momento.
         fecha_inicio: fecha de inicio del rango.
         fecha_final: fecha final del rango.
 
         Returns:
         Lista de ventas realizadas en el rango especificado.
         """
-        ventas_rango = []
+        sql = """
+            SELECT * FROM venta WHERE fecha BETWEEN ? AND ?
+        """
 
-        for v in self.ventas:
-            if fecha_inicio <= v.fecha <= fecha_final:
-                ventas_rango.append(v)
-        
-        return ventas_rango
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql, (fecha_inicio, fecha_final))
+
+        ventas = cursor.fetchall()
+
+        cursor.close()
+
+        return ventas
 
     def top_5_mas_vendidos(self):
         """
@@ -87,7 +131,19 @@ class Inventario:
         """
         conteo_ventas = {}
 
-        for v in self.ventas:
+        sql = """
+            SELECT * FROM venta
+        """
+
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql)
+
+        ventas = cursor.fetchall()
+
+        cursor.close()
+
+        for v in ventas:
             if v.codigo_producto in conteo_ventas:
                 conteo_ventas[v.codigo_producto] += v.cantidad
             else:
@@ -103,15 +159,24 @@ class Inventario:
         """
         Obtiene el top 5 de los productos menos vendidos.
 
-        Parameters:
-        ventas: lista de las ventas realizadas hasta el momento.
-
         Returns:
         Lista de tuplas (id, cantidad_total_venta) de los 5 productos menos vendidos.
         """
         conteo_ventas = {}
 
-        for v in self.ventas:
+        sql = """
+            SELECT * FROM venta
+        """
+
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql)
+
+        ventas = cursor.fetchall()
+
+        cursor.close()
+
+        for v in ventas:
             if v.codigo_producto in conteo_ventas:
                 conteo_ventas[v.codigo_producto] += v.cantidad
             else:
@@ -136,7 +201,7 @@ class Inventario:
         print('Cantidad: %i' % producto.cantidad)
         print('¿Disponible?: %s' % ('Sí' if producto.disponible else 'No'))
 
-    def mostrar_datos_venta(self, venta):
+    def mostrar_datos_venta(self, productos, venta):
         """
         Muestra los datos particulares de una venta.
 
@@ -147,26 +212,18 @@ class Inventario:
         print('Fecha: %s' % venta.fecha)
         print('Cantidad: %i' % venta.cantidad)
         print('Total sin IVA: $%.2f' % venta.total_sin_iva)
-        print('Total: $%.2f' % (venta.total_sin_iva * 1.19))
+        print('Total:: $%.2f' % (venta.total_sin_iva * 1.19))
         print()
         print('Datos del producto:')
-        self.mostrar_datos_producto(self.buscar_producto(venta.codigo_producto))
+        self.mostrar_datos_producto(self.buscar_producto_por_codigo(venta.codigo_producto))
 
     def mostrar_datos_venta_producto(self, datos_venta):
-        producto = self.buscar_producto(datos_venta[0])
-        self.mostrar_datos_producto(producto)
-        print('Cantidad vendida: %i' % datos_venta[1])
-
-    def guardar_datos(self):
         """
-        Guarda los datos del inventario en un archivo.
+        Muestra los datos particulares de una venta.
 
         Parameters:
-        inventario: Inventario a guardar sus datos.
+        datos_venta: tupla con los datos de la venta.
         """
-        with open('inventario/inventario.pickle', 'wb') as f:
-            datos = {
-                'productos': self.productos,
-                'ventas': self.ventas
-            }
-            pickle.dump(datos, f)
+        producto = self.buscar_producto_por_codigo(datos_venta[0])
+        self.mostrar_datos_producto(producto)
+        print('Cantidad vendida: %i' % datos_venta[1])
