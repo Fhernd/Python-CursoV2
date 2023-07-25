@@ -94,25 +94,30 @@ class Inventario:
 
         cursor.close()
 
-    def ventas_rango_fecha(self, ventas, fecha_inicio, fecha_final):
+    def ventas_rango_fecha(self, fecha_inicio, fecha_final):
         """
         Obtiene las ventas que se han realizado en un rango de fecha.
 
         Parameters:
-        ventas: lista de las ventas realizadas hasta el momento.
         fecha_inicio: fecha de inicio del rango.
         fecha_final: fecha final del rango.
 
         Returns:
         Lista de ventas realizadas en el rango especificado.
         """
-        ventas_rango = []
+        sql = """
+            SELECT * FROM venta WHERE fecha BETWEEN ? AND ?
+        """
 
-        for v in ventas:
-            if fecha_inicio <= v['fecha'] <= fecha_final:
-                ventas_rango.append(v)
-        
-        return ventas_rango
+        cursor = self.conexion.cursor()
+
+        cursor.execute(sql, (fecha_inicio, fecha_final))
+
+        ventas = cursor.fetchall()
+
+        cursor.close()
+
+        return ventas
 
     def top_5_mas_vendidos(self, ventas):
         """
