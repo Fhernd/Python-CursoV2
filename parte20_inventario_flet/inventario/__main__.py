@@ -11,6 +11,8 @@ from tkcalendar import Calendar, DateEntry
 
 import openpyxl
 
+import flet as ft
+
 from .modelos.inventario import Inventario
 from .modelos.producto import Producto
 from .modelos.venta import Venta
@@ -747,10 +749,10 @@ class Top5VendidosFrame(tk.Toplevel):
         self.tabla.pack(fill='both', expand=True)
 
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.geometry("500x500")
+def main(page: ft.Page):
+    # page.title = 'Inventario'
+    pass
 
-    app = VentanaPrincipal(root)
-    
-    app.mainloop()
+
+if __name__ == "__main__":
+    ft.app(target=main)
