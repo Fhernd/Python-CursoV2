@@ -755,9 +755,27 @@ def main(page: Page):
 
     print("Initial route:", page.route)
 
+    def close_dlg(e):
+        dlg_modal.open = False
+        page.update()
+        page.window_close()
+
+    dlg_modal = ft.AlertDialog(
+        modal=True,
+        title=ft.Text('Mensaje'),
+        content=ft.Text(''),
+        actions_alignment=ft.MainAxisAlignment.END
+    )
+
     def on_click_salir(e):
-        import os
-        os._exit(0)
+        dlg_modal.content = ft.Text("¿Desea salir de la aplicación?")
+        dlg_modal.actions = [
+            ft.TextButton("Yes", on_click=close_dlg),
+            ft.TextButton("No", on_click=lambda e: print()),
+        ]
+        page.dialog = dlg_modal
+        dlg_modal.open = True
+        page.update()
 
     def route_change(e):
         print("Route change:", e.route)
