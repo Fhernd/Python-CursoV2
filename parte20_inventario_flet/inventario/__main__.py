@@ -12,7 +12,7 @@ from tkcalendar import Calendar, DateEntry
 import openpyxl
 
 import flet as ft
-from flet import AppBar, ElevatedButton, Page, Text, View, colors
+from flet import AppBar, ElevatedButton, Page, PopupMenuButton, PopupMenuItem, Text, View, colors
 
 from .modelos.inventario import Inventario
 from .modelos.producto import Producto
@@ -758,12 +758,33 @@ def main(page: Page):
     def route_change(e):
         print("Route change:", e.route)
         page.views.clear()
+
+        mnu_principal = PopupMenuButton(
+            items=[
+                ft.PopupMenuItem(text="Item 1"),
+                ft.PopupMenuItem(icon=ft.icons.POWER_INPUT, text="Check power"),
+                ft.PopupMenuItem(
+                    content=ft.Row(
+                        [
+                            ft.Icon(ft.icons.HOURGLASS_TOP_OUTLINED),
+                            ft.Text("Item with a custom content"),
+                        ]
+                    ),
+                    on_click=lambda _: print("Button with a custom content clicked!"),
+                ),
+                ft.PopupMenuItem(),  # divider
+                ft.PopupMenuItem(
+                    text="Checked item", checked=False, on_click=lambda _: print("Checked item clicked!")
+                ),
+            ]
+        )
+
         page.views.append(
             View(
                 "/",
                 [
-                    AppBar(title=Text("Flet app")),
-                    ElevatedButton("Go to settings", on_click=open_settings),
+                    AppBar(title=Text('Gestión Inventario - Dispositivos S.a.s.')),
+                    mnu_principal,
                 ],
             )
         )
