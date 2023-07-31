@@ -746,7 +746,6 @@ class Top5VendidosFrame(tk.Toplevel):
 
             self.tabla.insert('', 'end', values=(codigo, nombre, precio, cantidad, total))
         
-        # Empaquetar la tabla
         self.tabla.pack(fill='both', expand=True)
 
 
@@ -783,10 +782,20 @@ def main(page: Page):
         print("Route change:", e.route)
         page.views.clear()
 
-        mnu_principal = PopupMenuButton(
+        mnu_archivo = PopupMenuButton(
             content=Text('Archivo'),
             items=[
                 ft.PopupMenuItem(text='Salir', on_click=on_click_salir)
+            ]
+        )
+
+        mnu_productos = PopupMenuButton(
+            content=Text('Productos'),
+            items=[
+                ft.PopupMenuItem(text='Registrar', on_click=on_click_salir),
+                ft.PopupMenuItem(text='Vender', on_click=on_click_salir),
+                ft.PopupMenuItem(text='Buscar', on_click=on_click_salir),
+                ft.PopupMenuItem(text='Cambiar disponibilidad', on_click=on_click_salir)
             ]
         )
 
@@ -795,7 +804,8 @@ def main(page: Page):
                 "/",
                 [
                     AppBar(title=Text('Gestión Inventario - Dispositivos S.a.s.')),
-                    mnu_principal,
+                    mnu_archivo,
+                    mnu_productos,
                 ],
             )
         )
