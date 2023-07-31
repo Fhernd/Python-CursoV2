@@ -834,6 +834,14 @@ def main(page: Page):
             ],
         )
 
+        row_crear = ft.ResponsiveRow([
+            ft.Container(
+                ft.FilledButton(text='Crear'),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
         return ft.Column(
             [
                 row_codigo,
@@ -841,6 +849,7 @@ def main(page: Page):
                 row_precio,
                 row_cantidad,
                 row_disponible_venta,
+                row_crear
             ],
             spacing=2
         )
