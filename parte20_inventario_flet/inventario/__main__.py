@@ -778,6 +778,29 @@ def main(page: Page):
         dlg_modal.open = True
         page.update()
 
+    def on_click_producto_registrar(e):
+        page.go('/producto/registrar')
+
+    def generar_vista_producto_registrar():
+        row_codigo = ft.ResponsiveRow([
+            ft.Container(
+                ft.Text('Código:'),
+                col={"sm": 2, "md": 2, "xl": 2},
+            ),
+            ft.Container(
+                ft.TextInput(
+                    placeholder="Código",
+                    value="",
+                    type="number",
+                    on_change=lambda e: print(e.value),
+                ),
+                col={"sm": 2, "md": 2, "xl": 2},
+            )
+            ],
+        )
+
+        return row_codigo
+
     def route_change(e):
         print("Route change:", e.route)
         page.views.clear()
@@ -792,7 +815,7 @@ def main(page: Page):
         mnu_productos = PopupMenuButton(
             content=Text('Productos'),
             items=[
-                ft.PopupMenuItem(text='Registrar', on_click=on_click_salir),
+                ft.PopupMenuItem(text='Registrar', on_click=on_click_producto_registrar),
                 ft.PopupMenuItem(text='Vender', on_click=on_click_salir),
                 ft.PopupMenuItem(text='Buscar', on_click=on_click_salir),
                 ft.PopupMenuItem(text='Cambiar disponibilidad', on_click=on_click_salir)
@@ -820,6 +843,18 @@ def main(page: Page):
                 ],
             )
         )
+
+        if page.route == "/producto/registrar":
+            page.views.append(
+                View(
+                    "/producto/registrar",
+                    [
+                        AppBar(title=Text("Producto - Registrar"), bgcolor=colors.SURFACE_VARIANT),
+                        generar_vista_producto_registrar()
+                    ]
+                )
+            )
+        
         if page.route == "/settings" or page.route == "/settings/mail":
             page.views.append(
                 View(
