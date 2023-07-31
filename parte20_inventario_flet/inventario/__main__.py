@@ -804,10 +804,34 @@ def main(page: Page):
             ],
         )
 
+        row_precio = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Precio",
+                    hint_text="Ingrese el precio del producto",
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_cantidad = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Cantidad",
+                    hint_text="Ingrese la cantidad del producto",
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
         return ft.Column(
             [
                 row_codigo,
                 row_nombre,
+                row_precio,
+                row_cantidad,
             ],
             spacing=2
         )
