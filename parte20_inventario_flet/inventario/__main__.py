@@ -826,12 +826,21 @@ def main(page: Page):
             ],
         )
 
+        row_disponible_venta = ft.ResponsiveRow([
+            ft.Container(
+                ft.Checkbox(label="¿Disponible para venta?", value=True),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
         return ft.Column(
             [
                 row_codigo,
                 row_nombre,
                 row_precio,
                 row_cantidad,
+                row_disponible_venta,
             ],
             spacing=2
         )
