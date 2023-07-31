@@ -799,13 +799,24 @@ def main(page: Page):
             ]
         )
 
+        mbr_principal = ft.ResponsiveRow([
+            ft.Container(
+                mnu_archivo,
+                col={"sm": 2, "md": 2, "xl": 2},
+            ),
+            ft.Container(
+                mnu_productos,
+                col={"sm": 2, "md": 2, "xl": 2},
+            )
+            ],
+        )
+
         page.views.append(
             View(
                 "/",
                 [
                     AppBar(title=Text('Gestión Inventario - Dispositivos S.a.s.')),
-                    mnu_archivo,
-                    mnu_productos,
+                    mbr_principal
                 ],
             )
         )
