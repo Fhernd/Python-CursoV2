@@ -784,17 +784,11 @@ def main(page: Page):
     def generar_vista_producto_registrar():
         row_codigo = ft.ResponsiveRow([
             ft.Container(
-                ft.Text('Código:'),
-                col={"sm": 2, "md": 2, "xl": 2},
-            ),
-            ft.Container(
-                ft.TextInput(
-                    placeholder="Código",
-                    value="",
-                    type="number",
-                    on_change=lambda e: print(e.value),
+                ft.TextField(
+                    label="Código",
+                    hint_text="Ingrese el código del producto",
                 ),
-                col={"sm": 2, "md": 2, "xl": 2},
+                col={"sm": 12, "md": 12, "xl": 12},
             )
             ],
         )
