@@ -758,6 +758,8 @@ def main(page: Page):
     def close_dlg(e):
         dlg_modal.open = False
         page.update()
+    
+    def on_confirmar_cierre(e):
         page.window_close()
 
     dlg_modal = ft.AlertDialog(
@@ -770,8 +772,8 @@ def main(page: Page):
     def on_click_salir(e):
         dlg_modal.content = ft.Text("¿Desea salir de la aplicación?")
         dlg_modal.actions = [
-            ft.TextButton("Yes", on_click=close_dlg),
-            ft.TextButton("No", on_click=lambda e: print()),
+            ft.TextButton("Sí", on_click=on_confirmar_cierre),
+            ft.TextButton("No", on_click=close_dlg),
         ]
         page.dialog = dlg_modal
         dlg_modal.open = True
