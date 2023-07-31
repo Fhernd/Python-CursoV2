@@ -792,8 +792,25 @@ def main(page: Page):
             )
             ],
         )
+        
+        row_nombre = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Nombre",
+                    hint_text="Ingrese el nombre del producto",
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
 
-        return row_codigo
+        return ft.Column(
+            [
+                row_codigo,
+                row_nombre,
+            ],
+            spacing=2
+        )
 
     def route_change(e):
         print("Route change:", e.route)
