@@ -782,7 +782,8 @@ def main(page: Page):
         page.go('/producto/registrar')
 
     def on_click_registrar_producto(e):
-        print('Registrar producto')
+        codigo = txt_codigo.current.value
+        print(codigo)
 
     txt_codigo = ft.Ref[ft.TextField]()
     txt_nombre = ft.Ref[ft.TextField]()
