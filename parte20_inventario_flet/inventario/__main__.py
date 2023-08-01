@@ -857,6 +857,12 @@ def main(page: Page):
 
         mostrar_mensaje("El producto se ha creado de forma satisfactoria.")
 
+        txt_codigo.current.value = ''
+        txt_nombre.current.value = ''
+        txt_precio.current.value = ''
+        txt_cantidad.current.value = ''
+        chk_disponible_venta.current.value = True
+
         conexion.close()
 
     txt_codigo = ft.Ref[ft.TextField]()
