@@ -7,14 +7,11 @@ class Inventario:
     Clase que contiene las funciones del inventario.
     """
 
-    def __init__(self, conexion):
+    def __init__(self):
         """
         Constructor de la clase.
-
-        Parameters:
-        conexion: Conexión con la base de datos.
         """
-        self.conexion = conexion
+        pass
 
     def recibir_conexion_bd(self, conexion):
         """
@@ -40,6 +37,8 @@ class Inventario:
         cursor = self.conexion.cursor()
 
         cursor.execute(sql, (producto.codigo, producto.nombre, producto.precio, producto.cantidad, producto.disponible))
+
+        self.conexion.commit()
 
         cursor.close()
 

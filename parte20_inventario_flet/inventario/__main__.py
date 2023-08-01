@@ -752,8 +752,7 @@ class Top5VendidosFrame(tk.Toplevel):
 
 
 def main(page: Page):
-    conexion = conectar('inventario/inventario.db')
-    inventario = Inventario(conexion)
+    inventario = Inventario()
     print('ID de thread:', threading.get_ident())
     page.title = "Routes Example"
 
@@ -844,9 +843,11 @@ def main(page: Page):
             mostrar_mensaje("La cantidad debe ser positiva.")
             return
         
+        conexion = conectar('inventario/inventario.db')
+        inventario.recibir_conexion_bd(conexion)
         producto = inventario.buscar_producto_por_codigo(codigo)
 
-        if not producto:
+        if producto:
             mostrar_mensaje("Ya existe un producto con el código especificado.")
             return
 
@@ -855,6 +856,8 @@ def main(page: Page):
         inventario.registrar_producto(nuevo_producto)
 
         mostrar_mensaje("El producto se ha creado de forma satisfactoria.")
+
+        conexion.close()
 
     txt_codigo = ft.Ref[ft.TextField]()
     txt_nombre = ft.Ref[ft.TextField]()
