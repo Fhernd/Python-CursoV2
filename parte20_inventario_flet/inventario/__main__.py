@@ -827,6 +827,16 @@ def main(page: Page):
             mostrar_advertencia("El precio debe ser positivo.")
             return
 
+        try:
+            cantidad = int(cantidad)
+        except ValueError:
+            mostrar_advertencia("La cantidad debe ser numérica.")
+            return
+
+        if cantidad <= 0:
+            mostrar_advertencia("La cantidad debe ser positiva.")
+            return
+
     txt_codigo = ft.Ref[ft.TextField]()
     txt_nombre = ft.Ref[ft.TextField]()
     txt_precio = ft.Ref[ft.TextField]()
