@@ -782,8 +782,21 @@ def main(page: Page):
         page.go('/producto/registrar')
 
     def on_click_registrar_producto(e):
-        codigo = txt_codigo.current.value
-        print(codigo)
+        codigo = txt_codigo.current.value.strip()
+        nombre = txt_nombre.current.value.strip()
+        precio = txt_precio.current.value.strip()
+        cantidad = txt_cantidad.current.value.strip()
+        disponible = chk_disponible_venta.current.value
+
+        if len(codigo) == 0 and len(nombre) == 0 and len(precio) == 0 and len(cantidad) == 0:
+            dlg_modal.content = ft.Text("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
+            dlg_modal.actions = [
+                ft.TextButton("Aceptar", on_click=close_dlg),
+            ]
+            page.dialog = dlg_modal
+            dlg_modal.open = True
+            page.update()
+            return
 
     txt_codigo = ft.Ref[ft.TextField]()
     txt_nombre = ft.Ref[ft.TextField]()
