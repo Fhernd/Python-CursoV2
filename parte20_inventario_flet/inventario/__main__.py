@@ -17,6 +17,7 @@ from flet import AppBar, ElevatedButton, FilledButton, Page, PopupMenuButton, Po
 from .modelos.inventario import Inventario
 from .modelos.producto import Producto
 from .modelos.venta import Venta
+from conexion import conectar
 
 
 class VentanaPrincipal(tk.Frame):
@@ -750,8 +751,8 @@ class Top5VendidosFrame(tk.Toplevel):
 
 
 def main(page: Page):
-
-    inventario = Inventario()
+    conexion = conectar('inventario.db')
+    inventario = Inventario(conexion)
     
     page.title = "Routes Example"
 
