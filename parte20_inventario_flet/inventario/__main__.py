@@ -751,7 +751,7 @@ class Top5VendidosFrame(tk.Toplevel):
 
 
 def main(page: Page):
-    conexion = conectar('inventario.db')
+    conexion = conectar('inventario/inventario.db')
     inventario = Inventario(conexion)
     
     page.title = "Routes Example"
