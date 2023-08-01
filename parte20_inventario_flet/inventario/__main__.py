@@ -768,6 +768,21 @@ def main(page: Page):
         actions_alignment=ft.MainAxisAlignment.END
     )
 
+    def mostrar_advertencia(mensaje):
+        """
+        Muestra un mensaje de advertencia en un diálogo modal.
+
+        Parameters:
+        mensaje: mensaje a mostrar en el diálogo modal.
+        """
+        dlg_modal.content = ft.Text(mensaje)
+        dlg_modal.actions = [
+            ft.TextButton("Aceptar", on_click=close_dlg),
+        ]
+        page.dialog = dlg_modal
+        dlg_modal.open = True
+        page.update()
+
     def on_click_salir(e):
         dlg_modal.content = ft.Text("¿Desea salir de la aplicación?")
         dlg_modal.actions = [
@@ -789,13 +804,7 @@ def main(page: Page):
         disponible = chk_disponible_venta.current.value
 
         if len(codigo) == 0 and len(nombre) == 0 and len(precio) == 0 and len(cantidad) == 0:
-            dlg_modal.content = ft.Text("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
-            dlg_modal.actions = [
-                ft.TextButton("Aceptar", on_click=close_dlg),
-            ]
-            page.dialog = dlg_modal
-            dlg_modal.open = True
-            page.update()
+            mostrar_advertencia("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
             return
         
         try:
