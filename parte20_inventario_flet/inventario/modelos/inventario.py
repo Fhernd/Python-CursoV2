@@ -15,6 +15,15 @@ class Inventario:
         conexion: Conexión con la base de datos.
         """
         self.conexion = conexion
+
+    def recibir_conexion_bd(self, conexion):
+        """
+        Recibe la conexión con la base de datos.
+
+        Parameters:
+        conexion: Conexión con la base de datos.
+        """
+        self.conexion = conexion
     
     def registrar_producto(self, producto):
         """

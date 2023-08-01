@@ -6,6 +6,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
+import threading
 
 from tkcalendar import Calendar, DateEntry
 
@@ -753,7 +754,7 @@ class Top5VendidosFrame(tk.Toplevel):
 def main(page: Page):
     conexion = conectar('inventario/inventario.db')
     inventario = Inventario(conexion)
-    
+    print('ID de thread:', threading.get_ident())
     page.title = "Routes Example"
 
     print("Initial route:", page.route)
@@ -807,6 +808,8 @@ def main(page: Page):
         cantidad = txt_cantidad.current.value.strip()
         disponible = chk_disponible_venta.current.value
 
+        print('ID de thread evento:', threading.get_ident())
+
         if len(codigo) == 0 and len(nombre) == 0 and len(precio) == 0 and len(cantidad) == 0:
             mostrar_mensaje("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
             return
@@ -841,7 +844,7 @@ def main(page: Page):
             mostrar_mensaje("La cantidad debe ser positiva.")
             return
         
-        producto = inventario.buscar_producto(codigo)
+        producto = inventario.buscar_producto_por_codigo(codigo)
 
         if not producto:
             mostrar_mensaje("Ya existe un producto con el código especificado.")
