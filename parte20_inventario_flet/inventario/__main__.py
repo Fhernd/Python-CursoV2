@@ -953,7 +953,46 @@ def main(page: Page):
         )
 
     def generar_vista_producto_vender():
-        pass
+        row_codigo = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Código",
+                    hint_text="Ingrese el código del producto",
+                    ref=txt_codigo
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_cantidad = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Cantidad",
+                    hint_text="Ingrese la cantidad del producto",
+                    ref=txt_cantidad
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_vender = ft.ResponsiveRow([
+            ft.Container(
+                ft.FilledButton(text='Vender', on_click=on_click_vender_producto),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        return ft.Column(
+            [
+                row_codigo,
+                row_cantidad,
+                row_vender
+            ],
+            spacing=2
+        )
         
     def route_change(e):
         print("Route change:", e.route)
