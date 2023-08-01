@@ -874,6 +874,35 @@ def main(page: Page):
     txt_cantidad = ft.Ref[ft.TextField]()
     chk_disponible_venta = ft.Ref[ft.Checkbox]()
 
+    def on_click_vender_producto(e):
+        codigo = txt_codigo.current.value.strip()
+        cantidad = txt_cantidad.current.value.strip()
+
+        if len(codigo) == 0 or len(cantidad) == 0:
+            mostrar_mensaje("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
+            return
+        
+        try:
+            codigo = int(codigo)
+        except ValueError:
+            mostrar_mensaje("El código debe ser numérico.")
+            return
+        
+        if codigo <= 0:
+            mostrar_mensaje("El código debe ser positivo.")
+            return
+        
+        try:
+            cantidad = int(cantidad)
+        except ValueError:
+            mostrar_mensaje("La cantidad debe ser numérica.")
+            return
+
+        if cantidad <= 0:
+            mostrar_mensaje("La cantidad debe ser positiva.")
+            return
+        
+
     def generar_vista_producto_registrar():
 
         row_codigo = ft.ResponsiveRow([
