@@ -771,7 +771,7 @@ def main(page: Page):
         actions_alignment=ft.MainAxisAlignment.END
     )
 
-    def mostrar_advertencia(mensaje):
+    def mostrar_mensaje(mensaje):
         """
         Muestra un mensaje de advertencia en un diálogo modal.
 
@@ -807,50 +807,50 @@ def main(page: Page):
         disponible = chk_disponible_venta.current.value
 
         if len(codigo) == 0 and len(nombre) == 0 and len(precio) == 0 and len(cantidad) == 0:
-            mostrar_advertencia("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
+            mostrar_mensaje("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
             return
         
         try:
             codigo = int(codigo)
         except ValueError:
-            mostrar_advertencia("El código debe ser numérico.")
+            mostrar_mensaje("El código debe ser numérico.")
             return
         
         if codigo <= 0:
-            mostrar_advertencia("El código debe ser positivo.")
+            mostrar_mensaje("El código debe ser positivo.")
             return
 
         try:
             precio = float(precio)
         except ValueError:
-            mostrar_advertencia("El precio debe ser numérico.")
+            mostrar_mensaje("El precio debe ser numérico.")
             return
 
         if precio <= 0:
-            mostrar_advertencia("El precio debe ser positivo.")
+            mostrar_mensaje("El precio debe ser positivo.")
             return
 
         try:
             cantidad = int(cantidad)
         except ValueError:
-            mostrar_advertencia("La cantidad debe ser numérica.")
+            mostrar_mensaje("La cantidad debe ser numérica.")
             return
 
         if cantidad <= 0:
-            mostrar_advertencia("La cantidad debe ser positiva.")
+            mostrar_mensaje("La cantidad debe ser positiva.")
             return
         
         producto = inventario.buscar_producto(codigo)
 
         if not producto:
-            mostrar_advertencia("Ya existe un producto con el código especificado.")
+            mostrar_mensaje("Ya existe un producto con el código especificado.")
             return
 
         nuevo_producto = Producto(codigo, nombre, precio, cantidad, disponible)
 
         inventario.registrar_producto(nuevo_producto)
 
-        mostrar_advertencia("El producto se ha creado de forma satisfactoria.")
+        mostrar_mensaje("El producto se ha creado de forma satisfactoria.")
 
     txt_codigo = ft.Ref[ft.TextField]()
     txt_nombre = ft.Ref[ft.TextField]()
