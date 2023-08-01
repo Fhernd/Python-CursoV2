@@ -778,15 +778,26 @@ def main(page: Page):
         dlg_modal.open = True
         page.update()
 
-    def on_click_producto_registrar(e):
+    def on_click_nav_producto_registrar(e):
         page.go('/producto/registrar')
 
+    def on_click_registrar_producto(e):
+        print('Registrar producto')
+
+    txt_codigo = ft.Ref[ft.TextField]()
+    txt_nombre = ft.Ref[ft.TextField]()
+    txt_precio = ft.Ref[ft.TextField]()
+    txt_cantidad = ft.Ref[ft.TextField]()
+    chk_disponible_venta = ft.Ref[ft.Checkbox]()
+
     def generar_vista_producto_registrar():
+
         row_codigo = ft.ResponsiveRow([
             ft.Container(
                 ft.TextField(
                     label="Código",
                     hint_text="Ingrese el código del producto",
+                    ref=txt_codigo
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
@@ -798,6 +809,7 @@ def main(page: Page):
                 ft.TextField(
                     label="Nombre",
                     hint_text="Ingrese el nombre del producto",
+                    ref=txt_nombre
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
@@ -809,6 +821,7 @@ def main(page: Page):
                 ft.TextField(
                     label="Precio",
                     hint_text="Ingrese el precio del producto",
+                    ref=txt_precio
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
@@ -820,6 +833,7 @@ def main(page: Page):
                 ft.TextField(
                     label="Cantidad",
                     hint_text="Ingrese la cantidad del producto",
+                    ref=txt_cantidad
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
@@ -828,7 +842,7 @@ def main(page: Page):
 
         row_disponible_venta = ft.ResponsiveRow([
             ft.Container(
-                ft.Checkbox(label="¿Disponible para venta?", value=True),
+                ft.Checkbox(label="¿Disponible para venta?", value=True, ref=chk_disponible_venta),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
             ],
@@ -836,7 +850,7 @@ def main(page: Page):
 
         row_crear = ft.ResponsiveRow([
             ft.Container(
-                ft.FilledButton(text='Crear'),
+                ft.FilledButton(text='Crear', on_click=on_click_registrar_producto),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
             ],
@@ -868,7 +882,7 @@ def main(page: Page):
         mnu_productos = PopupMenuButton(
             content=Text('Productos'),
             items=[
-                ft.PopupMenuItem(text='Registrar', on_click=on_click_producto_registrar),
+                ft.PopupMenuItem(text='Registrar', on_click=on_click_nav_producto_registrar),
                 ft.PopupMenuItem(text='Vender', on_click=on_click_salir),
                 ft.PopupMenuItem(text='Buscar', on_click=on_click_salir),
                 ft.PopupMenuItem(text='Cambiar disponibilidad', on_click=on_click_salir)
