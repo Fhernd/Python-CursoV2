@@ -810,13 +810,21 @@ def main(page: Page):
         try:
             codigo = int(codigo)
         except ValueError:
-            dlg_modal.content = ft.Text("El código debe ser numérico.")
-            dlg_modal.actions = [
-                ft.TextButton("Aceptar", on_click=close_dlg),
-            ]
-            page.dialog = dlg_modal
-            dlg_modal.open = True
-            page.update()
+            mostrar_advertencia("El código debe ser numérico.")
+            return
+        
+        if codigo <= 0:
+            mostrar_advertencia("El código debe ser positivo.")
+            return
+
+        try:
+            precio = float(precio)
+        except ValueError:
+            mostrar_advertencia("El precio debe ser numérico.")
+            return
+
+        if precio <= 0:
+            mostrar_advertencia("El precio debe ser positivo.")
             return
 
     txt_codigo = ft.Ref[ft.TextField]()
