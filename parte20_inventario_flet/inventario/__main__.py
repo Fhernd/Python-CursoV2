@@ -902,6 +902,23 @@ def main(page: Page):
             mostrar_mensaje("La cantidad debe ser positiva.")
             return
         
+        conexion = conectar('inventario/inventario.db')
+        inventario.recibir_conexion_bd(conexion)
+
+        producto = inventario.buscar_producto_por_codigo(codigo)
+
+        if not producto:
+            mostrar_mensaje("El producto no existe. Intente con otro código")
+            return
+        
+        if not producto.disponible:
+            mostrar_mensaje("El producto no está disponible para la venta.")
+            return
+        
+        if cantidad > producto.cantidad:
+            mostrar_mensaje("La cantidad solicitada es mayor a la cantidad disponible.")
+            return
+        
 
     def generar_vista_producto_registrar():
 
