@@ -799,6 +799,9 @@ def main(page: Page):
 
     def on_click_nav_producto_registrar(e):
         page.go('/producto/registrar')
+    
+    def on_click_nav_producto_vender(e):
+        page.go('/producto/vender')
 
     def on_click_registrar_producto(e):
         codigo = txt_codigo.current.value.strip()
@@ -949,6 +952,9 @@ def main(page: Page):
             spacing=2
         )
 
+    def generar_vista_producto_vender():
+        pass
+        
     def route_change(e):
         print("Route change:", e.route)
         page.views.clear()
@@ -999,6 +1005,17 @@ def main(page: Page):
                     [
                         AppBar(title=Text("Producto - Registrar"), bgcolor=colors.SURFACE_VARIANT),
                         generar_vista_producto_registrar()
+                    ]
+                )
+            )
+        
+        if page.route == "/producto/vender":
+            page.views.append(
+                View(
+                    "/producto/vender",
+                    [
+                        AppBar(title=Text("Producto - Vender"), bgcolor=colors.SURFACE_VARIANT),
+                        generar_vista_producto_vender()
                     ]
                 )
             )
