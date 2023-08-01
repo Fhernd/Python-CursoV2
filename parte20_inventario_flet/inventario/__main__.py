@@ -750,6 +750,9 @@ class Top5VendidosFrame(tk.Toplevel):
 
 
 def main(page: Page):
+
+    inventario = Inventario()
+    
     page.title = "Routes Example"
 
     print("Initial route:", page.route)
@@ -836,6 +839,18 @@ def main(page: Page):
         if cantidad <= 0:
             mostrar_advertencia("La cantidad debe ser positiva.")
             return
+        
+        producto = inventario.buscar_producto(codigo)
+
+        if not producto:
+            mostrar_advertencia("Ya existe un producto con el código especificado.")
+            return
+
+        nuevo_producto = Producto(codigo, nombre, precio, cantidad, disponible)
+
+        inventario.registrar_producto(nuevo_producto)
+
+        mostrar_advertencia("El producto se ha creado de forma satisfactoria.")
 
     txt_codigo = ft.Ref[ft.TextField]()
     txt_nombre = ft.Ref[ft.TextField]()
