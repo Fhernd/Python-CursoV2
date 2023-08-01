@@ -797,6 +797,18 @@ def main(page: Page):
             dlg_modal.open = True
             page.update()
             return
+        
+        try:
+            codigo = int(codigo)
+        except ValueError:
+            dlg_modal.content = ft.Text("El código debe ser numérico.")
+            dlg_modal.actions = [
+                ft.TextButton("Aceptar", on_click=close_dlg),
+            ]
+            page.dialog = dlg_modal
+            dlg_modal.open = True
+            page.update()
+            return
 
     txt_codigo = ft.Ref[ft.TextField]()
     txt_nombre = ft.Ref[ft.TextField]()
