@@ -751,12 +751,12 @@ class Top5VendidosFrame(tk.Toplevel):
         self.tabla.pack(fill='both', expand=True)
 
 
+producto = None
+
 def main(page: Page):
     inventario = Inventario()
     print('ID de thread:', threading.get_ident())
     page.title = "Routes Example"
-
-    print("Initial route:", page.route)
 
     def close_dlg(e):
         dlg_modal.open = False
@@ -881,7 +881,20 @@ def main(page: Page):
     chk_disponible_venta = ft.Ref[ft.Checkbox]()
 
     def on_change_cambiar_disponibilidad_producto(e):
-        pass
+        estado = chk_disponible_venta.current.value
+
+        producto.disponible = estado
+
+        conexion = conectar('inventario/inventario.db')
+        inventario.recibir_conexion_bd(conexion)
+
+        inventario.cambiar_estado_producto(producto)
+
+        conexion.commit()
+
+        conexion.close()
+
+        mostrar_mensaje("El estado del producto se ha cambiado de forma satisfactoria.")
 
     def on_click_vender_producto(e):
         codigo = txt_codigo.current.value.strip()
@@ -981,6 +994,8 @@ def main(page: Page):
         page.update()
 
     def on_click_buscar_producto_cambiar_disponibilidad(e):
+        global producto
+        
         codigo = txt_codigo.current.value.strip()
 
         if len(codigo) == 0:
@@ -1012,8 +1027,6 @@ def main(page: Page):
         
         chk_disponible_venta.current.disabled = False
         chk_disponible_venta.current.value = producto.disponible
-
-        mostrar_mensaje("El estado del producto se ha cambiado de forma satisfactoria.")
 
     def generar_vista_producto_registrar():
 
