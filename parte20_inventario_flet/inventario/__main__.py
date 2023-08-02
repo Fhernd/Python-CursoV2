@@ -1057,6 +1057,9 @@ def main(page: Page):
             spacing=2
         )
         
+    def generar_vista_producto_buscar():
+        pass
+
     def route_change(e):
         print("Route change:", e.route)
         page.views.clear()
@@ -1118,6 +1121,17 @@ def main(page: Page):
                     [
                         AppBar(title=Text("Producto - Vender"), bgcolor=colors.SURFACE_VARIANT),
                         generar_vista_producto_vender()
+                    ]
+                )
+            )
+        
+        if page.route == "/producto/buscar":
+            page.views.append(
+                View(
+                    "/producto/buscar",
+                    [
+                        AppBar(title=Text("Producto - Buscar"), bgcolor=colors.SURFACE_VARIANT),
+                        generar_vista_producto_buscar()
                     ]
                 )
             )
