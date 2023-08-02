@@ -970,6 +970,8 @@ def main(page: Page):
         txt_cantidad.current.value = producto.cantidad
         chk_disponible_venta.current.value = producto.disponible
 
+        page.update()
+
     def generar_vista_producto_registrar():
 
         row_codigo = ft.ResponsiveRow([
