@@ -958,6 +958,18 @@ def main(page: Page):
 
         producto = inventario.buscar_producto_por_codigo(codigo)
 
+        if not producto:
+            mostrar_mensaje("El producto no existe.")
+            txt_nombre.current.value = ''
+            txt_precio.current.value = ''
+            txt_cantidad.current.value = ''
+            return
+
+        txt_nombre.current.value = producto.nombre
+        txt_precio.current.value = producto.precio
+        txt_cantidad.current.value = producto.cantidad
+        chk_disponible_venta.current.value = producto.disponible
+
     def generar_vista_producto_registrar():
 
         row_codigo = ft.ResponsiveRow([
