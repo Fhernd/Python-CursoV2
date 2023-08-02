@@ -937,7 +937,26 @@ def main(page: Page):
         txt_cantidad.current.value = ''
         
     def on_click_buscar_producto(e):
-        pass
+        codigo = txt_codigo.current.value.strip()
+
+        if len(codigo) == 0:
+            mostrar_mensaje("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
+            return
+        
+        try:
+            codigo = int(codigo)
+        except ValueError:
+            mostrar_mensaje("El código debe ser numérico.")
+            return
+        
+        if codigo <= 0:
+            mostrar_mensaje("El código debe ser positivo.")
+            return
+        
+        conexion = conectar('inventario/inventario.db')
+        inventario.recibir_conexion_bd(conexion)
+
+        producto = inventario.buscar_producto_por_codigo(codigo)
 
     def generar_vista_producto_registrar():
 
@@ -1076,7 +1095,8 @@ def main(page: Page):
             ft.Container(
                 ft.TextField(
                     label="Nombre",
-                    ref=txt_nombre
+                    ref=txt_nombre,
+                    read_only=True
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
@@ -1087,7 +1107,8 @@ def main(page: Page):
             ft.Container(
                 ft.TextField(
                     label="Precio",
-                    ref=txt_precio
+                    ref=txt_precio,
+                    read_only=True
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
@@ -1098,7 +1119,8 @@ def main(page: Page):
             ft.Container(
                 ft.TextField(
                     label="Cantidad",
-                    ref=txt_cantidad
+                    ref=txt_cantidad,
+                    read_only=True
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
