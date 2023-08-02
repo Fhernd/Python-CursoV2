@@ -1069,7 +1069,7 @@ def main(page: Page):
             content=Text('Productos'),
             items=[
                 ft.PopupMenuItem(text='Registrar', on_click=on_click_nav_producto_registrar),
-                ft.PopupMenuItem(text='Vender', on_click=on_click_salir),
+                ft.PopupMenuItem(text='Vender', on_click=on_click_nav_producto_vender),
                 ft.PopupMenuItem(text='Buscar', on_click=on_click_salir),
                 ft.PopupMenuItem(text='Cambiar disponibilidad', on_click=on_click_salir)
             ]
