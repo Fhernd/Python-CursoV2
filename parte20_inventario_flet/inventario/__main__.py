@@ -806,6 +806,9 @@ def main(page: Page):
     def on_click_nav_producto_buscar(e):
         page.go('/producto/buscar')
 
+    def on_click_nav_producto_cambiar_disponibilidad(e):
+        page.go('/producto/cambiar_disponibilidad')
+
     def on_click_registrar_producto(e):
         codigo = txt_codigo.current.value.strip()
         nombre = txt_nombre.current.value.strip()
@@ -1171,6 +1174,9 @@ def main(page: Page):
             spacing=2
         )
 
+    def generar_vista_producto_cambiar_disponibilidad():
+        pass
+
     def route_change(e):
         print("Route change:", e.route)
         page.views.clear()
@@ -1188,7 +1194,7 @@ def main(page: Page):
                 ft.PopupMenuItem(text='Registrar', on_click=on_click_nav_producto_registrar),
                 ft.PopupMenuItem(text='Vender', on_click=on_click_nav_producto_vender),
                 ft.PopupMenuItem(text='Buscar', on_click=on_click_nav_producto_buscar),
-                ft.PopupMenuItem(text='Cambiar disponibilidad', on_click=on_click_salir)
+                ft.PopupMenuItem(text='Cambiar disponibilidad', on_click=on_click_nav_producto_cambiar_disponibilidad)
             ]
         )
 
@@ -1243,6 +1249,17 @@ def main(page: Page):
                     [
                         AppBar(title=Text("Producto - Buscar"), bgcolor=colors.SURFACE_VARIANT),
                         generar_vista_producto_buscar()
+                    ]
+                )
+            )
+        
+        if page.route == "/producto/cambiar_disponibilidad":
+            page.views.append(
+                View(
+                    "/producto/cambiar_disponibilidad",
+                    [
+                        AppBar(title=Text("Producto - Cambiar Disponibilidad"), bgcolor=colors.SURFACE_VARIANT),
+                        generar_vista_producto_cambiar_disponibilidad()
                     ]
                 )
             )
