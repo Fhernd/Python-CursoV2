@@ -935,11 +935,131 @@ def main(page: Page):
 
         txt_codigo.current.value = ''
         txt_cantidad.current.value = ''
-
+        
     def on_click_buscar_producto(e):
-        pass        
+        pass
 
     def generar_vista_producto_registrar():
+
+        row_codigo = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Código",
+                    hint_text="Ingrese el código del producto",
+                    ref=txt_codigo
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+        
+        row_nombre = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Nombre",
+                    hint_text="Ingrese el nombre del producto",
+                    ref=txt_nombre
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_precio = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Precio",
+                    hint_text="Ingrese el precio del producto",
+                    ref=txt_precio
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_cantidad = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Cantidad",
+                    hint_text="Ingrese la cantidad del producto",
+                    ref=txt_cantidad
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_disponible_venta = ft.ResponsiveRow([
+            ft.Container(
+                ft.Checkbox(label="¿Disponible para venta?", value=True, ref=chk_disponible_venta),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_crear = ft.ResponsiveRow([
+            ft.Container(
+                ft.FilledButton(text='Crear', on_click=on_click_registrar_producto),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        return ft.Column(
+            [
+                row_codigo,
+                row_nombre,
+                row_precio,
+                row_cantidad,
+                row_disponible_venta,
+                row_crear
+            ],
+            spacing=2
+        )
+
+    def generar_vista_producto_vender():
+        row_codigo = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Código",
+                    hint_text="Ingrese el código del producto",
+                    ref=txt_codigo
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_cantidad = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Cantidad",
+                    hint_text="Ingrese la cantidad del producto",
+                    ref=txt_cantidad
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_vender = ft.ResponsiveRow([
+            ft.Container(
+                ft.FilledButton(text='Vender', on_click=on_click_vender_producto),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        return ft.Column(
+            [
+                row_codigo,
+                row_cantidad,
+                row_vender
+            ],
+            spacing=2
+        )
+        
+    def generar_vista_producto_buscar():
         row_codigo = ft.ResponsiveRow([
             ft.Container(
                 ft.TextField(
@@ -1012,51 +1132,6 @@ def main(page: Page):
             ],
             spacing=2
         )
-
-    def generar_vista_producto_vender():
-        row_codigo = ft.ResponsiveRow([
-            ft.Container(
-                ft.TextField(
-                    label="Código",
-                    hint_text="Ingrese el código del producto",
-                    ref=txt_codigo
-                ),
-                col={"sm": 12, "md": 12, "xl": 12},
-            )
-            ],
-        )
-
-        row_cantidad = ft.ResponsiveRow([
-            ft.Container(
-                ft.TextField(
-                    label="Cantidad",
-                    hint_text="Ingrese la cantidad del producto",
-                    ref=txt_cantidad
-                ),
-                col={"sm": 12, "md": 12, "xl": 12},
-            )
-            ],
-        )
-
-        row_vender = ft.ResponsiveRow([
-            ft.Container(
-                ft.FilledButton(text='Vender', on_click=on_click_vender_producto),
-                col={"sm": 12, "md": 12, "xl": 12},
-            )
-            ],
-        )
-
-        return ft.Column(
-            [
-                row_codigo,
-                row_cantidad,
-                row_vender
-            ],
-            spacing=2
-        )
-        
-    def generar_vista_producto_buscar():
-        
 
     def route_change(e):
         print("Route change:", e.route)
