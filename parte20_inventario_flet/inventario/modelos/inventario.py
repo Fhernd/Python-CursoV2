@@ -49,7 +49,7 @@ class Inventario:
         Parameters:
         venta: venta recién realizada
         """
-        venta.fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        venta.fecha = venta.fecha.strftime('%Y-%m-%d %H:%M:%S')
         
         sql = """
             INSERT INTO venta (codigo_producto, fecha, cantidad, total_sin_iva) 
@@ -59,6 +59,8 @@ class Inventario:
         cursor = self.conexion.cursor()
 
         cursor.execute(sql, (venta.codigo_producto, venta.fecha, venta.cantidad, venta.total_sin_iva))
+
+        self.conexion.commit()
 
         cursor.close()
 
