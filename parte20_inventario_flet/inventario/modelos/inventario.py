@@ -86,8 +86,7 @@ class Inventario:
         producto = cursor.fetchone()
 
         if producto is not None:
-            producto = Producto(producto['codigo'], producto['nombre'], producto['precio'], producto['cantidad'], producto['disponible'])
-            return producto
+            return Producto(**producto)
         else:
             return None
 
