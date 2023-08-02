@@ -935,15 +935,16 @@ def main(page: Page):
 
         txt_codigo.current.value = ''
         txt_cantidad.current.value = ''
-        
+
+    def on_click_buscar_producto(e):
+        pass        
 
     def generar_vista_producto_registrar():
-
         row_codigo = ft.ResponsiveRow([
             ft.Container(
                 ft.TextField(
                     label="Código",
-                    hint_text="Ingrese el código del producto",
+                    hint_text="Ingrese el código del producto a buscar",
                     ref=txt_codigo
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
@@ -955,7 +956,6 @@ def main(page: Page):
             ft.Container(
                 ft.TextField(
                     label="Nombre",
-                    hint_text="Ingrese el nombre del producto",
                     ref=txt_nombre
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
@@ -967,7 +967,6 @@ def main(page: Page):
             ft.Container(
                 ft.TextField(
                     label="Precio",
-                    hint_text="Ingrese el precio del producto",
                     ref=txt_precio
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
@@ -979,7 +978,6 @@ def main(page: Page):
             ft.Container(
                 ft.TextField(
                     label="Cantidad",
-                    hint_text="Ingrese la cantidad del producto",
                     ref=txt_cantidad
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
@@ -995,9 +993,9 @@ def main(page: Page):
             ],
         )
 
-        row_crear = ft.ResponsiveRow([
+        row_buscar = ft.ResponsiveRow([
             ft.Container(
-                ft.FilledButton(text='Crear', on_click=on_click_registrar_producto),
+                ft.FilledButton(text='Buscar', on_click=on_click_buscar_producto),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
             ],
@@ -1006,11 +1004,11 @@ def main(page: Page):
         return ft.Column(
             [
                 row_codigo,
+                row_buscar,
                 row_nombre,
                 row_precio,
                 row_cantidad,
-                row_disponible_venta,
-                row_crear
+                row_disponible_venta
             ],
             spacing=2
         )
@@ -1058,7 +1056,7 @@ def main(page: Page):
         )
         
     def generar_vista_producto_buscar():
-        pass
+        
 
     def route_change(e):
         print("Route change:", e.route)
