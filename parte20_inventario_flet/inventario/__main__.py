@@ -881,20 +881,22 @@ def main(page: Page):
     chk_disponible_venta = ft.Ref[ft.Checkbox]()
 
     def on_change_cambiar_disponibilidad_producto(e):
-        estado = chk_disponible_venta.current.value
+        estado_disponibilidad = chk_disponible_venta.current.value
 
-        producto.disponible = estado
+        producto.disponible = estado_disponibilidad
 
         conexion = conectar('inventario/inventario.db')
         inventario.recibir_conexion_bd(conexion)
 
-        inventario.cambiar_estado_producto(producto)
+        inventario.cambiar_estado_producto(producto.codigo, estado_disponibilidad)
 
         conexion.commit()
 
         conexion.close()
 
         mostrar_mensaje("El estado del producto se ha cambiado de forma satisfactoria.")
+
+        page.update()
 
     def on_click_vender_producto(e):
         codigo = txt_codigo.current.value.strip()
@@ -1027,6 +1029,8 @@ def main(page: Page):
         
         chk_disponible_venta.current.disabled = False
         chk_disponible_venta.current.value = producto.disponible
+
+        page.update()
 
     def generar_vista_producto_registrar():
 
