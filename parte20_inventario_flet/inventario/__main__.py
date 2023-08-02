@@ -1028,7 +1028,8 @@ def main(page: Page):
             return
         
         chk_disponible_venta.current.disabled = False
-        chk_disponible_venta.current.value = producto.disponible
+        chk_disponible_venta.current.value = bool(producto.disponible)
+        chk_disponible_venta.current.update()
 
         page.update()
 
