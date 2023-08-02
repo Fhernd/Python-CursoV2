@@ -958,6 +958,8 @@ def main(page: Page):
 
         producto = inventario.buscar_producto_por_codigo(codigo)
 
+        conexion.close()
+
         if not producto:
             mostrar_mensaje("El producto no existe.")
             txt_nombre.current.value = ''
