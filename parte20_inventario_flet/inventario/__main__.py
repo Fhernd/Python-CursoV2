@@ -880,6 +880,9 @@ def main(page: Page):
     txt_cantidad = ft.Ref[ft.TextField]()
     chk_disponible_venta = ft.Ref[ft.Checkbox]()
 
+    def on_change_cambiar_disponibilidad_producto(e):
+        pass
+
     def on_click_vender_producto(e):
         codigo = txt_codigo.current.value.strip()
         cantidad = txt_cantidad.current.value.strip()
@@ -1236,7 +1239,8 @@ def main(page: Page):
                     label="¿Disponible para venta?", 
                     value=False, 
                     ref=chk_disponible_venta,
-                    disabled=True
+                    disabled=True,
+                    on_change=on_change_cambiar_disponibilidad_producto
                     ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
