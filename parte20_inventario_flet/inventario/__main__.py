@@ -1175,7 +1175,42 @@ def main(page: Page):
         )
 
     def generar_vista_producto_cambiar_disponibilidad():
-        pass
+        row_codigo = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Código",
+                    hint_text="Ingrese el código del producto a buscar",
+                    ref=txt_codigo
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_buscar = ft.ResponsiveRow([
+            ft.Container(
+                ft.FilledButton(text='Buscar', on_click=on_click_buscar_producto),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_disponible_venta = ft.ResponsiveRow([
+            ft.Container(
+                ft.Checkbox(label="¿Disponible para venta?", value=True, ref=chk_disponible_venta),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        return ft.Column(
+            [
+                row_codigo,
+                row_buscar,
+                row_disponible_venta
+            ],
+            spacing=2
+        )
 
     def route_change(e):
         print("Route change:", e.route)
