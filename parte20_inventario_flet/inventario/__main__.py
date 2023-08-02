@@ -977,6 +977,41 @@ def main(page: Page):
 
         page.update()
 
+    def on_click_buscar_producto_cambiar_disponibilidad(e):
+        codigo = txt_codigo.current.value.strip()
+
+        if len(codigo) == 0:
+            mostrar_mensaje("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
+            return
+        
+        try:
+            codigo = int(codigo)
+        except ValueError:
+            mostrar_mensaje("El código debe ser numérico.")
+            return
+        
+        if codigo <= 0:
+            mostrar_mensaje("El código debe ser positivo.")
+            return
+        
+        conexion = conectar('inventario/inventario.db')
+        inventario.recibir_conexion_bd(conexion)
+
+        producto = inventario.buscar_producto_por_codigo(codigo)
+
+        conexion.close()
+
+        if not producto:
+            mostrar_mensaje("El producto no existe.")
+            chk_disponible_venta.current.value = False
+            chk_disponible_venta.current.disabled = True
+            return
+        
+        chk_disponible_venta.current.disabled = False
+        chk_disponible_venta.current.value = producto.disponible
+
+        mostrar_mensaje("El estado del producto se ha cambiado de forma satisfactoria.")
+
     def generar_vista_producto_registrar():
 
         row_codigo = ft.ResponsiveRow([
