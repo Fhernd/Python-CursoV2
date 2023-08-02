@@ -1,6 +1,7 @@
 from datetime import datetime
 from collections import Counter
 
+from .producto import Producto
 
 class Inventario:
     """
@@ -83,8 +84,12 @@ class Inventario:
         cursor.execute(sql, (codigo,))
 
         producto = cursor.fetchone()
-        
-        return producto
+
+        if producto is not None:
+            producto = Producto(producto['codigo'], producto['nombre'], producto['precio'], producto['cantidad'], producto['disponible'])
+            return producto
+        else:
+            return None
 
     def cambiar_estado_producto(self, codigo, disponible):
         """
