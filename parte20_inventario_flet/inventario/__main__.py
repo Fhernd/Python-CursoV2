@@ -1189,7 +1189,7 @@ def main(page: Page):
 
         row_buscar = ft.ResponsiveRow([
             ft.Container(
-                ft.FilledButton(text='Buscar', on_click=on_click_buscar_producto),
+                ft.FilledButton(text='Buscar', on_click=on_click_buscar_producto_cambiar_disponibilidad),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
             ],
@@ -1197,7 +1197,12 @@ def main(page: Page):
 
         row_disponible_venta = ft.ResponsiveRow([
             ft.Container(
-                ft.Checkbox(label="¿Disponible para venta?", value=True, ref=chk_disponible_venta),
+                ft.Checkbox(
+                    label="¿Disponible para venta?", 
+                    value=False, 
+                    ref=chk_disponible_venta,
+                    disabled=True
+                    ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
             ],
