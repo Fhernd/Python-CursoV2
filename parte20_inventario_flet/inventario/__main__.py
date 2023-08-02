@@ -803,6 +803,9 @@ def main(page: Page):
     def on_click_nav_producto_vender(e):
         page.go('/producto/vender')
 
+    def on_click_nav_producto_buscar(e):
+        page.go('/producto/buscar')
+
     def on_click_registrar_producto(e):
         codigo = txt_codigo.current.value.strip()
         nombre = txt_nombre.current.value.strip()
@@ -1070,7 +1073,7 @@ def main(page: Page):
             items=[
                 ft.PopupMenuItem(text='Registrar', on_click=on_click_nav_producto_registrar),
                 ft.PopupMenuItem(text='Vender', on_click=on_click_nav_producto_vender),
-                ft.PopupMenuItem(text='Buscar', on_click=on_click_salir),
+                ft.PopupMenuItem(text='Buscar', on_click=on_click_nav_producto_buscar),
                 ft.PopupMenuItem(text='Cambiar disponibilidad', on_click=on_click_salir)
             ]
         )
