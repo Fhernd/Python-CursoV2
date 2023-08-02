@@ -919,6 +919,20 @@ def main(page: Page):
             mostrar_mensaje("La cantidad solicitada es mayor a la cantidad disponible.")
             return
         
+        total_sin_iva = producto.precio * cantidad
+
+        venta = Venta(codigo, cantidad, total_sin_iva)
+
+        conexion = conectar('inventario/inventario.db')
+        inventario.recibir_conexion_bd(conexion)
+
+        inventario.realizar_venta(venta)
+
+        mostrar_mensaje("La venta se ha realizado de forma satisfactoria.")
+
+        txt_codigo.current.value = ''
+        txt_cantidad.current.value = ''
+        
 
     def generar_vista_producto_registrar():
 
