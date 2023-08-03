@@ -1064,6 +1064,10 @@ def main(page: Page):
         except ValueError:
             mostrar_mensaje("El formato de la fecha final es incorrecto. Debe ser dd/mm/aaaa.")
             return
+        
+        if fecha_fin <= fecha_inicio:
+            mostrar_mensaje("La fecha final debe ser mayor o igual a la fecha de inicio.")
+            return
 
         conexion = conectar('inventario/inventario.db')
         inventario.recibir_conexion_bd(conexion)
