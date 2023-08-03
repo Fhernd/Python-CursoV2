@@ -888,8 +888,8 @@ def main(page: Page):
     txt_precio = ft.Ref[ft.TextField]()
     txt_cantidad = ft.Ref[ft.TextField]()
     chk_disponible_venta = ft.Ref[ft.Checkbox]()
-    txt_fecha_inicio = ft.Ref[ft.TextField]()
-    txt_fecha_fin = ft.Ref[ft.TextField]()
+    ref_txt_fecha_inicio = ft.Ref[ft.TextField]()
+    ref_txt_fecha_fin = ft.Ref[ft.TextField]()
     ref_tbl_ventas = ft.Ref[ft.DataTable]()
 
     def on_change_cambiar_disponibilidad_producto(e):
@@ -1046,7 +1046,50 @@ def main(page: Page):
         page.update()
 
     def on_click_generar_reporte_ventas_rango_fechas(e):
-        pass
+        fecha_inicio = ref_txt_fecha_inicio.current.value.strip()
+        fecha_fin = ref_txt_fecha_fin.current.value.strip()
+
+        if len(fecha_inicio) == 0 or len(fecha_fin) == 0:
+            mostrar_mensaje("Todos los campos son obligatorios.")
+            return
+        
+        try:
+            fecha_inicio = datetime.datetime.strptime(fecha_inicio, '%d/%m/%Y')
+        except ValueError:
+            mostrar_mensaje("El formato de la fecha de inicio es incorrecto. Debe ser dd/mm/aaaa.")
+            return
+        
+        try:
+            fecha_fin = datetime.datetime.strptime(fecha_fin, '%d/%m/%Y')
+        except ValueError:
+            mostrar_mensaje("El formato de la fecha final es incorrecto. Debe ser dd/mm/aaaa.")
+            return
+
+        conexion = conectar('inventario/inventario.db')
+        inventario.recibir_conexion_bd(conexion)
+
+        ventas = inventario.ventas_rango_fecha(fecha_inicio, fecha_fin)
+
+        conexion.close()
+
+        if len(ventas) == 0:
+            mostrar_mensaje("No se encontraron ventas en el rango de fechas especificado.")
+            ref_tbl_ventas.current.rows = []
+            ref_tbl_ventas.current.update()
+            return
+
+        rows = []
+
+        for v in ventas:
+            producto = inventario.buscar_producto_por_codigo(v.codigo_producto)
+            fecha = v.fecha.strftime("%d/%B/%Y %H:%M:%S")
+
+            total = "${:,.2f}".format(v.total_sin_iva * 1.19)
+
+            rows.append([v.codigo_producto, producto.nombre, fecha, v.cantidad, total])
+
+        ref_tbl_ventas.current.rows = rows
+        ref_tbl_ventas.current.update()
 
     def generar_tabla():
         columnas = ('Código Producto', 'Fecha', 'Cantidad', 'Total')
@@ -1320,7 +1363,7 @@ def main(page: Page):
                 ft.TextField(
                     label="Fecha inicio",
                     hint_text="Ingrese la fecha de inicio",
-                    ref=txt_fecha_inicio
+                    ref=ref_txt_fecha_inicio
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
@@ -1332,7 +1375,7 @@ def main(page: Page):
                 ft.TextField(
                     label="Fecha fin",
                     hint_text="Ingrese la fecha fin",
-                    ref=txt_fecha_fin
+                    ref=ref_txt_fecha_fin
                 ),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
