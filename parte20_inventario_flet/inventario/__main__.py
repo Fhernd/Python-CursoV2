@@ -890,7 +890,7 @@ def main(page: Page):
     chk_disponible_venta = ft.Ref[ft.Checkbox]()
     txt_fecha_inicio = ft.Ref[ft.TextField]()
     txt_fecha_fin = ft.Ref[ft.TextField]()
-    tbl_ventas = ft.Ref[ft.DataTable]()
+    ref_tbl_ventas = ft.Ref[ft.DataTable]()
 
     def on_change_cambiar_disponibilidad_producto(e):
         estado_disponibilidad = chk_disponible_venta.current.value
@@ -1051,10 +1051,30 @@ def main(page: Page):
     def generar_tabla():
         columnas = ('Código Producto', 'Fecha', 'Cantidad', 'Total')
 
+        # Cree una lista de lista con 5 filas y 4 columnas:
+        datos = [
+            [1, '2021-05-01', 10, 1000],
+            [2, '2021-05-02', 20, 2000],
+            [3, '2021-05-03', 30, 3000],
+            [4, '2021-05-04', 40, 4000],
+            [5, '2021-05-05', 50, 5000],
+        ]
+
+        rows = []
+
+        for fila in datos:
+            cells = []
+
+            for columna in fila:
+                cells.append(ft.DataCell(ft.Text(columna)))
+
+            rows.append(ft.DataRow(cells=cells))
+
         return ft.DataTable(
             columns=[
                 ft.DataColumn(ft.Text(d)) for d in columnas
             ],
+            rows=rows
         )
 
     def generar_vista_producto_registrar():
@@ -1331,11 +1351,11 @@ def main(page: Page):
             ],
         )
 
-        tbl_ventas.current = generar_tabla()
+        ref_tbl_ventas.current = generar_tabla()
 
         row_ventas = ft.ResponsiveRow([
             ft.Container(
-                ft.DataTable(ref=tbl_ventas),
+                generar_tabla(),
                 col={"sm": 12, "md": 12, "xl": 12},
             )
             ],
