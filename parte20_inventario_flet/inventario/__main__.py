@@ -1053,11 +1053,7 @@ def main(page: Page):
 
         # Cree una lista de lista con 5 filas y 4 columnas:
         datos = [
-            [1, '2021-05-01', 10, 1000],
-            [2, '2021-05-02', 20, 2000],
-            [3, '2021-05-03', 30, 3000],
-            [4, '2021-05-04', 40, 4000],
-            [5, '2021-05-05', 50, 5000],
+            ['', '', '', ''],
         ]
 
         rows = []
@@ -1074,7 +1070,7 @@ def main(page: Page):
             columns=[
                 ft.DataColumn(ft.Text(d)) for d in columnas
             ],
-            
+            rows=rows,
         )
 
     def generar_vista_producto_registrar():
