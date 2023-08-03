@@ -1,6 +1,8 @@
 from datetime import datetime
 from collections import Counter
 
+from parte20_inventario_flet.inventario.modelos.venta import Venta
+
 from .producto import Producto
 
 class Inventario:
@@ -108,7 +110,7 @@ class Inventario:
 
         cursor.close()
 
-    def ventas_rango_fecha(self, fecha_inicio, fecha_final):
+    def ventas_rango_fechas(self, fecha_inicio, fecha_final):
         """
         Obtiene las ventas que se han realizado en un rango de fecha.
 
@@ -131,7 +133,10 @@ class Inventario:
 
         cursor.close()
 
-        return ventas
+        if len(ventas) > 0:
+            ventas = [Venta(**v) for v in ventas]
+        else:
+            return []
 
     def top_5_mas_vendidos(self):
         """

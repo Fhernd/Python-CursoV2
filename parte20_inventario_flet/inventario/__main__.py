@@ -1072,7 +1072,7 @@ def main(page: Page):
         conexion = conectar('inventario/inventario.db')
         inventario.recibir_conexion_bd(conexion)
 
-        ventas = inventario.ventas_rango_fecha(fecha_inicio, fecha_fin)
+        ventas = inventario.ventas_rango_fechas(fecha_inicio, fecha_fin)
 
         conexion.close()
 
