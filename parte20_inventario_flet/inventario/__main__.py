@@ -890,6 +890,7 @@ def main(page: Page):
     chk_disponible_venta = ft.Ref[ft.Checkbox]()
     txt_fecha_inicio = ft.Ref[ft.TextField]()
     txt_fecha_fin = ft.Ref[ft.TextField]()
+    tbl_ventas = ft.Ref[ft.DataTable]()
 
     def on_change_cambiar_disponibilidad_producto(e):
         estado_disponibilidad = chk_disponible_venta.current.value
@@ -1046,6 +1047,15 @@ def main(page: Page):
 
     def on_click_generar_reporte_ventas_rango_fechas(e):
         pass
+
+    def generar_tabla():
+        columnas = ('Código Producto', 'Fecha', 'Cantidad', 'Total')
+
+        return ft.DataTable(
+            columns=[
+                ft.DataColumn(ft.Text(d)) for d in columnas
+            ],
+        )
 
     def generar_vista_producto_registrar():
 
@@ -1321,11 +1331,22 @@ def main(page: Page):
             ],
         )
 
+        tbl_ventas.current = generar_tabla()
+
+        row_ventas = ft.ResponsiveRow([
+            ft.Container(
+                ft.DataTable(ref=tbl_ventas),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
         return ft.Column(
             [
                 row_fecha_inicio,
                 row_fecha_fin,
-                row_buscar
+                row_buscar,
+                row_ventas
             ],
             spacing=2
         )
