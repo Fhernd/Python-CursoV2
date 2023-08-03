@@ -809,6 +809,9 @@ def main(page: Page):
     def on_click_nav_producto_cambiar_disponibilidad(e):
         page.go('/producto/cambiar_disponibilidad')
 
+    def on_click_nav_ventas_rango_fechas(e):
+        page.go('/ventas/rango_fechas')
+
     def on_click_registrar_producto(e):
         codigo = txt_codigo.current.value.strip()
         nombre = txt_nombre.current.value.strip()
@@ -1289,6 +1292,16 @@ def main(page: Page):
             content=Text('Productos'),
             items=[
                 ft.PopupMenuItem(text='Registrar', on_click=on_click_nav_producto_registrar),
+                ft.PopupMenuItem(text='Vender', on_click=on_click_nav_producto_vender),
+                ft.PopupMenuItem(text='Buscar', on_click=on_click_nav_producto_buscar),
+                ft.PopupMenuItem(text='Cambiar disponibilidad', on_click=on_click_nav_producto_cambiar_disponibilidad)
+            ]
+        )
+        
+        mnu_reportes = PopupMenuButton(
+            content=Text('Reportes'),
+            items=[
+                ft.PopupMenuItem(text='Ventas en un rango de fechas', on_click=on_click_nav_ventas_rango_fechas),
                 ft.PopupMenuItem(text='Vender', on_click=on_click_nav_producto_vender),
                 ft.PopupMenuItem(text='Buscar', on_click=on_click_nav_producto_buscar),
                 ft.PopupMenuItem(text='Cambiar disponibilidad', on_click=on_click_nav_producto_cambiar_disponibilidad)
