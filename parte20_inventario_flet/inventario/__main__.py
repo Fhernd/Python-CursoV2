@@ -888,6 +888,8 @@ def main(page: Page):
     txt_precio = ft.Ref[ft.TextField]()
     txt_cantidad = ft.Ref[ft.TextField]()
     chk_disponible_venta = ft.Ref[ft.Checkbox]()
+    txt_fecha_inicio = ft.Ref[ft.TextField]()
+    txt_fecha_fin = ft.Ref[ft.TextField]()
 
     def on_change_cambiar_disponibilidad_producto(e):
         estado_disponibilidad = chk_disponible_venta.current.value
@@ -1041,6 +1043,9 @@ def main(page: Page):
         chk_disponible_venta.current.update()
 
         page.update()
+
+    def on_click_generar_reporte_ventas_rango_fechas(e):
+        pass
 
     def generar_vista_producto_registrar():
 
@@ -1284,7 +1289,46 @@ def main(page: Page):
         )
 
     def generar_vista_reporte_ventas_rango_fechas():
-        pass
+        row_fecha_inicio = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Fecha inicio",
+                    hint_text="Ingrese la fecha de inicio",
+                    ref=txt_fecha_inicio
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+        
+        row_fecha_fin = ft.ResponsiveRow([
+            ft.Container(
+                ft.TextField(
+                    label="Fecha fin",
+                    hint_text="Ingrese la fecha fin",
+                    ref=txt_fecha_fin
+                ),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        row_buscar = ft.ResponsiveRow([
+            ft.Container(
+                ft.FilledButton(text='Buscar', on_click=on_click_generar_reporte_ventas_rango_fechas),
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        return ft.Column(
+            [
+                row_fecha_inicio,
+                row_fecha_fin,
+                row_buscar
+            ],
+            spacing=2
+        )
 
     def route_change(e):
         print("Route change:", e.route)
