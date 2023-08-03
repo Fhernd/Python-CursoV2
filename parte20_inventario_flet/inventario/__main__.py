@@ -15,10 +15,10 @@ import openpyxl
 import flet as ft
 from flet import AppBar, ElevatedButton, FilledButton, Page, PopupMenuButton, PopupMenuItem, Text, View, colors
 
-from .modelos.inventario import Inventario
-from .modelos.producto import Producto
-from .modelos.venta import Venta
-from .conexion import conectar
+from modelos.inventario import Inventario
+from modelos.producto import Producto
+from modelos.venta import Venta
+from conexion import conectar
 
 
 class VentanaPrincipal(tk.Frame):
@@ -755,8 +755,7 @@ producto = None
 
 def main(page: Page):
     inventario = Inventario()
-    print('ID de thread:', threading.get_ident())
-    page.title = "Routes Example"
+    page.title = "Gestor Inventario - Dispositivos s.a.s."
 
     def close_dlg(e):
         dlg_modal.open = False
@@ -1094,6 +1093,7 @@ def main(page: Page):
             rows.append(ft.DataRow(cells=cells))
 
         ref_tbl_ventas.current.rows = rows
+            
         ref_tbl_ventas.current.update()
 
     def generar_tabla():
@@ -1416,7 +1416,6 @@ def main(page: Page):
         )
 
     def route_change(e):
-        print("Route change:", e.route)
         page.views.clear()
 
         mnu_archivo = PopupMenuButton(
