@@ -1,7 +1,7 @@
 from datetime import datetime
 from collections import Counter
 
-from parte20_inventario_flet.inventario.modelos.venta import Venta
+from .venta import Venta
 
 from .producto import Producto
 
@@ -131,11 +131,13 @@ class Inventario:
 
         ventas = cursor.fetchall()
 
-        cursor.close()
-
         if len(ventas) > 0:
             ventas = [Venta(**v) for v in ventas]
+            cursor.close()
+
+            return ventas
         else:
+            cursor.close()
             return []
 
     def top_5_mas_vendidos(self):

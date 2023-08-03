@@ -1084,13 +1084,13 @@ def main(page: Page):
 
         rows = []
 
-        for v in ventas:
-            producto = inventario.buscar_producto_por_codigo(v.codigo_producto)
-            fecha = v.fecha.strftime("%d/%B/%Y %H:%M:%S")
+        # for v in ventas:
+        #     producto = inventario.buscar_producto_por_codigo(v.codigo_producto)
+        #     fecha = v.fecha.strftime("%d/%B/%Y %H:%M:%S")
 
-            total = "${:,.2f}".format(v.total_sin_iva * 1.19)
+        #     total = "${:,.2f}".format(v.total_sin_iva * 1.19)
 
-            rows.append([v.codigo_producto, producto.nombre, fecha, v.cantidad, total])
+        #     rows.append([v.codigo_producto, producto.nombre, fecha, v.cantidad, total])
 
         ref_tbl_ventas.current.rows = rows
         ref_tbl_ventas.current.update()
