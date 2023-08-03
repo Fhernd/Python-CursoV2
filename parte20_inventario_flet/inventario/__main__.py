@@ -1084,13 +1084,14 @@ def main(page: Page):
 
         rows = []
 
-        # for v in ventas:
-        #     producto = inventario.buscar_producto_por_codigo(v.codigo_producto)
-        #     fecha = v.fecha.strftime("%d/%B/%Y %H:%M:%S")
+        for venta in ventas:
+            cells = []
+            cells.append(ft.DataCell(ft.Text(venta.codigo_producto)))
+            cells.append(ft.DataCell(ft.Text(venta.fecha)))
+            cells.append(ft.DataCell(ft.Text(venta.cantidad)))
+            cells.append(ft.DataCell(ft.Text(venta.total_sin_iva * 1.19)))
 
-        #     total = "${:,.2f}".format(v.total_sin_iva * 1.19)
-
-        #     rows.append([v.codigo_producto, producto.nombre, fecha, v.cantidad, total])
+            rows.append(ft.DataRow(cells=cells))
 
         ref_tbl_ventas.current.rows = rows
         ref_tbl_ventas.current.update()
