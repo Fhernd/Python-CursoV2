@@ -1316,6 +1316,10 @@ def main(page: Page):
             ft.Container(
                 mnu_productos,
                 col={"sm": 2, "md": 2, "xl": 2},
+            ),
+            ft.Container(
+                mnu_reportes,
+                col={"sm": 2, "md": 2, "xl": 2},
             )
             ],
         )
