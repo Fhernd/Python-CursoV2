@@ -1283,6 +1283,9 @@ def main(page: Page):
             spacing=2
         )
 
+    def generar_vista_reporte_ventas_rango_fechas():
+        pass
+
     def route_change(e):
         print("Route change:", e.route)
         page.views.clear()
@@ -1383,6 +1386,17 @@ def main(page: Page):
                 )
             )
         
+        if page.route == '/ventas/rango_fechas':
+            page.views.append(
+                View(
+                    '/ventas/rango_fechas',
+                    [
+                        AppBar(title=Text("Reporte - Ventas en un rango de fechas"), bgcolor=colors.SURFACE_VARIANT),
+                        generar_vista_reporte_ventas_rango_fechas()
+                    ]
+                )
+            )
+
         if page.route == "/settings" or page.route == "/settings/mail":
             page.views.append(
                 View(
