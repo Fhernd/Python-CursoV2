@@ -1074,7 +1074,7 @@ def main(page: Page):
             columns=[
                 ft.DataColumn(ft.Text(d)) for d in columnas
             ],
-            rows=rows
+            
         )
 
     def generar_vista_producto_registrar():
@@ -1355,7 +1355,7 @@ def main(page: Page):
 
         row_ventas = ft.ResponsiveRow([
             ft.Container(
-                generar_tabla(),
+                ref_tbl_ventas.current,
                 col={"sm": 12, "md": 12, "xl": 12},
             )
             ],
