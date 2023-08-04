@@ -1415,7 +1415,34 @@ def main(page: Page):
             spacing=2
         )
 
-    def route_change(e):
+    def generar_vista_reporte_productos_mas_vendidos():
+        ref_tbl_ventas.current = ft.DataTable(
+            columns=[
+                ft.DataColumn(ft.Text("Código Producto")),
+                ft.DataColumn(ft.Text("Nombre Producto")),
+                ft.DataColumn(ft.Text("Precio")),
+                ft.DataColumn(ft.Text("Cantidad")),
+                ft.DataColumn(ft.Text("Total")),
+            ],
+            rows=[],
+        )
+
+        row_ventas = ft.ResponsiveRow([
+            ft.Container(
+                ref_tbl_ventas.current,
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        return ft.Column(
+            [
+                row_ventas
+            ],
+            spacing=2
+        )
+
+    def on_route_change(e):
         page.views.clear()
 
         mnu_archivo = PopupMenuButton(
@@ -1524,6 +1551,17 @@ def main(page: Page):
                     ]
                 )
             )
+        
+        if page.route == '/producto/top_5_mas_vendidos':
+            page.views.append(
+                View(
+                    '/producto/top_5_mas_vendidos',
+                    [
+                        AppBar(title=Text("Reporte - Top 5 Productos Más Vendidos"), bgcolor=colors.SURFACE_VARIANT),
+                        generar_vista_reporte_productos_mas_vendidos()
+                    ]
+                )
+            )
 
         page.update()
 
@@ -1533,7 +1571,7 @@ def main(page: Page):
         top_view = page.views[-1]
         page.go(top_view.route)
 
-    page.on_route_change = route_change
+    page.on_route_change = on_route_change
     page.on_view_pop = view_pop
 
     page.go(page.route)
