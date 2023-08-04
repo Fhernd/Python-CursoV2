@@ -817,6 +817,9 @@ def main(page: Page):
     def on_click_nav_producto_top_5_menos_vendidos(e):
         page.go('/producto/top_5_menos_vendidos')
 
+    def on_click_nav_acerca_de(e):
+        page.go('/acerca_de')
+
     def on_click_registrar_producto(e):
         codigo = txt_codigo.current.value.strip()
         nombre = txt_nombre.current.value.strip()
@@ -1495,6 +1498,13 @@ def main(page: Page):
                 ft.PopupMenuItem(text='Ventas en un rango de fechas', on_click=on_click_nav_ventas_rango_fechas),
                 ft.PopupMenuItem(text='Top 5 productos más vendidos', on_click=on_click_nav_producto_top_5_mas_vendidos),
                 ft.PopupMenuItem(text='Top 5 productos menos vendidos', on_click=on_click_nav_producto_top_5_menos_vendidos),
+            ]
+        )
+        
+        mnu_ayuda = PopupMenuButton(
+            content=Text('Ayuda'),
+            items=[
+                ft.PopupMenuItem(text='Acerca de...', on_click=on_click_nav_acerca_de),
             ]
         )
 
