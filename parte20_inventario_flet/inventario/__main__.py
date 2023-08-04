@@ -1415,64 +1415,16 @@ def main(page: Page):
             spacing=2
         )
 
-    def generar_vista_reporte_productos_mas_vendidos():
+    def generar_vista_reporte_top_5(orden='descendete'):
         rows = []
 
         conexion = conectar('inventario/inventario.db')
         inventario.recibir_conexion_bd(conexion)
 
-        productos = inventario.top_5_mas_vendidos()
-
-        for p in productos:
-            producto = inventario.buscar_producto_por_codigo(p[0])
-
-            cells = []
-
-            cells.append(ft.DataCell(ft.Text(producto.codigo)))
-            cells.append(ft.DataCell(ft.Text(producto.nombre)))
-            cells.append(ft.DataCell(ft.Text(producto.precio)))
-            cells.append(ft.DataCell(ft.Text(p[1])))
-
-            total = producto.precio * p[1] * 1.19
-            cells.append(ft.DataCell(ft.Text(total)))
-
-            rows.append(ft.DataRow(cells=cells))
-
-        conexion.close()
-        
-        ref_tbl_ventas.current = ft.DataTable(
-            columns=[
-                ft.DataColumn(ft.Text("Código Producto")),
-                ft.DataColumn(ft.Text("Nombre Producto")),
-                ft.DataColumn(ft.Text("Precio")),
-                ft.DataColumn(ft.Text("Cantidad vendida")),
-                ft.DataColumn(ft.Text("Total")),
-            ],
-            rows=rows,
-        )
-
-        row_ventas = ft.ResponsiveRow([
-            ft.Container(
-                ref_tbl_ventas.current,
-                col={"sm": 12, "md": 12, "xl": 12},
-            )
-            ],
-        )
-
-        return ft.Column(
-            [
-                row_ventas
-            ],
-            spacing=2
-        )
-
-    def generar_vista_reporte_productos_menos_vendidos():
-        rows = []
-
-        conexion = conectar('inventario/inventario.db')
-        inventario.recibir_conexion_bd(conexion)
-
-        productos = inventario.top_5_menos_vendidos()
+        if orden == 'descendete':
+            productos = inventario.top_5_mas_vendidos()
+        else:
+            productos = inventario.top_5_menos_vendidos()
 
         for p in productos:
             producto = inventario.buscar_producto_por_codigo(p[0])
@@ -1633,7 +1585,7 @@ def main(page: Page):
                     '/producto/top_5_mas_vendidos',
                     [
                         AppBar(title=Text("Reporte - Top 5 Productos Más Vendidos"), bgcolor=colors.SURFACE_VARIANT),
-                        generar_vista_reporte_productos_mas_vendidos()
+                        generar_vista_reporte_top_5()
                     ]
                 )
             )
@@ -1644,7 +1596,7 @@ def main(page: Page):
                     '/producto/top_5_menos_vendidos',
                     [
                         AppBar(title=Text("Reporte - Top 5 Productos Menos Vendidos"), bgcolor=colors.SURFACE_VARIANT),
-                        generar_vista_reporte_productos_menos_vendidos()
+                        generar_vista_reporte_top_5('ascendente')
                     ]
                 )
             )
