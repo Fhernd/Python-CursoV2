@@ -755,7 +755,7 @@ producto = None
 
 def main(page: Page):
     inventario = Inventario()
-    page.title = "Gestor Inventario - Dispositivos s.a.s."
+    page.title = "Gestor Inventario - Dispositivos s.a.s. - Por: OrtizOL"
 
     def close_dlg(e):
         dlg_modal.open = False
