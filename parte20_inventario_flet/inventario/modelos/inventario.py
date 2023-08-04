@@ -198,10 +198,10 @@ class Inventario:
         cursor.close()
 
         for v in ventas:
-            if v.codigo_producto in conteo_ventas:
-                conteo_ventas[v.codigo_producto] += v.cantidad
+            if v['codigo_producto'] in conteo_ventas:
+                conteo_ventas[v['codigo_producto']] += v['cantidad']
             else:
-                conteo_ventas[v.codigo_producto] = v.cantidad
+                conteo_ventas[v['codigo_producto']] = v['cantidad']
 
         conteo_ventas = {k: v for k, v in sorted(conteo_ventas.items(), key=lambda item: item[1])}
 
