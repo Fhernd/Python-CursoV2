@@ -1536,12 +1536,6 @@ def main(page: Page):
     page.on_route_change = route_change
     page.on_view_pop = view_pop
 
-    def open_mail_settings(e):
-        page.go("/settings/mail")
-
-    def open_settings(e):
-        page.go("/settings")
-
     page.go(page.route)
 
 
