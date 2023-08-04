@@ -817,8 +817,10 @@ def main(page: Page):
     def on_click_nav_producto_top_5_menos_vendidos(e):
         page.go('/producto/top_5_menos_vendidos')
 
-    def on_click_nav_acerca_de(e):
-        page.go('/acerca_de')
+    def on_click_acerca_de(e):
+        mostrar_mensaje("Desarrollado por: John Ortiz Ordoñez\n" + \
+            "Versión: 1.0.0\n" + \
+            "Sitio Web: https://ortizol.blogspot.com")
 
     def on_click_registrar_producto(e):
         codigo = txt_codigo.current.value.strip()
@@ -1504,7 +1506,7 @@ def main(page: Page):
         mnu_ayuda = PopupMenuButton(
             content=Text('Ayuda'),
             items=[
-                ft.PopupMenuItem(text='Acerca de...', on_click=on_click_nav_acerca_de),
+                ft.PopupMenuItem(text='Acerca de...', on_click=on_click_acerca_de),
             ]
         )
 
@@ -1520,7 +1522,11 @@ def main(page: Page):
             ft.Container(
                 mnu_reportes,
                 col={"sm": 2, "md": 2, "xl": 2},
-            )
+            ),
+            ft.Container(
+                mnu_ayuda,
+                col={"sm": 2, "md": 2, "xl": 2},
+            ),
             ],
         )
 
@@ -1610,7 +1616,7 @@ def main(page: Page):
                     ]
                 )
             )
-
+    
         page.update()
 
     def view_pop(e):
