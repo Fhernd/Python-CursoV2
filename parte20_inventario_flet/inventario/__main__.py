@@ -1416,7 +1416,6 @@ def main(page: Page):
         )
 
     def generar_vista_reporte_productos_mas_vendidos():
-
         rows = []
 
         conexion = conectar('inventario/inventario.db')
@@ -1468,7 +1467,55 @@ def main(page: Page):
         )
 
     def generar_vista_reporte_productos_menos_vendidos():
-        pass
+        rows = []
+
+        conexion = conectar('inventario/inventario.db')
+        inventario.recibir_conexion_bd(conexion)
+
+        productos = inventario.top_5_menos_vendidos()
+
+        for p in productos:
+            producto = inventario.buscar_producto_por_codigo(p[0])
+
+            cells = []
+
+            cells.append(ft.DataCell(ft.Text(producto.codigo)))
+            cells.append(ft.DataCell(ft.Text(producto.nombre)))
+            cells.append(ft.DataCell(ft.Text(producto.precio)))
+            cells.append(ft.DataCell(ft.Text(p[1])))
+
+            total = producto.precio * p[1] * 1.19
+            cells.append(ft.DataCell(ft.Text(total)))
+
+            rows.append(ft.DataRow(cells=cells))
+
+        conexion.close()
+        
+        ref_tbl_ventas.current = ft.DataTable(
+            columns=[
+                ft.DataColumn(ft.Text("Código Producto")),
+                ft.DataColumn(ft.Text("Nombre Producto")),
+                ft.DataColumn(ft.Text("Precio")),
+                ft.DataColumn(ft.Text("Cantidad vendida")),
+                ft.DataColumn(ft.Text("Total")),
+            ],
+            rows=rows,
+        )
+
+        row_ventas = ft.ResponsiveRow([
+            ft.Container(
+                ref_tbl_ventas.current,
+                col={"sm": 12, "md": 12, "xl": 12},
+            )
+            ],
+        )
+
+        return ft.Column(
+            [
+                row_ventas
+            ],
+            spacing=2
+        )
 
     def on_route_change(e):
         page.views.clear()
