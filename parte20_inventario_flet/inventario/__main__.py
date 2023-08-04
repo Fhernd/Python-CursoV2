@@ -1416,6 +1416,18 @@ def main(page: Page):
         )
 
     def generar_vista_reporte_productos_mas_vendidos():
+
+        rows = []
+
+        conexion = conectar('inventario/inventario.db')
+        inventario.recibir_conexion_bd(conexion)
+
+        productos = inventario.top_5_mas_vendidos()
+
+        conexion.close()
+
+        print(productos)
+
         ref_tbl_ventas.current = ft.DataTable(
             columns=[
                 ft.DataColumn(ft.Text("Código Producto")),
