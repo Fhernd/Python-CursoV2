@@ -1467,6 +1467,9 @@ def main(page: Page):
             spacing=2
         )
 
+    def generar_vista_reporte_productos_menos_vendidos():
+        pass
+
     def on_route_change(e):
         page.views.clear()
 
@@ -1584,6 +1587,17 @@ def main(page: Page):
                     [
                         AppBar(title=Text("Reporte - Top 5 Productos Más Vendidos"), bgcolor=colors.SURFACE_VARIANT),
                         generar_vista_reporte_productos_mas_vendidos()
+                    ]
+                )
+            )
+        
+        if page.route == '/producto/top_5_menos_vendidos':
+            page.views.append(
+                View(
+                    '/producto/top_5_menos_vendidos',
+                    [
+                        AppBar(title=Text("Reporte - Top 5 Productos Menos Vendidos"), bgcolor=colors.SURFACE_VARIANT),
+                        generar_vista_reporte_productos_menos_vendidos()
                     ]
                 )
             )
