@@ -1525,31 +1525,6 @@ def main(page: Page):
                 )
             )
 
-        if page.route == "/settings" or page.route == "/settings/mail":
-            page.views.append(
-                View(
-                    "/settings",
-                    [
-                        AppBar(title=Text("Settings"), bgcolor=colors.SURFACE_VARIANT),
-                        Text("Settings!", style="bodyMedium"),
-                        ElevatedButton(
-                            "Go to mail settings", on_click=open_mail_settings
-                        ),
-                    ],
-                )
-            )
-        if page.route == "/settings/mail":
-            page.views.append(
-                View(
-                    "/settings/mail",
-                    [
-                        AppBar(
-                            title=Text("Mail Settings"), bgcolor=colors.SURFACE_VARIANT
-                        ),
-                        Text("Mail settings!"),
-                    ],
-                )
-            )
         page.update()
 
     def view_pop(e):
