@@ -90,11 +90,11 @@ class InventarioApp:
                 "Sitio Web: https://ortizol.blogspot.com")
 
         def on_click_registrar_producto(e):
-            codigo = txt_codigo.current.value.strip()
-            nombre = txt_nombre.current.value.strip()
-            precio = txt_precio.current.value.strip()
-            cantidad = txt_cantidad.current.value.strip()
-            disponible = chk_disponible_venta.current.value
+            codigo = self.text_codigo.current.value.strip()
+            nombre = self.txt_nombre.current.value.strip()
+            precio = self.txt_precio.current.value.strip()
+            cantidad = self.txt_cantidad.current.value.strip()
+            disponible = self.chk_disponible_venta.current.value
 
             if len(codigo) == 0 and len(nombre) == 0 and len(precio) == 0 and len(cantidad) == 0:
                 mostrar_mensaje("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
@@ -144,25 +144,25 @@ class InventarioApp:
 
             mostrar_mensaje("El producto se ha creado de forma satisfactoria.")
 
-            txt_codigo.current.value = ''
-            txt_nombre.current.value = ''
-            txt_precio.current.value = ''
-            txt_cantidad.current.value = ''
-            chk_disponible_venta.current.value = True
+            self.text_codigo.current.value = ''
+            self.txt_nombre.current.value = ''
+            self.txt_precio.current.value = ''
+            self.txt_cantidad.current.value = ''
+            self.chk_disponible_venta.current.value = True
 
             conexion.close()
 
-        txt_codigo = ft.Ref[ft.TextField]()
-        txt_nombre = ft.Ref[ft.TextField]()
-        txt_precio = ft.Ref[ft.TextField]()
-        txt_cantidad = ft.Ref[ft.TextField]()
-        chk_disponible_venta = ft.Ref[ft.Checkbox]()
-        ref_txt_fecha_inicio = ft.Ref[ft.TextField]()
-        ref_txt_fecha_fin = ft.Ref[ft.TextField]()
-        ref_tbl_ventas = ft.Ref[ft.DataTable]()
+        self.text_codigo = ft.Ref[ft.TextField]()
+        self.txt_nombre = ft.Ref[ft.TextField]()
+        self.txt_precio = ft.Ref[ft.TextField]()
+        self.txt_cantidad = ft.Ref[ft.TextField]()
+        self.chk_disponible_venta = ft.Ref[ft.Checkbox]()
+        self.ref_txt_fecha_inicio = ft.Ref[ft.TextField]()
+        self.ref_txt_fecha_fin = ft.Ref[ft.TextField]()
+        self.ref_tbl_ventas = ft.Ref[ft.DataTable]()
 
         def on_change_cambiar_disponibilidad_producto(e):
-            estado_disponibilidad = chk_disponible_venta.current.value
+            estado_disponibilidad = self.chk_disponible_venta.current.value
 
             self.producto.disponible = estado_disponibilidad
 
@@ -180,8 +180,8 @@ class InventarioApp:
             page.update()
 
         def on_click_vender_producto(e):
-            codigo = txt_codigo.current.value.strip()
-            cantidad = txt_cantidad.current.value.strip()
+            codigo = self.text_codigo.current.value.strip()
+            cantidad = self.txt_cantidad.current.value.strip()
 
             if len(codigo) == 0 or len(cantidad) == 0:
                 mostrar_mensaje("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
@@ -235,11 +235,11 @@ class InventarioApp:
 
             mostrar_mensaje("La venta se ha realizado de forma satisfactoria.")
 
-            txt_codigo.current.value = ''
-            txt_cantidad.current.value = ''
+            self.text_codigo.current.value = ''
+            self.txt_cantidad.current.value = ''
             
         def on_click_buscar_producto(e):
-            codigo = txt_codigo.current.value.strip()
+            codigo = self.text_codigo.current.value.strip()
 
             if len(codigo) == 0:
                 mostrar_mensaje("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
@@ -264,22 +264,22 @@ class InventarioApp:
 
             if not producto:
                 mostrar_mensaje("El producto no existe.")
-                txt_nombre.current.value = ''
-                txt_precio.current.value = ''
-                txt_cantidad.current.value = ''
+                self.txt_nombre.current.value = ''
+                self.txt_precio.current.value = ''
+                self.txt_cantidad.current.value = ''
                 return
 
-            txt_nombre.current.value = producto.nombre
-            txt_precio.current.value = producto.precio
-            txt_cantidad.current.value = producto.cantidad
-            chk_disponible_venta.current.value = producto.disponible
+            self.txt_nombre.current.value = producto.nombre
+            self.txt_precio.current.value = producto.precio
+            self.txt_cantidad.current.value = producto.cantidad
+            self.chk_disponible_venta.current.value = producto.disponible
 
             page.update()
 
         def on_click_buscar_producto_cambiar_disponibilidad(e):
             global producto
             
-            codigo = txt_codigo.current.value.strip()
+            codigo = self.text_codigo.current.value.strip()
 
             if len(codigo) == 0:
                 mostrar_mensaje("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
@@ -304,19 +304,19 @@ class InventarioApp:
 
             if not producto:
                 mostrar_mensaje("El producto no existe.")
-                chk_disponible_venta.current.value = False
-                chk_disponible_venta.current.disabled = True
+                self.chk_disponible_venta.current.value = False
+                self.chk_disponible_venta.current.disabled = True
                 return
             
-            chk_disponible_venta.current.disabled = False
-            chk_disponible_venta.current.value = bool(producto.disponible)
-            chk_disponible_venta.current.update()
+            self.chk_disponible_venta.current.disabled = False
+            self.chk_disponible_venta.current.value = bool(producto.disponible)
+            self.chk_disponible_venta.current.update()
 
             page.update()
 
         def on_click_generar_reporte_ventas_rango_fechas(e):
-            fecha_inicio = ref_txt_fecha_inicio.current.value.strip()
-            fecha_fin = ref_txt_fecha_fin.current.value.strip()
+            fecha_inicio = self.ref_txt_fecha_inicio.current.value.strip()
+            fecha_fin = self.ref_txt_fecha_fin.current.value.strip()
 
             if len(fecha_inicio) == 0 or len(fecha_fin) == 0:
                 mostrar_mensaje("Todos los campos son obligatorios.")
@@ -347,8 +347,8 @@ class InventarioApp:
 
             if len(ventas) == 0:
                 mostrar_mensaje("No se encontraron ventas en el rango de fechas especificado.")
-                ref_tbl_ventas.current.rows = []
-                ref_tbl_ventas.current.update()
+                self.ref_tbl_ventas.current.rows = []
+                self.ref_tbl_ventas.current.update()
                 return
 
             rows = []
@@ -362,9 +362,9 @@ class InventarioApp:
 
                 rows.append(ft.DataRow(cells=cells))
 
-            ref_tbl_ventas.current.rows = rows
+            self.ref_tbl_ventas.current.rows = rows
                 
-            ref_tbl_ventas.current.update()
+            self.ref_tbl_ventas.current.update()
 
         def generar_tabla():
             columnas = ('Código Producto', 'Fecha', 'Cantidad', 'Total')
@@ -398,7 +398,7 @@ class InventarioApp:
                     ft.TextField(
                         label="Código",
                         hint_text="Ingrese el código del producto",
-                        ref=txt_codigo
+                        ref=self.text_codigo
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
@@ -410,7 +410,7 @@ class InventarioApp:
                     ft.TextField(
                         label="Nombre",
                         hint_text="Ingrese el nombre del producto",
-                        ref=txt_nombre
+                        ref=self.txt_nombre
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
@@ -422,7 +422,7 @@ class InventarioApp:
                     ft.TextField(
                         label="Precio",
                         hint_text="Ingrese el precio del producto",
-                        ref=txt_precio
+                        ref=self.txt_precio
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
@@ -434,7 +434,7 @@ class InventarioApp:
                     ft.TextField(
                         label="Cantidad",
                         hint_text="Ingrese la cantidad del producto",
-                        ref=txt_cantidad
+                        ref=self.txt_cantidad
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
@@ -443,7 +443,7 @@ class InventarioApp:
 
             row_disponible_venta = ft.ResponsiveRow([
                 ft.Container(
-                    ft.Checkbox(label="¿Disponible para venta?", value=True, ref=chk_disponible_venta),
+                    ft.Checkbox(label="¿Disponible para venta?", value=True, ref=self.chk_disponible_venta),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
                 ],
@@ -475,7 +475,7 @@ class InventarioApp:
                     ft.TextField(
                         label="Código",
                         hint_text="Ingrese el código del producto",
-                        ref=txt_codigo
+                        ref=self.text_codigo
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
@@ -487,7 +487,7 @@ class InventarioApp:
                     ft.TextField(
                         label="Cantidad",
                         hint_text="Ingrese la cantidad del producto",
-                        ref=txt_cantidad
+                        ref=self.txt_cantidad
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
@@ -517,7 +517,7 @@ class InventarioApp:
                     ft.TextField(
                         label="Código",
                         hint_text="Ingrese el código del producto a buscar",
-                        ref=txt_codigo
+                        ref=self.text_codigo
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
@@ -528,7 +528,7 @@ class InventarioApp:
                 ft.Container(
                     ft.TextField(
                         label="Nombre",
-                        ref=txt_nombre,
+                        ref=self.txt_nombre,
                         read_only=True
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
@@ -540,7 +540,7 @@ class InventarioApp:
                 ft.Container(
                     ft.TextField(
                         label="Precio",
-                        ref=txt_precio,
+                        ref=self.txt_precio,
                         read_only=True
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
@@ -552,7 +552,7 @@ class InventarioApp:
                 ft.Container(
                     ft.TextField(
                         label="Cantidad",
-                        ref=txt_cantidad,
+                        ref=self.txt_cantidad,
                         read_only=True
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
@@ -562,7 +562,7 @@ class InventarioApp:
 
             row_disponible_venta = ft.ResponsiveRow([
                 ft.Container(
-                    ft.Checkbox(label="¿Disponible para venta?", value=True, ref=chk_disponible_venta),
+                    ft.Checkbox(label="¿Disponible para venta?", value=True, ref=self.chk_disponible_venta),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
                 ],
@@ -594,7 +594,7 @@ class InventarioApp:
                     ft.TextField(
                         label="Código",
                         hint_text="Ingrese el código del producto a buscar",
-                        ref=txt_codigo
+                        ref=self.text_codigo
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
@@ -614,7 +614,7 @@ class InventarioApp:
                     ft.Checkbox(
                         label="¿Disponible para venta?", 
                         value=False, 
-                        ref=chk_disponible_venta,
+                        ref=self.chk_disponible_venta,
                         disabled=True,
                         on_change=on_change_cambiar_disponibilidad_producto
                         ),
@@ -638,7 +638,7 @@ class InventarioApp:
                     ft.TextField(
                         label="Fecha inicio",
                         hint_text="Ingrese la fecha de inicio",
-                        ref=ref_txt_fecha_inicio
+                        ref=self.ref_txt_fecha_inicio
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
@@ -650,7 +650,7 @@ class InventarioApp:
                     ft.TextField(
                         label="Fecha fin",
                         hint_text="Ingrese la fecha fin",
-                        ref=ref_txt_fecha_fin
+                        ref=self.ref_txt_fecha_fin
                     ),
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
@@ -665,11 +665,11 @@ class InventarioApp:
                 ],
             )
 
-            ref_tbl_ventas.current = generar_tabla()
+            self.ref_tbl_ventas.current = generar_tabla()
 
             row_ventas = ft.ResponsiveRow([
                 ft.Container(
-                    ref_tbl_ventas.current,
+                    self.ref_tbl_ventas.current,
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
                 ],
@@ -713,7 +713,7 @@ class InventarioApp:
 
             conexion.close()
             
-            ref_tbl_ventas.current = ft.DataTable(
+            self.ref_tbl_ventas.current = ft.DataTable(
                 columns=[
                     ft.DataColumn(ft.Text("Código Producto")),
                     ft.DataColumn(ft.Text("Nombre Producto")),
@@ -726,7 +726,7 @@ class InventarioApp:
 
             row_ventas = ft.ResponsiveRow([
                 ft.Container(
-                    ref_tbl_ventas.current,
+                    self.ref_tbl_ventas.current,
                     col={"sm": 12, "md": 12, "xl": 12},
                 )
                 ],
