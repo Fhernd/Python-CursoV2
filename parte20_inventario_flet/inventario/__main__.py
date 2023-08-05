@@ -1,5 +1,4 @@
 import datetime
-import threading
 
 import flet as ft
 from flet import AppBar, Page, PopupMenuButton, Text, View, colors
@@ -9,9 +8,18 @@ from modelos.producto import Producto
 from modelos.venta import Venta
 from conexion import conectar
 
-producto = None
 
 class InventarioApp:
+    """
+    Clase principal del gestor de inventario.
+    """
+
+    def __init__(self):
+        """
+        Constructor de la clase.
+        """
+        self.producto = None
+    
     def main(self, page: Page):
         inventario = Inventario()
         page.title = "Gestor Inventario - Dispositivos s.a.s. - Por: OrtizOL"
