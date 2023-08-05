@@ -1,19 +1,8 @@
 import datetime
-import json
-import pickle
-import os
-import tkinter as tk
-from tkinter import ttk
-from tkinter import messagebox
-from tkinter import filedialog
 import threading
 
-from tkcalendar import Calendar, DateEntry
-
-import openpyxl
-
 import flet as ft
-from flet import AppBar, ElevatedButton, FilledButton, Page, PopupMenuButton, PopupMenuItem, Text, View, colors
+from flet import AppBar, Page, PopupMenuButton, Text, View, colors
 
 from modelos.inventario import Inventario
 from modelos.producto import Producto
