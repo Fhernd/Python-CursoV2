@@ -88,8 +88,6 @@ class InventarioApp:
             cantidad = txt_cantidad.current.value.strip()
             disponible = chk_disponible_venta.current.value
 
-            print('ID de thread evento:', threading.get_ident())
-
             if len(codigo) == 0 and len(nombre) == 0 and len(precio) == 0 and len(cantidad) == 0:
                 mostrar_mensaje("Todos los campos son obligatorios. Los valores numéricos deben ser mayores a 0.")
                 return
@@ -879,7 +877,6 @@ class InventarioApp:
             page.update()
 
         def view_pop(e):
-            print("View pop:", e.view)
             page.views.pop()
             top_view = page.views[-1]
             page.go(top_view.route)
