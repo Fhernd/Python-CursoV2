@@ -164,7 +164,7 @@ class InventarioApp:
         def on_change_cambiar_disponibilidad_producto(e):
             estado_disponibilidad = chk_disponible_venta.current.value
 
-            producto.disponible = estado_disponibilidad
+            self.producto.disponible = estado_disponibilidad
 
             conexion = conectar('inventario/inventario.db')
             inventario.recibir_conexion_bd(conexion)
@@ -298,7 +298,7 @@ class InventarioApp:
             conexion = conectar('inventario/inventario.db')
             inventario.recibir_conexion_bd(conexion)
 
-            producto = inventario.buscar_producto_por_codigo(codigo)
+            self.producto = inventario.buscar_producto_por_codigo(codigo)
 
             conexion.close()
 
