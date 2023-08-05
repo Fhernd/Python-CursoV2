@@ -1474,6 +1474,12 @@ def main(page: Page):
             spacing=2
         )
 
+    mnu_archivo = None
+
+    def abrir_menu_archivo(e):
+        mnu_archivo.open = True
+
+
     def on_route_change(e):
         page.views.clear()
 
@@ -1485,7 +1491,7 @@ def main(page: Page):
         )
 
         mnu_productos = PopupMenuButton(
-            content=Text('Productos'),
+            content=ft.Text('Productos'),
             items=[
                 ft.PopupMenuItem(text='Registrar', on_click=on_click_nav_producto_registrar),
                 ft.PopupMenuItem(text='Vender', on_click=on_click_nav_producto_vender),
@@ -1527,7 +1533,11 @@ def main(page: Page):
                 mnu_ayuda,
                 col={"sm": 2, "md": 2, "xl": 2},
             ),
-            ],
+            ft.Container(
+                ElevatedButton('Abrir menú', on_click=abrir_menu_archivo),
+                col={"sm": 2, "md": 2, "xl": 2},
+            )
+        ],
         )
 
         page.views.append(
